@@ -12,28 +12,13 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Books</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Settings  <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="pull-right" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
-                        </ul>
-                    </li>
+                    <button type="button" class=" btn btn-success fa fa-plus pull-right " data-toggle="modal" data-target="#bookAuthor" >
+                        Add New
+                    </button>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
-                            <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#bookAuthor" >
-                                Add New
-                            </button>
                             {{Form::open(array('route'=> ['book.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped scrollit">
                                 <thead>
@@ -106,7 +91,7 @@
 
     {{-- Modal add new  --}}
     <div id="bookAuthor" class="modal fade">
-        <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
@@ -123,7 +108,7 @@
 
     {{-- Modal for Edit --}}
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog">
             <div class="modal-content">
             </div>
@@ -133,7 +118,7 @@
 
     {{-- Modal for show --}}
 
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             </div>
@@ -142,7 +127,7 @@
 
     {{-- Modal for delete --}}
 
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

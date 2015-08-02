@@ -44,12 +44,11 @@
             <div>{{ Form::textarea('note', Input::old('note'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required','size'=>'20x4']) }}
             </div>
         </div>
-        <div>
-            {{ Form::submit('Submit', array('class'=>'btn btn-xs btn-success')) }}
-            <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
+        <div class="modal-footer">
+            {{ Form::submit('Submit', array('class'=>'btn btn-success')) }}
+            <button class="btn btn-default " data-dismiss="modal" type="button">Close</button>
         </div>
         {{ Form::close() }}
     </div>
 </div>
-<div class="modal-footer">
-</div>
+
