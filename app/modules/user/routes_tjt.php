@@ -85,9 +85,19 @@ Route::any("user/extra-curricular/store", [
     "uses" => "UserInformationController@extraCurricularStore"
 ]);
 
-Route::any("user/extra-curricular/view", [
-    "as"   => "user/extra-curricular/view",
-    "uses" => "UserInformationController@extraCurricularStore"
+Route::any("user/extra-curricular/edit/{id}", [
+    "as"   => "user/extra-curricular/edit",
+    "uses" => "UserInformationController@editExtraCurricular"
+]);
+
+Route::any("user/extra-curricular/update/{id}", [
+    "as"   => "user/extra-curricular/update",
+    "uses" => "UserInformationController@updateExtraCurricular"
+]);
+
+Route::any("user/extra-curricular/certificate-medal/{id}", [
+    "as"   => "user/extra-curricular/certificate-medal",
+    "uses" => "UserInformationController@viewCertificateMedal"
 ]);
 
 
