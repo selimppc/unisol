@@ -55,7 +55,7 @@ class PayrollController extends \BaseController {
     // manage HR Invoiced Data
     public function  manage_hr_invoice(){
         $pageTitle = "Manage HR Salary Invoice";
-        $data = AccVApHr::with('relHrEmployee')->get();
+        $data = AccVApHr::with('relHrEmployee')->orderBy('associated_id', 'DESC')->get();
         return View::make('payroll::hr_invoice', compact('pageTitle', 'data'));
     }
 
@@ -63,7 +63,7 @@ class PayrollController extends \BaseController {
     public function  hr_payment_voucher($associated_id, $coa_id){
 
         $data = AccChartOfAccounts::paginate(3);
-        $year_lists = Year::lists('title', 'id');
+        $year_lists = Year::where('title', '>=' ,Date('Y') )->lists('title', 'id');
         $period_lists = AccChartOfAccounts::list_period();
         $coa_lists = AccChartOfAccounts::lists('description', 'id');
 
@@ -74,9 +74,10 @@ class PayrollController extends \BaseController {
             //->where('acc_voucher_head_id', $coa_id)->get();
             ->get();
 
+
         return View::make('payroll::hr_voucher', compact(
             'associated_id', 'coa_id', 'unpaid_invoice','data','year_lists', 'period_lists',
-            'coa_lists','data_employee'));
+            'coa_lists','data_employee','current_year'));
     }
 
     /*
