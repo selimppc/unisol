@@ -32,7 +32,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @if($meta_data != null)
-                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/profile-info/edit',['id'=>$meta_data->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical <i class="fa fa-arrow-circle-right"></i></a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/meta-data/edit',['id'=>$meta_data->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical <i class="fa fa-arrow-circle-right"></i></a>
                         @else
                             <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
                               + Add Biographical Info
