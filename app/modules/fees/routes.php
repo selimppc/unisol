@@ -181,8 +181,8 @@
          "as"   => "applicant-head-destroy",
          "uses" => "FeesController@destroy_billing_applicant_head"
      ]);
-     Route::any('billing-applicant-head-update', [
-         'as' => 'billing-applicant-head-update',
+     Route::any('status-billing-applicant-head-update/{id}', [
+         'as' => 'status-billing-applicant-head-update',
          'uses' => 'FeesController@update_applicant_head_status'
      ]);
 
@@ -243,7 +243,7 @@
          "as"   => "student-head-destroy",
          "uses" => "FeesController@destroy_billing_student_head"
      ]);
-     Route::any('billing-student-head-status', [
+     Route::any('billing-student-head-status/{id}', [
          'as' => 'billing-student-head-status',
          'uses' => 'FeesController@update_student_head_status'
      ]);

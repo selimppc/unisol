@@ -20,14 +20,14 @@ Route::any("user/profile-info/update/{id}", [
     "uses" => "UserInformationController@updateProfile"
 ]);
 
-Route::any("user/profile-info/edit/profile-image/{id}", [
-    "as"   => "user/profile-info/edit/profile-image",
-    "uses" => "UserInformationController@editProfileImage"
+Route::any("user/profile-info/profile-image/{id}", [
+    "as"   => "user/profile-info/profile-image",
+    "uses" => "UserInformationController@profileImage"
 ]);
 
-Route::any("user/profile-info/change/profile-image/{id}", [
-    "as"   => "user/profile-info/change/profile-image",
-    "uses" => "UserInformationController@updateProfileImage"
+Route::any("user/profile-info/add/profile-image/{id}", [
+    "as"   => "user/profile-info/add/profile-image",
+    "uses" => "UserInformationController@addProfileImage"
 ]);
 
 //user mete data
@@ -50,5 +50,27 @@ Route::any("user/meta-data/edit/{id}", [
 Route::any("user/meta-data/update/{id}", [
     "as"   => "user/meta-data/update",
     "uses" => "UserInformationController@updateMetaData"
+]);
+
+//Miscellaneous_Info
+
+Route::any("user/misc-info", [
+    "as"   => "user/misc-info",
+    "uses" => "UserInformationController@miscIndex"
+]);
+
+Route::any("user/misc-info/store", [
+    "as"   => "user/misc-info/store",
+    "uses" => "UserInformationController@storeMisc"
+]);
+
+Route::any("user/misc-info/edit/{id}", [
+    "as"   => "user/misc-info/edit",
+    "uses" => "UserInformationController@editMiscInfo"
+]);
+
+Route::any("user/misc-info/update/{id}", [
+    "as"   => "user/misc-info/update",
+    "uses" => "UserInformationController@updateMiscInfo"
 ]);
 

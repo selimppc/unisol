@@ -38,18 +38,22 @@
                               + Add Profile
                             </button>
                         @endif
-                        <div class="box-body table-responsive ">
+                        <div class="box-body table-responsive">
                             <table class="table table-striped  table-bordered">
                                 <tr>
                                     <th>Profile Picture</th>
-                                    @if($profile != null)
-                                      <td>
-                                        <a class=" btn-link" href="{{ URL::route('user/profile-info/edit/profile-image', ['id'=>$profile->id] ) }}" data-toggle="modal" data-target="#changeImageModal">
-                                            {{ HTML::image('user_images/profile/'.$profile->image, $profile->image)}}
-                                            <ins>Change Picture</ins>
-                                        </a>
-                                      </td>
-                                    @endif
+                                       <td>
+                                       @if(isset($profile->image))
+                                           @if($profile->image == null)
+                                              <a class=" btn-link" href="{{ URL::route('user/profile-info/profile-image',['id'=>$profile->id])}}" data-toggle="modal" data-target="#changeImageModal">
+                                                {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
+                                                <ins>Add Your Profile Picture</ins>
+                                              </a>
+                                              @else
+                                              {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
+                                           @endif
+                                        @endif
+                                       </td>
                                 </tr>
                                 <tr>
                                     <th>First Name</th>
@@ -73,7 +77,7 @@
                                 </tr>
                                 <tr>
                                     <th>Country</th>
-                                    <td>{{isset($profile->country) ? $profile->relCountry->title:''}}</td>
+                                    <td>{{isset($profile->country_id) ? $profile->relCountry->title :" "}}</td>
                                 </tr>
                                 <tr>
                                     <th>City</th>
@@ -82,10 +86,6 @@
                                 <tr>
                                     <th>State</th>
                                     <td>{{isset($profile->state) ? $profile->state : ''}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Country</th>
-                                    <td>{{isset($profile->city) ? $profile->city : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Zip Code</th>

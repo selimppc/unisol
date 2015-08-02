@@ -15,7 +15,8 @@ class UserInformationController extends \BaseController {
 
             $user_id = Auth::user()->get()->id;
             $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-            $profile = UserProfile::where('user_id', '=', $user_id)->first();
+            $profile = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
+//            print_r($profile);exit;
             return View::make('user::user_info.profile.index',compact('profile','countryList','user_id'));
     }
 	public function storeProfile()
@@ -113,7 +114,7 @@ class UserInformationController extends \BaseController {
 
             $model->city = Input::get('city');
             $model->state = Input::get('state');
-            $model->country = Input::get('country');
+            $model->country_id = Input::get('country_id');
             $model->zip_code = Input::get('zip_code');
 
             $model->save();
@@ -126,43 +127,27 @@ class UserInformationController extends \BaseController {
         }
     }
 
-    public function editProfileImage($id)
+    public function profileImage($id)
     {
-        $profile_img = UserProfile::find($id);
-        return View::make('user::user_info.profile.edit_image', compact('profile_img'));
+        $model = UserProfile::find($id);
+        return View::make('user::user_info.profile.add_image',compact('model'));
     }
 
-    public function updateProfileImage($id)
+    public function addProfileImage($id)
     {
-        $rules = array(
-            'profile_image' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-            DB::beginTransaction();
-            try {
-                $profile = UserProfile::find($id);
-                $FlashMsg = Auth::user()->get()->username;
-                $imagefile = Input::file('profile_image');
-                $extension = $imagefile->getClientOriginalExtension();
-                $filename = str_random(12) . '.' . $extension;
-                $file = strtolower($filename);
-                $path = public_path("/applicant_images/profile/" . $file);
-                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-                $profile->profile_image = $file;
-                $profile->save();
-                DB::commit();
-                return Redirect::back()->with('message', "Successfully Updated $FlashMsg Profile Picture !");
-            } catch (Exception $e) {
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', " Information is not added.Invalid Request !");
-            }
-            return Redirect::back();
+        $model = UserProfile::find($id);
+        $model->image = Input::file('image');
+        $extension = $model->image->getClientOriginalExtension();
+        $filename = str_random(12) . '.' . $extension;
+        $file = strtolower($filename);
+        $path = public_path("/user_images/profile/" . $file);
+        Image::make($model->image->getRealPath())->resize(100, 100)->save($path);
+        $model->image  = $file;
+        $model->save();
 
-        } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
-        }
+        Session::flash('message', "Successfully Added Profile Picture!");
+        return Redirect::back();
+
     }
  /*User Meta Data*/
 
@@ -229,5 +214,64 @@ class UserInformationController extends \BaseController {
         }
     }
 
+    public function miscIndex(){
+        $user_id = Auth::user()->get()->id;
+        $data = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();
+        return View::make('user::user_info.miscellaneous_info.index',compact('data','user_id'));
+    }
 
+    public function storeMisc(){
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new UserMiscellaneousInfo();
+            $model->user_id = Input::get('user_id');
+//            print_r($input_data);exit;
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
+
+    public function editMiscInfo($id){
+
+        $model = UserMiscellaneousInfo::find($id);
+        $user_id = Auth::user()->get()->id;
+        return View::make('user::user_info.miscellaneous_info._modal.edit', compact('model','user_id'));
+    }
+
+    public function updateMiscInfo($id){
+        $data = Input::all();
+        $model = UserMiscellaneousInfo::find($id);
+
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
 }

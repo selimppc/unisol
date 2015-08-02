@@ -5,7 +5,7 @@
 </div>
 
 <div class="modal-body">
- {{Form::model($model, array('route'=>['user/meta-data/update',$model->id],'class'=>'form-horizontal','files'=>true))}}
-     @include('user::user_info.meta_data._form')
+ {{Form::model($model, array('route'=>['user/misc-info/update',$model->id],'class'=>'form-horizontal','files'=>true))}}
+     @include('user::user_info.miscellaneous_info._modal._form')
  {{ Form::close() }}
 </div>

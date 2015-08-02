@@ -21,6 +21,7 @@ class UserSignupController extends \BaseController {
     {
 
         $input_data = Input::all();
+//        print_r($input_data);exit;
         $verified_code = str_random(30);
         //model
         $model = new User();
@@ -45,7 +46,7 @@ class UserSignupController extends \BaseController {
                     $model1->gender = Input::get('gender');
                     $model1->city = Input::get('city');
                     $model1->state = Input::get('state');
-                    $model1->country = Input::get('country');
+                    $model1->country_id = Input::get('country_id');
                     $model1->zip_code = Input::get('zip_code');
                     $model1->save();
                     Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
@@ -56,7 +57,7 @@ class UserSignupController extends \BaseController {
                 }
             }
         }else {
-            Session::flash('danger', '. Please Try Again.');
+            Session::flash('danger', 'Please Try Again.');
             return Redirect::back();
         }
 
