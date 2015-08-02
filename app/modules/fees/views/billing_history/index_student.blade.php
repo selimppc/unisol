@@ -24,7 +24,7 @@
                     <div class="tab-pane active" id="tab_1">
 
                         {{--================= Filter :Starts ==========================--}}
-                        <script>
+                       {{-- <script>
                             $(document).ready(function(){
                                 $(".the-legend").click(function(){
                                     $("#search-student-panel").hide();
@@ -34,12 +34,21 @@
                                     $("#search-student-panel").show();
                                 });
                             });
+                        </script>--}}
+                        <script>
+                            $(document).ready(function(){
+                                $("#flip").click(function(){
+                                    $("#panel").slideToggle("slow");
+                                });
+                            });
                         </script>
 
-                        {{Form::open(array('route'=> ['student-billing-history']))}}
+
                         <fieldset class="well the-fieldset">
-                            <legend class="the-legend"> SEARCH </legend>
-                            <div id="search-student-panel" style="display: none">
+                            <legend class="the-legend search-cursor" id="flip"> SEARCH </legend>
+                            {{--<div id="search-student-panel" style="display: none">--}}
+                            <div id="panel" >
+                                {{Form::open(array('route'=> ['student-billing-history']))}}
                                 <div class="col-sm-12" >
                                     <div class="col-sm-4">
                                         {{ Form::label('department_id', 'Department') }}
@@ -75,9 +84,8 @@
 
                                     </div>
                                 </div>
+                                {{Form::close()}}
                             </div>
-
-                        {{Form::close()}}
                         </fieldset>
 
                         {{--================= Filter :Ends ==========================--}}

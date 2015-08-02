@@ -3745,15 +3745,18 @@ fieldset[disabled] .btn-vk.active {
 }
 
 /*======================jquery_slide_toggle for search panel======================*/
-#panel, #flip {
+#flip {
     padding: 2px;
    /* text-align: center;*/
     text-align: left;
-    background-color: #edecee;
+    background-color: #F5F5F5;
     border: solid 1px #c3c3c3;
 }
 
 #panel {
-    /*padding: 100px;
-    display: none;*/
+    /*padding: 100px;*/
+    display: none;
+}
+.search-cursor{
+   cursor:pointer;
 }
