@@ -31,10 +31,18 @@
                     <div class="tab-pane active" id="tab_1">
 
                         {{--================= Filter :Starts =========================--}}
+                        <script>
+                            $(document).ready(function(){
+                                $("#flip").click(function(){
+                                    $("#panel").slideToggle("slow");
+                                });
+                            });
+                        </script>
 
-                        {{Form::open(array('route'=> ['installment.setup']))}}
                         <fieldset class="well the-fieldset2">
-                            <legend class="the-legend2"> SEARCH </legend>
+                            <legend class="the-legend search-cursor" id="flip"> SEARCH </legend>
+                            <div id="panel" >
+                                {{Form::open(array('route'=> ['installment.setup']))}}
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
                                     {{ Form::label('degree_id', 'Degree') }}
@@ -46,6 +54,7 @@
                                 </div>
                             </div>
                             {{Form::close()}}
+                                </div>
                         </fieldset>
 
                         {{--=====================Filter :Ends =========================--}}

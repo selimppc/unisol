@@ -149,7 +149,7 @@ Route::group(['prefix' => 'payment'], function() {
 
     // Account Receivable
     Route::any("library-receivable-index",[
-        "as"   => "student-receivable-index",
+        "as"   => "library-receivable-index",
         "uses" => "ArLibraryController@index_library_receivable"
     ]);
 

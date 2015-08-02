@@ -29,6 +29,7 @@
         <ul class="treeview-menu">
             <li><a href="{{ Route('applicant-receivable-index') }}"><i class="fa fa-angle-double-right"></i> Applicant </a></li>
             <li><a href="{{Route('student-receivable-index')}}"><i class="fa fa-angle-double-right"></i> Student </a></li>
+            <li><a href="{{Route('library-receivable-index')}}"><i class="fa fa-angle-double-right"></i> Library </a></li>
             <li><a href="{{Route('setup-transaction')}}"><i class="fa fa-angle-double-right"></i> Settings </a></li>
 
         </ul>

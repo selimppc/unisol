@@ -723,37 +723,31 @@ class FeesController extends \BaseController {
 
     public  function update_applicant_head_status()
     {
-        if($this->isPostRequest()) {
-            $id = Input::get('id');
-            $status = Input::get('status');
-            DB::beginTransaction();
-            try {
-                $update = DB::table('billing_applicant_head')
-                    ->where('id', $id)
-                    ->where('status', "open")
-                    ->update(array('status' => $status));
-                DB::commit();
-                if($update)
-                    Session::flash('message', "Billing Details confirmed Successfully");
-                else
-                    Session::flash('danger', "Billing Details confirmed Is Just For One Time.");
-                return Redirect::back();
+        $id = Input::get('id');
+        $status = Input::get('status');
+        $check = BillingApplicantDetail::where('billing_applicant_head_id', $id)->exists();
+        if($check){
+            $update = DB::table('billing_applicant_head')
+                ->where('id', $id)
+                ->where('status', "open")
+                ->update(array('status' => $status));
+            if($update) {
+                Session::flash('message', "Billing Details confirmed Successfully");
             }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "not added.Invalid Request!");
+            else {
+                Session::flash('danger', "Billing Details Confirmed Is Just For One Time.");
             }
             return Redirect::back();
+        }else{
+            Session::flash('info', 'Billing Details Total Amount is Empty. Please Add Item. And Try Again Later!');
         }
         return Redirect::back();
 
     }
 
     /****==========================================================================================
-                            Billing details applicant start
+                                Billing details applicant start
      =========================================================================================****/
-
 
     public function create_billing_details_applicant($id)
     {
@@ -970,7 +964,7 @@ class FeesController extends \BaseController {
 
     public  function update_student_head_status()
     {
-        if($this->isPostRequest()) {
+        /*if($this->isPostRequest()) {
             $id = Input::get('id');
             $status = Input::get('status');
             DB::beginTransaction();
@@ -992,6 +986,25 @@ class FeesController extends \BaseController {
                 Session::flash('danger', "not added.Invalid Request!");
             }
             return Redirect::back();
+        }
+        return Redirect::back();*/
+        $id = Input::get('id');
+        $status = Input::get('status');
+        $check = BillingStudentDetail::where('billing_student_head_id', $id)->exists();
+        if($check){
+            $update = DB::table('billing_student_head')
+                ->where('id', $id)
+                ->where('status', "open")
+                ->update(array('status' => $status));
+            if($update) {
+                Session::flash('message', "Billing Details confirmed Successfully");
+            }
+            else {
+                Session::flash('danger', "Billing Details confirmed Is Just For One Time.");
+            }
+            return Redirect::back();
+        }else{
+            Session::flash('info', 'Billing Details total Amount is Empty. Please Add Item. And Try Again Later!');
         }
         return Redirect::back();
 

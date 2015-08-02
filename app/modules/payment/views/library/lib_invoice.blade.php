@@ -8,7 +8,7 @@
     <div class="box box-solid ">
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
-            <a href="{{ URL::route('hr-payroll') }}" type="button" class="pull-right btn btn-xs btn-default" > << Back to Salary TRN</a>
+            <a href="{{ URL::route('library-receivable-index') }}" type="button" class="pull-right btn btn-xs btn-default" > << Back to Salary TRN</a>
         </div>
 
        <div class="box-body">
@@ -17,7 +17,7 @@
 
                 <tr>
                     <th> HR Employee ID </th>
-                    <th> Employee Name </th>
+                    <th> Library User Name </th>
                     <th> Account Code </th>
                     <th> Description </th>
                     <th> Pay Amount </th>
