@@ -35,11 +35,11 @@
                     <td><b>
                         {{ link_to_route($values->status!="invoiced" ?'show-hr-trn' : 'show-hr-trn',$values->trn_number,['trn_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
-                    <td> {{ $values->hr_employee_id }}</td>
+                    <td> {{ $values->relHrEmployee->employee_id }}</td>
                     <td>{{ $values->date }}</td>
-                    <td>{{ $values->year_id }}  </td>
-                    <td>{{ $values->period }}  </td>
-                    <td>{{ $values->total_amount }}  </td>
+                    <td>{{ $values->relYear->title }}  </td>
+                    <td>{{ ucfirst($values->period) }}  </td>
+                    <td>{{ round($values->total_amount,2) }}  </td>
                     <td>{{Str::title($values->status)}}</td>
                     <td>@if($values->status != 'invoiced')
                             <a href="{{ URL::route('hr-create-invoice', ['trn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Create Invoice"><span class="fa fa-pencil"></span> + Invoice</a>

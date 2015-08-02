@@ -195,6 +195,39 @@ class UserInformationController extends \BaseController {
         return Redirect::back();
     }
 
+    public function editMetaData($id){
+
+        $model = UserMeta::find($id);
+        $user_id = Auth::user()->get()->id;
+        return View::make('user::user_info.meta_data.edit', compact('model','user_id'));
+    }
+
+    public function updateMetaData($id){
+
+        $data = Input::all();
+        $model = UserMeta::find($id);
+
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
 
 
 }

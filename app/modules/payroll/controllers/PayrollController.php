@@ -32,7 +32,7 @@ class PayrollController extends \BaseController {
      */
     public function show_hr_transaction($trn_id){
         $hr_trn_head = HrSalaryTransactionHead::find($trn_id);
-        $hr_trn_dt = HrSalaryTransactionDetail::where('salary_trn_hd_id', $trn_id)->get();
+        $hr_trn_dt = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')->where('salary_trn_hd_id', $trn_id)->get();
         return View::make('payroll::show', compact('trn_id', 'hr_trn_head', 'hr_trn_dt'));
     }
 
@@ -55,7 +55,7 @@ class PayrollController extends \BaseController {
     // manage HR Invoiced Data
     public function  manage_hr_invoice(){
         $pageTitle = "Manage HR Salary Invoice";
-        $data = AccVApHr::get();
+        $data = AccVApHr::with('relHrEmployee')->get();
         return View::make('payroll::hr_invoice', compact('pageTitle', 'data'));
     }
 
@@ -67,15 +67,16 @@ class PayrollController extends \BaseController {
         $period_lists = AccChartOfAccounts::list_period();
         $coa_lists = AccChartOfAccounts::lists('description', 'id');
 
+        $data_employee = HrEmployee::where('id', $associated_id)->first()->employee_id;
+
         //Unpaid Invoice Lists
         $unpaid_invoice = AccVUnpaidinvHr::where('associated_id', $associated_id)
             //->where('acc_voucher_head_id', $coa_id)->get();
             ->get();
 
         return View::make('payroll::hr_voucher', compact(
-            'associated_id', 'coa_id', 'unpaid_invoice',
-            'data','year_lists', 'period_lists', 'coa_lists'
-        ));
+            'associated_id', 'coa_id', 'unpaid_invoice','data','year_lists', 'period_lists',
+            'coa_lists','data_employee'));
     }
 
     /*

@@ -22,7 +22,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                        {{--===================Filter :Starts ============================--}}
+                        {{--=====================Filter :Starts ============================--}}
                         <script>
                             $(document).ready(function(){
                                 $("#flip").click(function(){
@@ -32,9 +32,9 @@
                         </script>
 
                         <fieldset class="well the-fieldset" >
-                            <legend class="the-legend" id="flip"> SEARCH </legend>
+                            <legend class="the-legend search-cursor" id="flip"> SEARCH </legend>
                        {{-- <div id="flip">Click to Search Applicant History</div>--}}
-                        <div id="panel">
+                        <div id="panel" >
                             {{Form::open(array('route'=> ['applicant-billing-history']))}}
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
@@ -64,7 +64,8 @@
                             {{Form::close()}}
                         </div>
                         </fieldset>
-                        {{--===================Filter :Ends ============================--}}
+
+                        {{--====================Filter :Ends ============================--}}
 
                             <div class="box-body table-responsive ">
                                 <table id="example1" class="table table-bordered table-hover table-striped">
