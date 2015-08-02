@@ -4,10 +4,10 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class LibBookFinancialTransaction extends Eloquent{
+class LibBookTransactionFinancial extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='lib_book_financial_transaction';
+    protected $table='lib_book_transaction_financial';
     protected $fillable = [
         'lib_book_transaction_id', 'amount','trn_type','status',
         'tax_rate', 'tax_amount'

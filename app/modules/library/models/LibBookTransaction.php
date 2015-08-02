@@ -47,8 +47,8 @@ class LibBookTransaction extends Eloquent{
         return $this->belongsTo('User','user_id','id');
     }
 
-    public function relLibBookFinancialTransaction(){
-        return $this->HasOne('LibBookFinancialTransaction');
+    public function relLibBookTransactionFinancial(){
+        return $this->HasOne('LibBookTransactionFinancial');
     }
 
     // TODO : user info while saving data into table
