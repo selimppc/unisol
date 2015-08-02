@@ -142,113 +142,14 @@ $(function(){
 
 
 //Try 1
-    $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() ? $("#salary_transaction_detail_allowance option:selected").text() : "";
-    $sal_trns_dtl_allowance_val = $("#salary_transaction_detail_allowance").val();
-    $sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() ? $("#salary_transaction_detail_deduction option:selected").text() : "";
-    $sal_trns_dtl_deduction_val = $("#salary_transaction_detail_deduction").val();
-    $sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val() ? $("#salary_transaction_detail_over_time option:selected").text() : "";
-    $sal_trns_dtl_ovrtm_val = $("#salary_transaction_detail_over_time").val();
-    $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val() ? $("#salary_transaction_detail_bonus option:selected").text() : "";
-    $sal_trns_dtl_bonus_val = $("#salary_transaction_detail_bonus").val();
-
-//Try 2
-
-//         if ($sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() )
-//         { $allowance_name = $(".allowance_name option:selected").text() }
-//         else if($sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() )
-//         { $deduction_name = $(".deduction_name option:selected").text() }
-//         else if($sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val() )
-//         { $ovrtm_name = $(".overtime_name option:selected").text() }
-//         else if($sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val() )
-//         { $bonus_name = $(".bonus_name option:selected").text()  }
-
-//Try 3
-
-//var $sal_trns_dtl_allowance = document.getElementById("salary_transaction_detail_allowance").val;
-//if( $sal_trns_dtl_allowance != null ){
-//    var $allowance_name = $(".allowance_name option:selected").text();;
-//
-//}
-//var $sal_trns_dtl_deduction = document.getElementById("salary_transaction_detail_deduction").val;
-//if( $sal_trns_dtl_deduction != null ){
-//    var $deduction_name = $(".deduction_name option:selected").text();;
-//
-//}
-//var $sal_trns_dtl_ovrtm = document.getElementById("salary_transaction_detail_over_time").val;
-//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_deduction == null && $sal_trns_dtl_bonus == null){
-//
-//}
-//var $sal_trns_dtl_bonus = document.getElementById("salary_transaction_detail_bonus").val;
-//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_deduction == null && $sal_trns_dtl_ovrtm == null){
-//    var $bonus_name = $(".bonus_name option:selected").text();;
-//
-//}
-
-//Try 4
-
-//var $sal_trns_dtl_allowance = document.getElementById("salary_transaction_detail_allowance").val;
-//if( $sal_trns_dtl_deduction == null && $sal_trns_dtl_ovrtm == null && $sal_trns_dtl_bonus == null){
-//    var $allowance_name = $sal_trns_dtl_allowance.options[$sal_trns_dtl_allowance.selectedIndex].text;
-//    var $deduction_name = "";
-//    var $ovrtm_name = "";
-//    var $bonus_name = "";
-//}
-//var $sal_trns_dtl_deduction = document.getElementById("salary_transaction_detail_deduction").val;
-//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_ovrtm == null && $sal_trns_dtl_bonus == null){
-//    var $deduction_name = $sal_trns_dtl_deduction.options[$sal_trns_dtl_deduction.selectedIndex].text;
-//    var $allowance_name = "";
-//    var $ovrtm_name = "";
-//    var $bonus_name = "";
-//}
-//var $sal_trns_dtl_ovrtm = document.getElementById("salary_transaction_detail_over_time").val;
-//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_deduction == null && $sal_trns_dtl_bonus == null){
-//    var $ovrtm_name = $sal_trns_dtl_ovrtm.options[$sal_trns_dtl_ovrtm.selectedIndex].text;
-//    var $allowance_name = "";
-//    var $deduction_name = "";
-//    var $bonus_name = "";
-//}
-//var $sal_trns_dtl_bonus = document.getElementById("salary_transaction_detail_bonus").val;
-//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_deduction == null && $sal_trns_dtl_ovrtm == null){
-//    var $bonus_name = $sal_trns_dtl_bonus.options[$sal_trns_dtl_bonus.selectedIndex].text;
-//    var $allowance_name = "";
-//    var $deduction_name = "";
-//    var $ovrtm_name = "";
-//}
-
-//Try 5
-
-//        $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val();
-//        $sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val();
-//        $sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val();
-//        $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val();
-//
-//        if( $sal_trns_dtl_allowance != null || $sal_trns_dtl_deduction == null || $sal_trns_dtl_ovrtm == null || $sal_trns_dtl_bonus == null){
-//            $allowance_name = $(".allowance_name option:selected").text();
-//            $deduction_name = ""; $ovrtm_name = ""; $bonus_name = "";
-//        }
-//        else if( $sal_trns_dtl_deduction != null || $sal_trns_dtl_allowance == null || $sal_trns_dtl_ovrtm == null || $sal_trns_dtl_bonus == null){
-//            $deduction_name = $(".deduction_name option:selected").text();
-//            $allowance_name = ""; $ovrtm_name = ""; $bonus_name = "";
-//        }
-//        else if( $sal_trns_dtl_ovrtm != null || $sal_trns_dtl_deduction == null || $sal_trns_dtl_allowance == null || $sal_trns_dtl_bonus == null){
-//            $ovrtm_name = $(".overtime_name option:selected").text();
-//            $allowance_name = ""; $deduction_name = ""; $bonus_name = "";
-//        }
-//        else if ($sal_trns_dtl_bonus != null || $sal_trns_dtl_deduction == null || $sal_trns_dtl_allowance == null || $sal_trns_dtl_ovrtm == null){
-//            $bonus_name = $(".bonus_name option:selected").text();
-//            $allowance_name = ""; $deduction_name = ""; $ovrtm_name = "";
-//        }
-
-//Success
-//     $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val();
-//     $allowance_name = $(".allowance_name option:selected").text();
-//     $sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val();
-//     $deduction_name = $(".deduction_name option:selected").text();
-//     $sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val();
-//     $ovrtm_name = $(".overtime_name option:selected").text();
-//     $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val();
-//     $bonus_name = $(".bonus_name option:selected").text();
-
+        $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() ? $("#salary_transaction_detail_allowance option:selected").text() : "";
+        $sal_trns_dtl_allowance_val = $("#salary_transaction_detail_allowance").val();
+        $sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() ? $("#salary_transaction_detail_deduction option:selected").text() : "";
+        $sal_trns_dtl_deduction_val = $("#salary_transaction_detail_deduction").val();
+        $sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val() ? $("#salary_transaction_detail_over_time option:selected").text() : "";
+        $sal_trns_dtl_ovrtm_val = $("#salary_transaction_detail_over_time").val();
+        $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val() ? $("#salary_transaction_detail_bonus option:selected").text() : "";
+        $sal_trns_dtl_bonus_val = $("#salary_transaction_detail_bonus").val();
 
              $salary_transctn_id = $sal_trans_id; // Salary Transaction ID
 

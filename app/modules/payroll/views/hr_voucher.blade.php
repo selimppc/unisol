@@ -29,7 +29,7 @@
         </div>
         <div class='form-group'>
            {{ Form::label('year_id', 'Year') }}
-           {{ Form::select('year_id', $year_lists, Input::old('year_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('year_id',$year_lists,null,['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
@@ -130,8 +130,8 @@
 
 @include('payroll::_script')
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
-{{--{{ HTML::script('assets/js/custom.js')}}--}}
-{{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
+{{ HTML::script('assets/js/custom.js')}}
+{{--{{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}--}}
 {{--{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}--}}
 
 
