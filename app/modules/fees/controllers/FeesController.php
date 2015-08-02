@@ -964,7 +964,7 @@ class FeesController extends \BaseController {
 
     public  function update_student_head_status()
     {
-        if($this->isPostRequest()) {
+        /*if($this->isPostRequest()) {
             $id = Input::get('id');
             $status = Input::get('status');
             DB::beginTransaction();
@@ -986,6 +986,25 @@ class FeesController extends \BaseController {
                 Session::flash('danger', "not added.Invalid Request!");
             }
             return Redirect::back();
+        }
+        return Redirect::back();*/
+        $id = Input::get('id');
+        $status = Input::get('status');
+        $check = BillingStudentDetail::where('billing_student_head_id', $id)->exists();
+        if($check){
+            $update = DB::table('billing_student_head')
+                ->where('id', $id)
+                ->where('status', "open")
+                ->update(array('status' => $status));
+            if($update) {
+                Session::flash('message', "Billing Details confirmed Successfully");
+            }
+            else {
+                Session::flash('danger', "Billing Details confirmed Is Just For One Time.");
+            }
+            return Redirect::back();
+        }else{
+            Session::flash('info', 'Billing Details total Amount is Empty. Please Add Item. And Try Again Later!');
         }
         return Redirect::back();
 
