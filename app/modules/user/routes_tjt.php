@@ -20,14 +20,14 @@ Route::any("user/profile-info/update/{id}", [
     "uses" => "UserInformationController@updateProfile"
 ]);
 
-Route::any("user/profile-info/edit/profile-image/{id}", [
-    "as"   => "user/profile-info/edit/profile-image",
-    "uses" => "UserInformationController@editProfileImage"
+Route::any("user/profile-info/profile-image/{id}", [
+    "as"   => "user/profile-info/profile-image",
+    "uses" => "UserInformationController@profileImage"
 ]);
 
-Route::any("user/profile-info/change/profile-image/{id}", [
-    "as"   => "user/profile-info/change/profile-image",
-    "uses" => "UserInformationController@updateProfileImage"
+Route::any("user/profile-info/add/profile-image/{id}", [
+    "as"   => "user/profile-info/add/profile-image",
+    "uses" => "UserInformationController@addProfileImage"
 ]);
 
 //user mete data

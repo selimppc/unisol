@@ -80,8 +80,8 @@
                        {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required','required']) }}
                    </div>
                    <div class="col-lg-4" style="padding-right: 0;">
-                       {{ Form::label('country', 'Country') }}<span class="text-danger">*</span>
-                       {{ Form::select('country',$countryList,Input::old('country'),['class'=>'form-control','required']) }}
+                       {{ Form::label('country_id', 'Country') }}<span class="text-danger">*</span>
+                       {{ Form::select('country_id',$countryList,Input::old('country_id'),['class'=>'form-control','required']) }}
                    </div>
                 </div>
                 <br><br><br><br>

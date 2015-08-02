@@ -7,7 +7,7 @@
 @stop
 @section('content')
     <!-- START CUSTOM TABS -->
-    <h2 class="page-header text-purple tab-text-margin">User Profile</h2>
+    {{--<h2 class="page-header text-purple tab-text-margin">User Profile</h2>--}}
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->
@@ -42,18 +42,20 @@
                             <table class="table table-striped  table-bordered">
                                 <tr>
                                     <th>Profile Picture</th>
-                                    @if($profile != null)
-                                      <td>
-                                        <a class=" btn-link" href="{{ URL::route('user/profile-info/edit/profile-image', ['id'=>$profile->id] ) }}" data-toggle="modal" data-target="#changeImageModal">
-                                            {{ HTML::image('user_images/profile/'.$profile->image, $profile->image)}}
-                                            <ins>Change Picture</ins>
-                                        </a>
-                                      </td>
-                                    @endif
+                                       <td>
+                                           @if($profile->image == null)
+                                              <a class=" btn-link" href="{{ URL::route('user/profile-info/profile-image',['id'=>$profile->id])}}" data-toggle="modal" data-target="#changeImageModal">
+                                                {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
+                                                <ins>Add Your Profile Picture</ins>
+                                              </a>
+                                              @else
+                                              {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
+                                           @endif
+                                       </td>
                                 </tr>
                                 <tr>
                                     <th>First Name</th>
-                                    <td>{{isset($profile->first_name) ? $profile->first_name : ''}}</td>
+                                    <td>{{isset($profile->user_id) ? $profile->user_id : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Middle Name</th>
@@ -73,7 +75,7 @@
                                 </tr>
                                 <tr>
                                     <th>Country</th>
-                                    <td>{{isset($profile->country) ? $profile->relCountry->title:''}}</td>
+                                    <td>{{isset($profile->country_id) ? $profile->relCountry->title :" "}}</td>
                                 </tr>
                                 <tr>
                                     <th>City</th>
@@ -82,10 +84,6 @@
                                 <tr>
                                     <th>State</th>
                                     <td>{{isset($profile->state) ? $profile->state : ''}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Country</th>
-                                    <td>{{isset($profile->city) ? $profile->city : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Zip Code</th>
