@@ -9,6 +9,35 @@ class UserExtraCurricularActivity extends Eloquent {
 
     protected $table = 'user_extra_curricular_activity';
 
+
+    protected $fillable = [
+        'user_id', 'title', 'description', 'achievement', 'certificate_medal',
+
+    ];
+
+    private $errors;
+    private $rules = [
+//        'zip_code' => 'required|numeric',
+//        'gender' => 'required',
+//        'image' => 'required'
+    ];
+
+    public function validate($data)
+    {
+        $validate = Validator::make($data, $this->rules);
+        if ($validate->fails())
+        {
+            $this->errors = $validate->errors();
+            return false;
+        }
+        return true;
+    }
+    public function errors()
+    {
+        return $this->errors;
+    }
+
+
     public function relUser(){
         return $this->belongsTo('User', 'user_id', id);
     }
