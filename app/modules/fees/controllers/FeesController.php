@@ -746,7 +746,7 @@ class FeesController extends \BaseController {
     }
 
     /****==========================================================================================
-                            Billing details applicant start
+                                Billing details applicant start
      =========================================================================================****/
 
     public function create_billing_details_applicant($id)

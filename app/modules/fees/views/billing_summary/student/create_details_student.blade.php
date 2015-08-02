@@ -1,8 +1,9 @@
 <div class="modal-header" xmlns="http://www.w3.org/1999/html">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="text-center text-purple">Create {{$student_name->relUser->relUserProfile->first_name.' '.$student_name->relUser->relUserProfile->last_name}} Billing Details </h4>
+    <h4 class="text-center text-purple">Create {{$student_name->relUser->relUserProfile->first_name.' '.$student_name->relUser->relUserProfile->last_name}}'s Billing Details </h4>
 </div>
 <div class="modal-body">
+    <p class="text-blue text-uppercase">Schedule :: {{$student_name->relBillingSchedule->title}}</p>
     <div style="padding: 10px;">
         {{ Form::hidden('billing_student_head_id', $billing_head_id, ['class'=>'form-control'])}}
         <div class="col-sm-3">

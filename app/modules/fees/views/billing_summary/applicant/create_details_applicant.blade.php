@@ -1,8 +1,10 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
+
     <h4 class="text-center text-purple">Create {{$applicant_name->relApplicant->first_name.' '.$applicant_name->relApplicant->last_name}}'s Billing Details </h4>
 </div>
 <div class="modal-body">
+    <p class="text-blue text-uppercase">Schedule :: {{$applicant_name->relBillingSchedule->title}}</p>
     <div style="padding: 10px;">
         {{ Form::hidden('billing_applicant_head_id', $billing_head_id, ['class'=>'form-control'])}}
         <div class="col-sm-3">
