@@ -167,7 +167,7 @@
      ]);
      Route::any('billing-applicant-view/{id}', [
          'as' => 'billing-applicant-view',
-         'uses' => 'FeesController@view_billing_applicant'
+         'uses' => 'FeesController@view_billing_applicantview_billing_applicant'
      ]);
      Route::any('billing-applicant-head-edit/{id}', [
          'as' => 'billing-applicant-head-edit',
@@ -181,8 +181,8 @@
          "as"   => "applicant-head-destroy",
          "uses" => "FeesController@destroy_billing_applicant_head"
      ]);
-     Route::any('billing-applicant-head-update', [
-         'as' => 'billing-applicant-head-update',
+     Route::any('status-billing-applicant-head-update', [
+         'as' => 'status-billing-applicant-head-update',
          'uses' => 'FeesController@update_applicant_head_status'
      ]);
 

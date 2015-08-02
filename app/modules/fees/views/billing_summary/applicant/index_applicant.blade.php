@@ -67,7 +67,7 @@
                                         </td>
                                         <td>
                                             @if($value->status != 'confirmed')
-                                                {{Form::open(array('route'=> ['billing-applicant-head-update']))}}
+                                                {{Form::open(array('route'=> ['status-billing-applicant-head-update']))}}
                                                 {{ Form::hidden('id',$value->id) }}
                                                 {{ Form::hidden('status','confirmed') }}
                                                 {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
