@@ -22,7 +22,7 @@ class HrSalaryTransactionHeadController extends \BaseController {
 
         $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
 
-        $year_list = array(''=>'Select Year') + Year::lists('title','id');
+        $year_list = array(''=>'Select Year') + Year::where('title', '>=' ,Date('Y') )->lists('title', 'id');
 
         // Generate Salary Transaction Number
         $salary_trn_no = HrTrnNoSetup::where('title', '=', "Salary Transaction Number")
