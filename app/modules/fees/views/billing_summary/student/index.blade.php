@@ -66,11 +66,13 @@
                                         </td>
                                         <td>
                                             @if($value->status != 'confirmed')
-                                                {{Form::open(array('route'=> ['billing-student-head-status']))}}
+                                               {{-- {{Form::open(array('route'=> ['billing-student-head-status']))}}
                                                 {{ Form::hidden('id',$value->id) }}
                                                 {{ Form::hidden('status','confirmed') }}
                                                 {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
-                                                {{Form::close()}}
+                                                {{Form::close()}}--}}
+
+                                                <a href="{{ URL::route('billing-student-head-status', ['id'=>$value->id ])}}" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#confirmStatus" title="Confirm"><i class="fa fa-check-square-o"></i> Confirm</a>
 
                                             @endif
                                         </td>
@@ -150,5 +152,26 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal for Confirm Status --}}
+
+    <div class="modal fade" id="confirmStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure to Confirm Billing Details?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="" class="btn btn-success primary">OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 @stop
