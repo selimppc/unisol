@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder {
             }
         }
 
-        /*$this->call('RoleTableSeeder');
+        $this->call('RoleTableSeeder');
         $this->command->info('Role table seeded!');
 
         $this->call('CountryTable');
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder {
         $this->command->info('Billing Item table seeded!');
 
         $this->call('BillingScheduleTable');
-        $this->command->info('Billing Schedule table seeded!');*/
+        $this->command->info('Billing Schedule table seeded!');
 
         // TODO :: ClassTime and ClassRoom seed data needed
         //$this->call('ClassTimeTable');
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder {
         //$this->call('ClassRoomTable');
         //$this->command->info('Class Room table seeded!');
 
-        /*$this->call('UserProfileTable');
+        $this->call('UserProfileTable');
         $this->command->info('User Profile table seeded!');
 
         $this->call('AcmMarksDistItemTable');
@@ -103,35 +103,37 @@ class DatabaseSeeder extends Seeder {
         $this->command->info('HrProvidentFundConfig table seeded!');
 
         $this->call('PaymentOptionTable');
-        $this->command->info('PaymentOptionTable table seeded!');*/
+        $this->command->info('PaymentOptionTable table seeded!');
 
 
         // global setup table among the system
-        /*$this->call('AccCodesparamTable');
-        $this->command->info('Acc Codes param Table table seeded!');*/
+        $this->call('AccCodesparamTable');
+        $this->command->info('Acc Codes param Table table seeded!');
 
         //Hr Seed
         //Auhtor :: Shafi
-        /*$this->call('HrWorkWeekTable');
+        $this->call('HrWorkWeekTable');
         $this->command->info('HrWorkWeekTable seeded!');
 
         $this->call('HrAllowanceTable');
         $this->command->info('HrAllowanceTable seeded!');
 
         $this->call('CurrencyTable');
-        $this->command->info('CurrencyTable seeded!');*/
+        $this->command->info('CurrencyTable seeded!');
 
-        /*$this->call('HrBankTable');
-        $this->command->info('HrBankTable seeded!');*/
+        $this->call('HrBankTable');
+        $this->command->info('HrBankTable seeded!');
 
         $this->call('HrSalaryGradeTable');
         $this->command->info('HrSalaryGradeTable seeded!');
 
-        /*$this->call('HrLeaveTypeTable');
-        $this->command->info('HrLeaveTypeTable seeded!');*/
+        $this->call('HrLeaveTypeTable');
+        $this->command->info('HrLeaveTypeTable seeded!');
 
-
-	}
+        $this->call('HrTaxRuleTable');
+        $this->command->info('HrTaxRuleTable seeded!');
+        
+    }
 
 }
 
