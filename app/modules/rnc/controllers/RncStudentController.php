@@ -251,7 +251,7 @@ class RncStudentController extends \BaseController {
                 if ($transaction->save())
                 {
                     // save to lib_book_financial_transaction table
-                    $f_transaction = new RncFinancialTransaction();
+                    $f_transaction = new RncTransactionFinancial();
                     $f_transaction->rnc_transaction_id = $transaction->id;
                     $ultimate_price = $cb->price - ($cb->price * $cb->free_type_student)/100;
                     $f_transaction->amount = $ultimate_price;
@@ -288,7 +288,7 @@ class RncStudentController extends \BaseController {
 
     public function myRP()
     {
-        $my_cart_books = RncTransaction::with('relRncResearchPaper','relRncFinancialTransaction')
+        $my_cart_books = RncTransaction::with('relRncResearchPaper','relRncTransactionFinancial')
             ->where('user_id', Auth::user()->get()->id)
             ->get();
 

@@ -1,15 +1,13 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RncFinancialTransaction extends Eloquent{
+
+class RncTransactionFinancial extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_financial_transaction';
+    protected $table='rnc_transaction_financial';
     protected $fillable = [
-        'rnc_transaction_id', 'amount','transaction_type','status'
+        'rnc_transaction_id', 'amount','transaction_type','status',
+        'tax_rate', 'tax_amount'
     ];
     private $errors;
     private $rules = [

@@ -1,15 +1,13 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+
 
 class RncTransaction extends Eloquent{
 
     //TODO :: model attributes and rules and validation
     protected $table='rnc_transaction';
     protected $fillable = [
-        'user_id', 'rnc_research_paper_id','issue_date','count','status'
+        'user_id', 'rnc_research_paper_id','issue_date','count','status',
+        'tax_rate', 'tax_amount', 'total_amount'
     ];
     private $errors;
     private $rules = [
@@ -46,8 +44,8 @@ class RncTransaction extends Eloquent{
         return $this->belongsTo('User','user_id','id');
     }
 
-    public function relRncFinancialTransaction(){
-        return $this->HasOne('RncFinancialTransaction', 'rnc_transaction_id', 'id');
+    public function relRncTransactionFinancial(){
+        return $this->HasOne('RncTransactionFinancial', 'rnc_transaction_id', 'id');
     }
 
     // TODO : user info while saving data into table

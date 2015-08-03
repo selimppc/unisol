@@ -124,8 +124,13 @@ class CreateResearchConsultancy extends Migration {
             $table->unsignedInteger('user_id')->nullable();
             $table->dateTime('issue_date');
             $table->string('count', 11);
+
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
+            $table->float('total_amount');
+
             $table->enum('status', array(
-                'viewed', 'received', 'purchased'
+                'viewed', 'received', 'purchased', 'confirmed', 'invoiced'
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -138,13 +143,17 @@ class CreateResearchConsultancy extends Migration {
 
 
 
-        Schema::create('rnc_financial_transaction', function(Blueprint $table)
+        Schema::create('rnc_transaction_financial', function(Blueprint $table)
         {
             $table->increments('id', true);
             $table->unsignedInteger('rnc_transaction_id')->nullable();
             $table->enum('transaction_type', array(
                 'partial', 'full'
             ));
+
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
+
             $table->float('amount');
             $table->enum('status', array(
                 'closed', 'open'
@@ -153,7 +162,7 @@ class CreateResearchConsultancy extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        Schema::table('rnc_financial_transaction', function($table) {
+        Schema::table('rnc_transaction_financial', function($table) {
             $table->foreign('rnc_transaction_id')->references('id')->on('rnc_transaction');
         });
 
