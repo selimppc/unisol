@@ -61,7 +61,7 @@ class ArLibraryController extends \BaseController {
 	public function  manage_library_bill(){
 		//
 		$pageTitle = "Library Payment History"; //acc_v_ar_lib
-		$data = AccVArStudent::get();
+		$data = AccVArLibrary::get();
 		return View::make('payment::library.lib_invoice', compact('pageTitle', 'data'));
 	}
 
@@ -75,7 +75,7 @@ class ArLibraryController extends \BaseController {
 		$coa_lists = AccChartOfAccounts::lists('description', 'id');
 
 		//Unpaid Invoice Lists
-		$unpaid_invoice = AccVUnpaidInvStudent::where('associated_id', $associated_id)
+		$unpaid_invoice = AccVUnpaidInvLibrary::where('associated_id', $associated_id)
 			//->where('acc_voucher_head_id', $coa_id)->get();
 			->get();
 
