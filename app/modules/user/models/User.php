@@ -345,6 +345,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
 
+    public function scopeAllUser($query)
+    {
+        $query = array('' => 'Select User ') + $this::join('user_profile', function($query){
+                $query->on('user_profile.user_id', '=', 'user.id');
+            })
+                ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id')
+                ->lists('full_name', 'user_id');
+        return $query;
+    }
+
+
     // TODO :: boot
     public static function boot(){
         parent::boot();

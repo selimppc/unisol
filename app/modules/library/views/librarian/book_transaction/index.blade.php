@@ -12,9 +12,8 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Book Transaction</a></li>
-                    <button type="button" class=" btn btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
-                        Add New
-                    </button>
+
+                    <a href="{{ URL::route('create.book.transaction')}}" class=" btn btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#myModal">Add New</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -81,17 +80,9 @@
 
     {{-- Modal add new  --}}
     <div id="myModal" class="modal fade">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="z-index:1050">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title text-center text-purple">Book Transaction</h4>
-                </div>
-                <div class="modal-body">
-                    {{Form::open(array('route' => array('book-transaction-save')))}}
-                    @include('library::librarian.book_transaction._form')
-                    {{ Form::close() }}
-                </div>
+
             </div>
         </div>
     </div>

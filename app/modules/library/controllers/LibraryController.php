@@ -542,14 +542,49 @@ class LibraryController extends \BaseController {
 
 
     /****=======================================================================================
-                                 Book Transaction start
-    =======================================================================================****/
+                                    Book Transaction start
+    =========================================================================================****/
 
     public function index_book_transaction()
     {
         $pageTitle = "Book Transaction";
-        $book_transaction = LibBookTransaction::latest('id')->with('relUser','relUser.relUserProfile','relLibBook')->paginate(4);
-        return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction'));
+        $book_transaction = LibBookTransaction::latest('id')->with('relUser','relUser.relUserProfile','relLibBook')->paginate(6);
+        return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','user'));
+    }
+
+    public function create_book_transaction()
+    {
+        $user = array(''=>'Select User') + User::AllUser();
+        $lib_book = array('' => 'Select Book ') + LibBook::lists('title', 'id');
+        return View::make('library::librarian.book_transaction._form',compact('user','lib_book'));
+    }
+
+    public function save_book_transaction()
+    {
+        $data = Input::all();
+        $model = new LibBookTransaction();
+        /*$model->name = Input::get('name');
+        $flash_msg = $model->name;*/
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Book Publisher Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Book Publisher  Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
     }
 
 }
