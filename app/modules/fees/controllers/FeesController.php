@@ -21,7 +21,7 @@ class FeesController extends \BaseController {
 
     public function index_billing_item()
     {
-        $billing_item = BillingItem::orderBy('id', 'ASC')->paginate(9);
+        $billing_item = BillingItem::orderBy('id', 'ASC')->paginate(10);
         return View::Make('fees::billing_item.index',compact('billing_item'));
     }
 
@@ -96,7 +96,7 @@ class FeesController extends \BaseController {
 
     public function index_billing_schedule()
     {
-        $billing_schedule = BillingSchedule::orderBy('id', 'ASC')->paginate(10);
+        $billing_schedule = BillingSchedule::orderBy('id', 'ASC')->paginate(5);
         return View::Make('fees::billing_schedule.index',compact('billing_schedule'));
     }
 
@@ -193,7 +193,7 @@ class FeesController extends \BaseController {
                 $query->where('batch_id', '=', $batch_id);
             });
         }
-        $data = $q->orderBy('id', 'DESC')->paginate(10);
+        $data = $q->orderBy('id', 'DESC')->paginate(6);
 
         return View::Make('fees::billing_setup.index', compact('degree', 'batch','data'));
     }
@@ -387,7 +387,7 @@ class FeesController extends \BaseController {
                 $q = $q->orWhere('last_name', 'like', "%$name%");
             }
 
-          $data = $q->get();
+          $data = $q->paginate(10);
 
         return View::make('fees::billing_history.index_applicant',compact('degree','batch','department','applicant','data'));
 
@@ -444,7 +444,7 @@ class FeesController extends \BaseController {
                 $q->where('student_id', '=', $student_id);
             }
 
-        $data = $q->get();
+        $data = $q->paginate(10);
 
         return View::make('fees::billing_history.index_student',compact('degree','batch','department','student','data'));
     }

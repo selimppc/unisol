@@ -102,7 +102,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $sl=1;?>
+                                    <?php $sl = $data->getFrom(); ?>
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
@@ -118,6 +118,7 @@
                                     @endif
                                     </tbody>
                                 </table>
+                                {{ $data->links() }}
                                 <a href="{{ URL::route('student-billing-history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
                                 </br>
                             </div>

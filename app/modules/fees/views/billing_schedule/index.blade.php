@@ -29,7 +29,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $sl=1;?>
+                                <?php $sl = $billing_schedule->getFrom(); ?>
                                 @foreach ($billing_schedule as $value)
                                     <tr>
                                         <td class="sl-no-size">{{$sl++}}</td>

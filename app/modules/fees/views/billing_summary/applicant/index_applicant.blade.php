@@ -37,7 +37,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $sl=1;?>
+                                <?php $sl = $summary_applicant->getFrom(); ?>
                                 @foreach ($summary_applicant as $value)
                                     @unless($value->status =='cancel')
                                         <tr>
