@@ -77,7 +77,7 @@
                                 </tr>
                                 <tr>
                                     <th>Country</th>
-                                    <td>{{isset($profile->country_id) ? $profile->relCountry->title :" "}}</td>
+                                    <td>{{isset($profile->country) ? $profile->relCountry->title :" "}}</td>
                                 </tr>
                                 <tr>
                                     <th>City</th>

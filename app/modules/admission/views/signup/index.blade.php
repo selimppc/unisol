@@ -77,8 +77,8 @@
                        {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required','required']) }}
                    </div>
                    <div class="col-lg-4" >
-                       {{ Form::label('country_id', 'Country') }}<span class="text-danger">*</span>
-                       {{ Form::select('country_id',$countryList,Input::old('country_id'),['class'=>'form-control','required']) }}
+                       {{ Form::label('country', 'Country') }}<span class="text-danger">*</span>
+                       {{ Form::select('country',$countryList,Input::old('country'),['class'=>'form-control','required']) }}
                    </div>
                 </div>
                 <p>&nbsp;</p>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-lg-4">
                         {{ Form::label('role_id', 'Target Role') }}<span class="text-danger">*</span>
-                        {{ Form::select('role_id', array(''=>'Select One','1' =>'Admin','2'=>'Teacher', '3' => 'AMW','4'=>'Student','9' => 'Employee','5'=>'Accounts','6'=>'Librarian','7'=>'Hrm','8'=>'Alumni','11'=>'CFO'), '', array('class' => 'form-control','required'))}}
+                        {{ Form::select('role_id',$role_name,Input::old('role_id'), array('class' => 'form-control','required'))}}
                     </div>
                     <div class="col-lg-4">
                         {{ Form::label('join_date', 'Join Date') }}<span class="text-danger">*</span>

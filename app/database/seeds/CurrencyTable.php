@@ -205,7 +205,7 @@ class CurrencyTable extends Seeder{
         );
 
         foreach($currency as $key => $value){
-            Country::insert(array(
+            Currency::insert(array(
                 'title' => $key,
                 'code' => $value,
                 'exchange_rate' => 100,

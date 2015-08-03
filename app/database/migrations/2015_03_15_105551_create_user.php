@@ -53,7 +53,7 @@ class CreateUser extends Migration {
             $table->string('image',128);
             $table->string('city',32);
             $table->string('state',32);
-            $table->unsignedInteger('country_id')->nullable();
+            $table->unsignedInteger('country')->nullable();
             $table->integer('zip_code', false, 5);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);

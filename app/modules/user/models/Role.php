@@ -32,4 +32,19 @@ class Role extends Eloquent {
         return $query;
     }
 
+    public static function getRoleName(){
+        return $status = [
+            'admin' => 'Admin',
+            'faculty' => 'Faculty',
+            'amw'=>'Amw',
+            'hr'=>'HR',
+            'student'=>'Student',
+            'accounts'=>'Accounts',
+            'librarian'=>'Librarian',
+            'alumni' => 'Alumni',
+            'employee' => 'Employee',
+            'cfo' => 'Cfo',
+        ];
+    }
+
 } 

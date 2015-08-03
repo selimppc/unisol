@@ -16,7 +16,7 @@ class HrSalaryGradeController extends \BaseController {
     public function index_hr_salary_grade()
     {
         $pageTitle = 'Salary Grade List';
-        $model = HrSalaryGrade::orderBy('id', 'DESC')->paginate(5);
+        $model = HrSalaryGrade::orderBy('id', 'ASC')->paginate(5);
         return View::make('hr::hr.salary_grade.index', compact('model','pageTitle'));
     }
 

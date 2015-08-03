@@ -35,7 +35,7 @@ class HrLeaveController extends \BaseController {
             $data = $data->with('relUser','relUser.relUserProfile','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->get();
         }
         $leave_type_id = HrLeaveType::lists('title','id');
-        $employee_list = User::GenuineEmployeeList();
+        $employee_list = User::EmployeeList();
         $hr_list = User::HrList();
         $date1 = HrLeave::lists('from_date','from_date');
         $date2 = HrLeave::lists('to_date','to_date');

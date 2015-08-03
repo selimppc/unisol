@@ -33,8 +33,9 @@ class HrEmployeeController extends \BaseController {
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            #print_r($input_data);exit;
+//            print_r($input_data);exit;
             $model = new HrEmployee();
+            $model->status = Input::get('status');
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
