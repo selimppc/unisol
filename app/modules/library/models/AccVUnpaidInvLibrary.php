@@ -1,25 +1,21 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+//use Carbon\Carbon;
 
-class RncFinancialTransaction extends Eloquent{
-
+class AccVUnpaidInvLibrary extends \Eloquent
+{
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_financial_transaction';
+    protected $table = 'acc_v_unpaidinv_library';
     protected $fillable = [
-        'rnc_transaction_id', 'amount','transaction_type','status'
+
     ];
+
     private $errors;
     private $rules = [
-//        'rnc_transaction_id' => 'required|integer',
-//        'amount' => 'required',
-//        'transaction_type' => 'required',
-        /*'status' => 'required',*/
-
+        //'purchase_no' => 'required|integer',
+        //'acm_marks_distribution_id' => 'required|integer',
+        //'acm_class_schedule_id' => 'required|integer',
+        //'status' => 'required|integer',
     ];
-
 
     public function validate($data)
     {
@@ -36,10 +32,10 @@ class RncFinancialTransaction extends Eloquent{
         return $this->errors;
     }
 
+
     //TODO : Model Relationship
-    public function relRncTransaction(){
-        return $this->belongsTo('RncTransaction','rnc_transaction_id','id');
-    }
+
+
 
 
     // TODO : user info while saving data into table
@@ -48,20 +44,22 @@ class RncFinancialTransaction extends Eloquent{
         static::creating(function($query){
             if(Auth::user()->check()){
                 $query->created_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->created_by = Auth::applicant()->get()->id;
             }
         });
         static::updating(function($query){
             if(Auth::user()->check()){
                 $query->updated_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->updated_by = Auth::applicant()->get()->id;
             }
         });
     }
 
 
     //TODO : Scope Area
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+
+
+
 
 }

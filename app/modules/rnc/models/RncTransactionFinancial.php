@@ -1,20 +1,20 @@
 <?php
 
 
-class RncTransaction extends Eloquent{
+class RncTransactionFinancial extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_transaction';
+    protected $table='rnc_transaction_financial';
     protected $fillable = [
-        'user_id', 'rnc_research_paper_id','issue_date','count','status',
-        'tax_rate', 'tax_amount', 'total_amount'
+        'rnc_transaction_id', 'amount','transaction_type','status',
+        'tax_rate', 'tax_amount'
     ];
     private $errors;
     private $rules = [
-        'rnc_research_paper_id' => 'required|integer',
-        'issue_date' => 'required',
-        /*'return_date' => 'required',
-        'status' => 'required',*/
+//        'rnc_transaction_id' => 'required|integer',
+//        'amount' => 'required',
+//        'transaction_type' => 'required',
+        /*'status' => 'required',*/
 
     ];
 
@@ -34,19 +34,11 @@ class RncTransaction extends Eloquent{
         return $this->errors;
     }
 
-
     //TODO : Model Relationship
-    public function relRncResearchPaper(){
-        return $this->belongsTo('RncResearchPaper','rnc_research_paper_id','id');
+    public function relRncTransaction(){
+        return $this->belongsTo('RncTransaction','rnc_transaction_id','id');
     }
 
-    public function relUser(){
-        return $this->belongsTo('User','user_id','id');
-    }
-
-    public function relRncTransactionFinancial(){
-        return $this->HasOne('RncTransactionFinancial', 'rnc_transaction_id', 'id');
-    }
 
     // TODO : user info while saving data into table
     public static function boot(){

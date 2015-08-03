@@ -45,7 +45,11 @@
              	@foreach($model as $values)
              	 <tr>
              		<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-             		<td>{{ $values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name }}</td>
+             		<td>
+             		    {{ isset($values->relUser->relUserProfile->first_name)? $values->relUser->relUserProfile->first_name:''}}&nbsp;
+             		    {{isset($values->relUser->relUserProfile->middle_name)? $values->relUser->relUserProfile->middle_name:''}}&nbsp;
+             		    {{isset($values->relUser->relUserProfile->last_name)? $values->relUser->relUserProfile->last_name:''}}
+             		</td>
              		<td>{{ $values->employee_id }}</td>
              		<td>{{ $values->date_of_joining }}</td>
              		<td>{{ isset($values->designation_id)? ucfirst($values->relDesignation->title):"" }}</td>

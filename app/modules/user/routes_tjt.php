@@ -100,4 +100,21 @@ Route::any("user/extra-curricular/certificate-medal/{id}", [
     "uses" => "UserInformationController@viewCertificateMedal"
 ]);
 
+//Supporting Docs..
+
+Route::any("user/supporting-docs", [
+    "as"   => "user/supporting-docs",
+    "uses" => "UserInformationController@indexSDocs"
+]);
+
+Route::any('user/supporting_docs/create/{doc_type}/{sdoc_id}', [
+    'as'   => 'user.supporting_docs.create',
+    'uses' => 'UserInformationController@supportingDocs'
+]);
+
+Route::any("user/supporting-docs/store", [
+    "as"   => "user/supporting-docs.store",
+    "uses" => "UserInformationController@sDocsStore"
+]);
+
 

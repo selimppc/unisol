@@ -1,23 +1,21 @@
 <?php
+//use Carbon\Carbon;
 
-
-class RncTransaction extends Eloquent{
-
+class AccVArLibrary extends \Eloquent
+{
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_transaction';
+    protected $table = 'acc_v_ar_library';
     protected $fillable = [
-        'user_id', 'rnc_research_paper_id','issue_date','count','status',
-        'tax_rate', 'tax_amount', 'total_amount'
+
     ];
+
     private $errors;
     private $rules = [
-        'rnc_research_paper_id' => 'required|integer',
-        'issue_date' => 'required',
-        /*'return_date' => 'required',
-        'status' => 'required',*/
-
+        //'purchase_no' => 'required|integer',
+        //'acm_marks_distribution_id' => 'required|integer',
+        //'acm_class_schedule_id' => 'required|integer',
+        //'status' => 'required|integer',
     ];
-
 
     public function validate($data)
     {
@@ -36,17 +34,9 @@ class RncTransaction extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relRncResearchPaper(){
-        return $this->belongsTo('RncResearchPaper','rnc_research_paper_id','id');
-    }
 
-    public function relUser(){
-        return $this->belongsTo('User','user_id','id');
-    }
 
-    public function relRncTransactionFinancial(){
-        return $this->HasOne('RncTransactionFinancial', 'rnc_transaction_id', 'id');
-    }
+
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -54,20 +44,22 @@ class RncTransaction extends Eloquent{
         static::creating(function($query){
             if(Auth::user()->check()){
                 $query->created_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->created_by = Auth::applicant()->get()->id;
             }
         });
         static::updating(function($query){
             if(Auth::user()->check()){
                 $query->updated_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->updated_by = Auth::applicant()->get()->id;
             }
         });
     }
 
 
     //TODO : Scope Area
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+
+
+
 
 }

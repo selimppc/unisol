@@ -109,6 +109,19 @@ class DatabaseSeeder extends Seeder {
         // global setup table among the system
         $this->call('AccCodesparamTable');
         $this->command->info('Acc Codes param Table table seeded!');
+
+        //Hr Seed
+        //Auhtor :: Shafi
+        $this->call('HrWorkWeekTable');
+        $this->command->info('HrWorkWeekTable seeded!');
+
+        $this->call('HrAllowanceTable');
+        $this->command->info('HrAllowanceTable seeded!');
+
+        $this->call('CurrencyTable');
+        $this->command->info('CurrencyTable seeded!');
+
+
 	}
 
 }
