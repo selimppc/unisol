@@ -132,7 +132,9 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('HrTaxRuleTable');
         $this->command->info('HrTaxRuleTable seeded!');
-        
+
+
+
     }
 
 }
