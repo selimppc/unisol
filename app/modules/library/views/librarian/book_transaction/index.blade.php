@@ -35,11 +35,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $i = $book_transaction->getFrom(); ?>
+                                <?php $sl = $book_transaction->getFrom(); ?>
                                 @foreach ($book_transaction as $value)
                                     @unless($value->status =='cancel')
                                         <tr>
-                                            <td>{{$i++}}</td>
+                                            <td class="sl-no-size">{{$sl++}}</td>
                                             <td class="b-text">{{ link_to_route($value->status=="received" ? 'billing.details.applicant' : 'billing-applicant-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                             <td>{{isset($value->relUser->id)?$value->relUser->id:''}}</td>
