@@ -7,16 +7,17 @@ class HrAllowanceTable extends Seeder {
         DB::table('hr_allowance')->delete();
 
         $course = array(
-            'Home Rent Allowance' => 'home-rent-allowance',
-            'Medical Allowance'=> 'medical-allowance',
-            'Conveyance or Transport Allowance'=> 'conveyance-transport-allowance',
-            'Foreign Allowance'=> 'foreign-allowance',
-            'Lunch Allowance'=> 'lunch-allowance',
-            'Over Time Allowance'=> 'over-time-allowance'
+            'Home Rent Allowance' => 'HOUSE-RENT',
+            'Medical Allowance'=> 'MEDIC',
+            'Conveyance Allowance'=> 'CONVEY',
+            'Transport Allowance'=> 'TRANSPORT',
+            'Foreign Allowance'=> 'FOREIGN',
+            'Lunch Allowance'=> 'LUNCH',
+            'Over Time Allowance'=> 'OVER-TIME'
         );
 
         foreach($course as $key => $value){
-            Course::insert(array(
+            HrAllowance::insert(array(
                 'title' => $key,
                 'code' => $value,
                 'description' => $key,

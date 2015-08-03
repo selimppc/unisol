@@ -7,7 +7,7 @@
 @stop
 @section('content')
     <!-- left column -->
-    <div class="col-md-8"style="margin-left: 160px">
+    <div class="col-md-12">
         <!-- general form elements -->
         <div class="box box-solid">
             <div class="box-header" style="background-color: #0490a6">
@@ -16,106 +16,101 @@
             <div class="box-body" style="background-color:aliceblue">
                 {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
                 <span class="text-muted ">Please fillup the following fields and be an registered user.</span>
-                <div>&nbsp;</div>
                 <span class="text-muted "><em style="color:midnightblue"><span style="color:red;">(*)</span> Marked are required fields </em></span>
-                <div>&nbsp;</div>
 
                 <div class="control-group">
-                    <div class="col-lg-4" style="padding-left: 0;">
+                    <div class="col-lg-4" >
                        {{ Form::label('first_name', 'First Name:') }}<span style="color:red;">*</span>
                        {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name','required')) }}
                     </div>
-                    <div class="col-lg-4" style="padding-left: 0;">
+                    <div class="col-lg-4" >
                          {{ Form::label('middle_name', 'Middle Name:') }}
                          {{ Form::text('middle_name',Input::old('middle_name'), array('class' => 'form-control','placeholder'=>'Enter Middle  name')) }}
                     </div>
-                    <div class="col-lg-4" style="padding-right: 0;">
+                    <div class="col-lg-4">
                          {{ Form::label('last_name', 'Last Name:') }}<span style="color:red;">*</span>
                          {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name','required')) }}
                     </div>
                 </div>
-                <br><br><br><br>
+                <p>&nbsp;</p>
                 <div class="control-group">
-                    <div class="col-lg-6" style="padding-left: 0;">
+                    <div class="col-lg-6" >
                         {{ Form::label('username', 'User Name:') }}<span class="text-danger">*</span>
                         {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name','required')) }}
                     </div>
 
-                    <div class="col-lg-6" style="padding-right: 0;">
+                    <div class="col-lg-6" >
                          {{ Form::label('email_address', 'Email Address') }}<span class="text-danger">*</span>
                          {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
                     </div>
                 </div>
-                <br><br><br><br>
+                <p>&nbsp;</p>
                 <div class="control-group">
-                     <div class="col-lg-6" style="padding-left: 0;">
+                     <div class="col-lg-6" >
                         {{ Form::label('password', 'Password:') }} <span style="color:red;">*</span>
                         {{ Form::password('password', array('placeholder'=>'','class'=>'form-control','required')) }}
                      </div>
-                     <div class="col-lg-6" style="padding-right: 0;">
+                     <div class="col-lg-6" >
                         {{ Form::label('confirm_password', 'Confirm Your Password:') }}<span class="text-danger">*</span>
                         {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control','required')) }}
                     </div>
                 </div>
-                <br><br><br><br>
+                <p>&nbsp;</p>
                 <div class='control-group'>
-                   <div class="col-lg-4" style="padding-left: 0;">
+                   <div class="col-lg-4" >
                       {{ Form::label('gender', 'Gender : (Select One)')}}<span class="text-danger">*</span>
                       <div class="form-inline">
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="radio">
-                             {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio')) }}
+                             {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male')) }}
                              {{ Form::label('male', 'male') }}
                           </div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                           <div class="radio">
-                             {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio')) }}
+                             {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female')) }}
                              {{ Form::label('female', 'Female')}}
                           </div>
                       </div>
                    </div>
 
-                   <div class="col-lg-4" style="padding-right: 0;">
+                   <div class="col-lg-4" >
                        {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>
                        {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required','required']) }}
                    </div>
-                   <div class="col-lg-4" style="padding-right: 0;">
+                   <div class="col-lg-4" >
                        {{ Form::label('country_id', 'Country') }}<span class="text-danger">*</span>
                        {{ Form::select('country_id',$countryList,Input::old('country_id'),['class'=>'form-control','required']) }}
                    </div>
                 </div>
-                <br><br><br><br>
+                <p>&nbsp;</p>
                 <div class='control-group'>
-                    <div class="col-lg-4" style="padding-left: 0;">
+                    <div class="col-lg-4" >
                         {{ Form::label('city', 'City') }}
                         {{ Form::text('city', Input::old('city'),array('class' => 'form-control','placeholder'=>'')) }}
                     </div>
-                    <div class="col-lg-4" style="padding-right: 0;">
+                    <div class="col-lg-4" >
                        {{ Form::label('state', 'State') }}
                        {{ Form::text('state', Input::old('state'),array('class' => 'form-control','placeholder'=>'')) }}
                     </div>
-                    <div class="col-lg-4" style="padding-right: 0;">
+                    <div class="col-lg-4" >
                         {{ Form::label('zip_code', 'Zip Code') }}<span class="text-danger">*</span>
                         {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'','required')) }}
                     </div>
                 </div>
-                <br><br><br><br>
+                <p>&nbsp;</p>
                 <div class="control-group">
-                    <div class="col-lg-4" style="padding-left: 0;">
+                    <div class="col-lg-4">
                        {{ Form::label('department_id', 'Department') }}<span class="text-danger">*</span>
                        {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control','required']) }}
                     </div>
-                    <div class="col-lg-4" style="padding-left: 0;">
+                    <div class="col-lg-4">
                         {{ Form::label('role_id', 'Target Role') }}<span class="text-danger">*</span>
                         {{ Form::select('role_id', array(''=>'Select One','1' =>'Admin','2'=>'Teacher', '3' => 'AMW','4'=>'Student','9' => 'Employee','5'=>'Accounts','6'=>'Librarian','7'=>'Hrm','8'=>'Alumni','11'=>'CFO'), '', array('class' => 'form-control','required'))}}
                     </div>
-                    <div class="col-lg-4" style="padding-right: 0;">
+                    <div class="col-lg-4">
                         {{ Form::label('join_date', 'Join Date') }}<span class="text-danger">*</span>
                         {{ Form::text('join_date',  Input::old('join_date'),['class'=>'form-control date_picker','required']) }}
                     </div>
                 </div>
-                <br>
-                <br>
                 <p>&nbsp;</p>
                 <div class="pull-right">
                      {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-sm')) }}

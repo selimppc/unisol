@@ -22,7 +22,7 @@ class HrWorkWeekTable extends Seeder {
         );
 
         foreach($items as $item) {
-            Role::create(array(
+            HrWorkWeek::create(array(
                 'year_id' => $item[0],
                 'month' => $item[1],
                 'day' => $item[2],
