@@ -12,19 +12,16 @@ class EmployeeController extends \BaseController {
     }
 
     public function employeeIndex(){
-//        if(Auth::user()->check()) {
-            $employee_id = Auth::user()->get()->id;
 
-            $hr_employee_id = HrEmployee::where('user_id','=',$employee_id)->first()->id;
-         //if $employee_id not exists
-         // print_r($hr_employee_id);exit;
+        $employee_id = Auth::user()->get()->id;
+        $hr_employee_id = HrEmployee::where('user_id','=',$employee_id)->first()->id;
+
         $hr_list = User::HrList();
         $leave_type_id = HrLeaveType::lists('title','id');
         $employee_list = User::ExceptLoggedUser();
 
         $data = HrLeave::with('relUser','relUser.relUserProfile','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
                ->where('hr_employee_id','=',$hr_employee_id)->get();
-//        print_r($data);exit;
 
         return View::make('hr::hr.leave.hr_employee',compact('hr_list','leave_type_id','employee_list','data','hr_employee_id'));
     }
@@ -33,7 +30,7 @@ class EmployeeController extends \BaseController {
 	{
         if($this->isPostRequest()){
             $input_data = Input::all();
-//            print_r($input_data);exit;
+
             $model = new HrLeave();
             $model->hr_employee_id =  Input::get('hr_employee_id');
             if($model->validate($input_data)) {
@@ -55,13 +52,12 @@ class EmployeeController extends \BaseController {
     public function showLeave($id)
     {
         $model = HrLeave::with('relUser','relUser.relUserProfile','relHrAltEmployee','relHrAltEmployee.relUser','relHrAltEmployee.relUser.relUserProfile')->find($id);
-//       print_r($model);exit;
         return View::make('hr::hr.leave.show',compact('model'));
     }
     public function editLeave($id){
 
         $model = HrLeave::find($id);
-        $employee_list = User::EmployeeList();
+        $employee_list = User::GenuineEmployeeList();
         $hr_list = User::HrList();
         $leave_type_id = HrLeaveType::lists('title','id');
         $employee_id = Auth::user()->get()->id;
