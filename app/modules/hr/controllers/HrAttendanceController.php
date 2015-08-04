@@ -28,7 +28,7 @@ class HrAttendanceController extends \BaseController {
         $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
     }
 //        $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
-        $employee_list = User::EmployeeList();
+        $employee_list = User::GenuineEmployeeList();
         $emp_id = array('' => 'Select Employee ID') + HrEmployee::lists('employee_id', 'id');
 
         Input::flash();
