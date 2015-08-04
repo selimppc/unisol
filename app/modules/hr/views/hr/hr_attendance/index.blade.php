@@ -76,7 +76,9 @@
                     <td>{{$values->relHrEmployee->employee_id}}</td>
                     <td>{{$values->date}}</td>
                     <td>{{$values->sign_in_time}}</td>
-                    <td>{{$values->sign_out_time}}</td>
+                    <td>
+                       {{$values->sign_out_time}}
+                    </td>
                     <td>{{$values->lunch_break_out_time}} &nbsp;<b>To</b>&nbsp;  {{$values->lunch_break_in_time}}</td>
                     <td>{{$values->break_out_time}} &nbsp;<b>To</b>&nbsp; {{$values->break_in_time}}</td>
                     <td>
