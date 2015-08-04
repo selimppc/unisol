@@ -176,9 +176,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $hr_id = Role::where('code', '=', 'hr')->first()->id;
         $faculty_id = Role::where('code', '=', 'faculty')->first()->id;
         $admin_id = Role::where('code', '=', 'admin')->first()->id;
-//        $librarian_id = Role::where('code', '=', 'librarian')->first()->id;
+        $librarian_id = Role::where('code', '=', 'librarian')->first()->id;
         $amw_id = Role::where('code', '=', 'amw')->first()->id;
-//        $cfo_id = Role::where('code', '=', 'cfo')->first()->id;
+        $cfo_id = Role::where('code', '=', 'cfo')->first()->id;
+        $employee_id = Role::where('code', '=', 'employee')->first()->id;
+        $accounts_id = Role::where('code', '=', 'accounts')->first()->id;
+        $alumni_id = Role::where('code', '=', 'alumni')->first()->id;
 
         $query = array('' => 'Select Employee ') + $this::join('user_profile', function($query){
                 $query->on('user_profile.user_id', '=', 'user.id');
@@ -188,16 +191,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
                 })
                 ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name, " ( ", role.title, " )" ) as full_name'), 'user.id as user_id', 'hr_employee.id as employee_id')
 
-                ->where(function($query) use($faculty_id, $admin_id, $amw_id,$hr_id )
+                ->where(function($query) use($faculty_id, $admin_id, $amw_id,$hr_id,$librarian_id,$cfo_id,$employee_id ,$accounts_id,$alumni_id)
                 {
                     $query->where('user.role_id', '=', $faculty_id)
                         ->orWhere('user.role_id', '=', $admin_id)
-//                        $librarian_id
-//                        ->orWhere('user.role_id', '=', $librarian_id)
+                        ->orWhere('user.role_id', '=', $librarian_id)
                         ->orWhere('user.role_id', '=', $amw_id)
-                        ->orWhere('user.role_id', '=', $hr_id);
-//                        $cfo_id
-//                        ->orWhere('user.role_id', '=', $cfo_id);
+                        ->orWhere('user.role_id', '=', $hr_id)
+                        ->orWhere('user.role_id', '=', $cfo_id)
+                        ->orWhere('user.role_id', '=', $employee_id)
+                        ->orWhere('user.role_id', '=', $alumni_id)
+                        ->orWhere('user.role_id', '=', $accounts_id);
                 })
                 ->join('hr_employee', function($join)
                 {
