@@ -70,7 +70,7 @@ class HrAttendanceController extends \BaseController {
     public function editAttendance($id){
 
         $model = HrAttendance::find($id);
-        $employee_list = User::EmployeeList();
+        $employee_list = User::GenuineEmployeeList();
         $date = date('d-m-Y');
         return View::make('hr::hr.hr_attendance.edit',compact('model','employee_list','date'));
     }

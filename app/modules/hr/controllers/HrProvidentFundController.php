@@ -52,7 +52,7 @@ class HrProvidentFundController extends \BaseController {
 
         $model = HrProvidentFund::find($id);
         $month = HrWorkWeek::getMonth();
-        $employee_list = User::EmployeeList();
+        $employee_list = User::GenuineEmployeeList();
         return View::make('hr::hr.hr_provident_fund.edit',compact('model','month','employee_list'));
     }
 

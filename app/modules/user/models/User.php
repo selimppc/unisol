@@ -215,7 +215,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
-    public function scopeEmployeeList($query)
+    /*public function scopeEmployeeList($query)
     {
         $query = array('' => 'Select Employee ') + $this::join('user_profile', function($query){
                 $query->on('user_profile.user_id', '=', 'user.id');
@@ -232,7 +232,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }else{
             return $query = [' ' => 'Employee data missing !'];
         }
-    }
+    }*/
 
     public function scopeFacultyList($query){
         $role_id = Role::where('code', '=', 'faculty')->first()->id;
