@@ -563,20 +563,65 @@ class LibraryController extends \BaseController {
     {
         $data = Input::all();
         $model = new LibBookTransaction();
-        /*$model->name = Input::get('name');
-        $flash_msg = $model->name;*/
+        $model->user_id = Input::get('user_id');
+        $flash_msg = $model->user_id;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 if ($model->create($data))
                     DB::commit();
-                Session::flash('message', "Book Publisher Successfully Added");
+                Session::flash('message', "Book Transaction Successfully Added For User Id::$flash_msg");
+            }
+            catch ( Exception $e ){
+                DB::rollback();
+                Session::flash('danger', "Book Transaction Not Added For User ID::$flash_msg.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+
+    public function view_book_transaction($id)
+    {
+        $view_book_transaction = LibBookTransaction::find($id);
+       /* $view_details_applicant = BillingApplicantDetail::latest('id')->with('relBillingApplicantHead','relBillingItem','relWaiver')
+            ->where('billing_applicant_head_id','=',$id)
+            ->get();*/
+        return View::make('library::librarian.book_transaction.view',compact('view_book_transaction'));
+    }
+
+    public function edit_book_transaction($id)
+    {
+        $edit_book_transaction = LibBookTransaction::find($id);
+        $user = array(''=>'Select User') + User::AllUser();
+        $lib_book = array('' => 'Select Book ') + LibBook::lists('title', 'id');
+        return View::make('library::librarian.book_transaction.edit',compact('edit_book_transaction','user','lib_book'));
+    }
+
+    public function update_book_transaction($id)
+    {
+        $data = Input::all();
+        $model = LibBookTransaction::find($id);
+        $model->user_id = Input::get('user_id');
+        $flash_msg = $model->user_id;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->update($data))
+                    DB::commit();
+                Session::flash('message', "Book Transaction Successfully Updated For User Id::$flash_msg");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Book Publisher  Not Added.Invalid Request!");
+                Session::flash('danger', "Book Transaction Not Updated For User ID::$flash_msg.Invalid Request!");
             }
             return Redirect::back();
         }else{

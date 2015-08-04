@@ -143,6 +143,7 @@ Route::group(['prefix' => 'library'], function() {
     ]);
 
     /*=======================Book Transaction Start==============================*/
+
     Route::get('book/transaction',
         'LibraryController@index_book_transaction'
     );
@@ -156,6 +157,29 @@ Route::group(['prefix' => 'library'], function() {
         'as' => 'book-transaction-save',
         'uses'=> 'LibraryController@save_book_transaction'
     ]);
+
+    Route::any('transaction-book-view/{id}', [
+        'as' => 'transaction-book-view',
+        'uses' => 'LibraryController@view_book_transaction'
+    ]);
+
+    Route::any('transaction-book-edit/{id}', [
+        'as' => 'transaction-book-edit',
+        'uses' => 'LibraryController@edit_book_transaction'
+    ]);
+
+    Route::any('transaction-book-update/{id}', [
+        'as' => 'transaction-book-update',
+        'uses' => 'LibraryController@update_book_transaction'
+    ]);
+
+    Route::any('transaction-book-destroy/{id}', [
+        'as'   => 'transaction-book-destroy',
+        'uses' => 'LibraryController@destroy_book_transaction'
+    ]);
+
+    /*=======================Book Transaction Financial Start==============================*/
+
 
 
 });

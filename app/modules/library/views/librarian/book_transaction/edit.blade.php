@@ -1,11 +1,13 @@
 {{ HTML::script('assets/js/custom.js')}}
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="modal-title text-center text-purple">Book Transaction</h4>
+    <h4 class="modal-title" style="text-align: center;color: #800080;">Edit {{$edit_book_transaction->relUser->relUserProfile->first_name.' '.$edit_book_transaction->relUser->relUserProfile->last_name}}'s Billing Summary </h4>
 </div>
 <div class="modal-body">
     <div style="padding: 10px;">
-        {{Form::open(array('route' => array('book-transaction-save')))}}
+
+        {{Form::model($edit_book_transaction, array('route' => array('transaction-book-update', $edit_book_transaction->id)))}}
+
         <div class='form-group'>
             <div>{{ Form::label('user', 'User Name') }}</div>
             <div>{{ Form::select('user_id', [''=>'Select User' ] + $user, Input::old('user_id'), array('class' => 'form-control') ) }}</div>
@@ -27,19 +29,11 @@
             {{ Form::label('return_date', 'Return Date') }}
             {{ Form::text('return_date', Input::old('return_date'),['class'=>'form-control date_picker','required'=>'required']) }}
         </div>
-
-        <div class='form-group'>
-            <div>{{ Form::label('status', 'Status') }}</div>
-            <div>{{ Form::select('status',array('' => 'Select One','received' => 'Received', 'returned' => 'Returned','delay'=>'Delay','cancel'=>'Cancel','purchase'=>'Purchase','purchase-cancel'=>'Purchase-cancel','confirmed'=>'Confirmed'),'',['class'=>'form-control','required'=>'required']) }}</div>
-        </div>
-
         <div class="modal-footer">
             {{ Form::submit('Submit', array('class'=>' btn btn-success')) }}
             <button class=" btn btn-default" data-dismiss="modal" type="button">Close</button>
         </div>
+
         {{ Form::close() }}
     </div>
 </div>
-
-
-
