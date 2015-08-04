@@ -39,6 +39,10 @@ class HrAttendance  extends Eloquent{
         return Carbon::parse($date)->format('Y-m-d'); //Change the format to whichever you desire
     }
 
+    public function getSignInTimeAttribute($sign_in_time) {
+        return Carbon::parse($sign_in_time)->format('Y-m-d'); //Change the format to whichever you desire
+    }
+
     //TODO : Model Relationship
 
     public function relHrEmployee(){

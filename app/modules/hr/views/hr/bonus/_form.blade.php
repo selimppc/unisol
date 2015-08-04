@@ -19,11 +19,6 @@
 </div>
 
 <div class='form-group'>
-   {{ Form::label('note', 'Note') }}
-   {{ Form::text('note', Input::old('note'),['class'=>'form-control', 'required']) }}
-</div>
-
-<div class='form-group'>
    {{ Form::label('status', 'Status') }}
    {{ Form::select('status',[''=>'Select Status','active'=>'Active','close'=>'Close'], Input::old('status'),['class'=>'form-control', 'required']) }}
 </div>

@@ -129,7 +129,7 @@ class CreateHr extends Migration {
             $table->dateTime('payment_start_date');
             $table->text('description');
             $table->decimal('number_of_installment', 2, 0);
-            $table->enum('work_shift', array(
+            $table->enum('status', array(
                 'new', 'running', 'complete',
             ));
             $table->integer('created_by', false, 11);
@@ -315,7 +315,7 @@ class CreateHr extends Migration {
             $table->string('period');
             $table->decimal('tax_rate')->nullable();
             $table->float('tax_amount')->nullable();
-            $table->float('total_amount');
+            $table->float('total_amount')->nullable();
             $table->enum('status', array(
                 'open', 'ask-for-interview', 'approved', 'denied', 'request-for-update',
                 'confirmed', 'invoiced'

@@ -8,7 +8,7 @@
 <div style="padding: 2%; width: 99%;">
     <div class="modal-body">
 
-        {{Form::model($model, ['route'=> ['salary_allowance.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
+        {{Form::model($model, ['route'=> ['salary-allowance.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
                 {{ Form::hidden('id', $model->id) }}
                 @include('hr::hr.salary_allowance._form')
         {{ Form::close() }}

@@ -12,7 +12,7 @@ class UserSignupController extends \BaseController {
 
     public function Userindex()
 	{
-        $role_name = Role:: getRoleName();
+        $role_name = Role:: lists('code','id');
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
         return View::make('admission::signup.index',compact('department','countryList','role_name'));
@@ -44,7 +44,7 @@ class UserSignupController extends \BaseController {
                     $model1->gender = Input::get('gender');
                     $model1->city = Input::get('city');
                     $model1->state = Input::get('state');
-                    $model1->country = Input::get('country_id');
+                    $model1->country = Input::get('country');
                     $model1->zip_code = Input::get('zip_code');
                     $model1->save();
                     Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");

@@ -73,7 +73,7 @@ class HrBonusController extends \BaseController
         }else{
             $model = HrBonus::findOrFail($bn_id);
             $selected_employee_id = HrBonus::first()->hr_employee_id;
-            $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+            $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
             $lists_currency = Currency::lists('title','id');
             return View::make('hr::hr.bonus.edit', compact('model','selected_employee_id','lists_currency','employee_name_list'));
         }

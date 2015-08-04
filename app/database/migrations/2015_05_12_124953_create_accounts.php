@@ -27,7 +27,7 @@ class CreateAccounts extends Migration {
 
         Schema::create('acc_chart_of_accounts', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('account_code', 8);
+            $table->string('account_code', 8)->nullable();
             $table->text('description');
             $table->enum('account_type', array(
                 'asset', 'liability', 'income', 'expense'
@@ -51,8 +51,8 @@ class CreateAccounts extends Migration {
             $table->increments('id');
             $table->string('type',32);
             $table->string('code',8);
-            $table->decimal('last_number', 8,0);
-            $table->decimal('increment', 1,0);
+            $table->decimal('last_number', 8,0)->nullable();
+            $table->decimal('increment', 1,0)->nullable();
             $table->enum('active', array(
                 'yes', 'no'
             ));
@@ -65,7 +65,7 @@ class CreateAccounts extends Migration {
 
         Schema::create('acc_voucher_head', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('voucher_number',32);
+            $table->string('voucher_number',32)->nullable();
             $table->enum('type', array(
                 'account-payable', 'account-receivable', 'stock-adjustment',
                 'journal-voucher', 'payment-voucher', 'receipt-voucher', 'reverse-entry',
@@ -97,9 +97,9 @@ class CreateAccounts extends Migration {
             $table->string('sub_account_code',32);
             $table->unsignedInteger('associated_id')->nullable(); //associated_id ===  supplier / applicant / student / library / others
             $table->unsignedInteger('currency_id')->nullable();
-            $table->float('exchange_rate');
-            $table->float('prime_amount');
-            $table->float('base_amount');
+            $table->float('exchange_rate')->nullable();
+            $table->float('prime_amount')->nullable();
+            $table->float('base_amount')->nullable();
             $table->text('note');
 
             $table->integer('created_by', false, 11);
@@ -122,9 +122,9 @@ class CreateAccounts extends Migration {
             $table->unsignedInteger('acc_voucher_head_id')->nullable();
             $table->dateTime('date');
             $table->unsignedInteger('currency_id')->nullable();
-            $table->float('exchange_rate');
-            $table->float('prime_amount');
-            $table->float('base_amount');
+            $table->float('exchange_rate')->nullable();
+            $table->float('prime_amount')->nullable();
+            $table->float('base_amount')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

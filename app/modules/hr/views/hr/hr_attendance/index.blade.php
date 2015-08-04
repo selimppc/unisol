@@ -70,13 +70,23 @@
                     <td>
                          <a href="{{ URL::route('attendance.show',
                          ['id' => $values->id]) }}" class="btn-link" data-toggle="modal" data-target="#pvd">
-                         <b>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</b>
+                            <b>
+                            {{isset($values->relHrEmployee->relUser->relUserProfile->first_name)? $values->relHrEmployee->relUser->relUserProfile->first_name:''}}&nbsp;
+                            {{isset($values->relHrEmployee->relUser->relUserProfile->middle_name)? $values->relHrEmployee->relUser->relUserProfile->middle_name:''}}&nbsp;
+                            {{isset($values->relHrEmployee->relUser->relUserProfile->last_name)? $values->relHrEmployee->relUser->relUserProfile->last_name:''}}
+                            </b>
                          </a>
                     </td>
                     <td>{{$values->relHrEmployee->employee_id}}</td>
                     <td>{{$values->date}}</td>
                     <td>{{$values->sign_in_time}}</td>
-                    <td>{{$values->sign_out_time}}</td>
+                    <td>
+                       @if($values->sign_out_time == '0000-00-00 00:00:00')
+                       --
+                       @else
+                       {{$values->sign_out_time}}
+                       @endif
+                    </td>
                     <td>{{$values->lunch_break_out_time}} &nbsp;<b>To</b>&nbsp;  {{$values->lunch_break_in_time}}</td>
                     <td>{{$values->break_out_time}} &nbsp;<b>To</b>&nbsp; {{$values->break_in_time}}</td>
                     <td>

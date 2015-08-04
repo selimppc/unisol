@@ -9,73 +9,39 @@
    <div class='form-group'>
         <div class="col-lg-4" style="padding-left: 0;">
            {{ Form::label('date', 'Date') }}
-           {{ Form::text('date',Input::old('date'),['class'=>'form-control date_picker']) }}
+           {{ Form::text('date',Input::old('date'),['class'=>'form-control date_picker','required']) }}
         </div>
         <div class="col-lg-4" style="padding-left: 0;">
            {{ Form::label('sign_in_time', 'Sign In Time') }}
-           {{ Form::Select('sign_in_time',
-               array(''=>'Select Time','08:00:00'=>'08:00:00','08:30:00'=>'08:30:00','09:00:00'=>'09:00:00','09:30:00'=>'09:30:00',
-                   '10:00:00'=>'10:00:00','10:30:00'=>'10:30:00','11:00:00'=>'11:00:00','11:30:00'=>'11:30:00',
-                   '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
-                   '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
-                   '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
-               Input::old('sign_in_time'),['class'=>'form-control ','required'=>'required']) }}
+           {{ Form::text('sign_in_time',Input::old('sign_in_time'),['class'=>'form-control date_picker','required']) }}
         </div>
         <div class="col-lg-4" style="padding-right: 0;">
            {{ Form::label('sign_out_time', 'Sign Out Time') }}
-           {{ Form::Select('sign_out_time',
-               array(''=>'Select Time','08:00:00'=>'08:00:00','08:30:00'=>'08:30:00','09:00:00'=>'09:00:00','09:30:00'=>'09:30:00',
-                   '10:00:00'=>'10:00:00','10:30:00'=>'10:30:00','11:00:00'=>'11:00:00','11:30:00'=>'11:30:00',
-                   '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
-                   '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
-                   '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
-               Input::old('sign_out_time'),['class'=>'form-control ']) }}
+            {{ Form::text('sign_out_time',Input::old('sign_out_time'),['class'=>'form-control date_picker']) }}
         </div>
    </div>
 <p>&nbsp;</p>
     <div class='form-group'>
         <div class="col-lg-6" style="padding-left: 0;">
            {{ Form::label('lunch_break_out_time', 'Lunch Break Out Time') }}
-           {{ Form::Select('lunch_break_out_time',
-               array(''=>'Select Time',
-                   '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
-                   '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
-                   '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
-               Input::old('lunch_break_out_time'),['class'=>'form-control ']) }}
+           {{ Form::text('lunch_break_out_time',Input::old('lunch_break_out_time'),['class'=>'form-control date_picker']) }}
         </div>
 
         <div class="col-lg-6" style="padding-right: 0;">
            {{ Form::label('lunch_break_in_time', 'Lunch Break In Time') }}
-           {{ Form::Select('lunch_break_in_time',
-               array(''=>'Select Time',
-                   '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
-                   '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
-                   '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
-               Input::old('lunch_break_in_time'),['class'=>'form-control ']) }}
+           {{ Form::text('lunch_break_in_time',Input::old('lunch_break_in_time'),['class'=>'form-control date_picker']) }}
         </div>
     </div>
 <p>&nbsp;</p>
     <div class='form-group'>
         <div class="col-lg-6" style="padding-left: 0;">
            {{ Form::label('break_out_time', 'Break Out Time') }}
-           {{ Form::Select('break_out_time',
-               array(''=>'Select Time','08:00:00'=>'08:00:00','08:30:00'=>'08:30:00','09:00:00'=>'09:00:00','09:30:00'=>'09:30:00',
-                   '10:00:00'=>'10:00:00','10:30:00'=>'10:30:00','11:00:00'=>'11:00:00','11:30:00'=>'11:30:00',
-                   '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
-                   '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
-                   '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
-               Input::old('break_out_time'),['class'=>'form-control ']) }}
+           {{ Form::text('break_out_time',Input::old('break_out_time'),['class'=>'form-control date_picker']) }}
         </div>
 
         <div class="col-lg-6" style="padding-right: 0;">
            {{ Form::label('break_in_time', 'Break In Time') }}
-           {{ Form::Select('break_in_time',
-               array(''=>'Select Time','08:00:00'=>'08:00:00','08:30:00'=>'08:30:00','09:00:00'=>'09:00:00','09:30:00'=>'09:30:00',
-                   '10:00:00'=>'10:00:00','10:30:00'=>'10:30:00','11:00:00'=>'11:00:00','11:30:00'=>'11:30:00',
-                   '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
-                   '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
-                   '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
-               Input::old('break_in_time'),['class'=>'form-control ']) }}
+           {{ Form::text('break_in_time',Input::old('break_in_time'),['class'=>'form-control date_picker']) }}
         </div>
     </div>
  <p>&nbsp;</p>

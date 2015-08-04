@@ -57,7 +57,7 @@ class EmployeeController extends \BaseController {
     public function editLeave($id){
 
         $model = HrLeave::find($id);
-        $employee_list = User::GenuineEmployeeList();
+        $employee_list = User::ExceptLoggedUser();
         $hr_list = User::HrList();
         $leave_type_id = HrLeaveType::lists('title','id');
         $employee_id = Auth::user()->get()->id;

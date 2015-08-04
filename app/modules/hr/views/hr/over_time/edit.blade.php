@@ -6,7 +6,7 @@
 <div style="padding: 2%; width: 99%;">
     <div class="modal-body">
 
-        {{Form::model($model, ['route'=> ['over_time.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
+        {{Form::model($model, ['route'=> ['over-time.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
                 {{ Form::hidden('id', $model->id) }}
                 @include('hr::hr.over_time._form')
         {{ Form::close() }}
