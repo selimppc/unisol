@@ -74,7 +74,7 @@ class HrSalaryAdvanceController extends \BaseController
         }else{
             $model = HrSalaryAdvance::findOrFail($bn_id);
             $selected_employee_id = HrSalaryAdvance::first()->hr_employee_id;
-            $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+            $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
             return View::make('hr::hr.salary_advance.edit', compact('model','selected_employee_id','lists_currency','employee_name_list'));
         }
 
