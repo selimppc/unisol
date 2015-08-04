@@ -39,19 +39,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($model as $values)
+              @if(isset($model))
+                 @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>
+
                         @if($values->status=="open")
-                            <b>{{ link_to_route('salary_transaction_detail', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['title'=>"Details Salary Transaction",'data-toggle'=>"modal", 'data-target'=>"#modal-pc2"] ) }}</b>
+                            <b>{{ isset($values->hr_employee_id) ? link_to_route('salary_transaction_detail', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['title'=>"Details Salary Transaction",'data-toggle'=>"modal", 'data-target'=>"#modal-pc2"] ) : "" }}</b>
                         @else
-                            <b>{{ link_to_route('salary_transaction.show_confirm', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}</b>
+                            <b>{{ isset($values->hr_employee_id) ? link_to_route('salary_transaction.show_confirm', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) : "" }}</b>
                         @endif
                     </td>
                     <td>{{ $values->trn_number }}</td>
                     <td>{{ $values->date }}</td>
-                    <td>{{ $values->relYear->title }}</td>
+                    <td>{{ isset($values->year_id)? ucfirst($values->relYear->title):"" }}</td>
                     <td>{{ ucfirst($values->period) }}</td>
                     <td>{{ round($values->total_amount,2) }}</td>
                     <td>{{ ucfirst($values->status) }}</td>
@@ -73,6 +75,7 @@
                     </td>
                  </tr>
                 @endforeach
+              @endif
             </tbody>
 
         </table>

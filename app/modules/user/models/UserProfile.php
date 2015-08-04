@@ -41,7 +41,7 @@ class UserProfile extends Eloquent {
     }
 
     public function relCountry(){
-        return $this->belongsTo('Country','country_id','id');
+        return $this->belongsTo('Country','country','id');
     }
 
 

@@ -76,7 +76,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $sl=1;?>
+                                <?php $sl = $data->getFrom(); ?>
                                 @if(isset($data))
                                 @foreach($data as $value)
                                     <tr>
@@ -114,9 +114,9 @@
                             {{ $data->links() }}
                             <a href="{{ URL::route('billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
                             </br>
-                            <p><b>Admission Related Cost:</b></p>
+                            {{--<p><b>Admission Related Cost:</b></p>
                             <p><b>Academic Cost:</b></p>
-                            <p><b>After Courses Completed Cost:</b></p>
+                            <p><b>After Courses Completed Cost:</b></p>--}}
                         </div>
 
                     </div>

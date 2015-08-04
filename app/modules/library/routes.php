@@ -143,6 +143,20 @@ Route::group(['prefix' => 'library'], function() {
     ]);
 
     /*=======================Book Transaction Start==============================*/
+    Route::get('book/transaction',
+        'LibraryController@index_book_transaction'
+    );
+
+    Route::any('create/book/transaction',[
+        'as' =>'create.book.transaction',
+        'uses' => 'LibraryController@create_book_transaction'
+    ]);
+
+    Route::post('book/transaction/save',[
+        'as' => 'book-transaction-save',
+        'uses'=> 'LibraryController@save_book_transaction'
+    ]);
+
 
 });
 

@@ -16,7 +16,7 @@
             <li><a href="{{URL::to('library/book/author')}}"></i><i class="fa fa-users text-green"></i> Author</a></li>
             <li><a href="{{URL::to('library/book/publisher')}}"></i><i class="fa  fa-print text-purple"></i> Publisher</a></li>
             <li><a href="{{URL::to('library/book/')}}"></i><i class="fa fa-book text-light-blue"></i> Books</a></li>
-            <li><a href="#"></i><i class="fa fa-dollar text-green"></i> Books Transaction</a></li>
+            <li><a href="{{URL::to('library/book/transaction')}}"></i><i class="fa fa-dollar text-green"></i> Books Transaction</a></li>
         </ul>
     </li>
 

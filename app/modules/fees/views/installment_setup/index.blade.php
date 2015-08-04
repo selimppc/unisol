@@ -68,7 +68,7 @@
                                 <th>Action</th>
                                 </thead>
                                 <tbody>
-                                <?php $sl=1;?>
+                                <?php $sl = $data->getFrom(); ?>
                                 @if(isset($data))
                                     @foreach($data as $value)
                                         <tr>

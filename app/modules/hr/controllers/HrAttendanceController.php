@@ -13,7 +13,8 @@ class HrAttendanceController extends \BaseController {
 
     public function index()
     {
-//        $date = date('d-m-Y');
+//        $date = date('H:i:s', time());
+//        print($date);exit;
         $data = new HrAttendance();
         if($this->isPostRequest()) {
             $hr_employee = Input::get('hr_employee');
@@ -28,7 +29,7 @@ class HrAttendanceController extends \BaseController {
         $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
     }
 //        $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
-        $employee_list = User::EmployeeList();
+        $employee_list = User::GenuineEmployeeList();
         $emp_id = array('' => 'Select Employee ID') + HrEmployee::lists('employee_id', 'id');
 
         Input::flash();

@@ -58,7 +58,7 @@
         </table>
         </div>
         {{form::close() }}
-
+         {{ $model->links() }}
     </div>
 
 </div>

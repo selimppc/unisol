@@ -8,9 +8,12 @@ class LibraryController extends \BaseController {
         //$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
 
-    /**********************Library Book Category start***************************/
+    /****=======================================================================================
+                                     Book Category start
+    =======================================================================================****/
 
-	public function index()
+
+    public function index()
 	{
         $book_category = LibBookCategory::orderBy('id', 'DESC')->paginate(5);
 		return View::Make('library::librarian.category.index',compact('book_category'));
@@ -121,7 +124,10 @@ class LibraryController extends \BaseController {
 		//
 	}
 
-    /**********************Library Book Author start***************************/
+
+    /****=======================================================================================
+                                         Book Author start
+    =======================================================================================****/
 
     public function indexAuthor()
     {
@@ -233,7 +239,10 @@ class LibraryController extends \BaseController {
         }
     }
 
-    /**********************Library Book Publisher start***************************/
+
+    /****=======================================================================================
+                                Book Publisher start
+    =======================================================================================****/
 
     public function indexPublisher()
     {
@@ -343,7 +352,10 @@ class LibraryController extends \BaseController {
         }
     }
 
-    /**********************Library Book start***************************/
+
+    /****=======================================================================================
+                                   Book start
+    =======================================================================================****/
 
     public function indexBook()
     {
@@ -452,7 +464,6 @@ class LibraryController extends \BaseController {
                 $files->move($destinationPath, $file);
                 $model->file = $file;
             }
-
             $model->save();
             Session::flash('message', "Successfully Updated $flashmsg !");
             return Redirect::back();
@@ -466,7 +477,6 @@ class LibraryController extends \BaseController {
 
     public function deleteBook($id)
     {
-
         try {
             $data= LibBook::find($id);
             $flash_msg = $data->name;
@@ -482,6 +492,7 @@ class LibraryController extends \BaseController {
 
         }
     }
+
     public function batchdeleteBook($id)
     {
         try {
@@ -528,5 +539,52 @@ class LibraryController extends \BaseController {
         ]);
     }
 
+
+
+    /****=======================================================================================
+                                    Book Transaction start
+    =========================================================================================****/
+
+    public function index_book_transaction()
+    {
+        $pageTitle = "Book Transaction";
+        $book_transaction = LibBookTransaction::latest('id')->with('relUser','relUser.relUserProfile','relLibBook')->paginate(6);
+        return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','user'));
+    }
+
+    public function create_book_transaction()
+    {
+        $user = array(''=>'Select User') + User::AllUser();
+        $lib_book = array('' => 'Select Book ') + LibBook::lists('title', 'id');
+        return View::make('library::librarian.book_transaction._form',compact('user','lib_book'));
+    }
+
+    public function save_book_transaction()
+    {
+        $data = Input::all();
+        $model = new LibBookTransaction();
+        /*$model->name = Input::get('name');
+        $flash_msg = $model->name;*/
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Book Publisher Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Book Publisher  Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
 
 }

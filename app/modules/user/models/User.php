@@ -176,9 +176,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $hr_id = Role::where('code', '=', 'hr')->first()->id;
         $faculty_id = Role::where('code', '=', 'faculty')->first()->id;
         $admin_id = Role::where('code', '=', 'admin')->first()->id;
-        $librarian_id = Role::where('code', '=', 'librarian')->first()->id;
+//        $librarian_id = Role::where('code', '=', 'librarian')->first()->id;
         $amw_id = Role::where('code', '=', 'amw')->first()->id;
-        $cfo_id = Role::where('code', '=', 'cfo')->first()->id;
+//        $cfo_id = Role::where('code', '=', 'cfo')->first()->id;
 
         $query = array('' => 'Select Employee ') + $this::join('user_profile', function($query){
                 $query->on('user_profile.user_id', '=', 'user.id');
@@ -187,14 +187,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
                     $query->on('user.role_id', '=', 'role.id');
                 })
                 ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name, " ( ", role.title, " )" ) as full_name'), 'user.id as user_id', 'hr_employee.id as employee_id')
-                ->where('user.role_id', '=', $hr_id)
-                ->orWhere(function($query) use($faculty_id, $admin_id, $librarian_id, $amw_id, $cfo_id)
+
+                ->where(function($query) use($faculty_id, $admin_id, $amw_id,$hr_id )
                 {
                     $query->where('user.role_id', '=', $faculty_id)
                         ->orWhere('user.role_id', '=', $admin_id)
-                        ->orWhere('user.role_id', '=', $librarian_id)
+//                        $librarian_id
+//                        ->orWhere('user.role_id', '=', $librarian_id)
                         ->orWhere('user.role_id', '=', $amw_id)
-                        ->orWhere('user.role_id', '=', $cfo_id);
+                        ->orWhere('user.role_id', '=', $hr_id);
+//                        $cfo_id
+//                        ->orWhere('user.role_id', '=', $cfo_id);
                 })
                 ->join('hr_employee', function($join)
                 {
@@ -208,24 +211,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
-//    public function scopeEmployeeList($query)
-//    {
-//        $query = array('' => 'Select Employee ') + $this::join('user_profile', function($query){
-//                $query->on('user_profile.user_id', '=', 'user.id');
-//            })
-//                ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id', 'hr_employee.id as employee_id')
-//
-//                ->join('hr_employee', function($join)
-//                {
-//                    $join->on('user.id', '=', 'hr_employee.user_id');
-//                })
-//                ->lists('full_name', 'employee_id');
-//        if($query){
-//            return $query;
-//        }else{
-//            return $query = [' ' => 'Employee data missing !'];
-//        }
-//    }
+    public function scopeEmployeeList($query)
+    {
+        $query = array('' => 'Select Employee ') + $this::join('user_profile', function($query){
+                $query->on('user_profile.user_id', '=', 'user.id');
+            })
+                ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id', 'hr_employee.id as employee_id')
+
+                ->join('hr_employee', function($join)
+                {
+                    $join->on('user.id', '=', 'hr_employee.user_id');
+                })
+                ->lists('full_name', 'employee_id');
+        if($query){
+            return $query;
+        }else{
+            return $query = [' ' => 'Employee data missing !'];
+        }
+    }
 
     public function scopeFacultyList($query){
         $role_id = Role::where('code', '=', 'faculty')->first()->id;
@@ -340,6 +343,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             })
                 ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id')
                 ->where('user.role_id', '=', $role_id)
+                ->lists('full_name', 'user_id');
+        return $query;
+    }
+
+
+    public function scopeAllUser($query)
+    {
+        $query = array('' => 'Select User ') + $this::join('user_profile', function($query){
+                $query->on('user_profile.user_id', '=', 'user.id');
+            })
+                ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id')
                 ->lists('full_name', 'user_id');
         return $query;
     }

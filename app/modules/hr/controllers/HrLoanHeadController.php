@@ -20,7 +20,7 @@ class HrLoanHeadController extends \BaseController {
 
         $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')->first();
 
-        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+        $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
 
         return View::make('hr::hr.loan_head.index',
             compact('model','pageTitle','selected_employee_id','emp_name','employee_name_list'));
@@ -35,10 +35,12 @@ class HrLoanHeadController extends \BaseController {
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
+//                    echo "1";exit;
                     $model->create($input_data);
                     DB::commit();
                     Session::flash('message', 'Success !');
                 } catch (Exception $e) {
+//                    echo "2";exit;
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
                     Session::flash('danger', 'Failed !');

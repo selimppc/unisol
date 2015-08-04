@@ -36,7 +36,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $sl=1;?>
+                                <?php $sl = $summary_student->getFrom(); ?>
                                 @foreach ($summary_student as $value)
                                     @unless($value->status =='cancel')
                                     <tr>

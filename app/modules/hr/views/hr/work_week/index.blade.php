@@ -42,7 +42,7 @@
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
 
-                    <td>{{$values->relYear->title}}</td>
+                    <td>{{isset($values->year_id) ? $values->relYear->title:''}}</td>
                     <td>{{ucfirst($values->month)}}</td>
                     <td>{{ucfirst($values->day)}}</td>
                     <td>{{ucfirst($values->status)}}</td>

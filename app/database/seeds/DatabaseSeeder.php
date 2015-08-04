@@ -121,8 +121,21 @@ class DatabaseSeeder extends Seeder {
         $this->call('CurrencyTable');
         $this->command->info('CurrencyTable seeded!');
 
+        $this->call('HrBankTable');
+        $this->command->info('HrBankTable seeded!');
 
-	}
+        $this->call('HrSalaryGradeTable');
+        $this->command->info('HrSalaryGradeTable seeded!');
+
+        $this->call('HrLeaveTypeTable');
+        $this->command->info('HrLeaveTypeTable seeded!');
+
+        $this->call('HrTaxRuleTable');
+        $this->command->info('HrTaxRuleTable seeded!');
+
+
+
+    }
 
 }
 

@@ -12,17 +12,15 @@ class UserSignupController extends \BaseController {
 
     public function Userindex()
 	{
+        $role_name = Role:: lists('code','id');
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-        return View::make('admission::signup.index',compact('department','countryList'));
+        return View::make('admission::signup.index',compact('department','countryList','role_name'));
 	}
 
     public function Userstore()
     {
-
         $input_data = Input::all();
-//        print_r($input_data);exit;
-        $verified_code = str_random(30);
         //model
         $model = new User();
         if($model->validate($input_data)) {
@@ -32,7 +30,7 @@ class UserSignupController extends \BaseController {
             $model->csrf_token = $input_data['_token'];
             $model->department_id = $input_data['department_id'];
             $model->role_id = $input_data['role_id'];
-            $model->verified_code = $verified_code;
+            $model->verified_code = str_random(30);
             $model->ip_address = getHostByName(getHostName());
             $model->status = 1;
             if ($model->save()) {
@@ -46,7 +44,7 @@ class UserSignupController extends \BaseController {
                     $model1->gender = Input::get('gender');
                     $model1->city = Input::get('city');
                     $model1->state = Input::get('state');
-                    $model1->country_id = Input::get('country_id');
+                    $model1->country = Input::get('country_id');
                     $model1->zip_code = Input::get('zip_code');
                     $model1->save();
                     Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
