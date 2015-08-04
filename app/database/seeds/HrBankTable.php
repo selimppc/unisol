@@ -12,23 +12,23 @@ class HrBankTable extends Seeder{
 
         DB::table('hr_bank')->delete();
 
-        $course = array(
-            'Dhaka Bank' => 'BANANI BRANCH',
-            'Prime Bank'=> 'DHANMONDI BRANCH',
-            'City Bank'=> 'GULSAN BRANCH',
-            'Jamuna Bank'=> 'BANANI BRANCH',
-            'HSBC Bank'=> 'MIRPUR BRANCH',
-            'One Bank'=> 'DHANMONDI BRANCH',
-            'Dutch-Bangla Bank'=> 'GULSAN BRANCH'
+        $items = array(
+            array('Dhaka Bank', 'BANANI BRANCH', '73 B Kemal Ataturk Avenue Banani, Dhaka', 7,7),
+            array('Prime Bank', 'DHANMONDI BRANCH', '73 B Kemal Ataturk Avenue Dhanmandi, Dhaka', 7,7),
+            array('City Bank', 'GULSAN BRANCH', '73 B Kemal Ataturk Avenue Gulsan Dhaka', 7,7),
+            array('Jamuna Bank', 'BANANI BRANCH', '73 B Kemal Ataturk Avenue Banani, Dhaka',7,7),
+            array('HSBC Bank', 'MIRPUR BRANCH', '73 B Kemal Ataturk Avenue Mirpur Dhaka',7,7),
+            array('Dutch-Bangla Bank', 'DHANMONDI BRANCH', '73 B Kemal Ataturk Avenue Dhanmandi Dhaka',7,7),
+            array('One Bank', 'GULSAN BRANCH', '73 B Kemal Ataturk Avenue Gulsan Dhaka',7,7),
         );
 
-        foreach($course as $key => $value){
-            HrBank::insert(array(
-                'bank_name' => $key,
-                'branch' => $value,
-                'address' => $key,
-                'created_by' => 1,
-                'updated_by' => 1,
+        foreach($items as $item) {
+            HrBank::create(array(
+                'bank_name' => $item[0],
+                'branch' => $item[1],
+                'address' => $item[2],
+                'created_by' => $item[3],
+                'updated_by' => $item[4],
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime
             ));
