@@ -129,7 +129,7 @@ class CreateHr extends Migration {
             $table->dateTime('payment_start_date');
             $table->text('description');
             $table->decimal('number_of_installment', 2, 0);
-            $table->enum('work_shift', array(
+            $table->enum('status', array(
                 'new', 'running', 'complete',
             ));
             $table->integer('created_by', false, 11);

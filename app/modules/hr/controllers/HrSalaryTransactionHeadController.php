@@ -24,14 +24,14 @@ class HrSalaryTransactionHeadController extends \BaseController {
 
         $year_list = array(''=>'Select Year') + Year::where('title', '>=' ,Date('Y') )->lists('title', 'id');
 
-        // Generate Salary Transaction Number
-        $salary_trn_no = HrTrnNoSetup::where('title', '=', "Salary Transaction Number")
-            ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
-            ->first()->number;
-
-        // Update Acc transaction Number
-        DB::table('hr_trn_no_setup')->where('title', '=', "Salary Transaction Number")
-            ->update(array('last_number' => substr($salary_trn_no, 4)));
+//        // Generate Salary Transaction Number
+//        $salary_trn_no = HrTrnNoSetup::where('title', '=', "Salary Transaction Number")
+//            ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+//            ->first()->number;
+//
+//        // Update Acc transaction Number
+//        DB::table('hr_trn_no_setup')->where('title', '=', "Salary Transaction Number")
+//            ->update(array('last_number' => substr($salary_trn_no, 4)));
 
 
         return View::make('hr::hr.salary_transaction.index',
@@ -41,23 +41,39 @@ class HrSalaryTransactionHeadController extends \BaseController {
     public function store_hr_salary_transaction()
     {
         if($this->isPostRequest()){
+            $salary_trn_no = HrTrnNoSetup::where('title', '=', "Salary Transaction Number")
+                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+                ->first()->number;
             $input_data = Input::all();
-            #print_r($input_data);exit;
+            $inp_data = [
+                'hr_employee_id' => $input_data['hr_employee_id'],
+                'trn_number' => $salary_trn_no,
+                'date' => $input_data['date'],
+                'year_id' => $input_data['year_id'],
+                'period' => $input_data['period'],
+                'total_amount' => 0,
+                'status'=> "open",
+            ];
             $model = new HrSalaryTransactionHead();
-            if($model->validate($input_data)) {
+            if($model->validate($inp_data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($input_data);
+                    $model->create($inp_data);
+                    DB::table('hr_trn_no_setup')->where('title', '=', "Salary Transaction Number")
+                        ->update(array('last_number' => substr($salary_trn_no,4)));
                     DB::commit();
                     Session::flash('message', 'Success !');
-                } catch (Exception $e) {
+                }catch (Exception $e) {
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
             }
+            return Redirect::back();
+        }else{
+            #$model = InvRequisitionHead::findOrFail($re_id);
+            return Redirect::back();
         }
-        return Redirect::back();
     }
 
     public function show_hr_salary_transaction($s_t_id)

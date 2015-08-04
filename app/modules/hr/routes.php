@@ -354,7 +354,7 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
     Route::any('salary-transaction/show-confirm/{s_t_id}',[
-        'as' => 'salary-transaction.show_confirm',
+        'as' => 'salary-transaction.show-confirm',
         'uses'=> 'HrSalaryTransactionHeadController@show_confirm_salary_transaction'
     ]);
 
@@ -422,8 +422,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryDeductionController@batch_delete_hr_salary_deduction'
     ]);
 //HR SALARY TRANSACTION DETAIL
-    Route::any('salary-transaction_detail/{s_t_id}',[
-        'as' => 'salary-transaction_detail',
+    Route::any('salary-transaction-detail/{s_t_id}',[
+        'as' => 'salary-transaction-detail',
         'uses'=> 'HrSalaryTransactionDetailController@index_hr_salary_transaction_detail'
     ]);
     Route::any('store-salary-transaction-detail',[
