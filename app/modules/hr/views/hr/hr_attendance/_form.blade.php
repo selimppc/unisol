@@ -13,13 +13,7 @@
         </div>
         <div class="col-lg-4" style="padding-left: 0;">
            {{ Form::label('sign_in_time', 'Sign In Time') }}
-           {{ Form::Select('sign_in_time',
-               array(''=>'Select Time','08:00:00'=>'08:00:00','08:30:00'=>'08:30:00','09:00:00'=>'09:00:00','09:30:00'=>'09:30:00',
-                   '10:00:00'=>'10:00:00','10:30:00'=>'10:30:00','11:00:00'=>'11:00:00','11:30:00'=>'11:30:00',
-                   '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
-                   '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
-                   '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
-               Input::old('sign_in_time'),['class'=>'form-control ','required'=>'required']) }}
+           {{ Form::text('sign_in_time',Input::old('sign_in_time'),['class'=>'form-control date_picker']) }}
         </div>
         <div class="col-lg-4" style="padding-right: 0;">
            {{ Form::label('sign_out_time', 'Sign Out Time') }}

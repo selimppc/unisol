@@ -13,7 +13,8 @@ class HrAttendanceController extends \BaseController {
 
     public function index()
     {
-//        $date = date('d-m-Y');
+//        $date = date('H:i:s', time());
+//        print($date);exit;
         $data = new HrAttendance();
         if($this->isPostRequest()) {
             $hr_employee = Input::get('hr_employee');
