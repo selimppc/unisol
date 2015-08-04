@@ -16,8 +16,8 @@ class HrProvidentFund extends Eloquent{
 
     private $errors;
     private $rules = [
-        'employee_contribution_amount' => 'required|max:6',
-        'company_contribution_amount' => 'required|max:6',
+        'employee_contribution_amount' => 'required|max:20',
+        'company_contribution_amount' => 'required|max:20',
     ];
 
     public function validate($data)

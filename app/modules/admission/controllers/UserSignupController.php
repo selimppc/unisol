@@ -12,7 +12,7 @@ class UserSignupController extends \BaseController {
 
     public function Userindex()
 	{
-        $role_name = Role:: getRoleName();
+        $role_name = Role:: lists('code','id');
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
         return View::make('admission::signup.index',compact('department','countryList','role_name'));
