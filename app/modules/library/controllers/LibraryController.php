@@ -548,7 +548,7 @@ class LibraryController extends \BaseController {
     public function index_book_transaction()
     {
         $pageTitle = "Book Transaction";
-        $book_transaction = LibBookTransaction::latest('id')->with('relUser','relUser.relUserProfile','relLibBook')->paginate(6);
+        $book_transaction = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')->orderBy('id', 'DESC')->paginate(6);
         return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','user'));
     }
 
@@ -630,6 +630,42 @@ class LibraryController extends \BaseController {
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
+    }
+
+    public function destroy_book_transaction($id)
+    {
+        $model = LibBookTransaction::findOrFail($id);
+        $model->status = 'cancel';
+        DB::beginTransaction();
+        try{
+            $model->save();
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+    public function create_book_transaction_financial($id)
+    {
+        $book_transaction_id = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')
+            ->where('id','=',$id)
+            ->first()->id;
+
+        $user_name = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')
+            ->where('id','=',$id)
+            ->first();
+
+        $book_trans_fin_data = LibBookTransactionFinancial::latest('id')->with('relLibBookTransaction')
+            ->where('lib_book_transaction_id','=',$id)
+            ->get();
+
+        $stock_type = ['' => 'Select Type'] + LibBook::lists('stock_type','id');
+
+        return View::Make('library::librarian.book_transaction.create_details',compact('book_transaction_id','user_name','book_trans_fin_data','stock_type'));
     }
 
 }

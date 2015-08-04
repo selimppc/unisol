@@ -30,7 +30,7 @@
 
         <div class='form-group'>
             <div>{{ Form::label('status', 'Status') }}</div>
-            <div>{{ Form::select('status',array('' => 'Select One','received' => 'Received', 'returned' => 'Returned','delay'=>'Delay','cancel'=>'Cancel','purchase'=>'Purchase','purchase-cancel'=>'Purchase-cancel','confirmed'=>'Confirmed'),'',['class'=>'form-control','required'=>'required']) }}</div>
+            <div>{{ Form::select('status',array('' => 'Select One','received' => 'Received', 'purchase'=>'Purchase'),'',['class'=>'form-control','required'=>'required']) }}</div>
         </div>
 
         <div class="modal-footer">

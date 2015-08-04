@@ -180,6 +180,34 @@ Route::group(['prefix' => 'library'], function() {
 
     /*=======================Book Transaction Financial Start==============================*/
 
+    Route::any('book-transaction-financial/{id}', [
+        'as' => 'book-transaction-financial',
+        'uses' => 'LibraryController@create_book_transaction_financial'
+    ]);
+
+    /****Ajax::For search and calculate amount***/
+
+    Route::get('get-cost-by-billing-id', [
+        'as' => 'get-cost-by-billing-id',
+        'uses' => 'FeesController@get_cost_by_billing_id'
+    ]);
+
+    Route::get('get-cost-by-waiver-id', [
+        'as' => 'get-cost-by-waiver-id',
+        'uses' => 'FeesController@get_cost_by_waiver_id'
+    ]);
+    //**********//
+
+    Route::any('billing-details-applicant-save', [
+        'as' => 'billing.details.applicant.save',
+        'uses' => 'FeesController@save_billing_details_applicant'
+    ]);
+
+    Route::post('detail/applicantdelete/ajax',
+        'FeesController@ajax_delete_detail'
+    );
+
+
 
 
 });

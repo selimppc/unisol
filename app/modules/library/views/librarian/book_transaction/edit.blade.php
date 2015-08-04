@@ -29,6 +29,10 @@
             {{ Form::label('return_date', 'Return Date') }}
             {{ Form::text('return_date', Input::old('return_date'),['class'=>'form-control date_picker','required'=>'required']) }}
         </div>
+        <div class='form-group'>
+            <div>{{ Form::label('status', 'Status') }}</div>
+            <div>{{ Form::select('status',array('' => 'Select One','received' => 'Received', 'purchase'=>'Purchase'),'',['class'=>'form-control','required'=>'required']) }}</div>
+        </div>
         <div class="modal-footer">
             {{ Form::submit('Submit', array('class'=>' btn btn-success')) }}
             <button class=" btn btn-default" data-dismiss="modal" type="button">Close</button>
