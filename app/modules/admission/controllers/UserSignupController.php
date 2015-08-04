@@ -44,7 +44,7 @@ class UserSignupController extends \BaseController {
                     $model1->gender = Input::get('gender');
                     $model1->city = Input::get('city');
                     $model1->state = Input::get('state');
-                    $model1->country = Input::get('country_id');
+                    $model1->country = Input::get('country');
                     $model1->zip_code = Input::get('zip_code');
                     $model1->save();
                     Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");

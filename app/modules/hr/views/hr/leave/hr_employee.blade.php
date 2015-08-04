@@ -91,15 +91,6 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="leave-type" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="margin-left: 70px;width:100%">
-
-    </div>
-  </div>
-</div>
-
     <style>
     .modal-content {
       width:700px;
