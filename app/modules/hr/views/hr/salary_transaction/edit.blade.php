@@ -5,7 +5,7 @@
 
 <div style="padding: 2%; width: 99%;">
     <div class="modal-body">
-        {{Form::model($model, ['route'=> ['salary_transaction.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
+        {{Form::model($model, ['route'=> ['salary-transaction.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
                 {{ Form::hidden('id', $model->id) }}
 
                 <div class='form-group'>

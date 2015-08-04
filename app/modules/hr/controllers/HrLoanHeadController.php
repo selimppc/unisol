@@ -30,17 +30,14 @@ class HrLoanHeadController extends \BaseController {
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            #print_r($input_data);exit;
             $model = new HrLoanHead();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
-//                    echo "1";exit;
                     $model->create($input_data);
                     DB::commit();
                     Session::flash('message', 'Success !');
-                } catch (Exception $e) {
-//                    echo "2";exit;
+                } catch (Exception $e) {               ;
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
@@ -78,8 +75,8 @@ class HrLoanHeadController extends \BaseController {
         }else{
             $model = HrLoanHead::findOrFail($lh_id);
             $selected_employee_id = HrLoanHead::first()->hr_employee_id;
-            $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
-            return View::make('hr::hr.loan_head.edit', compact('model','selected_employee_id','lists_currency','$employee_name_list'));
+            $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
+            return View::make('hr::hr.loan_head.edit', compact('model','selected_employee_id','lists_currency','employee_name_list'));
         }        
     }
 

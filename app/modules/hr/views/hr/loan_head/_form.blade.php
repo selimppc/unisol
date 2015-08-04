@@ -23,8 +23,8 @@
 </div>
 
 <div class='form-group'>
-   {{ Form::label('repayment_start_date', 'Repayment Start Date') }}
-   {{ Form::text('repayment_start_date', Input::old('repayment_start_date'),['class'=>'form-control date_picker', 'required']) }}
+   {{ Form::label('payment_start_date', 'Payment Start Date') }}
+   {{ Form::text('payment_start_date', Input::old('payment_start_date'),['class'=>'form-control date_picker', 'required']) }}
 </div>
 
 <div class='form-group'>

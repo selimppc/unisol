@@ -20,7 +20,7 @@
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'salary_grade.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'salary-grade.batch_delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -45,9 +45,9 @@
                     <td>{{ $values->min_amount }}</td>
                     <td>{{ $values->max_amount }}</td>
                     <td>
-                        <a href="{{ URL::route('salary_grade.show', ['s_g_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
-                        <a href="{{ URL::route('salary_grade.edit',['s_g_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('salary_grade.destroy', ['s_g_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
+                        <a href="{{ URL::route('salary-grade.show', ['s_g_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
+                        <a href="{{ URL::route('salary-grade.edit',['s_g_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('salary-grade.destroy', ['s_g_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
 
                     </td>
 
@@ -62,7 +62,7 @@
     </div>
 
 </div>
-{{Form::open(['route'=>'salary_grade.store', 'files'=>true])}}
+{{Form::open(['route'=>'salary-grade.store', 'files'=>true])}}
         @include('hr::hr.salary_grade._modal._modal')
 {{ Form::close() }}
 

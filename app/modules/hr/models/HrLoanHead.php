@@ -9,7 +9,7 @@ class HrLoanHead extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='hr_loan_head';
     protected $fillable = [
-        'hr_employee_id','title','loan_amount','loan_date','monthly_repayment_amount','repayment_start_date','description','number_of_installment','status'
+        'hr_employee_id','title','loan_amount','loan_date','monthly_repayment_amount','payment_start_date','description','number_of_installment','status'
     ];
 //'currency_id','exchange_rate',
     private $errors;
