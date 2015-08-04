@@ -3,8 +3,14 @@
     <h4 class="text-center text-purple">Create {{$user_name->relUser->relUserProfile->first_name.' '.$user_name->relUser->relUserProfile->last_name}}'s Book Transaction Financial </h4>
 </div>
 <div class="modal-body">
+
     <p class="text-blue text-uppercase">Book Name :: {{$user_name->relLibBook->title}}</p>
+    <p class="text-blue text-uppercase">Hard Copy Price :: {{isset($user_name->relLibBook->book_price)?$user_name->relLibBook->book_price:'0'}}</p>
+    <p class="text-blue text-uppercase">Soft Copy Price :: {{isset($user_name->relLibBook->digital_sell_price)? $user_name->relLibBook->digital_sell_price:'0'}}</p>
     <div style="padding: 10px;">
+
+        {{Form::open(array('route' => array('billing.details.applicant.save')))}}
+
         {{ Form::hidden('book_transaction_id', $book_transaction_id, ['class'=>'form-control'])}}
         {{ Form::hidden('trn_type','Commercial', ['class'=>'form-control'])}}
         <div class="col-sm-3">
@@ -15,15 +21,14 @@
         </div>
         <div class="col-sm-4">
             <div class='form-group'>
-             {{ Form::label('amount', 'Amount') }}
-                <div>{{ Form::text('amount', Input::old('amount'),['class'=>'form-control','required'=>'required']) }}
-                </div>
+             {{ Form::label('amount', 'Total Amount')}}
+                {{ Form::text('amount',($user_name->relLibBook->book_price)+($user_name->relLibBook->digital_sell_price),Input::old('amount'),['class'=>'form-control','required'=>'required']) }}
             </div>
         </div>
         <span class="pull-left" id="fill-up-form" style="color:#f06f5d; font-weight: bold"></span>
         <div class="col-sm-2">
             <div class='form-group' style="margin-top: 24px">
-                <input type="button" class="btn btn-primary" id="" value="+Add">
+                {{ Form::submit('Save', ['class'=>'btn btn-success']) }}
             </div>
         </div>
 
@@ -33,8 +38,7 @@
         <div>&nbsp;</div>
         <div>&nbsp;</div>
     </div>
-
-        {{Form::open(array('route' => array('billing.details.applicant.save')))}}
+    {{ Form::close() }}
         <table class="table table-bordered small-header-table">
             <thead>
             <th>Sl No</th>
@@ -42,10 +46,6 @@
             <th>Transaction Type</th>
             <th>Action</th>
             </thead>
-
-            <tbody id="item">
-
-            </tbody>
 
             <tbody>
             <?php $sl=1;?>
@@ -60,11 +60,8 @@
             @endforeach
             </tbody>
         </table>
-        <div class="pull-right">
-            {{ Form::submit('Save', ['class'=>'btn btn-success']) }}
-            <button class="btn btn-default " data-dismiss="modal" type="button">Close</button>
-        </div>
-        {{ Form::close() }}
+    <button class="btn btn-default pull-right " data-dismiss="modal" type="button">Close</button>
+
     </div>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
