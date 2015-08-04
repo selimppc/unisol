@@ -9,7 +9,7 @@ class HrBonus extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='hr_bonus';
     protected $fillable = [
-        'hr_employee_id','title','amount','date','note','status'
+        'hr_employee_id','title','amount','date','status'
     ];
 
     private $errors;
