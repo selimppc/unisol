@@ -48,11 +48,8 @@
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
                                     <th>Title</th>
-                                    <th>Abstract</th>
                                     <th>Category</th>
                                     <th>Publisher</th>
-                                    <th>Publication No</th>
-                                    <th>Searching</th>
                                     <th>Benefit Share(%)</th>
                                     <th>Discount for Student(%)</th>
                                     <th>Discount for Faculty(%)</th>
@@ -70,11 +67,8 @@
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
                                         <td>{{isset($value->title) ? $value->title :'' }}</td>
-                                        <td>{{isset($value->abstract) ? $value->abstract : '' }}</td>
                                         <td>{{isset($value->relRncCategory->title) ? $value->relRncCategory->title : '' }}</td>
                                         <td>{{isset($value->relRncPublisher->title) ? $value->relRncPublisher->title : ''}}</td>
-                                        <td>{{isset($value->publication_no) ? $value->publication_no : ''}}</td>
-                                        <td>{{isset($value->searching) ? ucfirst($value->searching) : ''}}</td>
                                         <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>
                                         <td>{{isset($value->free_type_student) ? $value->free_type_student : 0 }} %</td>
                                         <td>{{isset($value->free_type_faculty) ? $value->free_type_faculty : 0 }} %</td>
