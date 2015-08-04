@@ -315,7 +315,7 @@ class CreateHr extends Migration {
             $table->string('period');
             $table->decimal('tax_rate')->nullable();
             $table->float('tax_amount')->nullable();
-            $table->float('total_amount');
+            $table->float('total_amount')->nullable();
             $table->enum('status', array(
                 'open', 'ask-for-interview', 'approved', 'denied', 'request-for-update',
                 'confirmed', 'invoiced'
