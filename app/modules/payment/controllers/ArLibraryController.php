@@ -44,10 +44,10 @@ class ArLibraryController extends \BaseController {
      */
 	public function library_to_invoice( $lib_book_trn_id )
 	{
-		$check = LibBookFinancialTransaction::where('lib_book_transaction_id', $lib_book_trn_id)->exists();
+		$check = LibBookTransactionFinancial::where('lib_book_transaction_id', $lib_book_trn_id)->exists();
 		if($check){
 			//Call Store Procedure
-			DB::select('call sp_fees_student_to_invoice(?, ?)', array($lib_book_trn_id, Auth::user()->get()->id ) );
+			DB::select('call sp_lib_to_invoice(?, ?)', array($lib_book_trn_id, Auth::user()->get()->id ) );
 			Session::flash('message', 'Invoiced Successfully !');
 		}else{
 			Session::flash('info', 'Library Billing Detail is empty. Please add Billing item. And try later!');

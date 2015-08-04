@@ -19,50 +19,50 @@ class ApRncController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index_rnc_receivable()
+	public function index_rnc_ar()
 	{
 		$pageTitle = "RNC History  ";
-		$data = LibBookTransaction::with('relUser')->whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
-		return View::make('payment::library.index', compact('data','pageTitle'));
+		$data = RncTransaction::with('relUser')->whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
+		return View::make('payment::rnc.index', compact('data','pageTitle'));
 	}
 
 
 	/*
-     * $lib_id ::
+     * $rnc_id :: RNC Transaction ID
      */
-	public function show_library_bill($lib_id){
-		$lib_head = LibBookTransaction::find($lib_id);
-		$lib_dt = LibBookFinancialTransaction::where('lib_book_transaction_id', $lib_id)->get();
-		return View::make('payment::library.show', compact('lib_id', 'lib_head', 'lib_dt'));
+	public function show_rnc_ar_bill($rnc_id){
+		$rnc_head = RncTransaction::find($rnc_id);
+		$rnc_dt = RncTransactionFinancial::where('rnc_transaction_id', $rnc_id)->get();
+		return View::make('payment::rnc.show', compact('rnc_id', 'rnc_head', 'rnc_dt'));
 	}
 
 
 	/*
      * ===============================================
-     * create invoice
+     * create invoice for RNC Receivable
      * ===============================================
      */
-	public function library_to_invoice( $lib_book_trn_id )
+	public function rnc_ar_to_invoice( $rnc_trn_id )
 	{
-		$check = LibBookFinancialTransaction::where('lib_book_transaction_id', $lib_book_trn_id)->exists();
+		$check = RncTransactionFinancial::where('rnc_transaction_id', $rnc_trn_id)->exists();
 		if($check){
 			//Call Store Procedure
-			DB::select('call sp_fees_student_to_invoice(?, ?)', array($lib_book_trn_id, Auth::user()->get()->id ) );
+			DB::select('call sp_rnc_ar_to_invoice(?, ?)', array($rnc_trn_id, Auth::user()->get()->id ) );
 			Session::flash('message', 'Invoiced Successfully !');
 		}else{
-			Session::flash('info', 'Library Billing Detail is empty. Please add Billing item. And try later!');
+			Session::flash('info', 'RNC Billing Detail is empty. Please add Billing item. And try later!');
 		}
 		return Redirect::back();
 	}
 
 
 
-	// manage AR for Library
-	public function  manage_library_bill(){
+	// manage AR for RNC
+	public function  manage_ar_rnc_bill(){
 		//
-		$pageTitle = "Library Payment History"; //acc_v_ar_lib
-		$data = AccVArLibrary::get();
-		return View::make('payment::library.lib_invoice', compact('pageTitle', 'data'));
+		$pageTitle = "RNC Receivable History"; //acc_v_ar_lib
+		$data = AccVArRnc::get();
+		return View::make('payment::rnc.lib_invoice', compact('pageTitle', 'data'));
 	}
 
 
