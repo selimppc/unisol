@@ -3,9 +3,6 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-@if (Role::where('code','=','amw'))
-    @include('layouts._sidebar_amw')
-@else
     @include('layouts._sidebar_hr')
 @stop
 @section('content')

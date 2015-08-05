@@ -18,12 +18,12 @@ class HrAttendanceController extends \BaseController {
             $hr_employee = Input::get('hr_employee');
             $id_no = Input::get('id_no');
 
-            $data = $model->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
+            $model = $model->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
             if (isset($hr_employee) && !empty($hr_employee)) $model->where('hr_attendance.hr_employee_id', '=', $hr_employee);
             if (isset($id_no) && !empty($id_no)) $model->where('hr_attendance.hr_employee_id', '=', $id_no);
-            $data = $model->orderBy('id', 'DESC')->paginate(5);
-        } else{
-            $data = $model->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+            $model = $model->orderBy('id', 'DESC')->paginate(5);
+        } else {
+            $model = $model->with('relHrEmployee', 'relHrEmployee.relUser', 'relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         }
 
         //get all employee List
@@ -33,7 +33,7 @@ class HrAttendanceController extends \BaseController {
 
         // old input data
         Input::flash();
-        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month','emp_id'));
+        return View::make('hr::hr.hr_attendance.index',compact('model','employee_list','month','emp_id'));
     }
 
 

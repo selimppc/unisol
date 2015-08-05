@@ -63,8 +63,8 @@
                 </tr>
             </thead>
             <tbody>
-            @if(isset($data))
-                @foreach($data as $values)
+            @if(isset($model))
+                @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>
@@ -102,7 +102,7 @@
         </table>
     </div>
     {{form::close() }}
-    {{ $data->links() }}
+    {{ $model->links() }}
  </div>
 </div>
 
