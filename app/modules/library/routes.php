@@ -197,9 +197,18 @@ Route::group(['prefix' => 'library'], function() {
 
     Route::any('book-transaction-financial-status/{id}', [
         'as' => 'book-transaction-financial-status',
-        'uses' => 'LibraryController@update_status'
+        'uses' => 'LibraryController@update_purchase_status'
     ]);
 
+    Route::any('transaction-financial-returned-status/{id}', [
+        'as' => 'transaction-financial-returned-status',
+        'uses' => 'LibraryController@update_returned_status'
+    ]);
+
+    Route::any('transaction-financial-delay-status/{id}', [
+        'as' => 'transaction-financial-delay-status',
+        'uses' => 'LibraryController@update_delay_status'
+    ]);
 
 });
 

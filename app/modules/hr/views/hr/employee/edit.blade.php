@@ -3,7 +3,7 @@
      <h4> Update Employee</b> </h4>
 </div>
 
-<div style="padding: 2%; width: 99%;">
+{{--<div style="padding: 2%; width: 99%;">--}}
 <div class="modal-body">
 
     {{Form::model($model, ['route'=> ['employee.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
@@ -11,5 +11,5 @@
             @include('hr::hr.employee._form')
     {{ Form::close() }}
 
-</div>
+{{--</div>--}}
 </div>

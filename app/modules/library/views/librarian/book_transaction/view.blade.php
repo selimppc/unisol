@@ -25,11 +25,11 @@
             </tr>
             <tr>
                 <td>Issue Date:</td>
-                <td>{{isset($view_book_transaction->issue_date)?$view_book_transaction->issue_date:''}}</td>
+                <td>{{date("d-m-Y", strtotime((isset($view_book_transaction->issue_date)) ? $view_book_transaction->issue_date : '') ) }}</td>
             </tr>
             <tr>
                 <td>Return Date:</td>
-                <td>{{isset($view_book_transaction->return_date)?$view_book_transaction->return_date:''}}</td>
+               <td>{{date("d-m-Y", strtotime((isset($view_book_transaction->return_date)) ? $view_book_transaction->return_date : '') ) }}</td>
             </tr>
             <tr>
                 <td>Total Amount:</td>
@@ -40,6 +40,31 @@
                 <td>{{ucfirst($view_book_transaction->status)}}</td>
             </tr>
         </table>
+
+        @if($view_book_transaction->status == 'confirmed')
+        <h4 class="text-blue text-center text-uppercase">Book Transaction Financial</h4>
+        <table id="example" class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th>SL.No</th>
+                <th>Transaction Type</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $sl=1;?>
+            @if(isset($view_financial_data))
+                @foreach ($view_financial_data as $value)
+                    <tr>
+                        <td class="sl-no-size">{{$sl++}}</td>
+                        <td>{{isset($value->trn_type)?$value->trn_type:'0'}}</td>
+                        <td>{{isset($value->amount)?$value->amount:'0'}}</td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
+       @endif
     </div>
 </div>
 <div class="modal-footer">
