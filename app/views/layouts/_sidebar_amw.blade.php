@@ -115,7 +115,7 @@
         @include('inventory::_sidebar._inventory')
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-credit-card" style="color:deepskyblue"></i>
+                <i class="fa fa-credit-card"></i>
                 <span>HRM</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
