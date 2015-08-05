@@ -548,7 +548,8 @@ class LibraryController extends \BaseController {
     public function index_book_transaction()
     {
         $pageTitle = "Book Transaction";
-        $book_transaction = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')->orderBy('id', 'DESC')->paginate(6);
+        $book_transaction = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')->orderBy('id', 'DESC')->paginate(10);
+
         return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','user'));
     }
 
@@ -590,10 +591,12 @@ class LibraryController extends \BaseController {
     public function view_book_transaction($id)
     {
         $view_book_transaction = LibBookTransaction::find($id);
-       /* $view_details_applicant = BillingApplicantDetail::latest('id')->with('relBillingApplicantHead','relBillingItem','relWaiver')
-            ->where('billing_applicant_head_id','=',$id)
-            ->get();*/
-        return View::make('library::librarian.book_transaction.view',compact('view_book_transaction'));
+
+        $view_financial_data = LibBookTransactionFinancial::latest('id')->with('relLibBookTransaction')
+            ->where('lib_book_transaction_id','=',$id)
+            ->get();
+
+        return View::make('library::librarian.book_transaction.view',compact('view_book_transaction','view_financial_data'));
     }
 
     public function edit_book_transaction($id)
@@ -671,19 +674,17 @@ class LibraryController extends \BaseController {
     {
         $data = Input::all();
         $model = new LibBookTransactionFinancial();
-     /*   $model->user_id = Input::get('user_id');
-        $flash_msg = $model->user_id;*/
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 if ($model->create($data))
                     DB::commit();
-                Session::flash('message', "Book Transaction Successfully Added For User Id::");
+                Session::flash('message', "Book Transaction Financial Successfully Added");
             }
             catch ( Exception $e ){
                 DB::rollback();
-                Session::flash('danger', "Book Transaction Not Added For User ID::.Invalid Request!");
+                Session::flash('danger', "Book Transaction Financial Not Added For User ID::.Invalid Request!");
             }
             return Redirect::back();
         }else{
@@ -724,6 +725,24 @@ class LibraryController extends \BaseController {
             Session::flash('info', 'Book Transaction Amount is Empty. Please Add Item. And Try Again Later!');
         }
         return Redirect::back();
+    }
+
+    public function update_returned_status($id)
+    {
+        $status = 'returned';
+       // $check = LibBookTransactionFinancial::where('lib_book_transaction_id', $id)->exists();
+        //if($check){
+            $update = DB::table('lib_book_transaction')
+                ->where('id', $id)
+                ->where('status', "Received")
+                ->update(array('status' => $status));
+
+            Session::flash('message', "Book Transaction Confirmed Successfully");
+            return Redirect::back();
+       // }else{
+           // Session::flash('info', 'Book Transaction Amount is Empty. Please Add Item. And Try Again Later!');
+        //}
+       // return Redirect::back();
     }
 
 }

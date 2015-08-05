@@ -25,7 +25,7 @@
         </div>
         <div class='form-group'>
             {{ Form::label('return_date', 'Return Date') }}
-            {{ Form::text('return_date', Input::old('return_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+            {{ Form::text('return_date', Input::old('return_date'),['class'=>'form-control date_picker']) }}
         </div>
 
         <div class='form-group'>

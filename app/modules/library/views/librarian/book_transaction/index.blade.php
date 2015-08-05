@@ -53,13 +53,22 @@
 
                                             <td>{{date("d-m-Y", strtotime((isset($value->issue_date)) ? $value->issue_date : '') ) }}</td>
 
-                                            <td>{{date("d-m-Y", strtotime((isset($value->return_date)) ? $value->return_date : '') ) }}</td>
+                                            @if($value->status !=='purchase')
+                                                <td>{{date("d-m-Y", strtotime((isset($value->return_date)) ? $value->return_date : '') ) }}</td>
+                                            @else
+                                                <td></td>
+                                            @endif
 
                                             <td>{{isset($value->total_amount)?$value->total_amount:''}}</td>
 
                                             <td>{{ucfirst($value->status)}}</td>
 
-                                            </td>
+                                          {{--  @if( strtotime($value->return_date) < strtotime('now') )
+                                                <td>{{'delay'}}</td>
+                                            @else
+                                                <td>{{ucfirst($value->status)}}</td>
+                                            @endif--}}
+
                                             <td>
                                                 @unless($value->status =='confirmed')
                                                 <a href="{{ URL::route('transaction-book-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
@@ -68,13 +77,16 @@
 
                                                 <a data-href="{{ URL::route('transaction-book-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-power-off text-red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
                                                 @endunless
-                                                @if($value->status =='received')
-                                                <a data-href="#" class="btn btn-xs btn-default" href="" ><i class="fa fa-arrow-right text-purple" data-toggle="tooltip" data-placement="bottom" title="Returned"></i> Returned</a>
-                                                 @endif
                                             </td>
                                             <td>
+                                                @if($value->status =='received')
+                                                    <a data-href="{{ URL::route('transaction-financial-returned-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-arrow-circle-right text-purple" data-toggle="tooltip" data-placement="bottom" title="Returned"></i> Returned</a>
+
+                                                @elseif($value->status =='delay')
+                                                    <a data-href="#" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#createModal" href="" ><i class="fa fa-arrow-circle-left text-purple" data-toggle="tooltip" data-placement="bottom" title="Delay"></i> Delay</a>
+                                                @endif
                                                 @if($value->status =='purchase')
-                                                <a data-href="{{ URL::route('book-transaction-financial-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-green" data-toggle="tooltip" data-placement="bottom" title="confirm"></i> Confirm</a>
+                                                <a data-href="{{ URL::route('book-transaction-financial-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-white" data-toggle="tooltip" data-placement="bottom" title="Confirm"></i> Confirm</a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -111,7 +123,7 @@
 
     {{-- Modal for Edit --}}
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" >
+        <div class="modal-dialog" style="z-index:1050" >
             <div class="modal-content">
 
             </div>

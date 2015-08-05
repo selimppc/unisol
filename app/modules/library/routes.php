@@ -200,6 +200,10 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@update_status'
     ]);
 
+    Route::any('transaction-financial-returned-status/{id}', [
+        'as' => 'transaction-financial-returned-status',
+        'uses' => 'LibraryController@update_returned_status'
+    ]);
 
 });
 
