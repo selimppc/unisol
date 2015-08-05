@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder {
          *          *
          * It needs to maintain the dependency to other table. Non dependent table seed must be before dependant table.
          */
-        $credentials = array(
+        /* $credentials = array(
             'username'=> 'admin',
             'password'=>'admin'
         );
@@ -99,19 +99,19 @@ class DatabaseSeeder extends Seeder {
         $this->call('AcmMarksDistItemTable');
         $this->command->info('Acm Marks Dist Item table seeded!');
 
-        $this->call('HrProvidentFundConfigTable');
-        $this->command->info('HrProvidentFundConfig table seeded!');
-
         $this->call('PaymentOptionTable');
         $this->command->info('PaymentOptionTable table seeded!');
-
 
         // global setup table among the system
         $this->call('AccCodesparamTable');
         $this->command->info('Acc Codes param Table table seeded!');
-
+*/
         //Hr Seed
         //Auhtor :: Shafi
+
+        $this->call('HrProvidentFundConfigTable');
+        $this->command->info('HrProvidentFundConfig table seeded!');
+
         $this->call('HrWorkWeekTable');
         $this->command->info('HrWorkWeekTable seeded!');
 
