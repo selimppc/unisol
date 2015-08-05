@@ -45,19 +45,15 @@
                                 <thead>
                                 <tr>
                                     <th>
-                                        <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                        <input name="id" type="checkbox" id="" class="" value="">
                                     </th>
                                     <th>Title</th>
                                     <th>Category</th>
                                     <th>Publisher</th>
                                     <th>Benefit Share(%)</th>
-                                    <th>Discount for Student(%)</th>
-                                    <th>Discount for Faculty(%)</th>
-                                    <th>Discount for Non User(%)</th>
                                     <th>Price</th>
                                     <th>Status</th>
-                                    <th>Reviewed By</th>
-                                    <th>File</th>
+                                    <th>Read / Download</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -70,12 +66,8 @@
                                         <td>{{isset($value->relRncCategory->title) ? $value->relRncCategory->title : '' }}</td>
                                         <td>{{isset($value->relRncPublisher->title) ? $value->relRncPublisher->title : ''}}</td>
                                         <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>
-                                        <td>{{isset($value->free_type_student) ? $value->free_type_student : 0 }} %</td>
-                                        <td>{{isset($value->free_type_faculty) ? $value->free_type_faculty : 0 }} %</td>
-                                        <td>{{isset($value->free_type_non_user) ? $value->free_type_non_user : 0 }} %</td>
-                                         <td>{{isset($value->price) ? $value->price : ''}}</td>
+                                        <td>{{isset($value->price) ? $value->price : ''}}</td>
                                         <td>{{isset($value->status) ? ucfirst($value->status) : ''}}</td>
-                                        <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
                                         @if($value->file==null)
                                             <td style="color:magenta"><b>No File</b></td>
                                         @else
@@ -90,7 +82,6 @@
                                             <a href="{{ URL::route('faculty.research-paper-writer-beneficial.list', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-rocket" style="color: green" title="Writer and Beneficial"></i></a>
                                             <a href="{{ URL::route('amw.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href="" ><i class="fa fa-comments" style="color: mediumpurple" title="Comemnt"></i></a>
                                             <a data-href="{{ URL::route('amw.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red" title="Delete"></i></a>
-
                                         </td>
                                     </tr>
                                 @endforeach
