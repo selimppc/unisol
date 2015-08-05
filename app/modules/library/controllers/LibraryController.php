@@ -708,4 +708,22 @@ class LibraryController extends \BaseController {
 
     }
 
+    public function update_status($id)
+    {
+        $status = 'confirmed';
+        $check = LibBookTransactionFinancial::where('lib_book_transaction_id', $id)->exists();
+        if($check){
+            $update = DB::table('lib_book_transaction')
+                ->where('id', $id)
+                ->where('status', "Purchase")
+                ->update(array('status' => $status));
+
+            Session::flash('message', "Book Transaction Confirmed Successfully");
+            return Redirect::back();
+        }else{
+            Session::flash('info', 'Book Transaction Amount is Empty. Please Add Item. And Try Again Later!');
+        }
+        return Redirect::back();
+    }
+
 }

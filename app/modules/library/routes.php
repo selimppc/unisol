@@ -191,11 +191,14 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@save_transaction_financial'
     ]);
 
-    Route::post('transaction/financial/delete/ajax',
+   /* Route::post('transaction/financial/delete/ajax',
         'LibraryController@ajax_delete_financial'
-    );
+    );*/
 
-
+    Route::any('book-transaction-financial-status/{id}', [
+        'as' => 'book-transaction-financial-status',
+        'uses' => 'LibraryController@update_status'
+    ]);
 
 
 });
