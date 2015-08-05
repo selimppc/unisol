@@ -38,7 +38,7 @@
 
         <div class='form-group'>
            {{ Form::label('hr_bank_id', 'Bank') }}
-           {{ Form::select('hr_bank_id', $bank ,Input::old('hr_bank_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('hr_bank_id', [''=>'Select Bank Name']+ $bank ,Input::old('hr_bank_id'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
@@ -93,7 +93,7 @@
 
         <div class='form-group'>
            {{ Form::label('status', 'Status') }}
-           {{ Form::select('status', [''=>'Select Status','active'=>'Active','cancel'=>'Cancel'],Input::old('status'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('status', ['active'=>'Active','cancel'=>'Cancel'],Input::old('status'),['class'=>'form-control', 'required']) }}
         </div>
     </div>
 
