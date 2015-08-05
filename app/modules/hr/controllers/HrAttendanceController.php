@@ -13,28 +13,30 @@ class HrAttendanceController extends \BaseController {
 
     public function index()
     {
-//        $date = date('H:i:s', time());
-//        print($date);exit;
-        $data = new HrAttendance();
+        $model = new HrAttendance();
         if($this->isPostRequest()) {
             $hr_employee = Input::get('hr_employee');
             $id_no = Input::get('id_no');
 
-            $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
-            if (isset($hr_employee) && !empty($hr_employee)) $data->where('hr_attendance.hr_employee_id', '=', $hr_employee);
-            if (isset($id_no) && !empty($id_no)) $data->where('hr_attendance.hr_employee_id', '=', $id_no);
-            $data = $data->orderBy('id', 'DESC')->paginate(5);
+            $model = $model->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
+            if (isset($hr_employee) && !empty($hr_employee)) $model->where('hr_attendance.hr_employee_id', '=', $hr_employee);
+            if (isset($id_no) && !empty($id_no)) $model->where('hr_attendance.hr_employee_id', '=', $id_no);
+            $model = $model->orderBy('id', 'DESC')->paginate(5);
+        } else {
+            $model = $model->with('relHrEmployee', 'relHrEmployee.relUser', 'relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         }
-        else{
-        $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
-    }
-//        $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+
+        //get all employee List
         $employee_list = User::GenuineEmployeeList();
+
         $emp_id = array('' => 'Select Employee ID') + HrEmployee::lists('employee_id', 'id');
 
+        // old input data
         Input::flash();
-        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month','emp_id'));
+        return View::make('hr::hr.hr_attendance.index',compact('model','employee_list','month','emp_id'));
     }
+
+
     public function test(){
         return View::make('hr::hr.hr_attendance.test');
     }

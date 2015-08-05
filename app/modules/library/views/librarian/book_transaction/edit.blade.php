@@ -31,7 +31,7 @@
         </div>
         <div class='form-group'>
             <div>{{ Form::label('status', 'Status') }}</div>
-            <div>{{ Form::select('status',array('' => 'Select One','received' => 'Received', 'purchase'=>'Purchase'),'',['class'=>'form-control','required'=>'required']) }}</div>
+            <div>{{ Form::select('status',array('' => 'Select One','received' => 'Received', 'purchase'=>'Purchase'),$edit_book_transaction->status,['class'=>'form-control','required'=>'required']) }}</div>
         </div>
         <div class="modal-footer">
             {{ Form::submit('Submit', array('class'=>' btn btn-success')) }}

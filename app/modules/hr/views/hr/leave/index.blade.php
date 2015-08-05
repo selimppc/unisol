@@ -55,7 +55,7 @@
                 <div class="col-sm-2" style="padding-left: 0">
                    {{ Form::label('status', 'Status')}}
                    {{ Form::select('status', ['' => 'Select Status','rejected' => 'Rejected','canceled' => 'Canceled',
-                    'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'] , Input::old('status'), array('class' => 'form-control'))}}
+                    'scheduled'=>'Scheduled','pending-approval'=>'Pending Approval','taken'=>'Taken','approved'=>'Approved'] , Input::old('status'), array('class' => 'form-control'))}}
                 </div>
                 <br>
                 <div style="padding-left: 930px;margin-top: 6px">
