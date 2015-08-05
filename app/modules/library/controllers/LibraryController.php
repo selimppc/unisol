@@ -548,7 +548,7 @@ class LibraryController extends \BaseController {
     public function index_book_transaction()
     {
         $pageTitle = "Book Transaction";
-        $book_transaction = LibBookTransaction::latest('id')->with('relUser','relUser.relUserProfile','relLibBook')->paginate(6);
+        $book_transaction = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')->orderBy('id', 'DESC')->paginate(6);
         return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','user'));
     }
 
@@ -563,20 +563,19 @@ class LibraryController extends \BaseController {
     {
         $data = Input::all();
         $model = new LibBookTransaction();
-        /*$model->name = Input::get('name');
-        $flash_msg = $model->name;*/
+        $model->user_id = Input::get('user_id');
+        $flash_msg = $model->user_id;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 if ($model->create($data))
                     DB::commit();
-                Session::flash('message', "Book Publisher Successfully Added");
+                Session::flash('message', "Book Transaction Successfully Added For User Id::$flash_msg");
             }
             catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Book Publisher  Not Added.Invalid Request!");
+                Session::flash('danger', "Book Transaction Not Added For User ID::$flash_msg.Invalid Request!");
             }
             return Redirect::back();
         }else{
@@ -585,6 +584,88 @@ class LibraryController extends \BaseController {
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
+    }
+
+
+    public function view_book_transaction($id)
+    {
+        $view_book_transaction = LibBookTransaction::find($id);
+       /* $view_details_applicant = BillingApplicantDetail::latest('id')->with('relBillingApplicantHead','relBillingItem','relWaiver')
+            ->where('billing_applicant_head_id','=',$id)
+            ->get();*/
+        return View::make('library::librarian.book_transaction.view',compact('view_book_transaction'));
+    }
+
+    public function edit_book_transaction($id)
+    {
+        $edit_book_transaction = LibBookTransaction::find($id);
+        $user = array(''=>'Select User') + User::AllUser();
+        $lib_book = array('' => 'Select Book ') + LibBook::lists('title', 'id');
+        return View::make('library::librarian.book_transaction.edit',compact('edit_book_transaction','user','lib_book'));
+    }
+
+    public function update_book_transaction($id)
+    {
+        $data = Input::all();
+        $model = LibBookTransaction::find($id);
+        $model->user_id = Input::get('user_id');
+        $flash_msg = $model->user_id;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->update($data))
+                    DB::commit();
+                Session::flash('message', "Book Transaction Successfully Updated For User Id::$flash_msg");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Book Transaction Not Updated For User ID::$flash_msg.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function destroy_book_transaction($id)
+    {
+        $model = LibBookTransaction::findOrFail($id);
+        $model->status = 'cancel';
+        DB::beginTransaction();
+        try{
+            $model->save();
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+    public function create_book_transaction_financial($id)
+    {
+        $book_transaction_id = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')
+            ->where('id','=',$id)
+            ->first()->id;
+
+        $user_name = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')
+            ->where('id','=',$id)
+            ->first();
+
+        $book_trans_fin_data = LibBookTransactionFinancial::latest('id')->with('relLibBookTransaction')
+            ->where('lib_book_transaction_id','=',$id)
+            ->get();
+
+        $stock_type = ['' => 'Select Type'] + LibBook::lists('stock_type','id');
+
+        return View::Make('library::librarian.book_transaction.create_details',compact('book_transaction_id','user_name','book_trans_fin_data','stock_type'));
     }
 
 }

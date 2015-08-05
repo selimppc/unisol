@@ -34,8 +34,9 @@
                                     <th>Edition</th>
                                     <th>Book Type</th>
                                     <th>Commercial</th>
+                                    <th>Stock Type</th>
                                     <th>Book Price</th>
-                                    <th>Sell Price</th>
+                                    <th>Digital Sell Price</th>
                                     <th>Is Rented</th>
                                     <th>File</th>
                                     <th>Action</th>
@@ -54,6 +55,7 @@
                                         <td>{{isset($value->edition) ? $value->edition : ''}}</td>
                                         <td>{{isset($value->book_type) ? $value->book_type : ''}}</td>
                                         <td>{{isset($value->commercial) ? $value->commercial : ''}}</td>
+                                        <td>{{isset($value->stock_type) ? $value->stock_type : ''}}</td>
                                         <td>{{isset($value->book_price) ? $value->book_price : ''}}</td>
                                         <td>{{isset($value->digital_sell_price) ? $value->digital_sell_price : ''}}</td>
                                         <td>{{isset($value->is_rented) ? $value->is_rented : ''}}</td>
@@ -106,7 +108,6 @@
             </div>
         </div>
     </div>
-
     {{-- Modal for Edit --}}
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">

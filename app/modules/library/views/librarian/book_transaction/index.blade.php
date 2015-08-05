@@ -31,6 +31,7 @@
                                     <th>Total Amount</th>
                                     <th>Status</th>
                                     <th>Action</th>
+                                    <th>Confirm</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -39,7 +40,7 @@
                                     @unless($value->status =='cancel')
                                         <tr>
                                             <td class="sl-no-size">{{$sl++}}</td>
-                                            <td class="b-text">{{ link_to_route($value->status=="received" ? 'billing.details.applicant' : 'billing-applicant-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
+                                            <td class="b-text">{{ link_to_route($value->status=="purchase" ? 'book-transaction-financial' : 'transaction-book-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                             <td>{{isset($value->relUser->id)?$value->relUser->id:''}}</td>
 
@@ -47,23 +48,23 @@
 
                                             <td>{{isset($value->lib_trn_no)?$value->lib_trn_no:''}}</td>
 
-                                            <td>{{isset($value->issue_date)?$value->issue_date:''}}</td>
+                                            <td>{{date("d-m-Y", strtotime((isset($value->issue_date)) ? $value->issue_date : '') ) }}</td>
 
-                                            <td>{{isset($value->return_date)?$value->return_date:''}}</td>
+                                            <td>{{date("d-m-Y", strtotime((isset($value->return_date)) ? $value->return_date : '') ) }}</td>
 
                                             <td>{{isset($value->total_amount)?$value->total_amount:''}}</td>
 
                                             <td>{{ucfirst($value->status)}}</td>
 
                                             </td>
+                                            <td>
+                                                <a href="{{ URL::route('transaction-book-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
+
+                                                <a href="{{ URL::route('transaction-book-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+
+                                                <a data-href="{{ URL::route('transaction-book-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-power-off text-red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                                            </td>
                                             <td></td>
-                                       {{--     <td>
-                                              --}}{{--  @if($value->status != 'confirmed')
-                                                    <a data-href="{{ URL::route('status-billing-applicant-head-update', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-green" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> Confirm</a>
-
-
-                                                @endif--}}{{--
-                                            </td>--}}
                                         </tr>
                                     @endunless
                                 @endforeach
@@ -77,7 +78,6 @@
         </div>
     </div>
 
-
     {{-- Modal add new  --}}
     <div id="myModal" class="modal fade">
         <div class="modal-dialog" style="z-index:1050">
@@ -86,5 +86,55 @@
             </div>
         </div>
     </div>
+
+
+    {{-- Modal for show --}}
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal for Edit --}}
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    {{--  Modal for create billing details--}}
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal for cancel and confirm status --}}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure!! Do You Want to Confirm It?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-danger danger">Ok</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 @stop
