@@ -265,7 +265,6 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses' => 'RncAmwController@ajaxDeleteRNCTrnDtl'
     ]);
 
-
     Route::any('amw/transaction-head/show-confirm/{r_t_id}',[
         'as' => 'amw.transaction-head.show-confirm',
         'uses'=> 'RncAmwController@rncShowConfirmTransaction'
@@ -275,10 +274,6 @@ Route::group(['prefix' => 'rnc'], function() {
         'as' => 'salary-transaction.show-confirm',
         'uses'=> 'HrSalaryTransactionHeadController@show_confirm_salary_transaction'
     ]);
-
-
-
-
 
     Route::any('amw/transaction-head/show/{r_t_id}',[
         'as' => 'amw.transaction-head.show',
