@@ -7,6 +7,11 @@ class RncAmwController extends \BaseController
         $this->beforeFilter('', array('except' => array('')));
     }
 
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
     // Category
     public function indexCategory()
     {
@@ -654,6 +659,196 @@ class RncAmwController extends \BaseController
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
+    }
+
+    // Transaction Head
+
+    public function indexRNCTransactionHead( )
+    {
+        $model = RncTransaction::with('relRncResearchPaper','relUser','relUser.relUserProfile')
+            ->orderBy('id', 'DESC')->get();
+        $user_list = User::FullNameWithRoleNameList();
+        $rnc_list = array('' => 'Select Research paper') + RncResearchPaper::lists('title','id');
+
+        $salary = round(RncTransactionFinancial::where('rnc_transaction_id', $r_t_id)->sum('amount'),2);
+
+        return View::make('rnc::amw.rnc_transaction_head.index',
+            compact('user_list','rnc_list','model'));
+
+    }
+
+    public function rncStoreTransaction( )
+    {
+        if($this->isPostRequest()){
+//            $salary_trn_no = HrTrnNoSetup::where('title', '=', "Salary Transaction Number")
+//                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+//                ->first()->number;
+            $input_data = Input::all();
+            $inp_data = [
+                'user_id' => $input_data['user_id'],
+                'issue_date' => $input_data['issue_date'],
+                'rnc_research_paper_id' => $input_data['rnc_research_paper_id'],
+                'total_amount' => 0,
+                'status'=> "open",
+            ];
+            $model = new RncTransaction();
+            if($model->validate($inp_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($inp_data);
+//                    DB::table('hr_trn_no_setup')->where('title', '=', "Salary Transaction Number")
+//                        ->update(array('last_number' => substr($salary_trn_no,4)));
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                }catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+            return Redirect::back();
+        }else{
+            return Redirect::back();
+        }
+    }
+
+    public function rncShowTransaction($r_t_id)
+    {
+       $data = RncTransaction::findOrFail($r_t_id);
+       return View::make('rnc::amw.rnc_transaction_head.view', compact('data'));
+    }
+
+    public function rncEditConfirmTransaction($r_t_id)
+    {
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = RncTransaction::findOrFail($r_t_id);
+
+            if($model->validate($input_data)){
+                DB::beginTransaction();
+                try{
+                    $model->update($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                }catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+            return Redirect::back();
+        }else{
+            $model = RncTransaction::findOrFail($r_t_id);
+            $user_list = User::FullNameWithRoleNameList();
+            $rnc_list = array('' => 'Select Research paper') + RncResearchPaper::lists('title','id');
+
+            return View::make('rnc::amw.rnc_transaction_head.edit', compact('user_list','model','rnc_list'));
+        }
+    }
+
+    public function rncTransactionDetail($r_t_id)
+    {
+        $model = RncTransactionFinancial::with('relRncTransaction')
+            ->where('rnc_transaction_id', $r_t_id)
+            ->orderBy('id', 'DESC')
+            ->get();
+        $rnc_name = RncTransaction::with('relRncResearchPaper')->where('rnc_research_paper_id', $r_t_id)->first();
+
+//        $salary = round(RncTransactionFinancial::where('rnc_transaction_id', $r_t_id)->sum('amount'),2);
+
+        return View::make('rnc::amw.rnc_transaction_detail.index', compact('model','r_t_id','salary','rnc_name'));
+
+    }
+
+    public  function storeTransactionDetail()
+    {
+        for($i = 0; $i < count(Input::get('rnc_transaction_id')) ; $i++){
+            $dt[] = [
+                'rnc_transaction_id' => Input::get('rnc_transaction_id')[$i],
+                'transaction_type'=> Input::get('transaction_type')[$i],
+                'amount'=> Input::get('amount')[$i],
+            ];
+        }
+
+        DB::beginTransaction();
+        try{
+            $model = new RncTransactionFinancial();
+            foreach($dt as $values){
+                $model->create($values);
+            }
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+
+    }
+
+    public function ajaxDeleteRNCTrnDtl()
+    {
+        $id = Input::get('id');
+        DB::beginTransaction();
+        try {
+            RncTransactionFinancial::destroy($id);
+            DB::commit();
+            return Response::json("Successfully Deleted");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Deleted !");
+        }
+    }
+
+    public function rncConfirmTransaction($r_t_id )
+    {
+        $input_data = Input::all();
+        DB::beginTransaction();
+        try{
+
+            $model = RncTransaction::findOrFail($r_t_id);
+            $model->status = "confirmed";
+            $model->update($input_data);
+
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+
+    }
+
+
+
+    public function rncShowConfirmTransaction($r_t_id)
+    {
+        $data = RncTransaction::where('status', '!=','denied')->findOrFail($r_t_id);
+
+        $model = RncTransactionFinancial::with('relRncTransaction')
+            ->where('rnc_transaction_id', $data->id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+
+        return View::make('rnc::amw.rnc_transaction_head.view_confirmation', compact('data','model'));
+
+    }
+
+    public function rncTransactionHeadBatchDelete( )
+    {
+
+    }
+
+
+
+    public function rncDestroyTransaction( )
+    {
+
     }
 
 

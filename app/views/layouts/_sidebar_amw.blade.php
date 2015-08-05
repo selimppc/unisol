@@ -108,7 +108,7 @@
                 <li><a href="{{ URL::to('rnc/amw/config/index') }}"></i><i class="fa fa-cogs" style="color: #c69bff"></i>Config</a></li>
                 <li><a href="{{ URL::to('rnc/amw/publisher/index') }}"></i><i class="fa fa-print" style="color: #ff1465"></i>Publisher</a></li>
                 <li><a href="{{ URL::to('rnc/amw/research-paper/index') }}"></i><i class="fa fa-fire-extinguisher" style="color: rgb(219, 94, 17)"></i>Research Paper</a></li>
-
+                <li><a href="{{ URL::to('rnc/amw/transaction-head') }}"></i><i class="fa fa-magnet" style="color: #ff144e"></i>RNC Transaction HD</a></li>
             </ul>
         </li>
         @include('accounts::_sidebar._accounts')
