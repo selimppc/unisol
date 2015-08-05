@@ -13,12 +13,11 @@
        <ul class="treeview-menu">
             <li><a href="{{ URL::to('user/profile-info') }}">Personal Information</a></li>
             <li><a href="{{ URL::to('user/meta-data') }}"> Biographical Information </a></li>
-            <li><a href="{{ URL::to('user/supporting-docs') }}"> Supporting Documents </a></li>
-            <li><a href="{{ URL::to('user/extra-curricular') }}"> Extra-Curricular Activities </a></li>
-            <li><a href="{{ URL::to('user/misc-info') }}"> Miscellaneous Information </a></li>
+            {{--<li><a href="{{ URL::to('user/supporting-docs') }}"> Supporting Documents </a></li>--}}
+            {{--<li><a href="{{ URL::to('user/extra-curricular') }}"> Extra-Curricular Activities </a></li>--}}
+            {{--<li><a href="{{ URL::to('user/misc-info') }}"> Miscellaneous Information </a></li>--}}
        </ul>
     </li>
-
     <li class="treeview">
         <a href="#">
             <i class="fa fa-leaf" style="color: #09b021"></i>
@@ -114,6 +113,17 @@
         </li>
         @include('accounts::_sidebar._accounts')
         @include('inventory::_sidebar._inventory')
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-credit-card" style="color:deepskyblue"></i>
+                <span>HRM</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                @include('hr::_sidebar._hr')
+            </ul>
+        </li>
+
 
 
 </ul>
