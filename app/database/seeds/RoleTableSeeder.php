@@ -17,6 +17,8 @@ class RoleTableSeeder extends Seeder {
             array('alumni', 'alumni', 'alumni', 1, 1, 1),
             array('employee', 'employee', 'employee', 1, 1, 1),
             array('applicant', 'applicant', 'applicant', 1, 1, 1),
+            array('rnc', 'rnc', 'rnc', 1, 1, 1),
+            array('cfo', 'cfo', 'cfo', 1, 1, 1),
         );
 
         foreach($items as $item) {

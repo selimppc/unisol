@@ -233,6 +233,85 @@ Route::group(['prefix' => 'rnc'], function() {
         "uses" => "RncAmwController@ajaxGetWriterNameAutoComplete"
     ]);
 
+    // Transaction Head
+
+    Route::any('amw/transaction-head',[
+        'as' => 'amw.transaction-head',
+        'uses'=> 'RncAmwController@indexRNCTransactionHead'
+    ]);
+
+    Route::any('amw/store-transaction-head',[
+        'as' => 'amw.store-transaction-head',
+        'uses'=> 'RncAmwController@rncStoreTransaction'
+    ]);
+
+    Route::any('amw/transaction-head-batch-delete',[
+        'as' => 'amw.transaction-head-batch-delete',
+        'uses'=> 'RncAmwController@rncTransactionHeadBatchDelete'
+    ]);
+
+    Route::any('amw/transaction-detail/{r_t_id}',[
+        'as' => 'amw.transaction-detail',
+        'uses'=> 'RncAmwController@rncTransactionDetail'
+    ]);
+
+    Route::any('amw/store-rnc-transaction-detail',[
+        'as' => 'amw.store-rnc-transaction-detail',
+        'uses'=> 'RncAmwController@storeTransactionDetail'
+    ]);
+
+    Route::any('amw/ajax-delete-rnc-trn-dtl', [
+        'as'   => 'amw/ajax-delete-rnc-trn-dtl',
+        'uses' => 'RncAmwController@ajaxDeleteRNCTrnDtl'
+    ]);
+
+
+    Route::any('amw/transaction-head/show-confirm/{r_t_id}',[
+        'as' => 'amw.transaction-head.show-confirm',
+        'uses'=> 'RncAmwController@rncShowConfirmTransaction'
+    ]);
+
+    Route::any('salary-transaction/show-confirm/{s_t_id}',[
+        'as' => 'salary-transaction.show-confirm',
+        'uses'=> 'HrSalaryTransactionHeadController@show_confirm_salary_transaction'
+    ]);
+
+
+
+
+
+    Route::any('amw/transaction-head/show/{r_t_id}',[
+        'as' => 'amw.transaction-head.show',
+        'uses'=> 'RncAmwController@rncShowTransaction'
+    ]);
+
+    Route::any('amw/transaction-head/edit/{r_t_id}',[
+        'as' => 'amw.transaction-head.edit',
+        'uses'=> 'RncAmwController@rncEditConfirmTransaction'
+    ]);
+
+    Route::any('amw/transaction-head/destroy',[
+        'as' => 'amw.transaction-head.destroy',
+        'uses'=> 'RncAmwController@rncDestroyTransaction'
+    ]);
+
+    Route::any('amw/confirm-transaction-head/{r_t_id}',[
+        'as' => 'amw.confirm-transaction-head',
+        'uses'=> 'RncAmwController@rncConfirmTransaction'
+    ]);
+
+//    Route::any('confirm-salary-transaction/{st_id}',[
+//        'as' => 'confirm-salary-transaction',
+//        'uses'=> 'HrSalaryTransactionHeadController@confirm_salary_transaction'
+//    ]);
+
+
+
+
+
+
+
+
 
 });
 
