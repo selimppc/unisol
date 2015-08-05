@@ -655,17 +655,75 @@ class LibraryController extends \BaseController {
             ->where('id','=',$id)
             ->first()->id;
 
-        $user_name = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')
+        $datas = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')
             ->where('id','=',$id)
             ->first();
+
 
         $book_trans_fin_data = LibBookTransactionFinancial::latest('id')->with('relLibBookTransaction')
             ->where('lib_book_transaction_id','=',$id)
             ->get();
 
-        $stock_type = ['' => 'Select Type'] + LibBook::lists('stock_type','id');
+        return View::Make('library::librarian.book_transaction.create_details',compact('book_transaction_id','datas','book_trans_fin_data'));
+    }
 
-        return View::Make('library::librarian.book_transaction.create_details',compact('book_transaction_id','user_name','book_trans_fin_data','stock_type'));
+    public function save_transaction_financial()
+    {
+        $data = Input::all();
+        $model = new LibBookTransactionFinancial();
+     /*   $model->user_id = Input::get('user_id');
+        $flash_msg = $model->user_id;*/
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Book Transaction Successfully Added For User Id::");
+            }
+            catch ( Exception $e ){
+                DB::rollback();
+                Session::flash('danger', "Book Transaction Not Added For User ID::.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function ajax_delete_financial()
+    {
+        if(Request::ajax())
+        {
+            $id = Input::get('lib_book_transaction_id');
+            $data = LibBookTransactionFinancial::find($id);
+            if($data->delete())
+                return Response::json(['msg'=> 'Data Successfully Deleted']);
+            else
+                return Response::json(['msg'=> 'Data Successfully Not Deleted']);
+        }
+
+    }
+
+    public function update_status($id)
+    {
+        $status = 'confirmed';
+        $check = LibBookTransactionFinancial::where('lib_book_transaction_id', $id)->exists();
+        if($check){
+            $update = DB::table('lib_book_transaction')
+                ->where('id', $id)
+                ->where('status', "Purchase")
+                ->update(array('status' => $status));
+
+            Session::flash('message', "Book Transaction Confirmed Successfully");
+            return Redirect::back();
+        }else{
+            Session::flash('info', 'Book Transaction Amount is Empty. Please Add Item. And Try Again Later!');
+        }
+        return Redirect::back();
     }
 
 }

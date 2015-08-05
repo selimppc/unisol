@@ -93,8 +93,8 @@ class CreateLibrary extends Migration {
                 'student', 'both','free'
             ));
             $table->string('file', 128);
-            $table->string('book_price', 128);
-            $table->string('digital_sell_price', 128);
+            $table->float('book_price');
+            $table->float('digital_sell_price');
             $table->enum('is_rented', array(
                 'yes', 'no'
             ));

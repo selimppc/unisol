@@ -24,6 +24,7 @@
                                     <th>Sl No</th>
                                     <th>User Name</th>
                                     <th>User Id</th>
+                                    <th>Department</th>
                                     <th>Book</th>
                                     <th>Lib Trn No</th>
                                     <th>Issue Date</th>
@@ -44,6 +45,8 @@
 
                                             <td>{{isset($value->relUser->id)?$value->relUser->id:''}}</td>
 
+                                            <td>{{isset($value->relUser->relDepartment->title)?$value->relUser->relDepartment->title:''}}</td>
+
                                             <td>{{isset($value->relLibBook->title)?$value->relLibBook->title:''}}</td>
 
                                             <td>{{isset($value->lib_trn_no)?$value->lib_trn_no:''}}</td>
@@ -58,13 +61,22 @@
 
                                             </td>
                                             <td>
+                                                @unless($value->status =='confirmed')
                                                 <a href="{{ URL::route('transaction-book-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                                 <a href="{{ URL::route('transaction-book-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
 
                                                 <a data-href="{{ URL::route('transaction-book-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-power-off text-red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                                                @endunless
+                                                @if($value->status =='received')
+                                                <a data-href="#" class="btn btn-xs btn-default" href="" ><i class="fa fa-arrow-right text-purple" data-toggle="tooltip" data-placement="bottom" title="Returned"></i> Returned</a>
+                                                 @endif
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                @if($value->status =='purchase')
+                                                <a data-href="{{ URL::route('book-transaction-financial-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-green" data-toggle="tooltip" data-placement="bottom" title="confirm"></i> Confirm</a>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endunless
                                 @endforeach

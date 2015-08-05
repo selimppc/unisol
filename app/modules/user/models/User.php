@@ -106,7 +106,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function relUserMeta(){
         return $this->hasOne('UserMeta');
     }
-
+    public function relDepartment(){
+        return $this->belongsTo('Department','department_id','id');
+    }
     public function relUserAcademicRecord(){
         return $this->hasMany('UserAcademicRecord');
     }
