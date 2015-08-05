@@ -368,7 +368,6 @@ class LibraryController extends \BaseController {
 
     public function storeBook()
     {
-
         $data = Input::all();
         $model = new LibBook();
         if ($model->validate($data)) {
@@ -396,10 +395,7 @@ class LibraryController extends \BaseController {
                 $files->move($destinationPath, $file);
                 $model->file = $file;
             }
-
-
             $model->save();
-
             Session::flash('message', "Successfully Added $flashmsg !");
             return Redirect::back();
         } else {
@@ -709,7 +705,7 @@ class LibraryController extends \BaseController {
 
     }
 
-    public function update_status($id)
+    public function update_purchase_status($id)
     {
         $status = 'confirmed';
         $check = LibBookTransactionFinancial::where('lib_book_transaction_id', $id)->exists();
@@ -730,19 +726,30 @@ class LibraryController extends \BaseController {
     public function update_returned_status($id)
     {
         $status = 'returned';
-       // $check = LibBookTransactionFinancial::where('lib_book_transaction_id', $id)->exists();
-        //if($check){
+        $update = DB::table('lib_book_transaction')
+            ->where('id', $id)
+            ->where('status', "Received")
+            ->update(array('status' => $status));
+
+        Session::flash('message', "Book Transaction Confirmed Successfully");
+        return Redirect::back();
+    }
+
+    public function update_delay_status($id)
+    {
+        $status = 'confirmed';
+        $check = LibBookTransactionFinancial::where('lib_book_transaction_id', $id)->exists();
+        if($check){
             $update = DB::table('lib_book_transaction')
                 ->where('id', $id)
-                ->where('status', "Received")
+                ->where('status', "Delay")
                 ->update(array('status' => $status));
 
             Session::flash('message', "Book Transaction Confirmed Successfully");
             return Redirect::back();
-       // }else{
-           // Session::flash('info', 'Book Transaction Amount is Empty. Please Add Item. And Try Again Later!');
-        //}
-       // return Redirect::back();
+        }else{
+            Session::flash('info', 'Book Transaction Amount is Empty. Please Add Item. And Try Again Later!');
+        }
+        return Redirect::back();
     }
-
 }

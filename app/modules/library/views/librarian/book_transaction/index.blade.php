@@ -41,7 +41,7 @@
                                     @unless($value->status =='cancel')
                                         <tr>
                                             <td class="sl-no-size">{{$sl++}}</td>
-                                            <td class="b-text">{{ link_to_route($value->status=="purchase" ? 'book-transaction-financial' : 'transaction-book-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
+                                            <td class="b-text">{{ link_to_route($value->status=='purchase'||$value->status=='delay' ? 'book-transaction-financial' : 'transaction-book-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                             <td>{{isset($value->relUser->id)?$value->relUser->id:''}}</td>
 
@@ -53,24 +53,25 @@
 
                                             <td>{{date("d-m-Y", strtotime((isset($value->issue_date)) ? $value->issue_date : '') ) }}</td>
 
-                                            @if($value->status !=='purchase')
-                                                <td>{{date("d-m-Y", strtotime((isset($value->return_date)) ? $value->return_date : '') ) }}</td>
-                                            @else
+                                            @if($value->status =='purchase' || $value->status =='confirmed')
                                                 <td></td>
+                                            @else
+                                                <td>{{date("d-m-Y", strtotime((isset($value->return_date)) ? $value->return_date : '') ) }}</td>
                                             @endif
 
                                             <td>{{isset($value->total_amount)?$value->total_amount:''}}</td>
 
                                             <td>{{ucfirst($value->status)}}</td>
 
-                                          {{--  @if( strtotime($value->return_date) < strtotime('now') )
+                                         {{--   @if(strtotime($value->return_date) < strtotime('now'))
                                                 <td>{{'delay'}}</td>
-                                            @else
-                                                <td>{{ucfirst($value->status)}}</td>
+
+                                            @elseif($value->status =='purchase' || $value->status =='received' || $value->status =='returned'||$value->status =='confirmed')
+                                                  <td>{{ucfirst($value->status)}}</td>
                                             @endif--}}
 
                                             <td>
-                                                @unless($value->status =='confirmed')
+                                              @unless($value->status =='confirmed' || $value->status =='returned')
                                                 <a href="{{ URL::route('transaction-book-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                                 <a href="{{ URL::route('transaction-book-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
@@ -80,13 +81,16 @@
                                             </td>
                                             <td>
                                                 @if($value->status =='received')
-                                                    <a data-href="{{ URL::route('transaction-financial-returned-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-arrow-circle-right text-purple" data-toggle="tooltip" data-placement="bottom" title="Returned"></i> Returned</a>
+                                                    <a data-href="{{ URL::route('transaction-financial-returned-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-arrow-circle-right text-maroon" data-toggle="tooltip" data-placement="bottom" title="Returned"></i> Returned</a>
+
+                                           {{--     @elseif($value->status =='delay')
+                                                    <a data-href="#" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#createModal" href="" ><i class="fa fa-arrow-circle-left text-purple" data-toggle="tooltip" data-placement="bottom" title="Delay"></i> Delay</a>--}}
+
+                                                @elseif($value->status =='purchase')
+                                                    <a data-href="{{ URL::route('book-transaction-financial-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-white" data-toggle="tooltip" data-placement="bottom" title="Confirm"></i> Confirm</a>
 
                                                 @elseif($value->status =='delay')
-                                                    <a data-href="#" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#createModal" href="" ><i class="fa fa-arrow-circle-left text-purple" data-toggle="tooltip" data-placement="bottom" title="Delay"></i> Delay</a>
-                                                @endif
-                                                @if($value->status =='purchase')
-                                                <a data-href="{{ URL::route('book-transaction-financial-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-white" data-toggle="tooltip" data-placement="bottom" title="Confirm"></i> Confirm</a>
+                                                    <a data-href="{{ URL::route('transaction-financial-delay-status', ['id'=>$value->id ]) }}" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-white" data-toggle="tooltip" data-placement="bottom" title="Confirm"></i> Confirm</a>
                                                 @endif
                                             </td>
                                         </tr>
