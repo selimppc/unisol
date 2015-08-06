@@ -78,7 +78,7 @@
 
 {{-- Modal Area --}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="z-index:1050">
+  <div class="modal-dialog modal-lg" style="z-index:1050">
     <div class="modal-content">
     </div>
   </div>
