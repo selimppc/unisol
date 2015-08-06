@@ -31,7 +31,12 @@
                 @if(isset($comments))
                     @foreach($comments as $ct)
                        <p style="padding: 1%; background: #efefef;">
-                         <b>{{ isset($ct->created_by)? User::FullName($ct->created_by):'' }}</b>:
+                        <b>{{ isset($ct->created_by)? User::FullName(Auth::user()->get()->id):'' }}</b>:
+                         {{--<b>
+                             {{isset($ct->relHrleave->relUser->relUserProfile->first_name)? $ct->relHrleave->relUser->relUserProfile->first_name:''}}&nbsp;
+                             --}}{{--{{isset($ct->relHrEmployee->relUser->relUserProfile->middle_name)? $ct->relHrEmployee->relUser->relUserProfile->middle_name:''}}&nbsp;--}}{{--
+                             --}}{{--{{isset($ct->relHrEmployee->relUser->relUserProfile->last_name)? $ct->relHrEmployee->relUser->relUserProfile->last_name:''}}--}}{{--
+                         </b>--}}
                          &nbsp; {{ isset($ct->comment)?$ct->comment:''}}
                        </p>
                     @endforeach
