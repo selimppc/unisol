@@ -16,7 +16,7 @@ class CurrencyController extends \BaseController {
     public function index_currency()
     {
         $pageTitle = 'Currency Lists';
-        $model = Currency::orderBy('id', 'DESC')->paginate(5);
+        $model = Currency::orderBy('id', 'DESC')->paginate(10);
         return View::make('hr::currency.index', compact('model','pageTitle'));
     }
 

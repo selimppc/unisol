@@ -15,7 +15,7 @@ class RncAmwController extends \BaseController
     // Category
     public function indexCategory()
     {
-        $model = RncCategory::orderBy('id', 'DESC')->paginate(5);
+        $model = RncCategory::orderBy('id', 'DESC')->paginate(10);
         return View::make('rnc::amw.category.index', compact('model'));
     }
 
@@ -124,7 +124,7 @@ class RncAmwController extends \BaseController
     // Config
     public function indexConfig()
     {
-        $config = RncConfig::orderBy('id', 'DESC')->paginate(5);
+        $config = RncConfig::orderBy('id', 'DESC')->paginate(10);
         return View::make('rnc::amw.config.index', compact('config'));
     }
 
@@ -233,7 +233,7 @@ class RncAmwController extends \BaseController
     //Publisher
     public function indexPublisher()
     {
-        $publisher = RncPublisher::orderBy('id', 'DESC')->paginate(5);
+        $publisher = RncPublisher::orderBy('id', 'DESC')->paginate(10);
         return View::make('rnc::amw.publisher.index', compact('publisher'));
     }
 
@@ -346,7 +346,7 @@ class RncAmwController extends \BaseController
 
     public function indexResearchPaper()
     {
-        $research_paper = RncResearchPaper::orderBy('id', 'DESC')->paginate(5);
+        $research_paper = RncResearchPaper::orderBy('id', 'DESC')->paginate(10);
         $rnc_category = array('' => 'Select RnC Category ') + RncCategory::lists('title', 'id');
         $rnc_publisher = array('' => 'Select RnC Publisher') + RncPublisher::lists('title', 'id');
         $reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
@@ -855,13 +855,35 @@ class RncAmwController extends \BaseController
 
     public function rncTransactionHeadBatchDelete( )
     {
+        DB::beginTransaction();
+        try{
+            HrSalaryTransactionHead::destroy(Request::get('id'));
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
 
     }
 
 
 
-    public function rncDestroyTransaction( )
+    public function rncDestroyTransaction($r_t_id)
     {
+        DB::beginTransaction();
+        try{
+            RncTransaction::destroy($r_t_id);
+            DB::commit();
+            Session::flash('message', 'Successfully Deleted !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
 
     }
 

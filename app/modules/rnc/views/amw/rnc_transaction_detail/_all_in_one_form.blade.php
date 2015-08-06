@@ -104,7 +104,7 @@ $(function(){
 
             var index = $.inArray( $arrayRnc);
             if (index>=0) {
-                 alert("You already added this Salary Transaction in the below table");
+                 alert("You already added this RNC Transaction TYPE in the below table");
                  // Also flash the existing text field
                  $("#rnc_transaction_id").val("");
                  $("#rnc_transaction_detail_amount").val("");

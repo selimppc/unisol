@@ -46,9 +46,9 @@
                     <td>
 
                         @if($values->status=="open")
-                            <b>{{ isset($values->hr_employee_id) ? link_to_route('salary-transaction-detail', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['title'=>"Details Salary Transaction",'data-toggle'=>"modal", 'data-target'=>"#modal-pc2"] ) : "" }}</b>
+                            <b>{{ isset($values->hr_employee_id) ? link_to_route('salary-transaction-detail', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name,['s_t_id'=>$values->id], ['title'=>"Details Salary Transaction",'data-toggle'=>"modal", 'data-target'=>"#modal-pc2"] ) : "" }}</b>
                         @else
-                            <b>{{ isset($values->hr_employee_id) ? link_to_route('salary-transaction.show-confirm', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) : "" }}</b>
+                            <b>{{ isset($values->hr_employee_id) ? link_to_route('salary-transaction.show-confirm', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name,['s_t_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) : "" }}</b>
                         @endif
                     </td>
                     <td>{{ $values->trn_number }}</td>

@@ -14,7 +14,7 @@ class HrLeaveCommentsController extends \BaseController {
 
     public function index()
     {
-        $data = HrLeaveComments::orderBy('id', 'DESC')->paginate(5);
+        $data = HrLeaveComments::orderBy('id', 'DESC')->paginate(10);
 
         return View::make('hr::hr.leave_comments.index',compact('data'));
     }
