@@ -27,7 +27,7 @@
 
            <div class="col-sm-4">
               {{ Form::label('id_no', 'Employee ID No') }}
-              {{ Form::text('id_no',Input::old('id_no'), array('class' => 'form-control') ) }}
+              {{ Form::text('id_no',Input::old('id_no'), array('class' => 'form-control','placeholder'=>'Enter Employee Id To Search') ) }}
            </div>
 
            <br><br>

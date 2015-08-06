@@ -21,12 +21,9 @@ class HrAttendanceController extends \BaseController {
 
             $model = $model->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
             if (isset($hr_employee) && !empty($hr_employee)) $model->where('hr_attendance.hr_employee_id','=', $hr_employee);
-            if($emp_id){
-                if (isset($id_no) && !empty($id_no)) $model->where('hr_attendance.hr_employee_id', '=', $emp_id->id);
-            }else{
-                Session::flash('info', 'Does Not Exist This Employee.');
-                return Redirect::back();
-            }
+            if (isset($emp_id) && !empty($emp_id)) $model->where('hr_attendance.hr_employee_id', '=', $emp_id->id);
+
+            Session::flash('info',"<a href='attendance'><b><ins>View All HR Attendance</ins></b></a>");
             $model = $model->orderBy('id', 'DESC')->paginate(5);
         } else {
             $model = $model->with('relHrEmployee', 'relHrEmployee.relUser', 'relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
