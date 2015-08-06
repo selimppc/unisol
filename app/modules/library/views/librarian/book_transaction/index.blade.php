@@ -63,13 +63,6 @@
 
                                             <td>{{ucfirst($value->status)}}</td>
 
-                                         {{--   @if(strtotime($value->return_date) < strtotime('now'))
-                                                <td>{{'delay'}}</td>
-
-                                            @elseif($value->status =='purchase' || $value->status =='received' || $value->status =='returned'||$value->status =='confirmed')
-                                                  <td>{{ucfirst($value->status)}}</td>
-                                            @endif--}}
-
                                             <td>
                                               @unless($value->status =='confirmed' || $value->status =='returned')
                                                 <a href="{{ URL::route('transaction-book-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>

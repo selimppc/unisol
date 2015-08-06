@@ -57,7 +57,7 @@
                 @foreach ($view_financial_data as $value)
                     <tr>
                         <td class="sl-no-size">{{$sl++}}</td>
-                        <td>{{isset($value->trn_type)?$value->trn_type:'0'}}</td>
+                        <td>{{ucfirst($value->trn_type)}}</td>
                         <td>{{isset($value->amount)?$value->amount:'0'}}</td>
                     </tr>
                 @endforeach
