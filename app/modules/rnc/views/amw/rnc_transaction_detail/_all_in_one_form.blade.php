@@ -94,23 +94,22 @@ $(function(){
 
      $("#add-rnc-transaction-detail").click(function(event){
             var $rnc_trans_id = "<?php echo $r_t_id; ?>";
-
             $rnc_trns_id = $rnc_trans_id;
             $rnc_trns_dtl_type = $("#rnc_transaction_detail_type").val();
             $rnc_trns_dtl_amount = $("#rnc_transaction_detail_amount").val();
             $rnc_trns_dtl_id = $("#rnc_transaction_detail_id").text();
 
             $rnc_transctn_id = $rnc_trans_id; // Salary Transaction ID
-
-            var index = $.inArray( $arrayRnc);
+                       
+            $rnc_trans_detail_type = $("#rnc_transaction_detail_type").val();
+            var index = $.inArray( $rnc_trans_detail_type,$arrayRnc);
             if (index>=0) {
-                 alert("You already added this Salary Transaction in the below table");
+                 alert("You already added this RNC Transaction TYPE in the below table");
                  // Also flash the existing text field
                  $("#rnc_transaction_id").val("");
                  $("#rnc_transaction_detail_amount").val("");
                  $("#rnc_transaction_detail_id").val("");
                  $("#rnc_transaction_detail_type").val("");
-
 
                  return false;
             } else {
@@ -129,6 +128,7 @@ $(function(){
                  $("#rnc_transaction_detail_id").val("");
                  $('.std_amount').prop('enable', true);
             }
+
  	 });
 
 //Delete : ok

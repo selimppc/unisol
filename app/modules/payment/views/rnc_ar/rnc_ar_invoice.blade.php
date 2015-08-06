@@ -8,7 +8,7 @@
     <div class="box box-solid ">
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
-            <a href="{{ URL::route('hr-payroll') }}" type="button" class="pull-right btn btn-xs btn-default" > << Back to Salary TRN</a>
+            <a href="{{ URL::route('rnc-receivable-index') }}" type="button" class="pull-right btn btn-xs btn-default" > << Back to RNC AR TRN</a>
         </div>
 
        <div class="box-body">
@@ -16,8 +16,8 @@
             <thead>
 
                 <tr>
-                    <th> HR Employee ID </th>
-                    <th> Employee Name </th>
+                    <th> ID </th>
+                    <th> Name </th>
                     <th> Account Code </th>
                     <th> Description </th>
                     <th> Pay Amount </th>
@@ -27,7 +27,7 @@
                 @foreach($data as $values)
                  <tr>
                     <td><b>
-                    {{ link_to_route('hr-payment-voucher', $values->associated_id, ['associated_id'=>$values->associated_id, 'coa_id'=>$values->acc_chart_of_accounts_id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                    {{ link_to_route('rnc-ar-bill-voucher', $values->associated_id, ['associated_id'=>$values->associated_id, 'coa_id'=>$values->acc_chart_of_accounts_id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td>{{ $values->name }}</td>
                     <td>{{ $values->relAccChartOfAccounts->account_code }}</td>

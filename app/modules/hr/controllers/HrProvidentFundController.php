@@ -13,7 +13,7 @@ class HrProvidentFundController extends \BaseController {
 
     public function index()
     {
-        $data = HrProvidentFund::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+        $data = HrProvidentFund::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(10);
         $month = HrWorkWeek::getMonth();
         $employee_list = User::GenuineEmployeeList();
         return View::make('hr::hr.hr_provident_fund.index',compact('data','month','employee_list'));

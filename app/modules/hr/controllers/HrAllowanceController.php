@@ -16,7 +16,7 @@ class HrAllowanceController extends \BaseController {
     public function index_hr_allowance()
     {
         $pageTitle = 'Allowance Lists';
-        $model = HrAllowance::orderBy('id', 'DESC')->paginate(5);
+        $model = HrAllowance::orderBy('id', 'DESC')->paginate(10);
         return View::make('hr::hr.allowance.index', compact('model','pageTitle'));
     }
 

@@ -270,11 +270,6 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RncAmwController@rncShowConfirmTransaction'
     ]);
 
-    Route::any('salary-transaction/show-confirm/{s_t_id}',[
-        'as' => 'salary-transaction.show-confirm',
-        'uses'=> 'HrSalaryTransactionHeadController@show_confirm_salary_transaction'
-    ]);
-
     Route::any('amw/transaction-head/show/{r_t_id}',[
         'as' => 'amw.transaction-head.show',
         'uses'=> 'RncAmwController@rncShowTransaction'
@@ -285,7 +280,7 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RncAmwController@rncEditConfirmTransaction'
     ]);
 
-    Route::any('amw/transaction-head/destroy',[
+    Route::any('amw/transaction-head/destroy/{r_t_id}',[
         'as' => 'amw.transaction-head.destroy',
         'uses'=> 'RncAmwController@rncDestroyTransaction'
     ]);
@@ -295,10 +290,6 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RncAmwController@rncConfirmTransaction'
     ]);
 
-//    Route::any('confirm-salary-transaction/{st_id}',[
-//        'as' => 'confirm-salary-transaction',
-//        'uses'=> 'HrSalaryTransactionHeadController@confirm_salary_transaction'
-//    ]);
 
 
 
