@@ -186,5 +186,50 @@ Route::group(['prefix' => 'payment'], function() {
 
 
 
+    /*
+     * =============================================
+     * For RNC
+     * =============================================
+     */
+
+    // A/C Receivable
+    Route::any("rnc-receivable-index",[
+        "as"   => "rnc-receivable-index",
+        "uses" => "ApRncController@index_rnc_ar"
+    ]);
+
+    Route::any("rnc-ar-bill-details/{lib_id}",[
+        "as"   => "rnc-bill-details",
+        "uses" => "ApRncController@show_rnc_ar_bill"
+    ]);
+
+    //create RNC invoice
+    Route::any('rnc-ar-create-invoice/{lib_id}', [
+        'as' => 'rnc-ar-create-invoice',
+        'uses' => 'ApRncController@rnc_ar_to_invoice'
+    ]);
+
+    //Manage RNC Bill AR
+    Route::any('manage-rnc-ar-bill', [
+        'as' => 'manage-rnc-ar-bill',
+        'uses' => 'ApRncController@manage_ar_rnc_bill'
+    ]);
+
+    //manage RNC Receivable Amount
+    Route::any("rnc-ar-bill-voucher/{associated_id}/{coa_id}", [
+        "as"   => "rnc-ar-bill-voucher",
+        "uses" => "ApRncController@rnc_ar_bill_voucher"
+    ]);
+
+    // Store RNC Payment / Money Receipt
+    Route::any("store-rnc-ar-voucher", [
+        "as"   => "store-rnc-ar-voucher",
+        "uses" => "ApRncController@store_rnc_ar_voucher"
+    ]);
+
+
+
+
+
 
 });

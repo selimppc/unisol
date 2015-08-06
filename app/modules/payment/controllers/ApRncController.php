@@ -21,7 +21,7 @@ class ApRncController extends \BaseController {
 	 */
 	public function index_rnc_ar()
 	{
-		$pageTitle = "RNC A/C Receivable History  ";
+		$pageTitle = "RNC Receivable History  ";
 		$data = RncTransaction::with('relUser')->whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
 		return View::make('payment::rnc_ar.index', compact('data','pageTitle'));
 	}
@@ -60,14 +60,14 @@ class ApRncController extends \BaseController {
 	// manage AR for RNC
 	public function  manage_ar_rnc_bill(){
 		//
-		$pageTitle = "RNC Receivable History"; //acc_v_ar_lib
+		$pageTitle = "RNC A/C Receivable History"; //acc_v_ar_lib
 		$data = AccVArRnc::get();
-		return View::make('payment::rnc_ar.lib_invoice', compact('pageTitle', 'data'));
+		return View::make('payment::rnc_ar.rnc_ar_invoice', compact('pageTitle', 'data'));
 	}
 
 
 	// library_bill_voucher
-	public function  library_bill_voucher($associated_id, $coa_id){
+	public function  rnc_ar_bill_voucher($associated_id, $coa_id){
 
 		$data = AccChartOfAccounts::paginate(3);
 		$year_lists = Year::lists('title', 'id');
@@ -79,7 +79,7 @@ class ApRncController extends \BaseController {
 			//->where('acc_voucher_head_id', $coa_id)->get();
 			->get();
 
-		return View::make('payment::rnc_ar.lib_voucher', compact(
+		return View::make('payment::rnc_ar.rnc_ar_voucher', compact(
 			'associated_id', 'coa_id', 'unpaid_invoice',
 			'data','year_lists', 'period_lists', 'coa_lists'
 		));
@@ -96,13 +96,13 @@ class ApRncController extends \BaseController {
      * 4. acc_voucher_head
      *
      */
-	public function store_library_voucher(){
+	public function store_rnc_ar_voucher(){
 		//Get ALl input Data
 		$input_data = Input::all();
 		$associated_id = Input::get('associated_id');
 
 		// Generate Voucher Number
-		$apr_no = AccTrnNoSetup::where('title', '=', "Library Voucher")
+		$apr_no = AccTrnNoSetup::where('title', '=', "RNC AR Voucher")
 			->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
 			->first()->number;
 
@@ -166,7 +166,7 @@ class ApRncController extends \BaseController {
 				}
 
 				// Update Acc transaction Number
-				DB::table('acc_trn_no_setup')->where('title', '=', "Account Receivable Voucher")
+				DB::table('acc_trn_no_setup')->where('title', '=', "RNC AR Voucher")
 					->update(array('last_number' => substr($apr_no, 4)));
 
 				//RUN Store procedure
