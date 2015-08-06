@@ -665,6 +665,7 @@ class RncAmwController extends \BaseController
 
     public function indexRNCTransactionHead( )
     {
+
         $model = RncTransaction::with('relRncResearchPaper','relUser','relUser.relUserProfile')
             ->orderBy('id', 'DESC')->get();
 
@@ -769,18 +770,19 @@ class RncAmwController extends \BaseController
             ];
         }
 
-
-
         DB::beginTransaction();
         try{
             $model = new RncTransactionFinancial();
-//            $total_amount = round(RncTransaction::where('id', $model->rnc_transaction_id)->sum('amount'),2);
             foreach($dt as $values){
 
                 $model->create($values);
+
+                // Update rnc_transaction
+                $trn_model = RncTransaction::find($values['rnc_transaction_id']);
+                $trn_model->total_amount = $trn_model->total_amount + $values['amount'];
+                $trn_model->save();
             }
-//            DB::table('rnc_transaction')->where('id', $model->rnc_transaction_id)
-//                ->first()->total_amount + Input::get('amount');
+
 
             DB::commit();
             Session::flash('message', 'Success !');
@@ -795,9 +797,16 @@ class RncAmwController extends \BaseController
     public function ajaxDeleteRNCTrnDtl()
     {
         $id = Input::get('id');
+        $rnc_dt = RncTransactionFinancial::find($id);
         DB::beginTransaction();
         try {
             RncTransactionFinancial::destroy($id);
+
+            // Update rnc_transaction
+            $trn_model = RncTransaction::find($rnc_dt->rnc_transaction_id);
+            $trn_model->total_amount = $trn_model->total_amount - $rnc_dt->amount;
+            $trn_model->save();
+
             DB::commit();
             return Response::json("Successfully Deleted");
         }
