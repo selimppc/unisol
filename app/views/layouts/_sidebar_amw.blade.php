@@ -110,21 +110,11 @@
                 <li><a href="{{ URL::to('rnc/amw/research-paper/index') }}"></i><i class="fa fa-fire-extinguisher" style="color: rgb(219, 94, 17)"></i>Research Paper</a></li>
                 <li><a href="{{ URL::to('rnc/amw/transaction-head') }}"></i><i class="fa fa-magnet" style="color: #ff144e"></i>RNC Transaction HD</a></li>
             </ul>
-        </li>
-        @include('accounts::_sidebar._accounts')
-        @include('inventory::_sidebar._inventory')
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-credit-card"></i>
-                <span>HRM</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                @include('hr::_sidebar._hr')
-            </ul>
-        </li>
+    </li>
 
-
+    @include('accounts::_sidebar._accounts')
+    @include('inventory::_sidebar._inventory')
+    @include('hr::_sidebar._hr')
 
 </ul>
 

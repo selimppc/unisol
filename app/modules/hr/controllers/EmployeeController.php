@@ -2,9 +2,9 @@
 
 class EmployeeController extends \BaseController {
 
-    function __construct() {
-        $this->beforeFilter('hr', array('except' => array('')));
-    }
+    /*function __construct() {
+        $this->beforeFilter('employee', array('except' => array('')));
+    }*/
 
     protected function isPostRequest()
     {
@@ -13,7 +13,9 @@ class EmployeeController extends \BaseController {
 
     public function employeeIndex(){
 
+
         $employee_id = Auth::user()->get()->id;
+//        print_r($employee_id);exit;
         $hr_employee_id = HrEmployee::where('user_id','=',$employee_id)->first()->id;
 
         $hr_list = User::HrList();
