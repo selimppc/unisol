@@ -15,7 +15,7 @@ class LibraryController extends \BaseController {
 
     public function index()
 	{
-        $book_category = LibBookCategory::orderBy('id', 'DESC')->paginate(5);
+        $book_category = LibBookCategory::orderBy('id', 'DESC')->paginate(6);
 		return View::Make('library::librarian.category.index',compact('book_category'));
 	}
 
@@ -131,7 +131,7 @@ class LibraryController extends \BaseController {
 
     public function indexAuthor()
     {
-        $book_author = LibBookAuthor::orderBy('id', 'DESC')->paginate(5);
+        $book_author = LibBookAuthor::orderBy('id', 'DESC')->paginate(10);
         $country = array('' => 'Select Country ') + Country::lists('title', 'id');
         return View::Make('library::librarian.author.index',compact('book_author','country'));
     }
@@ -544,9 +544,10 @@ class LibraryController extends \BaseController {
     public function index_book_transaction()
     {
         $pageTitle = "Book Transaction";
+        //$delay_records = LibBookTransaction::where('return_date', '<', 'now' )->update(array('status' => 'delay'));
         $book_transaction = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')->orderBy('id', 'DESC')->paginate(10);
 
-        return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','user'));
+        return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','delay_records'));
     }
 
     public function create_book_transaction()
@@ -560,12 +561,17 @@ class LibraryController extends \BaseController {
     {
         $data = Input::all();
         $model = new LibBookTransaction();
+       // $idate =  Input::get('issue_date');
+        //$rdate =  Input::get('return_date');
+        //print_r($return_date);exit;
         $model->user_id = Input::get('user_id');
         $flash_msg = $model->user_id;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
+                //$issue_date = date("Y-m-d",strtotime($idate));
+                //$return_date = date("Y-m-d",strtotime($rdate));
                 if ($model->create($data))
                     DB::commit();
                 Session::flash('message', "Book Transaction Successfully Added For User Id::$flash_msg");

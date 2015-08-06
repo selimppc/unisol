@@ -16,7 +16,7 @@ class HrTaxRuleController extends \BaseController {
     public function index_hr_tax_rule()
     {
         $pageTitle = 'Tax Rule List';
-        $model = HrTaxRule::orderBy('id', 'DESC')->paginate(5);
+        $model = HrTaxRule::orderBy('id', 'DESC')->paginate(10);
         return View::make('hr::hr.tax_rule.index', compact('model','pageTitle'));
     }
 

@@ -16,7 +16,7 @@ class HrBankController extends \BaseController {
     public function index_hr_bank()
     {
         $pageTitle = 'Bank Lists';
-        $model = HrBank::orderBy('id', 'DESC')->paginate(5);
+        $model = HrBank::orderBy('id', 'DESC')->paginate(10);
         return View::make('hr::hr.bank.index', compact('model','pageTitle'));
     }
 
