@@ -670,7 +670,7 @@ class RncAmwController extends \BaseController
         $user_list = User::FullNameWithRoleNameList();
         $rnc_list = array('' => 'Select Research paper') + RncResearchPaper::lists('title','id');
 
-        $salary = round(RncTransactionFinancial::where('rnc_transaction_id', $r_t_id)->sum('amount'),2);
+        # $salary = round(RncTransactionFinancial::where('rnc_transaction_id', $r_t_id)->sum('amount'),2);
 
         return View::make('rnc::amw.rnc_transaction_head.index',
             compact('user_list','rnc_list','model'));

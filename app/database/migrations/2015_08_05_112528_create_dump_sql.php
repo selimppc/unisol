@@ -13,7 +13,7 @@ class CreateDumpSql extends Migration {
 	public function up()
 	{
 
-		DB::unprepared(file_get_contents("src/sql_dump/coa.sql"));
+		#DB::unprepared(file_get_contents("src/sql_dump/coa.sql"));
 		DB::unprepared(file_get_contents("src/sql_dump/codesparam.sql"));
 
 	}
