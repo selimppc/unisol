@@ -1,0 +1,4 @@
+INSERT INTO `hr_loan_head` (`id`, `hr_employee_id`, `title`, `loan_amount`, `loan_date`, `monthly_repayment_amount`, `payment_start_date`, `description`, `number_of_installment`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Loan ', 30000.00, '2015-07-26 00:00:00', 1200.00, '2015-07-26 00:00:00', 'loan', '11', 'new', 7, 0, '2015-08-04 09:39:19', '2015-08-04 09:39:19'),
+(2, 8, 'Loan', 1000000.00, '2015-08-02 00:00:00', 30000.00, '2015-07-26 00:00:00', 'loan', '12', 'running', 7, 0, '2015-08-04 09:39:59', '2015-08-04 09:39:59'),
+(3, 8, 'Loan', 800000.00, '2015-07-26 00:00:00', 5000.00, '2015-07-26 00:00:00', 'loan', '40', 'new', 7, 0, '2015-08-04 09:40:53', '2015-08-04 09:40:53');
