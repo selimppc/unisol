@@ -1,0 +1,3 @@
+INSERT INTO `lib_book_publisher` (`id`, `name`, `company_name`, `email`, `phone`, `address`, `country_id`, `note`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(2, 'Iqbal Hossain', 'Syscodec', 'syscodec@gmail.com', '01723856711', 'Dhaka bangladesh', 19, 'Publisher', 9, 11, '2015-05-26 05:33:02', '2015-08-06 05:24:04'),
+(3, 'Abdur Rahman', 'abudan', 'abdur@info.com', '23456', 'Dhaka', 19, 'A leading book publisher company.\r\n', 11, 11, '2015-08-02 10:14:30', '2015-08-02 10:15:08');

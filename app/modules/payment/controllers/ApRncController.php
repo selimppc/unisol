@@ -21,9 +21,9 @@ class ApRncController extends \BaseController {
 	 */
 	public function index_rnc_ar()
 	{
-		$pageTitle = "RNC History  ";
+		$pageTitle = "RNC A/C Receivable History  ";
 		$data = RncTransaction::with('relUser')->whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
-		return View::make('payment::rnc.index', compact('data','pageTitle'));
+		return View::make('payment::rnc_ar.index', compact('data','pageTitle'));
 	}
 
 
@@ -33,7 +33,7 @@ class ApRncController extends \BaseController {
 	public function show_rnc_ar_bill($rnc_id){
 		$rnc_head = RncTransaction::find($rnc_id);
 		$rnc_dt = RncTransactionFinancial::where('rnc_transaction_id', $rnc_id)->get();
-		return View::make('payment::rnc.show', compact('rnc_id', 'rnc_head', 'rnc_dt'));
+		return View::make('payment::rnc_ar.show', compact('rnc_id', 'rnc_head', 'rnc_dt'));
 	}
 
 
@@ -62,7 +62,7 @@ class ApRncController extends \BaseController {
 		//
 		$pageTitle = "RNC Receivable History"; //acc_v_ar_lib
 		$data = AccVArRnc::get();
-		return View::make('payment::rnc.lib_invoice', compact('pageTitle', 'data'));
+		return View::make('payment::rnc_ar.lib_invoice', compact('pageTitle', 'data'));
 	}
 
 
@@ -79,7 +79,7 @@ class ApRncController extends \BaseController {
 			//->where('acc_voucher_head_id', $coa_id)->get();
 			->get();
 
-		return View::make('payment::library.lib_voucher', compact(
+		return View::make('payment::rnc_ar.lib_voucher', compact(
 			'associated_id', 'coa_id', 'unpaid_invoice',
 			'data','year_lists', 'period_lists', 'coa_lists'
 		));

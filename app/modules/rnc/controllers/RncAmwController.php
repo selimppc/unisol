@@ -665,12 +665,13 @@ class RncAmwController extends \BaseController
 
     public function indexRNCTransactionHead( )
     {
+
         $model = RncTransaction::with('relRncResearchPaper','relUser','relUser.relUserProfile')
             ->orderBy('id', 'DESC')->get();
-        $user_list = User::FullNameWithRoleNameList();
-        $rnc_list = array('' => 'Select Research paper') + RncResearchPaper::lists('title','id');
 
-        $salary = round(RncTransactionFinancial::where('rnc_transaction_id', $r_t_id)->sum('amount'),2);
+        $user_list = User::FullNameWithRoleNameList();
+
+        $rnc_list = array('' => 'Select Research paper') + RncResearchPaper::lists('title','id');
 
         return View::make('rnc::amw.rnc_transaction_head.index',
             compact('user_list','rnc_list','model'));
@@ -714,8 +715,8 @@ class RncAmwController extends \BaseController
 
     public function rncShowTransaction($r_t_id)
     {
-       $data = RncTransaction::findOrFail($r_t_id);
-       return View::make('rnc::amw.rnc_transaction_head.view', compact('data'));
+        $data = RncTransaction::findOrFail($r_t_id);
+        return View::make('rnc::amw.rnc_transaction_head.view', compact('data'));
     }
 
     public function rncEditConfirmTransaction($r_t_id)
@@ -749,12 +750,11 @@ class RncAmwController extends \BaseController
     public function rncTransactionDetail($r_t_id)
     {
         $model = RncTransactionFinancial::with('relRncTransaction')
-            ->where('rnc_transaction_id', $r_t_id)
+            ->where('rnc_transaction_id','=', $r_t_id)
             ->orderBy('id', 'DESC')
             ->get();
-        $rnc_name = RncTransaction::with('relRncResearchPaper')->where('rnc_research_paper_id', $r_t_id)->first();
 
-//        $salary = round(RncTransactionFinancial::where('rnc_transaction_id', $r_t_id)->sum('amount'),2);
+        $rnc_name = RncTransaction::with('relRncResearchPaper')->where('id',$r_t_id)->first();
 
         return View::make('rnc::amw.rnc_transaction_detail.index', compact('model','r_t_id','salary','rnc_name'));
 
@@ -774,8 +774,16 @@ class RncAmwController extends \BaseController
         try{
             $model = new RncTransactionFinancial();
             foreach($dt as $values){
+
                 $model->create($values);
+
+                // Update rnc_transaction
+                $trn_model = RncTransaction::find($values['rnc_transaction_id']);
+                $trn_model->total_amount = $trn_model->total_amount + $values['amount'];
+                $trn_model->save();
             }
+
+
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
@@ -784,15 +792,21 @@ class RncAmwController extends \BaseController
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
-
     }
 
     public function ajaxDeleteRNCTrnDtl()
     {
         $id = Input::get('id');
+        $rnc_dt = RncTransactionFinancial::find($id);
         DB::beginTransaction();
         try {
             RncTransactionFinancial::destroy($id);
+
+            // Update rnc_transaction
+            $trn_model = RncTransaction::find($rnc_dt->rnc_transaction_id);
+            $trn_model->total_amount = $trn_model->total_amount - $rnc_dt->amount;
+            $trn_model->save();
+
             DB::commit();
             return Response::json("Successfully Deleted");
         }

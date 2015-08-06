@@ -27,7 +27,7 @@
 
            <div class="col-sm-4">
               {{ Form::label('id_no', 'Employee ID No') }}
-              {{ Form::select('id_no', $emp_id, Input::old('id_no'), array('class' => 'form-control') ) }}
+              {{ Form::text('id_no',Input::old('id_no'), array('class' => 'form-control') ) }}
            </div>
 
            <br><br>

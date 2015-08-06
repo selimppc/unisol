@@ -63,16 +63,16 @@
 
         <tbody>
           <?php $counter = 0;?>
-           @foreach($model as $values)
-                <tr>
-                   <td>{{ ucfirst($values->transaction_type) }}</td>
-                   <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
-                   <td>
-                       <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
-                   </td>
-                </tr>
-                <?php $counter++;?>
-           @endforeach
+               @foreach($model as $values)
+                    <tr>
+                       <td>{{ ucfirst($values->transaction_type) }}</td>
+                       <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
+                       <td>
+                           <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                       </td>
+                    </tr>
+                    <?php $counter++;?>
+               @endforeach
         </tbody>
     </table>
 
@@ -89,8 +89,8 @@
 <script type="text/javascript">
 $(function(){
 //Add Data : on going
-     $tableItemCounter = 0; //To stop additem if exist
-     var $arrayRnc = []; //To stop additem if exist
+     $tableItemCounter = 0;
+     var $arrayRnc = [];
 
      $("#add-rnc-transaction-detail").click(function(event){
             var $rnc_trans_id = "<?php echo $r_t_id; ?>";
@@ -100,11 +100,10 @@ $(function(){
             $rnc_trns_dtl_amount = $("#rnc_transaction_detail_amount").val();
             $rnc_trns_dtl_id = $("#rnc_transaction_detail_id").text();
 
+            $rnc_transctn_id = $rnc_trans_id; // Salary Transaction ID
 
-             $rnc_transctn_id = $rnc_trans_id; // Salary Transaction ID
-
-             var index = $.inArray( $arrayRnc);
-             if (index>=0) {
+            var index = $.inArray( $arrayRnc);
+            if (index>=0) {
                  alert("You already added this Salary Transaction in the below table");
                  // Also flash the existing text field
                  $("#rnc_transaction_id").val("");
@@ -114,7 +113,7 @@ $(function(){
 
 
                  return false;
-             } else {
+            } else {
                 $('#test').append("<tr> " +
 
                       "<td><input type='hidden' name='rnc_transaction_id[]' value='" + $rnc_trans_id + "' readonly><input name='transaction_type[]' value='"+ $rnc_trns_dtl_type +"' readonly></td>" +
@@ -129,7 +128,7 @@ $(function(){
                  $("#rnc_transaction_detail_type").val("");
                  $("#rnc_transaction_detail_id").val("");
                  $('.std_amount').prop('enable', true);
-             }
+            }
  	 });
 
 //Delete : ok
@@ -148,6 +147,5 @@ $(function(){
             }
         });
      });
-
 });
 </script>

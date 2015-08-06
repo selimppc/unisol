@@ -1,0 +1,5 @@
+INSERT INTO `lib_books` (`id`, `title`, `isbn`, `lib_book_category_id`, `lib_book_author_id`, `lib_book_publisher_id`, `edition`, `stock_type`, `shelf_number`, `book_type`, `commercial`, `file`, `book_price`, `digital_sell_price`, `is_rented`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(35, 'Software Engineering', 'sdsf', 10, 4, 2, '5t', 'soft', '5th', 'books', 'student', '27-05-2015-26.pdf', 0, 300, 'no', 9, 11, '2015-05-27 09:21:05', '2015-08-03 04:54:22'),
+(36, 'Digital Logic Design', 'ddl', 10, 5, 2, '5th', 'soft', '4', 'books', 'both', '28-05-2015-50.pdf', 0, 400, 'no', 9, 11, '2015-05-27 10:09:10', '2015-08-03 04:54:06'),
+(41, 'A New History', '', 5, 4, 2, '5th', 'both', '55', 'journal', 'student', '28-05-2015-35.pdf', 1000, 500, 'no', 9, 11, '2015-05-28 08:46:59', '2015-08-03 04:53:31'),
+(43, 'Economics', '', 6, 4, 2, '4', 'both', '55', 'books', 'student', '', 500, 300, 'yes', 9, 11, '2015-05-28 08:54:13', '2015-08-03 04:52:16');
