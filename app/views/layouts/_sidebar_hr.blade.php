@@ -17,7 +17,7 @@
     <li class="treeview">
          <a href="#">
              <i class="fa fa-credit-card" style="color: rgba(12, 128, 27, 0.85)"></i>
-             <span>HR Common</span>
+             <span> Common</span>
              <i class="fa fa-angle-left pull-right"></i>
          </a>
          <ul class="treeview-menu">
@@ -30,7 +30,7 @@
     <li class="treeview">
          <a href="#">
              <i class="fa fa-credit-card" style="color: rgba(12, 128, 27, 0.85)"></i>
-             <span>HR Employee </span>
+             <span>Employee </span>
              <i class="fa fa-angle-left pull-right"></i>
          </a>
          <ul class="treeview-menu">
@@ -77,7 +77,7 @@
     <li class="treeview">
          <a href="#">
              <i class="fa fa-credit-card" style="color: rgba(12, 128, 27, 0.85)"></i>
-             <span>HR SetUp </span>
+             <span>SetUp </span>
              <i class="fa fa-angle-left pull-right"></i>
          </a>
          <ul class="treeview-menu">
