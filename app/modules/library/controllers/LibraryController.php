@@ -544,7 +544,12 @@ class LibraryController extends \BaseController {
     public function index_book_transaction()
     {
         $pageTitle = "Book Transaction";
-        //$delay_records = LibBookTransaction::where('return_date', '<', 'now' )->update(array('status' => 'delay'));
+
+        $delay_records = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')
+        ->where('return_date', '<', 'now' )
+        ->where('status', '=', 'received' )
+        ->update(array('status' => 'delay'));
+
         $book_transaction = LibBookTransaction::with('relUser','relUser.relUserProfile','relLibBook')->orderBy('id', 'DESC')->paginate(10);
 
         return View::make('library::librarian.book_transaction.index',compact('pageTitle','book_transaction','delay_records'));
