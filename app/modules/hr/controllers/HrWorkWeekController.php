@@ -16,7 +16,7 @@ class HrWorkWeekController extends \BaseController {
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $month = HrWorkWeek::getMonth();
         $day = HrWorkWeek::getDay();
-        $data = HrWorkWeek::with('relYear')->orderBy('id', 'DESC')->paginate(5);
+        $data = HrWorkWeek::with('relYear')->orderBy('id', 'DESC')->paginate(10);
 
         return View::make('hr::hr.work_week.index',compact('year','month','day','data'));
 	}

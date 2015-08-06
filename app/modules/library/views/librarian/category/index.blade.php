@@ -27,6 +27,7 @@
                                     <th>
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
+                                    <th>Sl No</th>
                                     <th>Code</th>
                                     <th>Title</th>
                                     <th>Description</th>
@@ -34,10 +35,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $sl = $book_category->getFrom(); ?>
                                 @foreach ($book_category as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{$value->code}}</td>
                                         <td>{{$value->title}}</td>
                                         <td>{{$value->description}}</td>
