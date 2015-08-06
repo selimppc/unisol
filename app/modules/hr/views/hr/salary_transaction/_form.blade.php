@@ -21,7 +21,7 @@
 
 <div class='form-group'>
    {{ Form::label('status', 'Status') }}
-   {{ Form::select('status',array(''=>'Select Status','open'=>'Open','ask-for-interview'=>'Ask For Interview','approved'=>'Approved','denied'=>'Denied','request-for-update'=>'Request For Update'), Input::old('status'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('status',array('open'=>'Open','ask-for-interview'=>'Ask For Interview','approved'=>'Approved','denied'=>'Denied','request-for-update'=>'Request For Update'), Input::old('status'),['class'=>'form-control', 'required']) }}
 </div>
 
 

@@ -18,28 +18,23 @@ class HrAttendanceController extends \BaseController {
             $hr_employee = Input::get('hr_employee');
             $id_no = Input::get('id_no');
             $emp_id = HrEmployee::where('employee_id','=',$id_no)->first();
-
+//print_r($emp_id);exit;
             $model = $model->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
             if (isset($hr_employee) && !empty($hr_employee)) $model->where('hr_attendance.hr_employee_id','=', $hr_employee);
             if (isset($emp_id) && !empty($emp_id)) $model->where('hr_attendance.hr_employee_id', '=', $emp_id->id);
 
-            Session::flash('info',"<a href='attendance'><b><ins>View All HR Attendance</ins></b></a>");
             $model = $model->orderBy('id', 'DESC')->paginate(5);
-        } else {
+        }
+        else {
             $model = $model->with('relHrEmployee', 'relHrEmployee.relUser', 'relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         }
         //get all employee List
         $employee_list = User::GenuineEmployeeList();
-
         // old input data
         Input::flash();
         return View::make('hr::hr.hr_attendance.index',compact('model','employee_list','month'));
     }
 
-
-    public function test(){
-        return View::make('hr::hr.hr_attendance.test');
-    }
 
     public function storeAttendance()
     {
