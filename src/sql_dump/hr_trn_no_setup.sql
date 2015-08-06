@@ -1,0 +1,2 @@
+INSERT INTO `hr_trn_no_setup` (`id`, `code`, `title`, `last_number`, `increment`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'STN-', 'Salary Transaction Number', 6, 1, 7, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
