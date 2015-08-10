@@ -106,10 +106,10 @@ Route::any('leave/batch-delete',[
     'uses' => 'HrLeaveController@batchDelete'
 ]);
 
-//Route::any('leave/comments/{id}',[
-//    'as' =>'leave.comments',
-//    'uses' => 'HrLeaveController@viewComments'
-//]);
+Route::any('leave/view-comments/{id}',[
+   'as' =>'leave.view-comments',
+    'uses' => 'HrLeaveController@viewComments'
+]);
 
 //Route::any('update/leave-comments',[
 //    'as' =>'update.leave.comments',

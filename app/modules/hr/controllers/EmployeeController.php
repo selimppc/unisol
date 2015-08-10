@@ -119,8 +119,8 @@ class EmployeeController extends \BaseController {
     public function viewComments($id){
 
         $model = HrLeave::find($id);
-        $comments = HrLeaveComments::with('relHrLeave','relHrLeave.relUser','relHrLeave.relUser.relUserProfile')->where('hr_leave_id','=',$id)->get();
-//        print_r($comments);exit;
+        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
+//      print_r($comments);exit;
 
         return View::make('hr::hr.leave.comments',compact('model','comments'));
     }

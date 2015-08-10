@@ -38,6 +38,10 @@ class HrLeaveComments extends Eloquent{
         return $this->belongsTo('HrLeave', 'hr_leave_id', 'id');
     }
 
+    public function relUser(){
+        return $this->belongsTo('User', 'created_by', 'id');
+    }
+
     // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();

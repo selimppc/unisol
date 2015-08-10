@@ -101,12 +101,12 @@ class HrLeaveController extends \BaseController {
         }
     }
 
-//    public function viewComments($id){
-//        $model = HrLeave::find($id);
-//        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
-////        print_r($comments);exit;
-//        return View::make('hr::hr.leave.comments',compact('model','comments'));
-//    }
+   public function viewComments($id){
+
+        $model = HrLeave::find($id);
+        $comments = HrLeaveComments::with('relHrLeave','relUser','relUser.relUserProfile')->where('hr_leave_id','=',$id)->get();
+        return View::make('hr::hr.leave.hrm.comments',compact('model','comments'));
+    }
 
 //    public function updateComments(){
 //

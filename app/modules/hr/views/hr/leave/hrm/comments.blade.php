@@ -1,3 +1,4 @@
+
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
      <h3 style="text-align: center;">HR Leave Comments</h3>
@@ -5,7 +6,7 @@
 
 <div style="padding-left: 10px; width: 90%;">
 
-    {{ Form::open(array('route'=>'update.leave.comments','method' => 'POST')) }}
+    {{Form::open(array('route'=>'update.leave.comments','method' => 'POST')) }}
     {{Form::hidden('id', $model->id)}}
         <div  style="padding-left: 8%">
             <p>&nbsp;</p>
@@ -28,19 +29,19 @@
                     </tr>
                 </table>
                 <small>Comments as below: </small>
-                @if(isset($comments))
+                {{--@if(isset($comments))--}}
                     @foreach($comments as $ct)
                        <p style="padding: 1%; background: #efefef;">
-                        {{--<b>{{ isset($ct->created_by)? User::FullName($ct->created_by):'' }}</b>:--}}
-                         {{--<b>
-                             {{isset($ct->relHrleave->relUser->relUserProfile->first_name)? $ct->relHrleave->relUser->relUserProfile->first_name:''}}&nbsp;
-                             {{isset($ct->relHrEmployee->relUser->relUserProfile->middle_name)? $ct->relHrEmployee->relUser->relUserProfile->middle_name:''}}&nbsp;
-                             {{isset($ct->relHrEmployee->relUser->relUserProfile->last_name)? $ct->relHrEmployee->relUser->relUserProfile->last_name:''}}
-                         </b>--}}
-                         &nbsp; {{ isset($ct->comment)?$ct->comment:''}}
+                       {{--<b>{{ isset($ct->created_by)? User::FullName($ct->created_by): ' '}}</b>:--}}
+                           <b>
+                             {{isset($ct->relUser->relUserProfile->first_name)? $ct->relUser->relUserProfile->first_name:''}}&nbsp;
+                             {{isset($ct->relUser->relUserProfile->middle_name)? $ct->relUser->relUserProfile->middle_name:''}}&nbsp;
+                             {{isset($ct->relUser->relUserProfile->last_name)? $ct->relUser->relUserProfile->last_name:''}}
+                           </b>
+                       &nbsp; {{ isset($ct->comment)?$ct->comment:''}}
                        </p>
                     @endforeach
-                @endif
+                {{--@endif--}}
                 <div class="form-group">
                    {{ Form::textarea('comment', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;','required'=>'required']) }}
                 </div>
