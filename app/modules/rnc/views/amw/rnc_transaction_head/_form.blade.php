@@ -17,3 +17,6 @@
 <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
 <p>&nbsp;</p>
+
+
+{{ HTML::script('assets/js/custom.js')}}

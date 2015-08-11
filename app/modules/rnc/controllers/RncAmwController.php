@@ -685,12 +685,13 @@ class RncAmwController extends \BaseController
 //                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
 //                ->first()->number;
             $input_data = Input::all();
+            //print_r($input_data);exit;
             $inp_data = [
                 'user_id' => $input_data['user_id'],
                 'issue_date' => $input_data['issue_date'],
                 'rnc_research_paper_id' => $input_data['rnc_research_paper_id'],
                 'total_amount' => 0,
-                'status'=> "open",
+//                'status'=> "open",
             ];
             $model = new RncTransaction();
             if($model->validate($inp_data)) {
@@ -847,7 +848,6 @@ class RncAmwController extends \BaseController
             ->where('rnc_transaction_id', $data->id)
             ->orderBy('id', 'DESC')
             ->get();
-
 
         return View::make('rnc::amw.rnc_transaction_head.view_confirmation', compact('data','model'));
 

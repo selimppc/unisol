@@ -37,3 +37,4 @@
 </div>
 
 
+{{ HTML::script('assets/js/custom.js')}}
