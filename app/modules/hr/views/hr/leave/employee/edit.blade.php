@@ -9,7 +9,7 @@
 
     {{Form::model($model, array('route'=>['leave.update',$model->id,'class'=>'form-control','files'=>true]))}}
         {{ Form::hidden('id', $model->id) }}
-        @include('hr::hr.leave._form')
+        @include('hr::..._form')
     {{ Form::close() }}
 
    </div>

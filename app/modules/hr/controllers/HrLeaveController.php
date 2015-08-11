@@ -17,12 +17,12 @@ class HrLeaveController extends \BaseController {
 
         if($this->isPostRequest()) {
             $employee_list = Input::get('hr_employee_id');
-//            print_r($employee_list);exit;
+
             $date1 = Input::get('from_date');
             $date2 = Input::get('to_date');
             $leave_type = Input::get('hr_leave_type_id');
             $status = Input::get('status');
-//print_r($status);exit;
+
                 $data = $data->with('relUser','relUser.relUserProfile','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
                 if (isset($employee_list) && !empty($employee_list)) $data->where('hr_leave.hr_employee_id', '=', $employee_list);
                 if (isset($date1) && !empty($date1)) $data->where('hr_leave.from_date', '=', $date1);
@@ -42,7 +42,7 @@ class HrLeaveController extends \BaseController {
         $leave_type = HrLeaveType::lists('title','id');
 
         Input::flash();
-        return View::make('hr::hr.leave.index',compact('data','employee_list','leave_type_id','hr_list','date1','date2','leave_type','status'));
+        return View::make('hr::hr.leave.hrm.index',compact('data','employee_list','leave_type_id','hr_list','date1','date2','leave_type','status'));
     }
 
     public function storeLeave()
@@ -101,29 +101,30 @@ class HrLeaveController extends \BaseController {
         }
     }
 
-   public function viewComments($id){
+    public function viewComments($id){
 
         $model = HrLeave::find($id);
         $comments = HrLeaveComments::with('relHrLeave','relUser','relUser.relUserProfile')->where('hr_leave_id','=',$id)->get();
         return View::make('hr::hr.leave.hrm.comments',compact('model','comments'));
     }
 
-//    public function updateComments(){
-//
-//        $data = Input::all();
-//        $model1 = HrLeave::find($data['id']);
-//        $model1->update($data);
-//
-//        $model2 = new HrLeaveComments();
-//        $model2 ->hr_leave_id = $data['id'];
-//        $model2->comment = Input::get('comment');
-//        if($model2->save()){
-//            Session::flash('message', 'Comments Added Successfully');
-//            return Redirect::back();
-//        }else{
-//            Session::flash('message', 'Comments Do not Added');
-//            return Redirect::back();
-//        }
-//
-//    }
+    public function storeComments(){
+
+        $data = Input::all();
+        $model1 = HrLeave::find($data['id']);
+        $model1->update($data);
+
+        $model2 = new HrLeaveComments();
+        $model2 ->hr_leave_id = $data['id'];
+        $model2->comment = Input::get('comment');
+
+        if($model2->save()){
+            Session::flash('message', 'Comments Added Successfully');
+            return Redirect::back();
+        }else{
+            Session::flash('message', 'Comments Do not Added');
+            return Redirect::back();
+        }
+
+    }
 }

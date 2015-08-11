@@ -6,7 +6,7 @@
 
 <div style="padding-left: 10px; width: 90%;">
 
-    {{Form::open(array('route'=>'update.leave.comments','method' => 'POST')) }}
+    {{Form::open(array('route'=>'store.leave.comments','method' => 'POST')) }}
     {{Form::hidden('id', $model->id)}}
         <div  style="padding-left: 8%">
             <p>&nbsp;</p>

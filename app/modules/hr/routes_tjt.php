@@ -111,10 +111,11 @@ Route::any('leave/view-comments/{id}',[
     'uses' => 'HrLeaveController@viewComments'
 ]);
 
-//Route::any('update/leave-comments',[
-//    'as' =>'update.leave.comments',
-//    'uses' => 'HrLeaveController@updateComments'
-//]);
+Route::any('leave/store-comments',[
+    'as' =>'store.leave.comments',
+    'uses' => 'HrLeaveController@storeComments'
+]);
+
 //hr_employee leave
 Route::any('employee/leave',[
     'as' =>'employee.leave',

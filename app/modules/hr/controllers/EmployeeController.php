@@ -2,9 +2,9 @@
 
 class EmployeeController extends \BaseController {
 
-    /*function __construct() {
+    function __construct() {
         $this->beforeFilter('employee', array('except' => array('')));
-    }*/
+    }
 
     protected function isPostRequest()
     {
@@ -13,12 +13,13 @@ class EmployeeController extends \BaseController {
 
     public function employeeIndex()
     {
-        $employee_id = Auth::user()->get()->id;
-        $hr_employee_id = HrEmployee::where('user_id','=',$employee_id)->first();
+        $user_id = Auth::user()->get()->id;
+        $employee_id = HrEmployee::where('user_id','=',$user_id)->first();
+        $hr_employee_id = $employee_id->id;
 
-        if(isset($hr_employee_id->id)){
+        if(isset($employee_id->id)){
             $data = HrLeave::with('relUser','relUser.relUserProfile','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-                ->where('hr_employee_id','=',$hr_employee_id->id)->get();
+                ->where('hr_employee_id','=',$employee_id->id)->get();
         }else{
             Session::flash('info','This User Do Not Added As Hr-Employee');
             return Redirect::back();
@@ -27,16 +28,20 @@ class EmployeeController extends \BaseController {
         $leave_type_id = HrLeaveType::lists('title','id');
         $employee_list = User::ExceptLoggedUser();
 
-        return View::make('hr::hr.leave.hr_employee',compact('hr_list','leave_type_id','employee_list','data','hr_employee_id'));
+        return View::make('hr::hr.leave..employee.index',compact('hr_list','leave_type_id','employee_list','data','hr_employee_id'));
     }
 
 	public function storeHrLeave()
 	{
+//        echo 'ok';exit;
         if($this->isPostRequest()){
             $input_data = Input::all();
+//            print_r($input_data);exit;
 
             $model = new HrLeave();
             $model->hr_employee_id =  Input::get('hr_employee_id');
+            $model->forward_to =  Input::get('forward_to');
+            $model->alt_hr_employee_id =  Input::get('alt_hr_employee_id');
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
@@ -56,7 +61,7 @@ class EmployeeController extends \BaseController {
     public function showLeave($id)
     {
         $model = HrLeave::with('relUser','relUser.relUserProfile','relHrAltEmployee','relHrAltEmployee.relUser','relHrAltEmployee.relUser.relUserProfile')->find($id);
-        return View::make('hr::hr.leave.show',compact('model'));
+        return View::make('hr::hr.leave.employee.show',compact('model'));
     }
     public function editLeave($id){
 
@@ -68,7 +73,7 @@ class EmployeeController extends \BaseController {
 
         $hr_employee_id = HrEmployee::where('user_id','=',$employee_id)->first()->id;
         $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
-        return View::make('hr::hr.leave.edit',compact('model','employee_list','leave_type_id','comments','hr_list','hr_employee_id'));
+        return View::make('hr::hr.leave.employee.edit',compact('model','employee_list','leave_type_id','comments','hr_list','hr_employee_id'));
     }
 
     public function updateLeave($id){
@@ -112,17 +117,12 @@ class EmployeeController extends \BaseController {
         }
     }
 
-    public function storeComments(){
-
-    }
 
     public function viewComments($id){
 
         $model = HrLeave::find($id);
-        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
-//      print_r($comments);exit;
-
-        return View::make('hr::hr.leave.comments',compact('model','comments'));
+        $comments = HrLeaveComments::with('relHrLeave','relUser','relUser.relUserProfile')->where('hr_leave_id','=',$id)->get();
+        return View::make('hr::hr.leave.employee.comments',compact('model','comments'));
     }
 
     public function updateComments(){

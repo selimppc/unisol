@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel" style="text-align: center">HR LEAVE</h4>
       </div>
       <div class="modal-body">
-         @include('hr::hr.leave._form')
+         @include('hr::hr.leave.employee._form')
       </div>
     </div>
   </div>
