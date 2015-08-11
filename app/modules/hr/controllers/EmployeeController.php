@@ -33,10 +33,8 @@ class EmployeeController extends \BaseController {
 
 	public function storeHrLeave()
 	{
-//        echo 'ok';exit;
         if($this->isPostRequest()){
             $input_data = Input::all();
-//            print_r($input_data);exit;
 
             $model = new HrLeave();
             $model->hr_employee_id =  Input::get('hr_employee_id');
