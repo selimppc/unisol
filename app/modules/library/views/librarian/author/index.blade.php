@@ -40,8 +40,7 @@
                                 <?php $sl = $book_author->getFrom(); ?>
                                 @foreach ($book_author as $value)
                                     <tr>
-                                        <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
-                                        </td>
+                                        <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}"></td>
                                         <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{isset($value->name) ? $value->name :''}}</td>
                                         <td>{{isset($value->email) ? $value->email : ''}}</td>

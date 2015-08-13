@@ -2,7 +2,7 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <b class="container">{{HTML::image('/img/cartss.gif')}}<span class="label label-success" style="margin-left: 980px">{{count($all_cart_books)}}</span></b>
         </a>
-        <ul class="dropdown-menu" style="margin-left: 800px;">
+        <ul class="dropdown-menu" style="margin-left: 600px;">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <p style="text-align: center"><b><ins>My Cart</ins></b></p>
             <p style="text-align: center">
@@ -14,8 +14,8 @@
                 <table class="table table-striped  table-bordered">
                     <thead>
                        <tr>
-                          <th width="10%">Book Name</th>
-                          <th width="8%">Digital Sell Price</th>
+                          <th width="12%">Book Name</th>
+                          <th width="5%">Digital Sell Price</th>
                        </tr>
                     </thead>
                     @if(!empty($all_cart_books))
@@ -29,12 +29,12 @@
                                @endforeach
                            @endif
                         </tbody>
-                     @else
+                    @else
                        <p style="text-align: center;color: palevioletred">{{'No-More Items Found In Your Cart.'}}</p>
-                     @endif
+                    @endif
                </table>
 
-               <div style="margin-left: 100px">
+               <div class="pull-right">
                   <a href="{{URL::route('faculty.checkout') }}" class="btn btn-info btn-xs">Checkout</a>
                </div>
         </ul>
