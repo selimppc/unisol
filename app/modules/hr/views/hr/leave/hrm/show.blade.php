@@ -1,7 +1,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel" style="text-align: center">HR LEAVE.. OF {{}}</h4>
+    <h4 class="modal-title" id="myModalLabel" style="text-align: center">HR LEAVE Of "{{isset($model->created_by)?User::FullName($model->created_by):''}}"</h4>
 </div>
 
 <div class="modal-body">
@@ -9,7 +9,12 @@
              <table class="table table-striped  table-bordered">
                    <tr>
                       <th class="col-lg-6">Forward To :</th>
-                      <td>{{isset($model->forward_to)?$model->relHrEmployee->relUser->relUserProfile->first_name.' '.$model->relHrEmployee->relUser->relUserProfile->middle_name.' '.$model->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                      <td>
+                      {{--{{isset($model->forward_to)?$model->relHrEmployee->relUser->relUserProfile->first_name.' '.$model->relHrEmployee->relUser->relUserProfile->middle_name.' '.$model->relHrEmployee->relUser->relUserProfile->last_name:''}}--}}
+                      {{isset($model->relUser->relUserProfile->first_name)? $model->relUser->relUserProfile->first_name:''}}
+                      {{isset($model->relUser->relUserProfile->middle_name)? $model->relUser->relUserProfile->middle_name:''}}
+                      {{isset($model->relUser->relUserProfile->last_name)? $model->relUser->relUserProfile->last_name:''}}
+                      </td>
                    </tr>
 
                    <tr>
