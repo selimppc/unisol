@@ -36,11 +36,11 @@
                                <td>{{ isset($mcsb->user_id) ? User::FullName($mcsb->user_id) : '' }}</td>
                                <td>{{ $mcsb->relLibBook->title }}</td>
                                <td>{{ $mcsb->issue_date }}</td>
-                               <td>{{ $mcsb->relLibBookFinancialTransaction->trn_type }}</td>
-                               <td>{{ $mcsb->relLibBookFinancialTransaction->status }}</td>
-                               <td>{{ $mcsb->relLibBookFinancialTransaction->amount }}</td>
+                               <td>{{ $mcsb->relLibBookTransactionFinancial->trn_type }}</td>
+                               <td>{{ $mcsb->relLibBookTransactionFinancial->status }}</td>
+                               <td>{{ $mcsb->relLibBookTransactionFinancial->amount }}</td>
                                <td>
-                                        @if($mcsb->relLibBookFinancialTransaction->status == "paid")
+                                        @if($mcsb->relLibBookTransactionFinancial->status == "paid")
                                                 <a href="{{ URL::route('student.book.download',['book_id'=>$mcsb->relLibBook->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i>Download</a>
                                         @else
                                                <a href="{{ URL::route('student.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>

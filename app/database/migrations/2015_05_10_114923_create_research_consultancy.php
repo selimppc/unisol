@@ -130,7 +130,7 @@ class CreateResearchConsultancy extends Migration {
             $table->float('total_amount');
 
             $table->enum('status', array(
-                'viewed', 'received', 'purchased', 'confirmed', 'invoiced'
+                'open','viewed', 'received', 'purchased', 'confirmed', 'invoiced'
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);

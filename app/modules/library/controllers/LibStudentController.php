@@ -40,7 +40,7 @@ class LibStudentController extends \BaseController
             $query->on('lbt.lib_books_id', '=', 'lib_books.id');
             $query->where('lbt.user_id',  '=', $user_id);
         });
-        $model = $model->leftJoin('lib_book_financial_transaction as lbft', function($query)  use($user_id){
+        $model = $model->leftJoin('lib_book_transaction_financial as lbft', function($query)  use($user_id){
             $query->on('lbft.lib_book_transaction_id', '=', 'lbt.id');
         });
 
