@@ -31,11 +31,11 @@
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                <td>{{ $value->relLibBook->title }}</td>
                                <td>{{ $value->issue_date }}</td>
-                               <td>{{ $value->relLibBookFinancialTransaction->trn_type }}</td>
-                               <td>{{ $value->relLibBookFinancialTransaction->status }}</td>
-                               <td>{{ $value->relLibBookFinancialTransaction->amount }}</td>
+                               <td>{{ $value->relLibBookTransactionFinancial->trn_type }}</td>
+                               <td>{{ $value->relLibBookTransactionFinancial->status }}</td>
+                               <td>{{ $value->relLibBookTransactionFinancial->amount }}</td>
                                <td>
-                                    @if($value->relLibBookFinancialTransaction->status == "paid")
+                                    @if($value->relLibBookTransactionFinancial->status == "paid")
                                         <a href="{{ URL::route('faculty.book.download',['book_id'=>$value->relLibBook->id])}}"
                                           class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins></ins></b>
                                         </a>

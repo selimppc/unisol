@@ -130,7 +130,7 @@ class RncFacultyController extends \BaseController
             $query->on('rnc_t.rnc_research_paper_id', '=', 'rnc_research_paper.id');
             $query->where('rnc_t.user_id',  '=', $user_id);
         });
-        $model = $model->leftJoin('rnc_financial_transaction as rnc_ft', function($query)  use($user_id){
+        $model = $model->leftJoin('rnc_transaction_financial as rnc_ft', function($query)  use($user_id){
             $query->on('rnc_ft.rnc_transaction_id', '=', 'rnc_t.id');
         });
 

@@ -1,6 +1,6 @@
    <ul class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <b class="container">{{HTML::image('/img/cartss.gif')}}<span class="label label-success" style="margin-left: 1030px"> {{count($all_cart_books)}}</span></b>
+            <b class="container">{{HTML::image('/img/cartss.gif')}}<span class="label label-success" style="margin-left: 962px"> {{count($all_cart_books)}}</span></b>
         </a>
         <ul class="dropdown-menu" style="margin-left: 800px;">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -15,7 +15,7 @@
                     <thead>
                        <tr>
                           <th width="10%">Book Name</th>
-                          <th width="8%">Price</th>
+                          <th width="8%">Digital Sell Price</th>
                        </tr>
                     </thead>
                     @if(!empty($all_cart_books))
@@ -43,9 +43,9 @@
     <style>
     .container img {
         width: 4%;
-        height: 30px;
+        height: 50%;
         position: absolute;
-        right: 42px;
+        right: 3%;
         border-radius: 38%;
     }
     </style>
