@@ -10,7 +10,6 @@
                    <tr>
                       <th class="col-lg-6">Forward To :</th>
                       <td>
-                      {{--{{isset($model->forward_to)?$model->relHrEmployee->relUser->relUserProfile->first_name.' '.$model->relHrEmployee->relUser->relUserProfile->middle_name.' '.$model->relHrEmployee->relUser->relUserProfile->last_name:''}}--}}
                       {{isset($model->relUser->relUserProfile->first_name)? $model->relUser->relUserProfile->first_name:''}}
                       {{isset($model->relUser->relUserProfile->middle_name)? $model->relUser->relUserProfile->middle_name:''}}
                       {{isset($model->relUser->relUserProfile->last_name)? $model->relUser->relUserProfile->last_name:''}}
