@@ -114,7 +114,7 @@
                                 <td>{{$values->alt_contact_no}}</td>
                                 <td>{{ucfirst($values->status)}}</td>
                                 <td>
-                                     <a href="{{ URL::route('leave.show',['id'=>$values->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                     <a href="{{ URL::route('leave.view',['id'=>$values->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                                      <a href="{{ URL::route('leave.view-comments',['id'=>$values->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightskyblue" title="comments"><i class="fa fa-comment"></i></a>
                                 </td>
                             </tr>

@@ -11,7 +11,7 @@
 */
 Route::any('test',[
     'as' =>'test',
-    'uses' => 'HrAttendanceController@test'
+    'uses' => 'HrAttendanceController@timePicker'
 ]);
 //Hr Attendance
 
@@ -96,9 +96,9 @@ Route::any('leave',[
     'uses' => 'HrLeaveController@index'
 ]);
 
-Route::any('leave/show/{id}',[
-    'as' =>'leave.show',
-    'uses' => 'HrLeaveController@showLeave'
+Route::any('leave/view/{id}',[
+    'as' =>'leave.view',
+    'uses' => 'HrLeaveController@viewLeave'
 ]);
 
 Route::any('leave/batch-delete',[

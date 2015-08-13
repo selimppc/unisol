@@ -83,7 +83,7 @@ class HrLeaveController extends \BaseController {
         return Redirect::back();
     }
 
-    public function showLeave($id)
+    public function viewLeave($id)
     {
         $model = HrLeave::with('relUser','relUser.relUserProfile','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
 //        print_r($model);exit;

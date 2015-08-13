@@ -35,7 +35,6 @@ class HrAttendanceController extends \BaseController {
         return View::make('hr::hr.hr_attendance.index',compact('model','employee_list','month'));
     }
 
-
     public function storeAttendance()
     {
         if($this->isPostRequest()){
