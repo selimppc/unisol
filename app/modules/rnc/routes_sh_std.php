@@ -51,7 +51,7 @@
 
     Route::any('student/config/batch-delete',[
         'as' => 'student.config.batch-delete',
-        'uses'=> 'RncStudentController@batchDeletConfig'
+        'uses'=> 'RncStudentController@batchDeleteConfig'
     ]);
 
 

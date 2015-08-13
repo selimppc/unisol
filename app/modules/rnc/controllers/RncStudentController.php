@@ -30,7 +30,7 @@ class RncStudentController extends \BaseController {
                 Session::flash('message', "$name Config  Added");
             }
             catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
+                //If there are any exceptions,rollback the transaction
                 DB::rollback();
                 Session::flash('danger', "$name Config not added.Invalid Request!");
             }
@@ -102,7 +102,7 @@ class RncStudentController extends \BaseController {
         }
     }
 
-    public function batchDeletConfig()
+    public function batchDeleteConfig()
     {
         try{
             RncConfig::destroy(Request::get('id'));
@@ -131,7 +131,7 @@ class RncStudentController extends \BaseController {
             $query->on('rnc_t.rnc_research_paper_id', '=', 'rnc_research_paper.id');
             $query->where('rnc_t.user_id',  '=', $user_id);
         });
-        $model = $model->leftJoin('rnc_financial_transaction as rnc_ft', function($query)  use($user_id){
+        $model = $model->leftJoin('rnc_transaction_financial as rnc_ft', function($query)  use($user_id){
             $query->on('rnc_ft.rnc_transaction_id', '=', 'rnc_t.id');
         });
 
