@@ -30,7 +30,7 @@
                             <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                <td>{{ $value->relLibBook->title }}</td>
-                               <td>{{ $value->issue_date }}</td>
+                               <td>{{ $value->issue_date}}</td>
                                <td>{{ $value->relLibBookTransactionFinancial->trn_type }}</td>
                                <td>{{ $value->relLibBookTransactionFinancial->status }}</td>
                                <td>{{ $value->relLibBookTransactionFinancial->amount }}</td>
@@ -55,12 +55,12 @@
 
  <!-- Modal  -->
   <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-
-         </div>
-       </div>
+     <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+     </div>
   </div>
 
 
  @stop
+

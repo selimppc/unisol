@@ -31,7 +31,7 @@
                  <tbody>
                      @if(isset($my_cart_books))
                          @foreach($my_cart_books as $mcsb)
-                           <tr>
+                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                <td>{{ isset($mcsb->user_id) ? User::FullName($mcsb->user_id) : '' }}</td>
                                <td>{{ $mcsb->relLibBook->title }}</td>
@@ -40,14 +40,13 @@
                                <td>{{ $mcsb->relLibBookTransactionFinancial->status }}</td>
                                <td>{{ $mcsb->relLibBookTransactionFinancial->amount }}</td>
                                <td>
-                                        @if($mcsb->relLibBookTransactionFinancial->status == "paid")
-                                                <a href="{{ URL::route('student.book.download',['book_id'=>$mcsb->relLibBook->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i>Download</a>
-                                        @else
-                                               <a href="{{ URL::route('student.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
-                                        @endif
-                                    {{--<a href="{{ URL::route('student.remove-from-cart',['id'=>$mcsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>--}}
+                                    @if($mcsb->relLibBookTransactionFinancial->status == "paid")
+                                       <a href="{{ URL::route('student.book.download',['book_id'=>$mcsb->relLibBook->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i>Download</a>
+                                    @else
+                                       <a href="{{ URL::route('student.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
+                                    @endif
                                </td>
-                           </tr>
+                            </tr>
                          @endforeach
                      @endif
                  </tbody>
