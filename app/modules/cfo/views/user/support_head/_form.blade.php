@@ -15,7 +15,7 @@
             </div><!-- /.box-header -->
             <div class="box-body" style="padding: 30px;">
             {{Form::open(['route'=>'support-head.support-data', 'files'=>true])}}
-               <div class='col-lg-6' style="padding-left: 0;">
+               <div class='col-lg-6'>
                   {{ Form::label('support_code', 'Support Code') }}
                   {{ Form::text('support_code', Input::old('support_code'),['class'=>'form-control','placeholder'=>'Enter Your Support code If Exists']) }}
                </div>
@@ -34,23 +34,23 @@
                 {{Form::hidden('status','new')}}
 
                 <div class="form-group">
-                    <div class='col-lg-6' style="padding-left: 0;">
+                    <div class='col-lg-6'>
                        {{ Form::label('name', 'Name') }}<span class="text-danger">*</span>
                        {{ Form::text('name', Input::old('name'),['class'=>'form-control', 'placeholder'=>'Write Your name','required']) }}
                     </div>
 
-                    <div class='col-lg-6' style="padding-right: 0;">
+                    <div class='col-lg-6'>
                         {{ Form::label('email', 'Email') }}<span class="text-danger">*</span>
                         {{ Form::text('email', Input::old('email'),[ 'class'=>'form-control','required']) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
                 <div class='form-group'>
-                   <div class='col-lg-6' style="padding-left: 0;">
+                   <div class='col-lg-6'>
                        {{ Form::label('phone', 'Phone Number') }}<span class="text-danger">*</span>
                        {{ Form::text('phone', Input::old('phone'),['class'=>'form-control','required']) }}
                    </div>
-                   <div class='col-lg-6' style="padding-right: 0;">
+                   <div class='col-lg-6'>
                        {{ Form::label('subject', 'Subject') }}
                        {{ Form::text('subject', Input::old('subject'),['class'=>'form-control']) }}
                    </div>
@@ -58,11 +58,11 @@
                 <p>&nbsp;</p>
 
                 <div class="form-group">
-                    <div class='col-lg-6' style="padding-left: 0;">
+                    <div class='col-lg-6'>
                         {{ Form::label('cfo_category_id', 'Cfo Category') }}<span class="text-danger">*</span>
                         {{ Form::select('cfo_category_id', $cfo_category_id, Input::old('cfo_category_id'), [ 'class'=>'form-control','required' ]) }}
                     </div>
-                    <div class='col-lg-6' style="padding-right: 0;">
+                    <div class='col-lg-6'>
                          {{ Form::label('priority', 'Priority') }}<span class="text-danger">*</span>
                          {{ Form::select('priority', array( 'low' => 'Low', 'medium'=>'Medium','high' => 'High'),
                          Input::old('board_university'),[ 'class'=>'form-control','required']) }}
