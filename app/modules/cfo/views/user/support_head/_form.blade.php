@@ -51,7 +51,7 @@
                                          {{ Form::text('email', Input::old('email'),[ 'class'=>'form-control','required']) }}
                                      </div>
                                  </div>
-                                 <p>&nbsp;</p>
+
                                  <div class='form-group'>
                                      <div class='col-lg-6'>
                                         {{ Form::label('phone', 'Phone Number') }}<span class="text-danger">*</span>
@@ -62,7 +62,6 @@
                                         {{ Form::text('subject', Input::old('subject'),['class'=>'form-control']) }}
                                      </div>
                                  </div>
-                                 <p>&nbsp;</p>
 
                                  <div class="form-group">
                                      <div class='col-lg-6'>
@@ -75,8 +74,8 @@
                                           Input::old('board_university'),[ 'class'=>'form-control','required']) }}
                                      </div>
                                  </div>
-                                 <p>&nbsp;</p>
-                                 <div>
+
+                                 <div class='col-lg-12'>
                                     {{ Form::label('message', 'Message') }}
                                     {{ Form::textarea('message', Input::old('message'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '35x6', 'class'=>'form-control','placeholder'=>'Write Your message here...']) }}
                                  </div>
