@@ -6,71 +6,65 @@
     @include('layouts._sidebar_public')
 @stop
 @section('content')
-
     <!-- left column -->
-    <div class="col-md-6">
+    <div class="col-md-12">
         <!-- general form elements -->
         <div class="box box-solid">
-            <div class="box-header">
-                <h3 class="text-center text-green">Create Account</h3>
+            <div class="box-header" style="background-color: #0490a6">
+                            <h3 class="text-center text-green"><b style="color: #f5f5f5">Sign Up Here.......</b></h3>
             </div><!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="background-color:aliceblue">
                 {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
-
-                <span class="text-muted ">Please put the Values to following input box and be an registered user as Applicant.</span>
-                <div>&nbsp;</div>
-                <span class="text-muted "><em><span style="color:red;">*</span>Marked are required fields </em></span>
-                <div>&nbsp;</div>
+               
+                <span class="text-muted ">Please fillup the following fields and be an registered applicant.</span>
+                <span class="text-muted "><em style="color:midnightblue"><span style="color:red;">(*)</span> Marked are required fields </em></span>
 
                 <div class="control-group">
-                    {{ Form::label('first_name', 'First Name:') }}<span style="color:red;">*</span>
-                    {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name')) }}
+                    <div class="col-lg-4">
+                       {{ Form::label('first_name', 'First Name:') }}<span style="color:red;">*</span>
+                       {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name','required')) }}
+                    </div>
+                    <div class="col-lg-4">
+                         {{ Form::label('middle_name', 'Middle Name:') }}
+                         {{ Form::text('middle_name',Input::old('middle_name'), array('class' => 'form-control','placeholder'=>'Enter Middle  name')) }}
+                    </div>
+                     <div class="col-lg-4">
+                         {{ Form::label('last_name', 'Last Name:') }}<span style="color:red;">*</span>
+                         {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name','required')) }}
+                     </div>
                 </div>
+                <p>&nbsp;</p>
                 <div class="control-group">
-                    {{ Form::label('middle_name', 'Middle Name:') }}
-                    {{ Form::text('middle_name',Input::old('middle_name'), array('class' => 'form-control','placeholder'=>'Enter Middle Name')) }}
+                    <div class="col-lg-6" >
+                        {{ Form::label('username', 'User Name:') }}<span class="text-danger">*</span>
+                        {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name','required')) }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ Form::label('email', 'Email:') }}<span style="color:red;">*</span>
+                        {{ Form::text('email', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
+                    </div>
                 </div>
-                <div class="control-group">
-                    {{ Form::label('last_name', 'Last Name:') }}<span style="color:red;">*</span>
-                    {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last Name')) }}
-                </div>
-                <div class="control-group ">
-                    {{ Form::label('username', 'User Name:') }}<span style="color:red;">*</span>
-                    {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter User Name')) }}
-                </div>
-                <div class="control-group ">
-                    {{ Form::label('email', 'Email:') }}<span style="color:red;">*</span>
-                    {{ Form::text('email', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
-                </div>
-                <div class="control-group ">
-                    {{ Form::label('password', 'Password:') }} <span style="color:red;">*</span>
-                    {{ Form::password('password', array('placeholder'=>'','class'=>'form-control')) }}
-                </div>
-                <div class="control-group ">
-                    {{ Form::label('confirm_password', 'Confirm Password:') }} <span style="color:red;">*</span>
-                    {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control')) }}
-                </div>
-                <br>
+                <p>&nbsp;</p>
 
-                <br>
-                {{ Form::submit('Register', array('class' => 'btn btn-success')) }}
-                <a href="{{URL::previous()}}" class="btn btn-default">Close</a>
-                <br>
-                <br>
+                <div class="control-group">
+                     <div class="col-lg-6" >
+                        {{ Form::label('password', 'Password:') }} <span style="color:red;">*</span>
+                        {{ Form::password('password', array('placeholder'=>'','class'=>'form-control','required')) }}
+                     </div>
+                     <div class="col-lg-6">
+                        {{ Form::label('confirm_password', 'Confirm Password:') }} <span style="color:red;">*</span>
+                        {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control')) }}
+                     </div>
+                </div>
+                <p>&nbsp;</p>
+
+                <div class="pull-right">
+                     {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-sm')) }}
+                     <a href="{{URL::previous()}}" class="btn btn-default btn-sm" style="margin-right:8px">Close</a>
+                </div>
+                <p>&nbsp;</p>
                 {{ Form::close() }}
-                <!--<div class="margin text-center">
-                    <span>Register using social networks</span>
-                    <br/>
-                    <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
-                    <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
-                    <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
-
-                </div>-->
             </div><!-- /.box -->
-            {{--</div>--}}
         </div>
     </div>
-
-
 @stop
-
