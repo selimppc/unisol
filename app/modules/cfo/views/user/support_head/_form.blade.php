@@ -69,9 +69,9 @@
                     </div>
                 </div>
                 <p>&nbsp;</p>
-                <div class='form-group'>
+                <div class=''>
                    {{ Form::label('message', 'Message') }}
-                   {{ Form::textarea('message', Input::old('message'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '40x9', 'class'=>'form-control','placeholder'=>'Write Your message here...']) }}
+                   {{ Form::textarea('message', Input::old('message'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '35x6', 'class'=>'form-control','placeholder'=>'Write Your message here...']) }}
                 </div>
 
                 <p>&nbsp;</p>
