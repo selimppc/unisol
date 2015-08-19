@@ -31,8 +31,8 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
-                        @if($profile != null)
-                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/profile-info/edit',['id'=>$profile->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile <i class="fa fa-arrow-circle-right"></i></a>
+                        @if(isset($model))
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/edit/profile-info',['id'=>$model->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile <i class="fa fa-arrow-circle-right"></i></a>
                         @else
                             <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
                               + Add Profile
@@ -43,53 +43,53 @@
                                 <tr>
                                     <th>Profile Picture</th>
                                        <td>
-                                       @if(isset($profile->image))
-                                           @if($profile->image == null)
-                                              <a class=" btn-link" href="{{ URL::route('user/profile-info/profile-image',['id'=>$profile->id])}}" data-toggle="modal" data-target="#changeImageModal">
-                                                {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
+                                       @if(isset($model->image))
+                                           @if($model->image == null)
+                                              <a class=" btn-link" href="{{ URL::route('user/profile-info/profile-image',['id'=>$model->id])}}" data-toggle="modal" data-target="#changeImageModal">
+                                                {{ $model->image != null ? HTML::image('user_images/profile/'.$model->image, $model->image):""}}
                                                 <ins>Add Your Profile Picture</ins>
                                               </a>
                                               @else
-                                              {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
+                                              {{ $model->image != null ? HTML::image('user_images/profile/'.$model->image, $model->image):""}}
                                            @endif
                                         @endif
                                        </td>
                                 </tr>
                                 <tr>
                                     <th>First Name</th>
-                                    <td>{{isset($profile->first_name) ? $profile->first_name : ''}}</td>
+                                    <td>{{isset($model->first_name) ? $model->first_name : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Middle Name</th>
-                                    <td>{{isset($profile->middle_name) ? $profile->middle_name : ''}}</td>
+                                    <td>{{isset($model->middle_name) ? $model->middle_name : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Last Name</th>
-                                    <td>{{isset($profile->last_name) ? $profile->last_name : ''}}</td>
+                                    <td>{{isset($model->last_name) ? $model->last_name : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Date of Birth</th>
-                                    <td>{{isset($profile->date_of_birth) ? $profile->date_of_birth : ''}}</td>
+                                    <td>{{isset($model->date_of_birth) ? $model->date_of_birth : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Gender</th>
-                                    <td>{{isset($profile->gender) ? $profile->gender : ''}}</td>
+                                    <td>{{isset($model->gender) ? $model->gender : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Country</th>
-                                    <td>{{isset($profile->country) ? $profile->relCountry->title :" "}}</td>
+                                    <td>{{isset($model->country) ? $model->relCountry->title :" "}}</td>
                                 </tr>
                                 <tr>
                                     <th>City</th>
-                                    <td>{{isset($profile->city) ? $profile->city : ''}}</td>
+                                    <td>{{isset($model->city) ? $model->city : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>State</th>
-                                    <td>{{isset($profile->state) ? $profile->state : ''}}</td>
+                                    <td>{{isset($model->state) ? $model->state : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Zip Code</th>
-                                    <td>{{isset($profile->zip_code) ? $profile->zip_code : ''}}</td>
+                                    <td>{{isset($model->zip_code) ? $model->zip_code : ''}}</td>
                                 </tr>
                             </table>
                         </div>
