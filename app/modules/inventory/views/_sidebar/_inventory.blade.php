@@ -4,16 +4,6 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>--}}
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-bar-chart-o"></i><span> Account Payable </span><i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{URL::route('index-account-payable')}}"><i class="fa fa-angle-double-right"></i> Invoice </a></li>
-            <li><a href="{{URL::route('manage-ap')}}"><i class="fa fa-angle-double-right"></i> Manage AP </a></li>
-
-        </ul>
-    </li>
 
 
     <li class="treeview">
