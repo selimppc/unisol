@@ -34,7 +34,7 @@
                             Gender : {{$userProfile->gender}}<br>
                             City : {{$userProfile->city}}<br>
                             Zip Code : {{$userProfile->zip_code}}<br>
-                            Country : {{$userProfile->country}}
+                            Country : {{$userProfile->relCountry->title}}
                         @else
                             {{"No Profile data found !"}}
                         @endif
@@ -43,7 +43,7 @@
                 </div>
            </div>
            <div class="box-footer clearfix">
-               <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+              <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userProfile->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit <i class="fa fa-arrow-circle-right"></i></a>
            </div>
        </div>
        <!-- Meta Information -->
@@ -67,7 +67,7 @@
                 @endif
           </div>
           <div class="box-footer clearfix">
-              <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+              <button class="pull-right btn-sm btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
           </div>
       </div>
    </section>
@@ -95,9 +95,16 @@
                 @endif
               </div>
               <div class="box-footer clearfix">
-                  <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+                  <button class="pull-right btn btn-sm btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
               </div>
           </div>
 
       </section>
+      <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+
+             </div>
+         </div>
+      </div>
 @stop

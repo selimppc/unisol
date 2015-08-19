@@ -280,7 +280,7 @@ class UserSignupController extends \BaseController {
    // user password_change view method
     public function userResetPassword(){
 
-        return View::make('admission::signup.username_reset');
+        return View::make('admission::signup.password_reset');
     }
 
     // user password_change method

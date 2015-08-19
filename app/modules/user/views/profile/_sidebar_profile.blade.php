@@ -13,7 +13,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{URL::to('user/reset_password') }}"><i class="fa fa-angle-double-right"></i> Change Password</a></li>
-            <li><a href="{{URL::to('user/meta_data') }}"><i class="fa fa-angle-double-right"></i> Profile</a></li>
+            {{--<li><a href="{{URL::to('user/meta_data') }}"><i class="fa fa-angle-double-right"></i> Profile</a></li>--}}
         </ul>
     </li>
 </ul>
