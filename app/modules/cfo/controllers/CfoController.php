@@ -129,7 +129,7 @@ class CfoController extends \BaseController {
             return View::make('cfo::user.support_head.comment_to_cfo',compact('data','reply_data'));
         }
         else{
-            Session::flash('message', 'This Support Code Does Not Exist.');
+            Session::flash('danger', 'This Support Code Does Not Exist.');
             return Redirect::back();
         }
     }
