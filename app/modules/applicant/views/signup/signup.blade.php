@@ -15,10 +15,10 @@
             </div><!-- /.box-header -->
             <div class="box-body" style="background-color:aliceblue">
                 {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
-               
-                <span class="text-muted ">Please fillup the following fields and be an registered applicant.</span>
-                <span class="text-muted "><em style="color:midnightblue"><span style="color:red;">(*)</span> Marked are required fields </em></span>
 
+                <span class="text-muted ">Please fillup the following fields and be an registered applicant.</span>
+                <span class="text-muted "><em style="color:midnightblue"><span style="color:red;">(*)</span> Marked are required fields. </em></span>
+                <p>&nbsp;</p>
                 <div class="control-group">
                     <div class="col-lg-4">
                        {{ Form::label('first_name', 'First Name:') }}<span style="color:red;">*</span>
