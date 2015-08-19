@@ -18,33 +18,26 @@ class CreateDumpSql extends Migration {
 
 
 		// Hr Data
-		/*hr_allowance
-		hr_bank
-		hr_bonus
-		hr_employee
-		hr_loan_detail
-		hr_loan_head
-		hr_over_time
-		hr_salary
-		hr_salary_advance
-		hr_salary_allowance
-		hr_salary_deduction
-		hr_salary_grade
-		hr_salary_transaction_detail
-		hr_salary_transaction_head
-		hr_tax_rule
-		hr_trn_no_setup
-		hr_attendance
-		hr_leave
-		hr_provident_fund
-		hr_leave_comments */
-
+		DB::unprepared(file_get_contents("src/sql_dump/hr_allowance.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_bank.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_bonus.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_employee.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_loan_detail.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_loan_head.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_over_time.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_salary.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_salary_advance.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_salary_allowance.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_salary_deduction.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_salary_grade.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_salary_transaction_detail.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_salary_transaction_head.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_tax_rule.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_trn_no_setup.sql"));
 		DB::unprepared(file_get_contents("src/sql_dump/hr_attendance.sql"));
 		DB::unprepared(file_get_contents("src/sql_dump/hr_leave.sql"));
 		DB::unprepared(file_get_contents("src/sql_dump/hr_provident_fund.sql"));
-		DB::unprepared(file_get_contents("src/sql_dump/hr_loan_head.sql"));
-		DB::unprepared(file_get_contents("src/sql_dump/hr_salary.sql"));
-		DB::unprepared(file_get_contents("src/sql_dump/hr_bonus.sql"));
+		DB::unprepared(file_get_contents("src/sql_dump/hr_leave_comments.sql"));
 
 
 		// Library Data
