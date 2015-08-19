@@ -10,8 +10,8 @@ Route::any("user/profile-info/store", [
     "uses" => "UserInformationController@storeProfile"
 ]);
 
-Route::any("user/profile-info/edit/{id}", [
-    "as"   => "user/profile-info/edit",
+Route::any("user/edit/profile-info/{id}", [
+    "as"   => "user/edit/profile-info",
     "uses" => "UserInformationController@editUserProfile"
 ]);
 
