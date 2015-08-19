@@ -30,6 +30,12 @@
                         <a href="{{URL::route('user/logout') }}" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                 </li>
+            @else
+                <li class="user-footer">
+                    <div class="pull-right">
+                        <a href="{{URL::route('user/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                </li>
             @endif
         </ul>
     </li>
