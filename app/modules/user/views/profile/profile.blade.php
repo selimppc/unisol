@@ -15,7 +15,10 @@
             <section class="col-lg-4 connectedSortable">
                 <p>&nbsp;</p>
                 <h4><b style="color: #000000">Personal Information</b></h4>
-                {{--<span class="text-muted ">You Can Change Your Profile Picture From Here .  <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal">Change Profile Picture</a></span>--}}
+                     @if(isset($userProfile))
+                        <span class="text-muted ">You Can Change Your Profile Picture From Here .
+                        <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal">Change Profile Picture</a></span>
+                     @endif
             </section>
             <div class="box box-solid">
                 <section class="col-lg-8 connectedSortable pull-right">
