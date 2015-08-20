@@ -4,19 +4,10 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
-    <li class="treeview">
-       <a href="#">
-           <i class="fa  fa-male" style="color: #0072b1"></i>
-           <span>Accounts</span>
-           <i class="fa fa-angle-left pull-right"></i>
+    <li>
+       <a href="{{URL::to('user/profile')}}">
+           <i class="fa fa-male" style="color: deepskyblue"></i><span>Profile</span>
        </a>
-       <ul class="treeview-menu">
-            <li><a href="{{ URL::to('user/profile-info') }}">Personal Information</a></li>
-            <li><a href="{{ URL::to('user/meta-data') }}"> Biographical Information </a></li>
-            {{--<li><a href="{{ URL::to('user/supporting-docs') }}"> Supporting Documents </a></li>--}}
-            {{--<li><a href="{{ URL::to('user/extra-curricular') }}"> Extra-Curricular Activities </a></li>--}}
-            {{--<li><a href="{{ URL::to('user/misc-info') }}"> Miscellaneous Information </a></li>--}}
-       </ul>
     </li>
     <li class="treeview">
         <a href="#">
