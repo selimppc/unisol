@@ -83,7 +83,7 @@ class CreateResearchConsultancy extends Migration {
         Schema::table('rnc_research_paper', function($table) {
             $table->foreign('rnc_category_id')->references('id')->on('rnc_category');
             $table->foreign('where_published_id')->references('id')->on('rnc_publisher');
-        }); */
+        });
 
         Schema::create('rnc_research_paper_comment', function(Blueprint $table) {
             $table->increments('id');
@@ -99,6 +99,7 @@ class CreateResearchConsultancy extends Migration {
         Schema::table('rnc_research_paper_comment', function($table) {
             $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
         });
+        */
 
         Schema::create('rnc_research_paper_writer', function(Blueprint $table)
         {
