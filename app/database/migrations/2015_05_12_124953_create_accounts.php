@@ -7,6 +7,7 @@ class CreateAccounts extends Migration {
 
 	public function up()
 	{
+        /*
          Schema::create('bank', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title',32);
@@ -114,7 +115,7 @@ class CreateAccounts extends Migration {
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 
-
+*/
 
         Schema::create('acc_ap_allocation', function(Blueprint $table) {
             $table->increments('id');

@@ -7,7 +7,7 @@ class CreateInventory extends Migration {
 
 	public function up()
 	{
-        /*
+
         Schema::create('inv_supplier', function(Blueprint $table) {
             $table->increments('id');
             $table->string('code', 8)->unique()->nullable();
@@ -341,7 +341,7 @@ class CreateInventory extends Migration {
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 
-        */
+
 
         Schema::create('inv_trn_no_setup', function(Blueprint $table) {
             $table->increments('id');
