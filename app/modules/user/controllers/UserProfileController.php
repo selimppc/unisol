@@ -29,7 +29,7 @@ class UserProfileController extends \BaseController {
             Session::flash('info', "User Meta information is missing !");
         }
         if($userProfile == Null) {
-            Session::flash('error', "User Profile information is missing !");
+            Session::flash('info', "User Profile information is missing !");
         }
         if(!is_array($academicRecords)) {
             Session::flash('danger', "Academic Records are missing !");

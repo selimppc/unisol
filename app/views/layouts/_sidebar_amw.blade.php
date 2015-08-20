@@ -4,11 +4,11 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
-    <li>
+    {{--<li>
        <a href="{{URL::to('user/profile')}}">
            <i class="fa fa-male" style="color: deepskyblue"></i><span>Profile</span>
        </a>
-    </li>
+    </li>--}}
     <li class="treeview">
         <a href="#">
             <i class="fa fa-leaf" style="color: #09b021"></i>
