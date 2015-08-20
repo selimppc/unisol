@@ -15,7 +15,7 @@
             <section class="col-lg-4 connectedSortable">
              <p>&nbsp;</p>
               <h4><b style="color: #000000">Personal Information</b></h4>
-               <span class="text-muted ">You Can Change Your Profile Picture From Here .  <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}">Change Profile Picture</a></span>
+               <span class="text-muted ">You Can Change Your Profile Picture From Here .  <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal">Change Profile Picture</a></span>
             </section>
             <div class="box box-solid">
                 <section class="col-lg-8 connectedSortable pull-right">
@@ -47,6 +47,35 @@
                     </div>
                     <p>&nbsp;</p>
                     {{--New Entry--}}
+                    <div class="box box-info">
+                         <div class="box-body" style="padding: 30px;background-color:aliceblue">
+                                 {{--<div class="col-lg-6 pull-left">
+                                    {{ HTML::image( "/user_images/profile/".$userProfile->image , 'User Image', ['class'=>'img-circle']) }}
+                                 </div>--}}
+                                 <br>
+                                 <div class="col-lg-6 pull-right">
+                                     @if(isset($userMeta))
+                                         {{--Father's Name : <b>{{isset($userMeta->fathers_name)?$userMeta->fathers_name:''}} </b><br>--}}
+                                         {{--Mother's Name : <b>{{$userMeta->mothers_name}}</b><br>--}}
+                                         {{--NID : {{$userMeta->national_id}}<br>--}}
+                                         {{--Place of Birth : {{$userMeta->place_of_birth}}<br>--}}
+                                         {{--Nationality : {{$userMeta->nationality}}<br>--}}
+                                     @else
+                                         {{"No Meta data found !"}}
+                                     @endif
+                                 </div>
+                             <p>&nbsp;</p>
+                             <div>
+                             {{--@if($userMeta != null)
+                                 <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#modal" >Edit <i class="fa fa-arrow-circle-right"></i></a>
+                             @else
+                                 <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#modal" >Edit <i class="fa fa-arrow-circle-right"></i></a>
+                             @endif--}}
+                                 {{--<a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#modal" >Edit <i class="fa fa-arrow-circle-right"></i></a>--}}
+                             </div>
+                         </div>
+                    </div>
+                    <p>&nbsp;</p>
                 </section>
             </div>
         </section>
@@ -60,5 +89,14 @@
         </div>
     </div>
  </div>
+
+ {{--modal: change image--}}
+     <div class="modal fade" id="changeImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+
+             </div>
+         </div>
+     </div>
 @stop
 
