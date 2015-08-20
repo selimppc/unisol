@@ -37,7 +37,7 @@
                                      Gender : {{$userProfile->gender}}<br>
                                      City : {{$userProfile->city}}<br>
                                      Zip Code : {{$userProfile->zip_code}}<br>
-                                     Country : {{$userProfile->relCountry->title}}
+                                     Country : {{$userProfile->country}}
                                  @else
                                      {{"No Profile data found !"}}
                                  @endif
