@@ -2,6 +2,16 @@
 
 class UserProfileController extends \BaseController {
 
+
+    function __construct() {
+        $this->beforeFilter('auth', array('except' => array('')));
+    }
+
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
     public function profile(){
 
         if(Auth::user()->check()){
