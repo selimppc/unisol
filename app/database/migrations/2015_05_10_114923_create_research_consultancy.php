@@ -7,7 +7,7 @@ class CreateResearchConsultancy extends Migration {
 
 	public function up()
 	{
-        /*Schema::create('currency', function(Blueprint $table)
+        Schema::create('currency', function(Blueprint $table)
         {
             $table->increments('id', true);
             $table->string('title', 32);
@@ -186,7 +186,7 @@ class CreateResearchConsultancy extends Migration {
             $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
         });
 
-*/
+
 
         Schema::create('rnc_writer_beneficial', function(Blueprint $table)
         {
