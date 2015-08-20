@@ -312,7 +312,7 @@ class CreateInventory extends Migration {
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 
-        */
+
 
 
 
@@ -341,7 +341,7 @@ class CreateInventory extends Migration {
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 
-
+        */
 
         Schema::create('inv_trn_no_setup', function(Blueprint $table) {
             $table->increments('id');
