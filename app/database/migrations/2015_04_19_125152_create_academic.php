@@ -109,13 +109,13 @@ class CreateAcademic extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
-        }); */
+        });
         Schema::table('acm_marks_distribution', function($table) {
             $table->foreign('course_conduct_id')->references('id')->on('course_conduct');
             $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
             #$table->foreign('acm_attendance_config_id')->references('id')->on('acm_attendance_config');
         });
-
+        */
 
 
         Schema::create('acm_academic', function(Blueprint $table) {
