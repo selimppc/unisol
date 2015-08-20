@@ -85,20 +85,21 @@ class CreateResearchConsultancy extends Migration {
             $table->foreign('where_published_id')->references('id')->on('rnc_publisher');
         });
 
-//        Schema::create('rnc_research_paper_comment', function(Blueprint $table) {
-//            $table->increments('id');
-//            $table->unsignedInteger('rnc_research_paper_id')->nullable();
-//            $table->text('comments');
-//            $table->integer('commented_to', false, 11);
-//            $table->integer('commented_by', false, 11);
-//            $table->integer('created_by', false, 11);
-//            $table->integer('updated_by', false, 11);
-//            $table->timestamps();
-//            $table->engine = 'InnoDB';
-//        });
-//        Schema::table('rnc_research_paper_comment', function($table) {
-//            $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
-//        });
+        Schema::create('rnc_research_paper_comment', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('rnc_research_paper_id')->nullable();
+            $table->text('comments');
+            $table->integer('commented_to', false, 11);
+            $table->integer('commented_by', false, 11);
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('rnc_research_paper_comment', function($table) {
+            $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
+        });
+
 
         Schema::create('rnc_research_paper_writer', function(Blueprint $table)
         {
@@ -114,6 +115,7 @@ class CreateResearchConsultancy extends Migration {
             $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
             $table->foreign('writer_user_id')->references('id')->on('user');
         });
+
 
 
 
@@ -140,6 +142,7 @@ class CreateResearchConsultancy extends Migration {
             $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
             $table->foreign('user_id')->references('id')->on('user');
         });
+
 
 
 

@@ -7,6 +7,7 @@ class CreateAccounts extends Migration {
 
 	public function up()
 	{
+
          Schema::create('bank', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title',32);
@@ -134,7 +135,6 @@ class CreateAccounts extends Migration {
             $table->foreign('acc_voucher_head_id')->references('id')->on('acc_voucher_head');
             $table->foreign('currency_id')->references('id')->on('currency');
         });
-
 
         Schema::create('acc_codesparam', function(Blueprint $table) {
             $table->increments('id');
