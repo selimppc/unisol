@@ -115,7 +115,7 @@ class CreateAccounts extends Migration {
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 
-*/
+
 
         Schema::create('acc_ap_allocation', function(Blueprint $table) {
             $table->increments('id');
@@ -135,8 +135,7 @@ class CreateAccounts extends Migration {
             $table->foreign('acc_voucher_head_id')->references('id')->on('acc_voucher_head');
             $table->foreign('currency_id')->references('id')->on('currency');
         });
-
-
+*/
         Schema::create('acc_codesparam', function(Blueprint $table) {
             $table->increments('id');
             $table->string('type',32)->nullable();
@@ -200,7 +199,7 @@ class CreateAccounts extends Migration {
             $table->foreign('acc_chart_of_accounts_id')->references('id')->on('acc_chart_of_accounts');
             #$table->foreign('associated_id')->references('id')->on('inv_supplier'); // associated_id === inv_supplier_id
             $table->foreign('year_id')->references('id')->on('year');
-            $table->foreign('currency_id')->references('id')->on('currency');
+            #$table->foreign('currency_id')->references('id')->on('currency');
         });
 
 	}
