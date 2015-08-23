@@ -60,9 +60,7 @@
                  @include('user::user_info.profile._modal')
             {{ Form::close() }}
 
-             {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
-                     @include('user::user_info.meta_data._modal')
-             {{ Form::close() }}
+
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
                 <div class="col-lg-4"><b style="color: #000000">Biographical Information</b>
@@ -80,9 +78,10 @@
                        @if(isset($userMeta))
                           <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical Info</a>
                        @else
-                          <button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
+                          {{--<button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
                               + Add Biographical Info
-                          </button>
+                          </button>--}}
+                          {{--<a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit') }}" data-toggle="modal" data-target="#myeditModal" >+ Biographical Info</a>--}}
                        @endif
                        <p>&nbsp;</p>
                        @if(isset($userMeta))
@@ -152,6 +151,9 @@
                    </table>
                 </div>
             </section>
+             {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
+                  @include('user::user_info.meta_data._modal')
+             {{ Form::close() }}
             <p>&nbsp;</p>
             <hr>
     </div>
