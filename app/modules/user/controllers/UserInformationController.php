@@ -190,6 +190,28 @@ class UserInformationController extends \BaseController {
         }
     }
 
+    public function viewSignature($id)
+    {
+        $model = UserMeta::find($id);
+        return View::make('user::user_info.meta_data.add_signature',compact('model'));
+    }
+
+    public function addSignature($id)
+    {
+        $model = UserMeta::find($id);
+        $model->signature = Input::file('signature');
+        $extension = $model->signature->getClientOriginalExtension();
+        $filename = str_random(12) . '.' . $extension;
+        $file = strtolower($filename);
+        $path = public_path("/user_images/docs/" . $file);
+        Image::make($model->signature->getRealPath())->resize(150,100)->save($path);
+        $model->signature  = $file;
+        $model->save();
+
+        Session::flash('message', "Successfully Added Signature!");
+        return Redirect::back();
+    }
+
     public function miscIndex(){
         $user_id = Auth::user()->get()->id;
         $data = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();

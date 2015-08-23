@@ -52,6 +52,16 @@ Route::any("user/meta-data/update/{id}", [
     "uses" => "UserInformationController@updateMetaData"
 ]);
 
+Route::any("user/meta-data/meta-data/{id}", [
+    "as"   => "user/meta-data/signature",
+    "uses" => "UserInformationController@viewSignature"
+]);
+
+Route::any("user/meta-data/add/add-signature/{id}", [
+    "as"   => "user/meta-data/add-signature",
+    "uses" => "UserInformationController@addSignature"
+]);
+
 //Miscellaneous_Info
 
 Route::any("user/misc-info", [

@@ -19,6 +19,7 @@ class UserProfileController extends \BaseController {
             $userMeta = UserMeta::where('user_id', '=', $user_id)->first();
             $userProfile = UserProfile::where('user_id', '=', $user_id)->first();
             $academicRecords = UserAcademicRecord::where('user_id', '=', $user_id)->get();
+            $countryList = [''=>'Select One'] + Country::lists('title','id');
         }elseif(Auth::applicant()->check()){
             $user_id = Auth::applicant()->get()->id;
             $userMeta = ApplicantMeta::where('applicant_id', '=', $user_id)->first();
@@ -35,6 +36,6 @@ class UserProfileController extends \BaseController {
             Session::flash('danger', "Academic Records are missing !");
         }
 
-        return View::make('user::profile.profile', compact('userMeta', 'userProfile', 'academicRecords'));
+        return View::make('user::profile.profile', compact('userMeta', 'userProfile', 'academicRecords','user_id','countryList'));
     }
 }

@@ -7,11 +7,12 @@
 @stop
 @section('content')
     <!-- left column -->
-    <div class="row">
+    <div class="box-body" style="background-color:#ffffff">
         <div class="box-header" style="background-color: #0490a6">
            <h3 class="text-center text-green"><b style="color: #f5f5f5">User Profile</b></h3>
         </div>
             <section class="col-lg-12"style="background-color:#ffffff">
+            <p>&nbsp;</p>
                 <div class="col-lg-4"><b style="color: #000000">Personal Information</b>
                      <p>
                          @if(isset($userProfile))
@@ -22,9 +23,18 @@
                      </p>
                 </div>
                 <div class="col-lg-8" style="background-color:aliceblue">
+                     @if(isset($userProfile))
+                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userProfile->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Personal Info</a>
+                     @else
+                         <button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
+                           + Add Personal Info
+                         </button>
+                     @endif
                      <p>&nbsp;</p>
                      <div class="col-lg-4">
-                        {{ HTML::image( "/user_images/profile/".$userProfile->image , 'User Image', ['class'=>'img-circle']) }}
+                         @if($userProfile)
+                            {{ HTML::image( "/user_images/profile/".$userProfile->image , 'User Image', ['class'=>'img-circle']) }}
+                         @endif
                      </div>
 
                      <div class="col-lg-4">
@@ -43,6 +53,105 @@
                      </div>
                 </div>
             </section>
+            {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
+                     @include('user::user_info.meta_data._modal')
+            {{ Form::close() }}
+
+            <hr>
+            {{--<p>&nbsp;</p>--}}
+            <section class="col-lg-12"style="background-color:#ffffff">
+                <p>&nbsp;</p>
+                <div class="col-lg-4"><b style="color: #000000">Biographical Information</b>
+                <p>
+                    @if(isset($userMeta))
+                       <span class="text-muted ">You Can Add or Change Your Signature.
+                           <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal">Add/Change Signature.</a>
+                       </span>
+                    @endif
+                </p>
+                </div>
+                <div class="col-lg-8" style="background-color:aliceblue">
+
+                   <table class="table table-striped  table-bordered">
+                       @if(isset($userMeta))
+                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical Info</a>
+                       @else
+                          <button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
+                              + Add Biographical Info
+                          </button>
+                       @endif
+                       <p>&nbsp;</p>
+                       @if(isset($userMeta))
+                            <tr>
+                                <th >Father's Name</th>
+                                <td>{{$userMeta->fathers_name}}</td>
+                            </tr>
+
+                            <tr>
+                                <th >Father's Occupation</th>
+                                <td>{{$userMeta->fathers_occupation}}</td>
+                            </tr>
+
+                            <tr>
+                                <th >Is Freedom Fighter?</th>
+                                <td>{{$userMeta['freedom_fighter']==1 ? 'Yes' : 'No'}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Father's Phone</th>
+                                <td>{{$userMeta->fathers_phone}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Mother's Name</th>
+                                <td>{{$userMeta->mothers_name}}</td>
+                            </tr>
+
+                            <tr>
+                                <th >Mother's Occupation</th>
+                                <td>{{$userMeta->mothers_occupation}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Mother's Phone</th>
+                                <td>{{$userMeta->mothers_phone}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Marital Status</th>
+                                <td>
+                                   {{strtoupper($userMeta->marital_status)}}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Religion</th>
+                                <td>{{$userMeta->religion}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Present Address</th>
+                                <td>{{$userMeta->present_address}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Permanent Address</th>
+                                <td>{{$userMeta->permanent_address}}</td>
+                            </tr>
+                            <tr>
+                                <th>Signature</th>
+                                <td>{{ $userMeta->signature != null ? HTML::image('/user_images/docs/'.$userMeta->signature) :'Signature do not added yet.' }}</td>
+                            </tr>
+                       @else
+                             {{"No Biographical Information found !"}}
+                       @endif
+                   </table>
+                </div>
+            </section>
+            <hr>
+            {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
+                     @include('user::user_info.meta_data._modal')
+            {{ Form::close() }}
     </div>
 
 <!-- Modal  -->
@@ -62,5 +171,30 @@
              </div>
          </div>
      </div>
+
+     {{--Meta data:Modal --}}
+
+
+
+     <!-- Modal : edit -->
+     <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+
+             </div>
+         </div>
+     </div>
+
+     <style>
+     hr {
+         display: block;
+         margin-top: 0.5em;
+         margin-bottom: 0.5em;
+         margin-left: auto;
+         margin-right: auto;
+         border-style: inset;
+         border-width: 1px;
+     }
+     </style>
 @stop
 
