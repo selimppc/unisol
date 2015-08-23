@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-lg-8" style="background-color:aliceblue">
                      @if(isset($userProfile))
-                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userProfile->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Personal Info</a>
+                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userProfile->id]) }}" data-toggle="modal" data-target="#myeditModal">Edit Personal Info</a>
                      @else
                          <button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
                            + Add Personal Info
@@ -53,8 +53,8 @@
                      </div>
                 </div>
             </section>
-            {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
-                     @include('user::user_info.meta_data._modal')
+            {{ Form::open(array('route' => 'user/profile-info/store','files'=>'true')) }}
+                 @include('user::user_info.profile._modal')
             {{ Form::close() }}
 
             <hr>
@@ -156,7 +156,7 @@
 
 <!-- Modal  -->
  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="z-index:1050">
         <div class="modal-content">
 
         </div>
@@ -178,7 +178,7 @@
 
      <!-- Modal : edit -->
      <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
+         <div class="modal-dialog" style="z-index:1050">
              <div class="modal-content">
 
              </div>
