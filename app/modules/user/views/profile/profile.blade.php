@@ -56,9 +56,8 @@
             {{ Form::open(array('route' => 'user/profile-info/store','files'=>'true')) }}
                  @include('user::user_info.profile._modal')
             {{ Form::close() }}
-
+            <p>&nbsp;</p>
             <hr>
-            {{--<p>&nbsp;</p>--}}
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
                 <div class="col-lg-4"><b style="color: #000000">Biographical Information</b>
@@ -148,10 +147,11 @@
                    </table>
                 </div>
             </section>
-            <hr>
             {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
                      @include('user::user_info.meta_data._modal')
             {{ Form::close() }}
+            <p>&nbsp;</p>
+            <hr>
     </div>
 
 <!-- Modal  -->
@@ -173,9 +173,6 @@
      </div>
 
      {{--Meta data:Modal --}}
-
-
-
      <!-- Modal : edit -->
      <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-dialog" style="z-index:1050">
