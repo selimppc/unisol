@@ -22,6 +22,7 @@ class UserInformationController extends \BaseController {
 	public function storeProfile()
 	{
        $data = Input::all();
+//        print_r($data);exit;
         $file = $data['image'];
         $model = new UserProfile();
         if ($model->validate($data)) {
@@ -31,8 +32,18 @@ class UserInformationController extends \BaseController {
             $model->last_name = Input::get('last_name');
             $model->date_of_birth = Input::get('date_of_birth');
             $model->gender = Input::get('gender');
+            $model->city = Input::get('city');
+            $model->state = Input::get('state');
+            $model->country = Input::get('country');
+            $model->zip_code = Input::get('zip_code');
 
-            if($file){
+            if($file) {
+                // Images destination
+                $img_dir = "user_images/profile/" . date("h-m-y");
+                // Create folders if they don't exist
+                if (!file_exists($img_dir)) {
+                    mkdir($img_dir, 0777, true);
+                }
                 $imagefile= Input::file('image');
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
@@ -41,11 +52,6 @@ class UserInformationController extends \BaseController {
                 Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
                 $model->image =$file;
             }
-            $model->city = Input::get('city');
-            $model->state = Input::get('state');
-            $model->country = Input::get('country');
-            $model->zip_code = Input::get('zip_code');
-
             $model->save();
 
             Session::flash('message', "Successfully Added Information!");
@@ -54,7 +60,6 @@ class UserInformationController extends \BaseController {
             Session::flash('danger', 'Invalid Request');
             return Redirect::back();
         }
-
         return Redirect::back();
 	}
     public function editUserProfile($id){

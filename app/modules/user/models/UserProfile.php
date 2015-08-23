@@ -14,8 +14,8 @@ class UserProfile extends Eloquent {
     ];
     private $errors;
     private $rules = [
-        'zip_code' => 'required|numeric',
-        'gender' => 'required',
+         'zip_code' => 'required',
+        //'gender' => 'required',
 //        'image' => 'required'
     ];
 

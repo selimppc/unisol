@@ -4,15 +4,15 @@
     <div class="form-group">
         <div class="col-lg-4" style="padding-left: 0;">
            {{ Form::label('first_name', 'First Name:') }}<span style="color:red;">*</span>
-           {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name')) }}
+           {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name','required'=>'required')) }}
         </div>
         <div class="col-lg-4" style="padding-right: 0;">
-             {{ Form::label('middle_name', 'Middle Name:') }}<span style="color:red;">*</span>
+             {{ Form::label('middle_name', 'Middle Name:') }}
              {{ Form::text('middle_name',Input::old('middle_name'), array('class' => 'form-control','placeholder'=>'Enter Middle  name')) }}
         </div>
         <div class="col-lg-4" style="padding-right: 0;">
              {{ Form::label('last_name', 'Last Name:') }}<span style="color:red;">*</span>
-             {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name')) }}
+             {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name','required'=>'required')) }}
         </div>
     </div>
     <p>&nbsp;</p>
@@ -40,7 +40,7 @@
           </div>
           <div class="col-lg-6" style="padding-right: 0;">
             {{ Form::label('zip_code', 'Zip Code') }}
-            {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'')) }}
+            {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'','required'=>'required')) }}
           </div>
     </div>
     <p>&nbsp;</p>
