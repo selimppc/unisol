@@ -7,7 +7,7 @@
 @stop
 @section('content')
     <!-- left column -->
-    <div class="box-body" style="background-color:#ffffff">
+    <div style="background-color:#ffffff">
         <div class="box-header" style="background-color: #0490a6">
            <h3 class="text-center text-green"><b style="color: #f5f5f5">User Profile</b></h3>
         </div>
