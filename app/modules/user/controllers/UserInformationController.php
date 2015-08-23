@@ -49,7 +49,7 @@ class UserInformationController extends \BaseController {
                 $filename = str_random(12) . '.' . $extension;
                 $file=strtolower($filename);
                 $path = public_path("/user_images/profile/" . $file);
-                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                Image::make($imagefile->getRealPath())->resize(180, 180)->save($path);
                 $model->image =$file;
             }
             $model->save();
