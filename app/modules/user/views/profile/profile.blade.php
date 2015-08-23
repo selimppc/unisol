@@ -60,6 +60,9 @@
                  @include('user::user_info.profile._modal')
             {{ Form::close() }}
 
+             {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
+                     @include('user::user_info.meta_data._modal')
+             {{ Form::close() }}
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
                 <div class="col-lg-4"><b style="color: #000000">Biographical Information</b>
