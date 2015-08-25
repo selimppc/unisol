@@ -16,7 +16,6 @@ class UserInformationController extends \BaseController {
         $user_id = Auth::user()->get()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
         $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
-//            print_r($model);exit;
         return View::make('user::user_info.profile.index',compact('model','countryList','user_id'));
     }
 
@@ -29,9 +28,9 @@ class UserInformationController extends \BaseController {
     public function storeProfile()
     {
         $data = Input::all();
-//        print_r($data);exit;
         $file = $data['image'];
         $model = new UserProfile();
+
         if ($model->validate($data)) {
             $model->user_id = Auth::user()->get()->id;
             $model->first_name = Input::get('first_name');

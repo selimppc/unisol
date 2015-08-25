@@ -16,7 +16,6 @@
         </div>
     </div>
     <p>&nbsp;</p>
-
     <div class='form-group'>
         <div class="col-lg-4">
             {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>
@@ -58,7 +57,7 @@
         </div>
         <div class="col-lg-6">
             @if(isset($model))
-               <div class="col-lg-4">{{ $model->image != null ? HTML::image('/user_images/profile/'.$model->image) :'Profile Picture do not added yet.' }}</div>
+               <div class="col-lg-4">{{ $model->image != null ? HTML::image('/user_images/profile/'.$model->image) :'' }}</div>
                 <p>&nbsp;</p>
                 {{ Form::label('image', 'Select Profile Picture :') }}
                 {{ Form::file('image',array('multiple'=>true)) }}
@@ -70,7 +69,6 @@
     </div>
     {{ Form::submit('Submit', array('class'=>'pull-right btn btn-info')) }}
     <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
-
     <p>&nbsp;</p>
 </div>
 
