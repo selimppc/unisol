@@ -78,10 +78,7 @@
                        @if(isset($userMeta))
                           <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical Info</a>
                        @else
-                          {{--<button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
-                              + Add Biographical Info
-                          </button>--}}
-                          {{--<a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit') }}" data-toggle="modal" data-target="#myeditModal" >+ Biographical Info</a>--}}
+                         <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/create')}}" data-toggle="modal" data-target="#meta-modal" >+ Add Biographical Info</a>
                        @endif
                        <p>&nbsp;</p>
                        @if(isset($userMeta))
@@ -143,7 +140,10 @@
                             </tr>
                             <tr>
                                 <th>Signature</th>
-                                <td>{{ $userMeta->signature != null ? HTML::image('/user_images/docs/'.$userMeta->signature) :'Signature do not added yet.' }}</td>
+                                <td>
+                                    {{ $userMeta->signature != null ? HTML::image('/user_images/docs/'.$userMeta->signature) :'Signature do not added yet.' }}
+                                    <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature.</ins></a>
+                                </td>
                             </tr>
                        @else
                              {{"No Biographical Information found !"}}
@@ -160,7 +160,7 @@
 
 <!-- Modal  -->
  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="z-index:1050">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
         <div class="modal-content">
 
         </div>
@@ -177,6 +177,14 @@
      </div>
 
      {{--Meta data:Modal --}}
+
+     <div class="modal fade" id="meta-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg" style="z-index:1050">
+             <div class="modal-content">
+
+             </div>
+         </div>
+      </div>
      <!-- Modal : edit -->
      <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-dialog" style="z-index:1050">

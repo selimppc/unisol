@@ -19,6 +19,13 @@ class UserInformationController extends \BaseController {
 //            print_r($model);exit;
             return View::make('user::user_info.profile.index',compact('model','countryList','user_id'));
     }
+
+    public function createProfile(){
+        $user_id = Auth::user()->get()->id;
+        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+        $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
+        return View::make('user::user_info.meta_data._create',compact('model','countryList','user_id'));
+    }
 	public function storeProfile()
 	{
        $data = Input::all();
