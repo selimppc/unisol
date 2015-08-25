@@ -4,10 +4,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="text-align: center">Add Profile</h4>
+        <h4 class="modal-title" id="myModalLabel" style="text-align: center">Add Personal Information</h4>
       </div>
       <div class="modal-body">
-        @include('user::user_info.profile._form')
+        @include('user::user_info.personal_info._form')
       </div>
     </div>
   </div>

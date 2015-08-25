@@ -11,20 +11,14 @@ class UserInformationController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    public function profileIndex(){
+    /*public function profileIndex(){
 
         $user_id = Auth::user()->get()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
         $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
         return View::make('user::user_info.profile.index',compact('model','countryList','user_id'));
-    }
+    }*/
 
-    public function createProfile(){
-        $user_id = Auth::user()->get()->id;
-        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-        $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
-        return View::make('user::user_info.meta_data._create',compact('model','countryList','user_id'));
-    }
     public function storeProfile()
     {
         $data = Input::all();
@@ -73,7 +67,7 @@ class UserInformationController extends \BaseController {
         $model = UserProfile::find($id);
         $user_id = Auth::user()->get()->id;
         $countryList = [''=>'Select One'] + Country::lists('title','id');
-        return View::make('user::user_info.profile.edit', compact('model','countryList','user_id'));
+        return View::make('user::user_info.personal_info.edit', compact('model','countryList','user_id'));
     }
 
     public function updateProfile($id){
@@ -118,7 +112,7 @@ class UserInformationController extends \BaseController {
     public function profileImage($id)
     {
         $model = UserProfile::find($id);
-        return View::make('user::user_info.profile.add_image',compact('model'));
+        return View::make('user::user_info.personal_info.add_image',compact('model'));
     }
 
     public function addProfileImage($id)
@@ -153,6 +147,13 @@ class UserInformationController extends \BaseController {
         $user_id = Auth::user()->get()->id;
         $meta_data = UserMeta::where('user_id', '=', $user_id)->first();
         return View::make('user::user_info.meta_data.index',compact('meta_data','user_id'));
+    }
+
+    public function createMetaData(){
+        $user_id = Auth::user()->get()->id;
+        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+        $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
+        return View::make('user::user_info.meta_data._create',compact('model','countryList','user_id'));
     }
     public function storeMetaData(){
 

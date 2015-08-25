@@ -1,9 +1,9 @@
 <?php
 //User Profile
-Route::any("user/profile-info", [
-    "as"   => "user/profile-info",
-    "uses" => "UserInformationController@profileIndex"
-]);
+//Route::any("user/profile-info", [
+//    "as"   => "user/profile-info",
+//    "uses" => "UserInformationController@profileIndex"
+//]);
 
 Route::any("user/profile-info/store", [
     "as"   => "user/profile-info/store",
@@ -39,7 +39,7 @@ Route::any("user/meta-data", [
 
 Route::any("user/meta-data/create", [
     "as"   => "user/meta-data/create",
-    "uses" => "UserInformationController@createProfile"
+    "uses" => "UserInformationController@createMetaData"
 ]);
 
 Route::any("user/meta-data/store", [

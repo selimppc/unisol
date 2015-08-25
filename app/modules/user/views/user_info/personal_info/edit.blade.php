@@ -8,7 +8,7 @@
 
  {{Form::model($model, array('route'=>['user/profile-info/update',$model->id],'class'=>'form-horizontal','files'=>true))}}
  {{--{{Form::model($applicant_personal_info, array('route'=>['admission.public.update-applicant-profile',  $applicant_personal_info->id], 'class'=>'form-horizontal','files'=>true))}}--}}
-     @include('user::user_info.profile._form')
+     @include('user::user_info.personal_info._form')
  {{ Form::close() }}
 
 </div>
