@@ -24,6 +24,7 @@ class HrAttendanceController extends \BaseController {
             if (isset($emp_id) && !empty($emp_id)) $model->where('hr_attendance.hr_employee_id', '=', $emp_id->id);
 
             $model = $model->orderBy('id', 'DESC')->paginate(5);
+            Session::flash('info', "You can view all hr attendance list from here <a href='attendance'>  <ins> <b>View All</b></ins></a>");
         }
         else {
             $model = $model->with('relHrEmployee', 'relHrEmployee.relUser', 'relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
