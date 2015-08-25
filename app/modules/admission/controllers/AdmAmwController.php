@@ -2349,7 +2349,7 @@ class AdmAmwController extends \BaseController
         $ids = Input::get('ids');
         $status = Input::get('a_status');
         if($ids == null){
-            Session::flash('error',"You didn't select any applicant ! Please check at least one applicant !");
+            Session::flash('info',"You didn't select any applicant ! Please check at least one applicant !");
         }else{
             // Batch Update query
             BatchApplicant::whereIn("id", $ids)->update(array('status' => $status));
