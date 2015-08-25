@@ -11,13 +11,13 @@ class UserInformationController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-	public function profileIndex(){
+    public function profileIndex(){
 
-            $user_id = Auth::user()->get()->id;
-            $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-            $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
+        $user_id = Auth::user()->get()->id;
+        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+        $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
 //            print_r($model);exit;
-            return View::make('user::user_info.profile.index',compact('model','countryList','user_id'));
+        return View::make('user::user_info.profile.index',compact('model','countryList','user_id'));
     }
 
     public function createProfile(){
@@ -26,9 +26,9 @@ class UserInformationController extends \BaseController {
         $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
         return View::make('user::user_info.meta_data._create',compact('model','countryList','user_id'));
     }
-	public function storeProfile()
-	{
-       $data = Input::all();
+    public function storeProfile()
+    {
+        $data = Input::all();
 //        print_r($data);exit;
         $file = $data['image'];
         $model = new UserProfile();
@@ -68,7 +68,7 @@ class UserInformationController extends \BaseController {
             return Redirect::back();
         }
         return Redirect::back();
-	}
+    }
     public function editUserProfile($id){
 
         $model = UserProfile::find($id);
@@ -124,7 +124,17 @@ class UserInformationController extends \BaseController {
 
     public function addProfileImage($id)
     {
+        $data = Input::all();
+        $file = $data['image'];
         $model = UserProfile::find($id);
+        if($file) {
+            // Images destination
+            $img_dir = "user_images/profile/" . date("h-m-y");
+            // Create folders if they don't exist
+            if (!file_exists($img_dir)) {
+                mkdir($img_dir, 0777, true);
+            }
+        }
         $model->image = Input::file('image');
         $extension = $model->image->getClientOriginalExtension();
         $filename = str_random(12) . '.' . $extension;
@@ -137,7 +147,7 @@ class UserInformationController extends \BaseController {
         Session::flash('message', "Successfully Added Profile Picture!");
         return Redirect::back();
     }
- /*User Meta Data*/
+    /*User Meta Data*/
 
     public function metaDataIndex(){
 
@@ -210,14 +220,24 @@ class UserInformationController extends \BaseController {
 
     public function addSignature($id)
     {
+        $data = Input::all();
+        $file = $data['signature'];
         $model = UserMeta::find($id);
-        $model->signature = Input::file('signature');
-        $extension = $model->signature->getClientOriginalExtension();
-        $filename = str_random(12) . '.' . $extension;
-        $file = strtolower($filename);
-        $path = public_path("/user_images/docs/" . $file);
-        Image::make($model->signature->getRealPath())->resize(150,100)->save($path);
-        $model->signature  = $file;
+        if($file) {
+            // Images destination
+            $img_dir = "user_images/docs/" . date("h-m-y");
+            // Create folders if they don't exist
+            if (!file_exists($img_dir)) {
+                mkdir($img_dir, 0777, true);
+            }
+            $model->signature = Input::file('signature');
+            $extension = $model->signature->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/user_images/docs/" . $file);
+            Image::make($model->signature->getRealPath())->resize(150,100)->save($path);
+            $model->signature  = $file;
+        }
         $model->save();
 
         Session::flash('message', "Successfully Added Signature!");
@@ -294,31 +314,31 @@ class UserInformationController extends \BaseController {
 
     public function extraCurricularStore(){
 
-         $data = Input::all();
-         $file = $data['certificate_medal'];
-         $model = new UserExtraCurricularActivity();
-         if ($model->validate($data)) {
-             $model->user_id = Auth::user()->get()->id;
-             $model->title = Input::get('title');
-             $model->description = Input::get('description');
-             $model->achievement = Input::get('achievement');
-             if($file){
-                   $imagefile= Input::file('certificate_medal');
-                   $extension = $imagefile->getClientOriginalExtension();
-                   $filename = str_random(12) . '.' . $extension;
-                   $file=strtolower($filename);
-                   $path = public_path("/user_images/certificates/" . $file);
-                   Image::make($imagefile->getRealPath())->resize(800, 800)->save($path);
-                   $model->certificate_medal =$file;
-             }
-             $model->save();
+        $data = Input::all();
+        $file = $data['certificate_medal'];
+        $model = new UserExtraCurricularActivity();
+        if ($model->validate($data)) {
+            $model->user_id = Auth::user()->get()->id;
+            $model->title = Input::get('title');
+            $model->description = Input::get('description');
+            $model->achievement = Input::get('achievement');
+            if($file){
+                $imagefile= Input::file('certificate_medal');
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $file=strtolower($filename);
+                $path = public_path("/user_images/certificates/" . $file);
+                Image::make($imagefile->getRealPath())->resize(800, 800)->save($path);
+                $model->certificate_medal =$file;
+            }
+            $model->save();
 
-             Session::flash('message', "Successfully Added Information!");
-             return Redirect::back();
-         }else{
-             Session::flash('danger', 'Invalid Request');
-             return Redirect::back();
-         }
+            Session::flash('message', "Successfully Added Information!");
+            return Redirect::back();
+        }else{
+            Session::flash('danger', 'Invalid Request');
+            return Redirect::back();
+        }
     }
 
     public function viewCertificateMedal($id){
@@ -367,26 +387,26 @@ class UserInformationController extends \BaseController {
     }
 
 //    Supporting Docs..
-     public function indexSDocs(){
+    public function indexSDocs(){
 
-         $user_id = Auth::user()->get()->id;
-         $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
-         if(!$supporting_docs){
-             $supporting_docs = new UserSupportingDoc();
-             $supporting_docs->user_id = Auth::user()->get()->id;
-             $supporting_docs->save();
-         }
-         return View::make('user::user_info.supporting_docs.index', compact('supporting_docs', 'doc_type'));
-     }
+        $user_id = Auth::user()->get()->id;
+        $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
+        if(!$supporting_docs){
+            $supporting_docs = new UserSupportingDoc();
+            $supporting_docs->user_id = Auth::user()->get()->id;
+            $supporting_docs->save();
+        }
+        return View::make('user::user_info.supporting_docs.index', compact('supporting_docs', 'doc_type'));
+    }
 
-     public function supportingDocs($doc_type, $sdoc_id){
+    public function supportingDocs($doc_type, $sdoc_id){
 
-         $supporting_docs = UserSupportingDoc::where('id', '=', $sdoc_id)->first();
-         if(!$supporting_docs)
-             $supporting_docs = null;
+        $supporting_docs = UserSupportingDoc::where('id', '=', $sdoc_id)->first();
+        if(!$supporting_docs)
+            $supporting_docs = null;
 
-         return View::make('user::user_info.supporting_docs._form', compact('supporting_docs', 'doc_type'));
-     }
+        return View::make('user::user_info.supporting_docs._form', compact('supporting_docs', 'doc_type'));
+    }
 
     public function sDocsStore()
     {

@@ -44,7 +44,7 @@
                              <p>First Name : <b>{{$userProfile->first_name}}</b></p>
                              <p>Last Name : <b>{{$userProfile->last_name}}</b></p>
                              <p>Date of Birth : {{$userProfile->date_of_birth}}</p>
-                             <p>Gender : {{$userProfile->gender}}</p>
+                             <p>Gender : {{ucfirst($userProfile->gender)}}</p>
                              <p>City : {{$userProfile->city}}</p>
                              <p>Zip Code : {{$userProfile->zip_code}}</p>
                              <p>Country : {{$userProfile->country}}</p>

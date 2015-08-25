@@ -5,15 +5,23 @@
 <div class="modal-body">
    {{Form::model($model, array('route'=>['user/profile-info/add/profile-image',$model->id],'class'=>'form-horizontal','files'=>true))}}
 
-    <br><br>
-    {{ Form::label('image', 'Select One :') }}
-    {{ Form::file('image',array('multiple'=>true)) }}
-
+    @if(isset($model))
+        <div class="col-lg-3">{{ $model->image != null ? HTML::image('/user_images/profile/'.$model->image) :'Profile Picture do not added yet.' }}</div>
+        <p>&nbsp;</p>
+        {{ Form::label('image', 'Select Profile Picture :') }}
+        {{ Form::file('image',array('multiple'=>true)) }}
+    @else
+       {{ Form::label('image', 'Select Profile Picture :') }}
+       {{ Form::file('image',array('multiple'=>true)) }}
+    @endif
     <p>&nbsp;</p>
-    {{ Form::submit('ADD', array('class'=>'pull-right btn btn-primary')) }}
-    <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
+    <div>
+        {{ Form::submit('ADD', array('class'=>'pull-right btn btn-primary')) }}
+        <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
+    </div>
+    <p>&nbsp;</p>
     {{Form::close()}}
-    <p>&nbsp;</p>
+
 </div>
 
 

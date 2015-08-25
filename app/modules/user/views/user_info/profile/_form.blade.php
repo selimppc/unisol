@@ -49,12 +49,10 @@
            {{ Form::label('gender', 'Gender') }}<span class="text-danger">*</span>
            <div class="form-inline">
                <div class="radio">
-                  {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio')) }}
-                  {{ Form::label('male', 'male') }}
+                    <label>{{ Form::radio('gender','male',null) }} Male</label>
                </div>
                <div class="radio">
-                  {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio')) }}
-                  {{ Form::label('female', 'Female') }}
+                    <label>{{ Form::radio('gender','Female',null) }} Female</label>
                </div>
            </div>
         </div>
