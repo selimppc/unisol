@@ -17,7 +17,7 @@
                      <p>
                          @if(isset($userProfile))
                               <span class="text-muted ">You Can Change Your Profile Picture From Here .
-                                   <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal">Change Profile Picture</a>
+                                   <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Change Profile Picture </ins></a>
                               </span>
                          @endif
                      </p>
@@ -32,8 +32,10 @@
                      @endif
                      <p>&nbsp;</p>
                      <div class="col-lg-4">
-                         @if($userProfile)
-                            {{ HTML::image( "/user_images/profile/".$userProfile->image , 'User Image', ['class'=>'img-circle']) }}
+                         @if(isset($userProfile))
+                            {{ $userProfile->image != null ? HTML::image('/user_images/profile/'.$userProfile->image , 'User Image', ['class'=>'img-circle']) :  HTML::image('/img/default.jpg', 'User Image') }}
+                            <p>&nbsp;</p>
+                            <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Profile Picture</ins></a>
                          @endif
                      </div>
 
@@ -66,8 +68,8 @@
                 <div class="col-lg-4"><b style="color: #000000">Biographical Information</b>
                 <p>
                     @if(isset($userMeta))
-                       <span class="text-muted ">You Can Add or Change Your Signature.
-                           <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal">Add/Change Signature.</a>
+                       <span class="text-muted ">You Can Change Your Signature From Here.
+                           <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature. </ins></a>
                        </span>
                     @endif
                 </p>
