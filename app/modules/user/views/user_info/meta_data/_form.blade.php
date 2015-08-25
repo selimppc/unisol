@@ -1,6 +1,6 @@
 
 <span class="text-muted "><em style="color:midnightblue"><span style="color:red;">(*)</span> Marked are required fields </em></span>
-<div style="padding: 20px;">
+<div style="padding: 0px 20px 20px 20px;">
     {{Form::hidden('user_id',$user_id)}}
     <div class="form-group">
         <div class="col-lg-6" style="padding-left: 0;">
@@ -12,7 +12,7 @@
              {{ Form::text('mothers_name', Input::old('mothers_name'),['class'=>'form-control','required']) }}
         </div>
     </div>
-    <br>
+   <p>&nbsp;</p>
     <div class='form-group'>
         <div class="col-lg-6" style="padding-left: 0;">
             {{ Form::label('fathers_occupation', ' Fathers Occupation') }}
@@ -23,7 +23,7 @@
             {{ Form::text('mothers_occupation', Input::old('mothers_occupation'),['class'=>'form-control ']) }}
         </div>
     </div>
-    <br>
+   <p>&nbsp;</p>
     <div class='form-group'>
           <div class="col-lg-6" style="padding-left: 0;">
             {{ Form::label('fathers_phone', 'Fathers Phone') }}
@@ -34,7 +34,7 @@
            {{ Form::text('mothers_phone', Input::old('mothers_phone'),['class'=>'form-control ']) }}
           </div>
     </div>
-    <br>
+    <p>&nbsp;</p>
     <div class='form-group'>
          <div class="col-lg-6" style="padding-left: 0;">
               {{ Form::label('freedom_fighter', 'Is Freedom Fighter ? : (Select One)')}}<span class="text-danger">*</span>
@@ -66,7 +66,7 @@
               {{ Form::text('passport', Input::old('passport'),['class'=>'form-control ']) }}
         </div>
     </div>
-    <br>
+    <p>&nbsp;</p>
     <div class='form-group'>
         <div class="col-lg-6" style="padding-left: 0;">
              {{ Form::label('place_of_birth', ' Place of birth') }}
@@ -80,7 +80,7 @@
                  array('class' => 'form-control')) }}
         </div>
     </div>
-    <br>
+    <p>&nbsp;</p>
     <div class='form-group'>
             <div class="col-lg-6" style="padding-left: 0;">
                   {{ Form::label('nationality', ' Nationality') }}<span class="text-danger">*</span>
@@ -91,7 +91,7 @@
                    {{ Form::text('religion', Input::old('religion'),['class'=>'form-control ','required']) }}
             </div>
     </div>
-    <br>
+    <p>&nbsp;</p>
     <div class='form-group'>
         <div class="col-lg-6" style="padding-left: 0;">
               {{ Form::label('present_address', ' Present Address') }}<span class="text-danger">*</span>
@@ -107,6 +107,7 @@
         {{ Form::submit('Submit', array('class'=>'pull-right btn btn-info')) }}
         <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
     </div>
-    <p>&nbsp;</p>
 </div>
+<p>&nbsp;</p>
+
 
