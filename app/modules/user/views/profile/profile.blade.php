@@ -55,13 +55,11 @@
                      </div>
                 </div>
             </section>
-
             <p>&nbsp;</p>
             <hr>
             {{ Form::open(array('route' => 'user/profile-info/store','files'=>'true')) }}
                  @include('user::user_info.profile._modal')
             {{ Form::close() }}
-
 
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
