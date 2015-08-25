@@ -94,7 +94,7 @@
                             @if($applicant_personal_info != null)
                                 <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.applicant-profile-edit', ['id'=>$applicant_personal_info->id]  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
                             @else
-                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/personal_info/')}}" >Add Profile Information</a>
+                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/')}}" >Add Profile Information</a>
                             @endif
                             @if(isset($applicant_personal_info))
                                  <tr>
