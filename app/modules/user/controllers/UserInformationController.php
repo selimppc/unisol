@@ -2,9 +2,9 @@
 
 class UserInformationController extends \BaseController {
 
-//    function __construct() {
-//        $this->beforeFilter('userAuth', array('except' => array('')));
-//    }
+    function __construct() {
+        $this->beforeFilter('auth', array('except' => array('')));
+    }
 
     protected function isPostRequest()
     {
