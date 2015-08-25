@@ -6,9 +6,15 @@
 <div class="modal-body">
    {{Form::model($model, array('route'=>['user/meta-data/add-signature',$model->id],'class'=>'form-horizontal','files'=>true))}}
 
-    <br><br>
-    {{ Form::label('signature', 'Select One :') }}
-    {{ Form::file('signature',array('multiple'=>true)) }}
+    @if(isset($model))
+        <div class="col-lg-4">{{ $model->signature != null ? HTML::image('/user_images/docs/'.$model->signature) :'' }}</div>
+        <p>&nbsp;</p>
+        {{ Form::label('signature', 'Select One :') }}
+        {{ Form::file('signature',array('multiple'=>true)) }}
+    @else
+       {{ Form::label('signature', 'Select One :') }}
+       {{ Form::file('signature',array('multiple'=>true)) }}
+    @endif
 
     <p>&nbsp;</p>
     {{ Form::submit('ADD', array('class'=>'pull-right btn btn-primary')) }}
