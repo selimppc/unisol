@@ -234,15 +234,16 @@ class UserInformationController extends \BaseController {
             $img_dir = "user_images/docs/" . date("h-m-y");
             // Create folders if they don't exist
             if (!file_exists($img_dir)) {
+//                print_r('ok');exit;
                 mkdir($img_dir, 0777, true);
             }
             $model->signature = Input::file('signature');
-            $extension = $model->signature->getClientOriginalExtension();
+            $extension =  date("h-m-y") . '.' . $model->signature->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $file = strtolower($filename);
-            $path = public_path("/user_images/docs/" . $file);
+            $path = public_path('user_images/docs/' . $file);
             Image::make($model->signature->getRealPath())->resize(180,120)->save($path);
-            $model->signature  = $file;
+            $model->signature  =  $file;
         }
         $model->save();
 
