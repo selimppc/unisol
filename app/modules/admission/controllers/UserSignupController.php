@@ -266,7 +266,7 @@ class UserSignupController extends \BaseController {
                 $email_address = Input::get('email');
                 Mail::send('admission::signup.username_reset_mail', array('link' =>$username),  function($message) use ($email_address)
                 {
-                    $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
+                    $message->from('edutechsolutionsbd.com', 'Mail Notification');
                     $message->to($email_address);
                    // $message->cc('tanintjt@gmail.com');
                     $message->subject('Notification');
@@ -284,9 +284,9 @@ class UserSignupController extends \BaseController {
     }
 
     // user password_change method
-    public function userResetPasswordUpdate()
+    public function change_password()
     {
-
+//echo 'ok';exit;
         $model= User::find(Auth::user()->id);
 
         $old_password = Input::get('old_password');

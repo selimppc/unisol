@@ -29,8 +29,11 @@ Route::any('user/username_reset', 'UserSignupController@usernameReset');
 Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail');
 
 //reset password
-Route::any('user/reset_password', 'UserSignupController@userResetPassword');
-Route::any('user/reset_password_update', 'UserSignupController@userResetPasswordUpdate');
+Route::any('user/reset_password',
+    ['as'=>'user/reset_password',
+    'uses'=>'UserSignupController@userResetPassword']);
+
+Route::any('user/change_password', 'UserSignupController@change_password');
 
 //Cookie
 Route::any('user/set_cookie', 'UserSignupController@setCookie');

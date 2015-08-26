@@ -3,6 +3,7 @@
         @include('layouts._top_menu_notification')
     @endif
     <!-- User Account: style can be found in dropdown.less -->
+
     <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="glyphicon glyphicon-user"></i>
@@ -38,5 +39,14 @@
                 </li>
             @endif
         </ul>
+    </li>
+    <li class="treeview">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-unlock-alt"></i>
+       </a>
+       <ul class="dropdown-menu">
+           <li><a href="{{ URL::to('') }}"> Settings </a></li>
+           <li><a href="{{ URL::to('user/reset_password') }}"> Change Password </a></li>
+       </ul>
     </li>
 </ul>
