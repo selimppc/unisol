@@ -15,7 +15,7 @@ public/error_log
 public/file
 public/applicant_images
 public/files_public
-public/uploads
+public/uploads/
 public/docs
 public/library
 .buildpath
