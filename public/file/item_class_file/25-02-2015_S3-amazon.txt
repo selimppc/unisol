@@ -1,8 +1,0 @@
-I will explain how you need this in our meeting
-
- 
-
-User Name         Access Key Id     Secret Access Key
-
-selim     AKIAJRB7BTC7QVSFVOUQ
-7q6ldLnzxxEGn7x/IufnCIzt+SwsviekZruq8MIN
