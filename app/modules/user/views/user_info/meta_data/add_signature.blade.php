@@ -7,7 +7,7 @@
    {{Form::model($model, array('route'=>['user/meta-data/add-signature',$model->id],'class'=>'form-horizontal','files'=>true))}}
 
     @if(isset($model))
-        <div class="col-lg-4">{{ $model->signature != null ? HTML::image('/user_images/docs/'.$model->signature) :'' }}</div>
+        <div class="col-lg-4">{{ $model->signature != null ? HTML::image('/uploads/user_images/docs/'.$model->signature) :'' }}</div>
         <p>&nbsp;</p>
         {{ Form::label('signature', 'Select One :') }}
         {{ Form::file('signature',array('multiple'=>true)) }}

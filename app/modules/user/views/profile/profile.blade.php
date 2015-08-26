@@ -33,7 +33,7 @@
                      <p>&nbsp;</p>
                      <div class="col-lg-4">
                          @if(isset($userProfile))
-                            {{ $userProfile->image != null ? HTML::image('/user_images/profile/'.$userProfile->image , 'User Image', ['class'=>'img-circle']) :  HTML::image('/img/default.jpg', 'User Image') }}
+                            {{ $userProfile->image != null ? HTML::image('/uploads/user_images/profile/'.$userProfile->image , 'User Image', ['class'=>'img-circle']) :  HTML::image('/img/default.jpg', 'User Image') }}
                             <p>&nbsp;</p>
                             <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Profile Picture</ins></a>
                          @endif
@@ -140,8 +140,8 @@
                             </tr>
                             <tr>
                                 <th>Signature</th>
-                                <td class="col-lg-5">
-                                    {{ $userMeta->signature != null ? HTML::image('/user_images/docs/'.$userMeta->signature) : HTML::image('/img/default2.jpg', 'Signature') }}<br>
+                                <td>
+                                    {{ $userMeta->signature != null ? HTML::image('/uploads/user_images/docs/'.$userMeta->signature) : HTML::image('/img/default_sig.png', 'Signature') }}<br>
                                     <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature.</ins></a>
                                 </td>
                             </tr>

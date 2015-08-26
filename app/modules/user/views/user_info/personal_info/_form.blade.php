@@ -57,7 +57,7 @@
         </div>
         <div class="col-lg-6">
             @if(isset($model))
-               <div class="col-lg-4">{{ $model->image != null ? HTML::image('/user_images/profile/'.$model->image) :'' }}</div>
+               <div class="col-lg-4">{{ $model->image != null ? HTML::image('/uploads/user_images/profile/'.$model->image) :'' }}</div>
                 <p>&nbsp;</p>
                 {{ Form::label('image', 'Select Profile Picture :') }}
                 {{ Form::file('image',array('multiple'=>true)) }}

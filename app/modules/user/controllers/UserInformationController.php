@@ -39,7 +39,7 @@ class UserInformationController extends \BaseController {
 
             if($file) {
                 // Images destination
-                $img_dir = "user_images/profile/" . date("h-m-y");
+                $img_dir = "uploads/user_images/profile/" . date("h-m-y");
                 // Create folders if they don't exist
                 if (!file_exists($img_dir)) {
                     mkdir($img_dir, 0777, true);
@@ -48,7 +48,7 @@ class UserInformationController extends \BaseController {
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $file=strtolower($filename);
-                $path = public_path("/user_images/profile/" . $file);
+                $path = public_path("/uploads/user_images/profile/" . $file);
                 Image::make($imagefile->getRealPath())->resize(180, 180)->save($path);
                 $model->image =$file;
             }
@@ -86,7 +86,7 @@ class UserInformationController extends \BaseController {
 
             if($file){
                 // Images destination
-                $img_dir = "user_images/profile/" . date("h-m-y");
+                $img_dir = "uploads/user_images/profile/" . date("h-m-y");
                 // Create folders if they don't exist
                 if (!file_exists($img_dir)) {
                     mkdir($img_dir, 0777, true);
@@ -95,7 +95,7 @@ class UserInformationController extends \BaseController {
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $file = strtolower($filename);
-                $path = public_path("/user_images/profile/" . $file);
+                $path = public_path("/uploads/user_images/profile/" . $file);
                 Image::make($imagefile->getRealPath())->resize(180, 180)->save($path);
                 $model->image  = $file;
             }
@@ -127,7 +127,7 @@ class UserInformationController extends \BaseController {
         $model = UserProfile::find($id);
         if($file) {
             // Images destination
-            $img_dir = "user_images/profile/" . date("h-m-y");
+            $img_dir = "uploads/user_images/profile/" . date("h-m-y");
             // Create folders if they don't exist
             if (!file_exists($img_dir)) {
                 mkdir($img_dir, 0777, true);
@@ -136,7 +136,7 @@ class UserInformationController extends \BaseController {
             $extension = $model->image->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $file = strtolower($filename);
-            $path = public_path("/user_images/profile/" . $file);
+            $path = public_path("/uploads/user_images/profile/" . $file);
             Image::make($model->image->getRealPath())->resize(180, 180)->save($path);
             $model->image = $file;
         }
@@ -231,7 +231,7 @@ class UserInformationController extends \BaseController {
         $model = UserMeta::find($id);
         if($file) {
             // Images destination
-            $img_dir = "user_images/docs/" . date("h-m-y");
+            $img_dir = "uploads/user_images/docs/" . date("h-m-y");
             // Create folders if they don't exist
             if (!file_exists($img_dir)) {
 //                print_r('ok');exit;
@@ -241,7 +241,7 @@ class UserInformationController extends \BaseController {
             $extension =  date("h-m-y") . '.' . $model->signature->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $file = strtolower($filename);
-            $path = public_path('user_images/docs/' . $file);
+            $path = public_path('uploads/user_images/docs/' . $file);
             Image::make($model->signature->getRealPath())->resize(180,120)->save($path);
             $model->signature  =  $file;
         }
