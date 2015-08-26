@@ -85,6 +85,12 @@ class UserInformationController extends \BaseController {
             $model->gender = Input::get('gender');
 
             if($file){
+                // Images destination
+                $img_dir = "user_images/profile/" . date("h-m-y");
+                // Create folders if they don't exist
+                if (!file_exists($img_dir)) {
+                    mkdir($img_dir, 0777, true);
+                }
                 $imagefile = Input::file('image');
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
@@ -93,7 +99,6 @@ class UserInformationController extends \BaseController {
                 Image::make($imagefile->getRealPath())->resize(180, 180)->save($path);
                 $model->image  = $file;
             }
-
             $model->city = Input::get('city');
             $model->state = Input::get('state');
             $model->country = Input::get('country');
@@ -127,14 +132,14 @@ class UserInformationController extends \BaseController {
             if (!file_exists($img_dir)) {
                 mkdir($img_dir, 0777, true);
             }
+            $model->image = Input::file('image');
+            $extension = $model->image->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/user_images/profile/" . $file);
+            Image::make($model->image->getRealPath())->resize(180, 180)->save($path);
+            $model->image = $file;
         }
-        $model->image = Input::file('image');
-        $extension = $model->image->getClientOriginalExtension();
-        $filename = str_random(12) . '.' . $extension;
-        $file = strtolower($filename);
-        $path = public_path("/user_images/profile/" . $file);
-        Image::make($model->image->getRealPath())->resize(180, 180)->save($path);
-        $model->image  = $file;
         $model->save();
 
         Session::flash('message', "Successfully Added Profile Picture!");

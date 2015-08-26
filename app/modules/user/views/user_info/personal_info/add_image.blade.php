@@ -6,7 +6,7 @@
    {{Form::model($model, array('route'=>['user/profile-info/add/profile-image',$model->id],'class'=>'form-horizontal','files'=>true))}}
 
     @if(isset($model))
-        <div class="col-lg-3">{{ $model->image != null ? HTML::image('/user_images/profile/'.$model->image) :'Profile Picture do not added yet.' }}</div>
+        <div class="col-lg-3">{{ $model->image != null ? HTML::image('/user_images/profile/'.$model->image) :'' }}</div>
         <p>&nbsp;</p>
         {{ Form::label('image', 'Select Profile Picture :') }}
         {{ Form::file('image',array('multiple'=>true)) }}
