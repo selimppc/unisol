@@ -227,6 +227,7 @@ class UserInformationController extends \BaseController {
     {
         $data = Input::all();
         $file = $data['signature'];
+
         $model = UserMeta::find($id);
         if($file) {
             // Images destination
@@ -240,7 +241,7 @@ class UserInformationController extends \BaseController {
             $filename = str_random(12) . '.' . $extension;
             $file = strtolower($filename);
             $path = public_path("/user_images/docs/" . $file);
-            Image::make($model->signature->getRealPath())->resize(150,100)->save($path);
+            Image::make($model->signature->getRealPath())->resize(180,120)->save($path);
             $model->signature  = $file;
         }
         $model->save();
