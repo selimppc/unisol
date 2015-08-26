@@ -140,8 +140,8 @@
                             </tr>
                             <tr>
                                 <th>Signature</th>
-                                <td>
-                                    {{ $userMeta->signature != null ? HTML::image('/user_images/docs/'.$userMeta->signature) :'Signature do not added yet.' }}
+                                <td class="col-lg-5">
+                                    {{ $userMeta->signature != null ? HTML::image('/user_images/docs/'.$userMeta->signature) : HTML::image('/img/default2.jpg', 'Signature') }}
                                     <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature.</ins></a>
                                 </td>
                             </tr>
