@@ -210,9 +210,9 @@ class CreateResearchConsultancy extends Migration {
             $table->unsignedInteger('rnc_associated_id')->nullable();
             $table->unsignedInteger('rnc_research_paper_id')->nullable();
             $table->unsignedInteger('rnc_transaction_id')->nullable();
-            $table->dateTime('date');
-            $table->decimal('amount', 10,2 );
-            $table->string('status', 16 );
+            $table->dateTime('date')->nullable();
+            $table->decimal('amount', 10,2 )->nullable();
+            $table->string('status', 16 )->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
