@@ -203,6 +203,27 @@ class CreateResearchConsultancy extends Migration {
             $table->foreign('rnc_research_paper_writer_id')->references('id')->on('rnc_research_paper_writer');
         });
 
+
+        Schema::create('rnc_distribution_financial', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('rnc_associated_id')->nullable();
+            $table->unsignedInteger('rnc_research_paper_id')->nullable();
+            $table->unsignedInteger('rnc_transaction_id')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->decimal('amount', 10,2 )->nullable();
+            $table->string('status', 16 )->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('rnc_writer_beneficial', function($table) {
+            $table->foreign('rnc_associated_id')->references('id')->on('user_id');
+            $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
+            $table->foreign('rnc_transaction_id')->references('id')->on('rnc_transaction_id');
+        });
+
+
 	}
 
 	public function down()
@@ -218,6 +239,7 @@ class CreateResearchConsultancy extends Migration {
 
         Schema::drop('rnc_research_paper_comment');
         Schema::drop('rnc_writer_beneficial');
+        Schema::drop('rnc_distribution_financial');
 	}
 
 }
