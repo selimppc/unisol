@@ -1,10 +1,11 @@
 <?php
 
-class ApRncController extends \BaseController {
+class ArRncController extends \BaseController {
 
 	function __construct() {
 		$this->beforeFilter('amw', array('except' => array('')));
 	}
+
 	/*
      * POST REQUEST
      */
