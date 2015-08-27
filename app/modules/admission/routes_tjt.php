@@ -31,7 +31,7 @@ Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail')
 //reset password
 Route::any('user/reset_password',
     ['as'=>'user/reset_password',
-    'uses'=>'UserSignupController@userResetPassword']);
+    'uses'=>'UserSignupController@password_change_view']);
 
 Route::any('user/change_password', 'UserSignupController@change_password');
 

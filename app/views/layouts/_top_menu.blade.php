@@ -42,11 +42,11 @@
     </li>
     <li class="treeview">
        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-unlock-alt"></i>
+          <i class="fa fa-cog"></i>
        </a>
        <ul class="dropdown-menu">
            <li><a href="{{ URL::to('') }}"> Settings </a></li>
-           <li><a href="{{ URL::to('user/reset_password') }}"> Change Password </a></li>
+           {{--<li><a href="{{ URL::to('user/reset_password') }}"> Change Password </a></li>--}}
        </ul>
     </li>
 </ul>
