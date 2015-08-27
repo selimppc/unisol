@@ -278,53 +278,6 @@ class UserSignupController extends \BaseController {
     }
 
    // user password_change view method
-    public function password_change_view(){
-
-        return View::make('admission::signup.password_reset');
-    }
-    // user password_change method
-    public function change_password()
-    {
-//echo 'ok';exit;
-        $model= User::find(Auth::user()->id);
-
-        $old_password = Input::get('old_password');
-
-        $user_password = Auth::user()->password;
-
-        if(Hash::check($old_password, $user_password)){
-
-            //validation
-            $rules = array(
-
-                'new_password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
-                'confirm_password' => 'Required|same:new_password',
-            );
-
-            $validator = Validator::make(Input::all(), $rules);
-
-            if ($validator->Fails()) {
-                Session::flash('message', 'Invalid!!');
-
-                return Redirect::back()->withErrors($validator)->withInput();
-            } else{
-                $model->password = Hash::make(Input::get('new_password'));
-
-                if($model->save()){
-
-                    Session::flash('message','You have changed your password successfully. You may signin now.');
-                    return View::make('admission::signup.login');
-                }
-                else{
-                    echo "data do not saved!!!";
-                }
-            }
-        }else{
-            Session::flash('message','Password does not match. Please try again!');
-
-            return Redirect::back();
-        }
-    }
 
     public function show($id)
 	{

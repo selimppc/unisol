@@ -436,10 +436,52 @@ class UserInformationController extends \BaseController {
             return Redirect::to('user/supporting-docs')->with('message', 'Not Added');
     }
 
-    public function user_settings(){
-        $user_role = User::hasRole(Auth::user()->get()->role_id);
-        return View::make('user::settings.amw.privacy_settings',compact('user_role'));
+
+    public function password_change_view($id){
+//       print_r($id);exit;
+        $model = User::find($id);
+        return View::make('admission::signup.password_reset',compact('model'));
+    }
+    // user password_change method
+    public function change_password()
+    {
+        $model= User::findOrFail(Auth::user()->get()->id);
+        $old_password = Input::get('old_password');
+        $user_password = Auth::user()->get()->password;
+
+        if(Hash::check($old_password, $user_password)){
+            //validation
+            $rules = array(
+                'new_password' => 'required',
+                'confirm_password' => 'required|same:new_password',
+            );
+            $validator = Validator::make(Input::all(), $rules);
+            if ($validator->Fails()) {
+                Session::flash('message', 'Invalid!!');
+
+                return Redirect::back()->withErrors($validator)->withInput();
+            } else{
+                $model->password = Input::get('new_password');
+                if($model->save()){
+                    Session::flash('message','You have changed your password successfully.');
+                    return Redirect::back();
+                }
+                else{
+                    echo "data do not saved!!!";
+                }
+            }
+        }else{
+            Session::flash('message','Password does not match. Please try again!');
+            return Redirect::back();
+        }
     }
 
+    public function user_settings(){
+        $user_role = User::hasRole(Auth::user()->get()->role_id);
+        $user_id = Auth::user()->get()->id;
+        $userAccounts = User::where('id', '=', $user_id)->first();
+        $userProfile = UserProfile::where('user_id', '=', $user_id)->first();
+        return View::make('user::settings.amw.privacy_settings',compact('user_role','user_id','userProfile','userAccounts'));
+    }
 
 }

@@ -28,12 +28,6 @@ Route::any('users/user_password_update', 'UserSignupController@userPasswordUpdat
 Route::any('user/username_reset', 'UserSignupController@usernameReset');
 Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail');
 
-//reset password
-Route::any('user/reset_password',
-    ['as'=>'user/reset_password',
-    'uses'=>'UserSignupController@password_change_view']);
-
-Route::any('user/change_password', 'UserSignupController@change_password');
 
 //Cookie
 Route::any('user/set_cookie', 'UserSignupController@setCookie');

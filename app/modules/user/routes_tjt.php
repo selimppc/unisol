@@ -138,4 +138,15 @@ Route::any("user/settings", [
     "uses" => "UserInformationController@user_settings"
 ]);
 
+//change password
+Route::any('user/reset_password/{id}',
+    ['as'=>'user/reset_password',
+        'uses'=>'UserInformationController@password_change_view']);
+
+Route::any('user/change_password/{id}',
+    ['as'=>'user/change_password',
+        'uses'=>'UserInformationController@change_password']);
+//Route::any('user/change_password', 'UserInformationController@change_password');
+
+
 
