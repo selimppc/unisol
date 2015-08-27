@@ -40,7 +40,7 @@
                     <td>{{ $values->total_amount }}  </td>
                     <td>{{Str::title($values->status)}}</td>
                     <td>@if($values->status != 'invoiced')
-                            <a href="{{ URL::route('hr-create-invoice', ['trn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Create Invoice"><span class="fa fa-pencil"></span> + Invoice</a>
+                            <a href="{{ URL::route('rnc-create-invoice', ['trn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Create Invoice"><span class="fa fa-pencil"></span> + Invoice</a>
                             @endif
                     </td>
 

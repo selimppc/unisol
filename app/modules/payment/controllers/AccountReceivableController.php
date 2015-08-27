@@ -232,7 +232,7 @@ class AccountReceivableController extends \BaseController {
 
     /*
      * ===============================================
-     * create invoice
+     * create invoice for student
      * ===============================================
      */
     public function student_to_invoice( $billing_student_head_id )
