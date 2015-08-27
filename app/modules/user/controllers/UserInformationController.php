@@ -457,7 +457,7 @@ class UserInformationController extends \BaseController {
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->Fails()) {
-                Session::flash('message', 'Invalid!!');
+                Session::flash('info', 'Your new password does not match with confirm password. Please try again!');
 
                 return Redirect::back()->withErrors($validator)->withInput();
             } else{
@@ -471,7 +471,7 @@ class UserInformationController extends \BaseController {
                 }
             }
         }else{
-            Session::flash('message','Password does not match. Please try again!');
+            Session::flash('message','Your old password was incorrect. Please try again!');
             return Redirect::back();
         }
     }

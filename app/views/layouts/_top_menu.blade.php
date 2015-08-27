@@ -48,8 +48,9 @@
            <div style="text-align: center;background-color:lavender"><b>Account & Settings</b></i>
               <p>&nbsp;</p>
            </div>
+           <li><a href="{{ URL::route('user/profile') }}"> Profile </a></li>
+           <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
            <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
-           <li><a href="{{ URL::to('user/settings') }}">Privacy Settings </a></li>
         </ul>
     </li>
 </ul>
