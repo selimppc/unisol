@@ -32,7 +32,7 @@
                 @foreach($data as $values)
                  <tr style="{{$values->status=='invoiced' ? 'background-color: burlywood' : '' }}">
                     <td><b>
-                        {{ link_to_route($values->status!="invoiced" ?'show-hr-trn' : 'show-hr-trn',$values->rnc_research_paper_id,['trn_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route($values->status!="invoiced" ?'rnc-bill-details' : 'rnc-bill-details',$values->rnc_research_paper_id,['trn_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td> {{ $values->user_id }}</td>
                     <td>{{ $values->issue_date }}</td>
