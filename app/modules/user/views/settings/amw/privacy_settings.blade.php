@@ -3,10 +3,21 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-    @include('layouts._sidebar_amw')
+    @if($user_role=="amw")
+       @include('layouts._sidebar_amw')
+    @elseif($user_role=="faculty")
+       @include('layouts._sidebar_faculty')
+    @elseif($user_role=="student")
+       @include('layouts._sidebar_student')
+    @elseif($user_role=="hr")
+       @include('layouts._sidebar_hr')
+    @elseif($user_role=="librarian")
+       @include('layouts._sidebar_librarian')
+    @elseif($user_role=="cfo")
+       @include('layouts._sidebar_cfo')
+    @endif
 @stop
 @section('content')
-
 <!-- left column -->
     {{--<div style="background-color:#ffffff">--}}
         <div class="box-header" style="background-color: #0490a6">
