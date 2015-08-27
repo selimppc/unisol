@@ -437,7 +437,8 @@ class UserInformationController extends \BaseController {
     }
 
     public function user_settings(){
-        return View::make('user::settings.amw.privacy_settings');
+        $user_role = User::hasRole(Auth::user()->get()->role_id);
+        return View::make('user::settings.amw.privacy_settings',compact('user_role'));
     }
 
 

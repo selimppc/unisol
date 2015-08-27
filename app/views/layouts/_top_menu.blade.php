@@ -42,10 +42,10 @@
     </li>
     <li class="treeview">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <i class='fa fa-gear'style="font-size: 10px"></i>
+           <i class='fa fa-gear'></i><i class="caret"></i>
         </a>
         <ul class="dropdown-menu">
-           <div style="text-align: center;background-color:lavender"><b>Account & Settings</b><i class="caret"></i>
+           <div style="text-align: center;background-color:lavender"><b>Account & Settings</b></i>
               <p>&nbsp;</p>
            </div>
            <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
