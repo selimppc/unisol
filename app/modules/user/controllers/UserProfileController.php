@@ -15,6 +15,7 @@ class UserProfileController extends \BaseController {
     public function profile(){
 
         if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
             $userMeta = UserMeta::where('user_id', '=', $user_id)->first();
             $userProfile = UserProfile::where('user_id', '=', $user_id)->first();
@@ -36,6 +37,6 @@ class UserProfileController extends \BaseController {
             Session::flash('danger', "Academic Records are missing !");
         }
 
-        return View::make('user::profile.profile', compact('userMeta', 'userProfile', 'academicRecords','user_id','countryList'));
+        return View::make('user::profile.profile', compact('userMeta', 'userProfile', 'academicRecords','user_id','countryList','user_role'));
     }
 }
