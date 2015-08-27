@@ -436,6 +436,9 @@ class UserInformationController extends \BaseController {
             return Redirect::to('user/supporting-docs')->with('message', 'Not Added');
     }
 
+    public function user_settings(){
+        return View::make('user::settings.amw.privacy_settings');
+    }
 
 
 }

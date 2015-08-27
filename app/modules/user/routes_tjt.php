@@ -132,4 +132,10 @@ Route::any("user/supporting-docs/store", [
     "uses" => "UserInformationController@sDocsStore"
 ]);
 
+//Settings............
+Route::any("user/settings", [
+    "as"   => "user/settings",
+    "uses" => "UserInformationController@user_settings"
+]);
+
 

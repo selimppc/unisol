@@ -6,7 +6,7 @@
 
     <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="glyphicon glyphicon-user"></i>
+            {{--<i class="glyphicon glyphicon-user"></i>--}}
             <span><b> {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ( Auth::applicant()->check() ? ucwords(Auth::applicant()->get()->username) : "Guest !" ) }} </b> <i class="caret"></i></span>
         </a>
         <ul class="dropdown-menu">
@@ -42,11 +42,14 @@
     </li>
     <li class="treeview">
        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-cog"></i>
+          <i class='fa fa-gear'style="font-size: 10px"></i>
        </a>
        <ul class="dropdown-menu">
-           <li><a href="{{ URL::to('') }}"> Settings </a></li>
-           {{--<li><a href="{{ URL::to('user/reset_password') }}"> Change Password </a></li>--}}
+       <div style="text-align: center;background-color:lavender"><b>Account & Settings</b><i class="caret"></i>
+       <p>&nbsp;</p>
+       </div>
+       <li><a href="{{URL::route('user/logout') }}">Sign out</a></li>
+       <li><a href="{{ URL::to('user/settings') }}">Privacy Settings </a></li>
        </ul>
     </li>
 </ul>
