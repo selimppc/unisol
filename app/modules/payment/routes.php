@@ -188,7 +188,7 @@ Route::group(['prefix' => 'payment'], function() {
 
     /*
      * =============================================
-     * For RNC
+     * For RNC ::: Account Receivable
      * =============================================
      */
 
@@ -225,6 +225,50 @@ Route::group(['prefix' => 'payment'], function() {
     Route::any("store-rnc-ar-voucher", [
         "as"   => "store-rnc-ar-voucher",
         "uses" => "ArRncController@store_rnc_ar_voucher"
+    ]);
+
+
+
+
+    /*
+     * =============================================
+     * For RNC ::: Account Payable
+     * =============================================
+     */
+
+    // A/C Payable
+    Route::any("rnc-payable-index",[
+        "as"   => "rnc-payable-index",
+        "uses" => "ApRncController@index_rnc_ap"
+    ]);
+
+    Route::any("rnc-ap-bill-details/{rnc_id}",[
+        "as"   => "rnc-ap-bill-details",
+        "uses" => "ApRncController@show_rnc_ap_bill"
+    ]);
+
+    //create RNC invoice
+    Route::any('rnc-ap-create-invoice/{rnc_id}', [
+        'as' => 'rnc-ap-create-invoice',
+        'uses' => 'ApRncController@rnc_ap_to_invoice'
+    ]);
+
+    //Manage RNC Bill AR
+    Route::any('manage-rnc-ap-bill', [
+        'as' => 'manage-rnc-ap-bill',
+        'uses' => 'ApRncController@manage_ap_rnc_bill'
+    ]);
+
+    //manage RNC Receivable Amount
+    Route::any("rnc-ap-bill-voucher/{associated_id}/{coa_id}", [
+        "as"   => "rnc-ap-bill-voucher",
+        "uses" => "ApRncController@rnc_ap_bill_voucher"
+    ]);
+
+    // Store RNC Payment / Money Receipt
+    Route::any("store-rnc-ap-voucher", [
+        "as"   => "store-rnc-ap-voucher",
+        "uses" => "ApRncController@store_rnc_ap_voucher"
     ]);
 
 
