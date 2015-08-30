@@ -40,17 +40,15 @@
             @endif
         </ul>
     </li>
-    <li class="treeview">
+    <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
            <i class='fa fa-gear'></i><i class="caret"></i>
         </a>
         <ul class="dropdown-menu">
-           <div style="text-align: center;background-color:lavender"><b>Account & Settings</b></i>
-              <p>&nbsp;</p>
-           </div>
-           <li><a href="{{ URL::route('user/profile') }}"> Profile </a></li>
-           <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
-           <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
+            <div class="text-center"><h5><b>Account & Settings</b></h5></div>
+            <li><a href="{{ URL::route('user/profile') }}"> Profile </a></li>
+            <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
+            <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
         </ul>
     </li>
 </ul>
