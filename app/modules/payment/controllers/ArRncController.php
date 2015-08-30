@@ -196,6 +196,6 @@ class ArRncController extends \BaseController {
 	 *
 	 */
 	protected function distribution_beneficial_writer($nc_id){
-		echo "K";
+		$transaction = "";
 	}
 }
