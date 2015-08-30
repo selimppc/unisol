@@ -40,7 +40,7 @@
             @endif
         </ul>
     </li>
-    <li>
+    <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
            <i class='fa fa-gear'></i><i class="caret"></i>
         </a>
