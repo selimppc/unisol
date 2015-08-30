@@ -390,7 +390,7 @@ class UserInformationController extends \BaseController {
                     $filename = str_random(12) . '.' . $extension;
                     $file=strtolower($filename);
                     $path = public_path("/uploads/user_images/docs/" . $file);
-                    Image::make($file_certificate->getRealPath())->resize(380, 280)->save($path);
+                    Image::make($file_certificate->getRealPath())->save($path);
                     $model->certificate =$file;
                 }
                 if($file2) {
@@ -399,7 +399,7 @@ class UserInformationController extends \BaseController {
                     $filename = str_random(12) . '.' . $extension;
                     $file=strtolower($filename);
                     $path = public_path("/uploads/user_images/docs/" . $file);
-                    Image::make($file_transcript->getRealPath())->resize(380, 280)->save($path);
+                    Image::make($file_transcript->getRealPath())->save($path);
                     $model->transcript =$file;
                 }
             }

@@ -38,10 +38,9 @@
              <div class="col-lg-6">
                  @if(isset($model->board_type))
                     <div  id='board_type'>{{ Form::label('board_type', 'Board Type') }}<span class="text-danger">*</span>   (Select one : Board/ University/Other )</div>
-
                     <div id="board"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
                          <div class="board">
-                           {{ Form::select('board_university_board', array('' => 'Select one',
+                             {{ Form::select('board_university_board', array('' => 'Select one',
                                  'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
                                  $model->board_university,
                                  array('class' => 'form-control')) }}
