@@ -251,6 +251,186 @@ class UserInformationController extends \BaseController {
         return Redirect::back();
     }
 
+    public function create_acm_records(){
+        $user_id = Auth::user()->get()->id;
+        return View::make('user::user_info.academic._create',compact('user_id'));
+    }
+
+    public function store_acm_records(){
+        if(Auth::user()->check()) {
+            $rules = array(
+                'level_of_education' => 'required',
+//                'certificate' => 'required',
+//                'transcript' => 'required',
+                'board_type' => 'required',
+                'result_type' => 'required',
+            );
+            $validator = Validator::make(Input::all(), $rules);
+
+            if ($validator->passes()) {
+                $data = Input::all();
+                $file = $data['certificate'];
+                $file2 =$data['transcript'];
+                $model = new UserAcademicRecord();
+                $model->user_id = Auth::user()->get()->id;
+                $model->level_of_education = Input::get('level_of_education');
+                $model->degree_name = Input::get('degree_name');
+                $model->institute_name = Input::get('institute_name');
+                $model->academic_group = Input::get('academic_group');
+
+                //save board or university according to board_type
+                $model->board_type = Input::get('board_type');
+
+                if ($model->board_type == 'board')
+                    $model->board_university = Input::get('board_university_board');
+                if ($model->board_type == 'university')
+                    $model->board_university = Input::get('board_university_university');
+                if ($model->board_type == 'other')
+                    $model->board_university = Input::get('board_university_other');
+
+                //$model->board_university = $board_university;
+                $model->major_subject = Input::get('major_subject');
+                $model->result_type = Input::get('result_type');
+
+                $model->result = Input::get('result');
+                $model->gpa = Input::get('gpa');
+                $model->gpa_scale = Input::get('gpa_scale');
+                $model->roll_number = Input::get('roll_number');
+                $model->registration_number = Input::get('registration_number');
+                $model->year_of_passing = Input::get('year_of_passing');
+                $model->duration = Input::get('duration');
+                $model->study_at = Input::get('study_at');
+
+                if($file) {
+                    $file_certificate = Input::file('certificate');
+                    $extension = $file_certificate->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $file=strtolower($filename);
+                    $path = public_path("/uploads/user_images/docs/" . $file);
+                    Image::make($file_certificate->getRealPath())->resize(180, 120)->save($path);
+                    $model->certificate =$file;
+                }
+                if($file2) {
+                    $file_transcript = Input::file('transcript');
+                    $extension = $file_transcript->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $file=strtolower($filename);
+                    $path = public_path("/uploads/user_images/docs/" . $file);
+                    Image::make($file_transcript->getRealPath())->resize(180, 120)->save($path);
+                    $model->transcript =$file;
+                }
+                $model->save();
+
+                Session::flash('message', "Successfully Added Information!");
+                return Redirect::back();
+            } else {
+                Session::flash('danger', "Invalid Request!");
+                return Redirect::back();
+            }
+        }else{
+            return Redirect::route('user/login')->with('message', 'Please Login !');
+        }
+    }
+
+    public function edit_acm_records($id){
+        $model= UserAcademicRecord::find($id);
+        $user_id = Auth::user()->get()->id;
+        return View::make('user::user_info.academic.edit', compact('model','user_id'));
+    }
+
+    public function update_acm_records($id){
+//        print_r('ok');exit;
+        $rules = array(
+//            'level_of_education' => 'required',
+//            'certificate' => 'required',
+//            'transcript' => 'required',
+            'board_type' => 'required',
+            'result_type' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $data = Input::all();
+            $file = $data['certificate'];
+            $file2 =$data['transcript'];
+            $model = UserAcademicRecord::find($id);
+
+            if($data){
+                $model->user_id = Auth::user()->get()->id;
+//                print_r('ok');exit;
+                $model->level_of_education = Input::get('level_of_education');
+                $model->degree_name = Input::get('degree_name');
+                $model->institute_name = Input::get('institute_name');
+                $model->academic_group = Input::get('academic_group');
+                //save board or university according to board_type
+                $model->board_type = Input::get('board_type');
+                if ($model->board_type == 'board')
+                    $model->board_university = Input::get('board_university_board');
+                if ($model->board_type == 'university')
+                    $model->board_university = Input::get('board_university_university');
+                if ($model->board_type == 'other')
+                    $model->board_university = Input::get('board_university_other');
+
+                //$model->board_university = $board_university;
+                $model->major_subject = Input::get('major_subject');
+                $model->result_type = Input::get('result_type');
+
+                $model->result = Input::get('result');
+                $model->gpa = Input::get('gpa');
+                $model->gpa_scale = Input::get('gpa_scale');
+                $model->roll_number = Input::get('roll_number');
+                $model->registration_number = Input::get('registration_number');
+                $model->year_of_passing = Input::get('year_of_passing');
+                $model->duration = Input::get('duration');
+                $model->study_at = Input::get('study_at');
+
+                if($file) {
+                    $file_certificate = Input::file('certificate');
+                    $extension = $file_certificate->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $file=strtolower($filename);
+                    $path = public_path("/uploads/user_images/docs/" . $file);
+                    Image::make($file_certificate->getRealPath())->resize(380, 280)->save($path);
+                    $model->certificate =$file;
+                }
+                if($file2) {
+                    $file_transcript = Input::file('transcript');
+                    $extension = $file_transcript->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $file=strtolower($filename);
+                    $path = public_path("/uploads/user_images/docs/" . $file);
+                    Image::make($file_transcript->getRealPath())->resize(380, 280)->save($path);
+                    $model->transcript =$file;
+                }
+            }
+            $model->save();
+            Session::flash('message', "Successfully updated Information!");
+            return Redirect::back();
+        } else {
+            Session::flash('danger', "Invalid Request! Please Try again");
+            return Redirect::back();
+        }
+    }
+    public function view_certificate($id){
+        $user_id = $id;
+        $model = UserAcademicRecord::where('id', '=',$user_id )->first();
+        return View::make('user::user_info.academic.certificate',compact('model'));
+
+    }
+
+    public function view_transcript($id){
+
+        $user_id = $id;
+        $model = UserAcademicRecord::where('id', '=',$user_id )->first();
+        return View::make('user::user_info.academic.transcript',compact('model'));
+    }
+
+    public function delete_acm_records($id){
+
+        UserAcademicRecord::find($id)->delete();
+        return Redirect::back()->with('message', 'Successfully deleted Information!');
+    }
+
     public function miscIndex(){
         $user_id = Auth::user()->get()->id;
         $data = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();

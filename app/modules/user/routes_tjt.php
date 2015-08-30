@@ -66,7 +66,39 @@ Route::any("user/meta-data/add/add-signature/{id}", [
     "as"   => "user/meta-data/add-signature",
     "uses" => "UserInformationController@addSignature"
 ]);
+//Academic Records
+Route::any("user/acm-records/create", [
+    "as"   => "user/acm-records/create",
+    "uses" => "UserInformationController@create_acm_records"
+]);
 
+Route::any("user/acm-records/store", [
+    "as"   => "user/acm-records/store",
+    "uses" => "UserInformationController@store_acm_records"
+]);
+
+Route::any("user/acm-records/edit/{id}", [
+    "as"   => "user/acm-records/edit",
+    "uses" => "UserInformationController@edit_acm_records"
+]);
+
+Route::any("user/acm-records/update/{id}", [
+    "as"   => "user/acm-records/update",
+    "uses" => "UserInformationController@update_acm_records"
+]);
+Route::any("user/acm-records/certificate/{id}", [
+    "as"   => "user/acm-records/certificate",
+    "uses" => "UserInformationController@view_certificate"
+]);
+Route::any("user/acm-records/transcript/{id}", [
+    "as"   => "user/acm-records/transcript",
+    "uses" => "UserInformationController@view_transcript"
+]);
+
+Route::any("user/acm-records/delete/{id}", [
+    "as"   => "user/acm-records/delete",
+    "uses" => "UserInformationController@delete_acm_records"
+]);
 //Miscellaneous_Info
 
 Route::any("user/misc-info", [
@@ -146,7 +178,7 @@ Route::any('user/reset_password/{id}',
 Route::any('user/change_password/{id}',
     ['as'=>'user/change_password',
         'uses'=>'UserInformationController@change_password']);
-//Route::any('user/change_password', 'UserInformationController@change_password');
+
 
 
 

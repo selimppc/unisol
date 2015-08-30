@@ -163,9 +163,71 @@
                    </table>
                 </div>
             </section>
-             {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
-                  @include('user::user_info.meta_data._modal')
-             {{ Form::close() }}
+            <p>&nbsp;</p>
+            <hr>
+            {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
+               @include('user::user_info.meta_data._modal')
+            {{ Form::close() }}
+
+            {{----------------------User : Academic Records ------------------------------------------------------------}}
+            <section class="col-lg-12"style="background-color:#ffffff">
+                <p>&nbsp;</p>
+                    <div class="col-lg-4"><b style="color: #000000">Academic Information</b>
+                    <p>
+                        @if(isset($academicRecords))
+                           <span class="text-muted">
+                               {{--<a href="{{Route('user/meta-data/signature',['id'=>$academicRecords->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature. </ins></a>--}}
+                           </span>
+                        @endif
+                    </p>
+                    </div>
+                    <div class="col-lg-8" style="background-color:aliceblue">
+                        <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/acm-records/create')}}" data-toggle="modal" data-target="#meta-modal" >+ Add Academic Records</a>
+                        <p>
+                          <em><span class="text-danger">*</span><strong style="color:darkmagenta"> Please add at least two academic records.</strong></em>
+                        </p>
+                        <table class="table table-striped  table-bordered">
+                            <thead>
+                                 <tr>
+                                     <th> Education Level</th>
+                                     <th>Board / University</th>
+                                     <th>Passing Year</th>
+                                     <th>Result</th>
+                                     <th>Docs</th>
+                                     <th>Action</th>
+                                 </tr>
+                           </thead>
+                           <tbody>
+                              @if(isset($academicRecords))
+                                  @foreach($academicRecords as $value)
+                                      <tr>
+                                           <td>{{strtoupper($value->level_of_education)}}</td>
+                                           <td>{{ $value->board_university}}</td>
+                                           <td>{{ $value->year_of_passing}}</td>
+                                           <td>
+                                                @if($value->result_type =='division')
+                                                {{ $value->result }}
+                                                @else
+                                                {{$value->gpa}}
+                                                @endif
+                                           </td>
+                                           <td>
+                                              <a style="color:navy" class="btn btn-xs btn-default" href="{{URL::route('user/acm-records/certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#changeImageModal">Certificate</a>
+                                              <a style="color:navy" class="pull-right btn btn-xs btn-default" href="{{URL::route('user/acm-records/transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#changeImageModal">Transcript</a>
+                                           </td>
+                                           <td>
+                                               <a href="{{ URL::route('user/acm-records/edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myeditModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-edit"></span></a>
+                                               <a data-href="{{ URL::route('user/acm-records/delete',['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                           </td>
+                                      </tr>
+                                  @endforeach
+                              @else
+                                  {{"No Academic Records found !"}}
+                              @endif
+                           </tbody>
+                        </table>
+                    </div>
+            </section>
             <p>&nbsp;</p>
             <hr>
     </div>
@@ -205,6 +267,26 @@
              </div>
          </div>
      </div>
+     <!-- Modal for delete -->
+      <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                      <strong>Are you sure to delete?</strong>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <a href="#" class="btn btn-danger danger">Delete</a>
+
+                </div>
+          </div>
+        </div>
+      </div>
 
      <style>
      hr {
