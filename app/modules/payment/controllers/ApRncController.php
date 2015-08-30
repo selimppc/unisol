@@ -100,7 +100,7 @@ class ApRncController extends \BaseController {
 	public function store_rnc_ap_voucher(){
 		//Get ALl input Data
 		$input_data = Input::all();
-		#print_r($input_data);exit;
+		print_r($input_data);exit;
 		$associated_id = Input::get('associated_id');
 
 		// Generate Voucher Number
@@ -187,6 +187,9 @@ class ApRncController extends \BaseController {
 		}
 		return Redirect::back();
 	}
+
+
+
 
 
 }

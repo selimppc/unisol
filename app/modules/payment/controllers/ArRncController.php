@@ -100,7 +100,7 @@ class ArRncController extends \BaseController {
 	public function store_rnc_ar_voucher(){
 		//Get ALl input Data
 		$input_data = Input::all();
-		#print_r($input_data);exit;
+		print_r($input_data);exit;
 		$associated_id = Input::get('associated_id');
 
 		// Generate Voucher Number
@@ -184,9 +184,18 @@ class ArRncController extends \BaseController {
 				DB::rollback();
 				Session::flash('danger', $e->getMessage() );
 			}
+
+            //Distribution Calculation for benefit share
+            $this->distribution_beneficial_writer();
 		}
 		return Redirect::back();
 	}
 
 
+	/*
+	 *
+	 */
+	protected function distribution_beneficial_writer($nc_id){
+		echo "K";
+	}
 }
