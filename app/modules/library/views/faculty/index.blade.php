@@ -7,10 +7,7 @@
  @stop
 
  @section('content')
-
     @include('library::faculty.my_carts')
-
-
  <h3>Library</h3>
 
  <div class="row">
@@ -40,7 +37,7 @@
                   </div>
 
                   <br><br>
-                  {{ Form::submit('Search', array('class'=>' pull-left btn btn-success btn-xs','id'=>'button'))}}
+                  {{ Form::submit('Search', array('class'=>'pull-left btn btn-success btn-xs','id'=>'button'))}}
                </div>
                {{ Form::close() }}
            </div>
@@ -128,9 +125,9 @@
 
 
   <script>
-    function showCart(){
+      function showCart(){
           @include('library::faculty.my_carts')
-         }
+      }
   </script>
  @stop
 

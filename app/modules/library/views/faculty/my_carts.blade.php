@@ -10,7 +10,6 @@
                    <b style="color: lightseagreen">{{count($all_cart_books)}} Book(s) Added In Your Cart.</b>
                 @endif
             </p>
-
                 <table class="table table-striped  table-bordered">
                     <thead>
                        <tr>

@@ -5,6 +5,18 @@
 //    "uses" => "UserInformationController@profileIndex"
 //]);
 
+//change password
+
+Route::any('user/reset_password/{id}',
+    ['as'=>'user/reset_password',
+        'uses'=>'UserInformationController@password_change_view']);
+
+Route::any('user/change_password/{id}',
+    ['as'=>'user/change_password',
+        'uses'=>'UserInformationController@change_password']);
+
+//Profile.........
+
 Route::any("user/profile-info/store", [
     "as"   => "user/profile-info/store",
     "uses" => "UserInformationController@storeProfile"
@@ -30,7 +42,7 @@ Route::any("user/profile-info/add/profile-image/{id}", [
     "uses" => "UserInformationController@addProfileImage"
 ]);
 
-//user mete data
+//user mete data........
 
 Route::any("user/meta-data", [
     "as"   => "user/meta-data",
@@ -169,16 +181,6 @@ Route::any("user/settings", [
     "as"   => "user/settings",
     "uses" => "UserInformationController@user_settings"
 ]);
-
-//change password
-Route::any('user/reset_password/{id}',
-    ['as'=>'user/reset_password',
-        'uses'=>'UserInformationController@password_change_view']);
-
-Route::any('user/change_password/{id}',
-    ['as'=>'user/change_password',
-        'uses'=>'UserInformationController@change_password']);
-
 
 
 

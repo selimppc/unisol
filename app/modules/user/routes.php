@@ -81,4 +81,3 @@ Route::any("/reset/{token}", [
     "uses" => "UserController@reset"
 ]);
 
-

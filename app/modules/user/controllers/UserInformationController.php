@@ -665,4 +665,9 @@ class UserInformationController extends \BaseController {
         $academicRecords = UserAcademicRecord::where('user_id', '=', $user_id)->get();
         return View::make('user::settings._settings',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta'));
     }
+
+    public function other_info(){
+        return View::make('user::user_info.others_info._others',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta'));
+
+    }
 }
