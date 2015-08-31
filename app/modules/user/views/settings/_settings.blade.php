@@ -28,10 +28,9 @@
                 {{--<p>&nbsp;</p>--}}
                       @if(isset($userProfile))
                          {{ $userProfile->image != null ? HTML::image('/uploads/user_images/profile/'.$userProfile->image , 'User Image') :  HTML::image('/img/default.jpg', 'User Image') }}
-                         {{--<p>&nbsp;</p>--}}
-                         <li>Profile Picture &nbsp;<a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins> Change</ins></a></li>
+                         <div class="text-center"><a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Edit</ins></a></div>
                       @else
-                          {{HTML::image('/img/default.jpg', 'User Image')}}
+                         {{HTML::image('/img/default.jpg', 'User Image')}}
                         {{--<a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add Profile Picture</ins></a>--}}
                       @endif
                       <p>&nbsp;</p>
@@ -70,7 +69,7 @@
             <hr>
             <section class="col-lg-12"style="background-color:#ffffff">
                 <div class="col-lg-6">
-                    {{--<li><p>Personal Info&nbsp;<a class="" href="{{ URL::route('user/edit/profile-info',['id'=>$userProfile->id]) }}" data-toggle="modal" data-target="#myeditModal">Edit</a></p></li>--}}
+                    <li><p>Profile &nbsp;<a class="" href="{{ URL::route('user/profile')}}">Edit</a></p></li>
                     {{--<li><p>Biographical Info&nbsp;<a class="" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal">Edit</a></p></li>--}}
                     {{--<li><p>Academic Records&nbsp;<a class="" href="{{ URL::route('user/acm-records/edit',['id'=>$academicRecords->id]) }}" data-toggle="modal" data-target="#myeditModal">Edit</a></p></li>--}}
                 </div>
