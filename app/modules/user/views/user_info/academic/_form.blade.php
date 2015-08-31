@@ -39,39 +39,54 @@
                  @if(isset($model->board_type))
                     <div  id='board_type'>{{ Form::label('board_type', 'Board Type') }}<span class="text-danger">*</span>   (Select one : Board/ University/Other )</div>
                     <div id="board"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
-                         <div class="board">
-                             {{ Form::select('board_university_board', array('' => 'Select one',
-                                 'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
-                                 $model->board_university,
-                                 array('class' => 'form-control')) }}
-                         </div>
+                         @if($model->board_type =='board')
+                             <div class="board">
+                                 {{ Form::select('board_university_board', array('' => 'Select one',
+                                     'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+                                     $model->board_university,
+                                     array('class' => 'form-control')) }}
+                             </div>
+                         @else
+                             <div class="board" style="display:none">
+                                  {{ Form::select('board_university_board', array('' => 'Select one',
+                                      'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+                                      $model->board_university,
+                                      array('class' => 'form-control')) }}
+                             </div>
+                         @endif
                     </div>
 
                     <div id="university" ><label class="small">{{ Form::radio('board_type','university',null) }} University</label>
-                         <div class="university">
-                             {{ Form::select('board_university_university', array('' => 'Select one',
-                                 'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
-                                 $model->board_university,
-                                 array('class' => 'form-control')) }}
-                         </div>
+                        @if($model->board_type =='university')
+                             <div class="university">
+                                 {{ Form::select('board_university_university', array('' => 'Select one',
+                                     'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
+                                     $model->board_university,
+                                     array('class' => 'form-control')) }}
+                             </div>
+                        @else
+                             <div class="university" style="display:none">
+                                  {{ Form::select('board_university_university', array('' => 'Select one',
+                                      'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
+                                      $model->board_university,
+                                      array('class' => 'form-control')) }}
+                             </div>
+                        @endif
                     </div>
 
-                    @if($model->board_type == 'other')
-                        <div id="other" ><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
+                    <div id="other" ><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
+                         @if($model->board_type == 'other')
                              <div class="other">
                                 {{ Form::text('board_university_other',$model->board_university,['class'=>'form-control ']) }}
                              </div>
-                        </div>
-                    @else
-                       <div id="other" ><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
-                            <div style="display:none" class="other">
-                               {{ Form::text('board_university_other',Input::old('board_university'),['class'=>'form-control ']) }}
-                            </div>
-                       </div>
-                    @endif
+                         @else
+                             <div style="display:none" class="other">
+                                {{ Form::text('board_university_other',Input::old('board_university'),['class'=>'form-control ']) }}
+                             </div>
+                         @endif
+                    </div>
                  @else
                     <div  id='board_type'>{{ Form::label('board_type', 'Board Type') }}<span class="text-danger">*</span>   (Select one : Board/ University/Other )</div>
-
                     <div id="board" style="display:none"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
                          <div style="display:none" class="board">
                            {{ Form::select('board_university_board', array('' => 'Select one',
@@ -101,33 +116,46 @@
 
          <div class="form-group">
              <div class="col-lg-6">
-              @if(isset($model->result_type))
+                 @if(isset($model->result_type))
                      <div>{{ Form::label('result_type', 'Result Type') }}<span class="text-danger">*</span>   (Select one : Division/Class OR CGPA )</div>
                      <div id="division"><label class="small">{{ Form::radio('result_type','division',null) }} Division/Class </label>
-                          <div class="division">
-                          {{ Form::text('result', $model->result,['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}
+                         @if($model->result_type =='division')
+                              <div class="division">
+                                 {{ Form::text('result', $model->result,['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}
+                              </div>
+                         @else
+                              <div class="division" style="display:none">
+                                  {{ Form::text('result', $model->result,['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}
+                              </div>
+                         @endif
+                     </div>
+                     <div id="gpa"><label class="small">{{ Form::radio('result_type','gpa',null) }} CGPA</label>
+                         @if($model->result_type =='gpa')
+                             <div class="gpa">
+                                <div class="col-lg-3">{{ Form::text('gpa', $model->gpa,['class'=>'form-control input-sm','placeholder'=>"gpa"]) }}</div>
+                                <div class="col-lg-3">{{ Form::text('gpa_scale', $model->gpa_scale,['class'=>'form-control input-sm','placeholder'=>"gpa scale"]) }}</div>
+                             </div>
+                         @else
+                             <div class="gpa" style="display:none">
+                                <div class="col-lg-3">{{ Form::text('gpa', $model->gpa,['class'=>'form-control input-sm','placeholder'=>"gpa"]) }}</div>
+                                <div class="col-lg-3">{{ Form::text('gpa_scale', $model->gpa_scale,['class'=>'form-control input-sm','placeholder'=>"gpa scale"]) }}</div>
+                             </div>
+                         @endif
+                     </div>
+                 @else
+                     <div>{{ Form::label('result_type', 'Result Type') }}<span class="text-danger">*</span>   (Select one : Division/Class OR CGPA )</div>
+                     <div id="division"><label class="small">{{ Form::radio('result_type','division',null) }} Division/Class </label>
+                          <div style="display:none" class="division">
+                            {{ Form::text('result', Input::old('result'),['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}
                           </div>
                      </div>
                      <div id="gpa"><label class="small">{{ Form::radio('result_type','gpa',null) }} CGPA</label>
-                         <div class="gpa">
-                            <div class="col-lg-3">{{ Form::text('gpa', $model->gpa,['class'=>'form-control input-sm','placeholder'=>"gpa"]) }}</div>
-                            <div class="col-lg-3">{{ Form::text('gpa_scale', $model->gpa_scale,['class'=>'form-control input-sm','placeholder'=>"gpa scale"]) }}</div>
-                         </div>
+                          <div style="display:none" class="gpa">
+                              <div class="col-lg-3">{{ Form::text('gpa', Input::old('gpa'),['class'=>'form-control input-sm','placeholder'=>"gpa"]) }}</div>
+                              <div class="col-lg-3">{{ Form::text('gpa_scale', Input::old('gpa_scale'),['class'=>'form-control input-sm','placeholder'=>"gpa scale"]) }}</div>
+                          </div>
                      </div>
-              @else
-                   <div>{{ Form::label('result_type', 'Result Type') }}<span class="text-danger">*</span>   (Select one : Division/Class OR CGPA )</div>
-                   <div id="division"><label class="small">{{ Form::radio('result_type','division',null) }} Division/Class </label>
-                        <div style="display:none" class="division">
-                        {{ Form::text('result', Input::old('result'),['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}
-                        </div>
-                   </div>
-                   <div id="gpa"><label class="small">{{ Form::radio('result_type','gpa',null) }} CGPA</label>
-                       <div style="display:none" class="gpa">
-                          <div class="col-lg-3">{{ Form::text('gpa', Input::old('gpa'),['class'=>'form-control input-sm','placeholder'=>"gpa"]) }}</div>
-                          <div class="col-lg-3">{{ Form::text('gpa_scale', Input::old('gpa_scale'),['class'=>'form-control input-sm','placeholder'=>"gpa scale"]) }}</div>
-                       </div>
-                   </div>
-              @endif
+                 @endif
              </div>
          </div>
          <p>&nbsp;</p>
@@ -162,14 +190,14 @@
          <p>&nbsp;</p>
          <div class="form-group">
              <div class="col-lg-4">
-                 {{ Form::label('certificate', 'Certificate') }}<span class="text-danger">*</span>
+                 {{ Form::label('certificate', 'Certificate') }}
                  {{ Form::file('certificate', null,['class' => 'form-control','required']) }}
              </div>
          </div>
 
          <div class="form-group">
              <div class="col-lg-4">
-                 {{ Form::label('transcript', 'Transcript') }}<span class="text-danger">*</span>
+                 {{ Form::label('transcript', 'Transcript') }}
                  {{ Form::file('transcript', null,['class' => 'form-control','required']) }}
              </div>
          </div>
