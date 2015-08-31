@@ -85,7 +85,6 @@
                 </p>
                 </div>
                 <div class="col-lg-8" style="background-color:aliceblue">
-
                    <table class="table table-striped  table-bordered">
                        @if(isset($userMeta))
                           <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical Info</a>

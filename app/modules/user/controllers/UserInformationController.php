@@ -661,7 +661,8 @@ class UserInformationController extends \BaseController {
         $user_id = Auth::user()->get()->id;
         $userAccounts = User::where('id', '=', $user_id)->first();
         $userProfile = UserProfile::where('user_id', '=', $user_id)->first();
-        return View::make('user::settings._settings',compact('user_role','user_id','userProfile','userAccounts'));
+        $userMeta = UserMeta::where('user_id', '=', $user_id)->first();
+        $academicRecords = UserAcademicRecord::where('user_id', '=', $user_id)->get();
+        return View::make('user::settings._settings',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta'));
     }
-
 }
