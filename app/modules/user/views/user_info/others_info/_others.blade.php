@@ -18,64 +18,171 @@
     @endif
 @stop
 @section('content')
+     <?php
+        if($supporting_docs != null){
+            $sdoc_id = $supporting_docs['id'];
+        }else{
+            $sdoc_id = 'null';
+        }
+     ?>
     <!-- left column -->
     <div style="background-color:#ffffff">
         <div class="box-header" style="background-color: #0490a6">
-           <h3 class="text-center text-green"><b style="color: #f5f5f5">User Profile</b></h3>
+           <h3 class="text-center text-green"><b style="color: #f5f5f5">User Information</b></h3>
         </div>
             <section class="col-lg-12"style="background-color:#ffffff">
             <p>&nbsp;</p>
-                <div class="col-lg-4"><b style="color: #000000">Personal Information</b>
-                     <p>
-                         @if(isset($userProfile))
-                              <span class="text-muted ">You Can Change Your Profile Picture From Here .
-                                   <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Change Profile Picture </ins></a>
-                              </span>
-                         @endif
-                     </p>
-                </div>
-                <div class="col-lg-8" style="background-color:aliceblue">
-                     @if(isset($userProfile))
-                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/edit/profile-info',['id'=>$userProfile->id]) }}" data-toggle="modal" data-target="#myeditModal">Edit Personal Info</a>
-                     @else
-                         <button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
-                           + Add Personal Info
-                         </button>
-                     @endif
-                     <p>&nbsp;</p>
-                     <div class="col-lg-4">
-                         @if(isset($userProfile))
-                            {{ $userProfile->image != null ? HTML::image('/uploads/user_images/profile/'.$userProfile->image , 'User Image', ['class'=>'img-circle']) :  HTML::image('/img/default.jpg', 'User Image') }}
-                            <p>&nbsp;</p>
-                            <a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Profile Picture</ins></a>
-                         @endif
-                     </div>
+            <div class="col-lg-4"><b style="color: #000000">Supporting Documents</b>
 
-                     <div class="col-lg-4">
-                         @if(isset($userProfile))
-                             <p>First Name : <b>{{$userProfile->first_name}}</b></p>
-                             <p>Last Name : <b>{{$userProfile->last_name}}</b></p>
-                             <p>Date of Birth : {{$userProfile->date_of_birth}}</p>
-                             <p>Gender : {{ucfirst($userProfile->gender)}}</p>
-                             <p>City : {{$userProfile->city}}</p>
-                             <p>Zip Code : {{$userProfile->zip_code}}</p>
-                             <p>Country : {{$userProfile->country}}</p>
-                         @else
-                             {{"No Profile data found !"}}
-                         @endif
-                         <p>&nbsp;</p>
-                     </div>
-                </div>
+            </div>
+            <div class="col-lg-4" style="background-color:aliceblue">
+                <table class="table table-striped  table-bordered">
+                    <thead>
+                        <tr>
+                           <th>Goal Statement</th>
+                           @if( $supporting_docs->academic_goal_statement != null)
+                               <td>
+                               <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'academic_goal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal">
+                                   {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->academic_goal_statement, $supporting_docs->academic_goal_statement,['class'=>'col-md-6'])}}
+                                  <ins>Edit</ins>
+                               </a><br>
+                               </td>
+                           @else
+                               <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'academic_goal_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >+</a></td>
+                           @endif
+                        </tr>
+                        <tr>
+                            <th>Essay</th>
+                            @if($supporting_docs->essay != null)
+                                <td>
+                                   <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'essay', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                        {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->essay, $supporting_docs->essay,['class'=>'col-md-6'])}}
+                                        <ins>Edit</ins>
+                                   </a><br>
+                                </td>
+                            @else
+                                <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'essay','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" ><i class="fa fa-plus-square"></i></a></td>
+                            @endif
+                        </tr>
+                        <tr>
+                            <th>Letter of Intent</th>
+                            @if($supporting_docs->letter_of_intent != null)
+                                <td>
+                                    <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'letter_of_intent', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                        {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->letter_of_intent, $supporting_docs->letter_of_intent,['class'=>'col-md-6'])}}
+                                        <ins>Edit</ins>
+                                    </a><br>
+                                </td>
+                            @else
+                                <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'letter_of_intent','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                            @endif
+                        </tr>
+                        <tr>
+                            <th>Personal Statement</th>
+                             @if($supporting_docs->personal_statement != null)
+                                 <td>
+                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'personal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->personal_statement, $supporting_docs->personal_statement,['class'=>'col-md-6'])}}
+                                     Edit
+                                     </a><br>
+                                 </td>
+                             @else
+                                 <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'personal_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                             @endif
+                        </tr>
+                        <tr>
+                            <th>Research Statement</th>
+                             @if($supporting_docs->research_statement != null)
+                                 <td>
+                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'research_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->research_statement, $supporting_docs->research_statement,['class'=>'col-md-6'])}}
+                                     Edit
+                                     </a><br>
+                                 </td>
+                             @else
+                                 <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'research_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                             @endif
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="col-lg-4" style="background-color:aliceblue">
+                 <table class="table table-striped  table-bordered">
+                     <thead>
+                         <tr>
+                             <th>Portfolio</th>
+                             @if($supporting_docs->portfolio != null)
+                                 <td>
+                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->portfolio, $supporting_docs->portfolio,['class'=>'col-md-6'])}}
+                                     Edit
+                                     </a><br>
+                                 </td>
+                             @else
+                                 <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'portfolio','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                             @endif
+                         </tr>
+                         <tr>
+                              <th>Writing Sample</th>
+                              @if($supporting_docs->portfolio != null)
+                                  <td>
+                                      <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->portfolio, $supporting_docs->portfolio,['class'=>'col-md-6'])}}
+                                      Edit
+                                      </a><br>
+                                  </td>
+                              @else
+                                  <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'portfolio','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                              @endif
+                         </tr>
+                         <tr>
+                             <th>Resume</th>
+                                 @if($supporting_docs->resume != null)
+                                     <td>
+                                         <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'resume', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                             {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->resume, $supporting_docs->resume,['class'=>'col-md-6'])}}
+                                             Edit
+                                         </a><br>
+                                     </td>
+                                 @else
+                                     <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'resume','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                 @endif
+                         </tr>
+                         <tr>
+                             <th>Readmission personal details</th>
+                             @if($supporting_docs->readmission_personal_details != null)
+                                 <td>
+                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'readmission_personal_details', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                         {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->readmission_personal_details, $supporting_docs->readmission_personal_details,['class'=>'col-md-6'])}}
+                                         Edit
+                                     </a><br>
+                                 </td>
+                                 @else
+                                    <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'readmission_personal_details','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                 @endif
+                         </tr>
+                         <tr>
+                             <th>Other</th>
+                             @if($supporting_docs->other != null)
+                                 <td>{{ $supporting_docs->other }}
+                                     <a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" >Edit</a>
+                             @else
+                                 <td>
+                                     <a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'other','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                 </td>
+                             @endif
+                         </tr>
+                     </thead>
+                 </table>
+            </div>
             </section>
             <p>&nbsp;</p>
             <hr>
-            {{ Form::open(array('route' => 'user/profile-info/store','files'=>'true')) }}
-                 @include('user::user_info.personal_info._modal')
-            {{ Form::close() }}
 
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
-                <div class="col-lg-4"><b style="color: #000000">Biographical Information</b>
+                <div class="col-lg-4"><b style="color: #000000">Extra Curricular Activities</b>
                 <p>
                     @if(isset($userMeta))
                        <span class="text-muted ">You Can Change Your Signature From Here.
@@ -164,14 +271,11 @@
             </section>
             <p>&nbsp;</p>
             <hr>
-            {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
-               @include('user::user_info.meta_data._modal')
-            {{ Form::close() }}
 
             {{----------------------User : Academic Records ------------------------------------------------------------}}
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
-                    <div class="col-lg-4"><b style="color: #000000">Academic Information</b>
+                    <div class="col-lg-4"><b style="color: #000000">Miscellaneous Information</b>
                     <p>
                         @if(isset($academicRecords))
                            <span class="text-muted">
@@ -226,13 +330,6 @@
                            </tbody>
                         </table>
                     </div>
-            </section>
-            <p>&nbsp;</p>
-            <hr>
-            <section class="col-lg-12"style="background-color:#ffffff">
-                <div class="col-lg-4"><b style="color: #000000">Other Information</b>
-
-                </div>
             </section>
             <p>&nbsp;</p>
             <hr>
@@ -292,6 +389,14 @@
                 </div>
           </div>
         </div>
+      </div>
+
+      <!-- Modal : add goal -->
+      <div class="modal fade" id="addgoalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+              </div>
+          </div>
       </div>
 
      <style>

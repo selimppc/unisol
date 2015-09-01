@@ -431,6 +431,24 @@ class UserInformationController extends \BaseController {
         return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
 
+    public function others_info(){
+
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            $user_id = Auth::user()->get()->id;
+            $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
+            if(!$supporting_docs){
+                $supporting_docs = new UserSupportingDoc();
+                $supporting_docs->user_id = Auth::user()->get()->id;
+                $supporting_docs->save();
+            }
+            return View::make('user::user_info.others_info._others',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta','supporting_docs','doc_type'));
+        }else{
+            Session::flash('danger', "Please Login As User!  Or if not registered user then go <a href='user/login'>signup from here</a>");
+            return Redirect::route('user/login');
+        }
+    }
+
     public function miscIndex(){
         $user_id = Auth::user()->get()->id;
         $data = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();
@@ -606,14 +624,17 @@ class UserInformationController extends \BaseController {
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $sdoc_file=strtolower($filename);
-            $path = public_path("/user_images/s_doc/" . $sdoc_file);
+            $path = public_path("/uploads/user_images/docs/" . $sdoc_file);
             Image::make($file->getRealPath())->resize(100, 100)->save($path);
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
-        if ($sdoc->save())
-            return Redirect::to('user/supporting-docs')->with('message', 'successfully added');
+        if ($sdoc->save()){
+            Session::flash('message', "Successfully added Information!");
+            return Redirect::back();
+        }
         else
-            return Redirect::to('user/supporting-docs')->with('message', 'Not Added');
+            Session::flash('danger', "Not Added Information!");
+            return Redirect::back();
     }
 
 
@@ -666,8 +687,5 @@ class UserInformationController extends \BaseController {
         return View::make('user::settings._settings',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta'));
     }
 
-    public function other_info(){
-        return View::make('user::user_info.others_info._others',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta'));
 
-    }
 }

@@ -45,8 +45,9 @@
            <i class='fa fa-gear'></i><i class="caret"></i>
         </a>
         <ul class="dropdown-menu">
-            <div class="text-center"><h5><b>Account & Settings</b></h5></div>
-            <li><a href="{{ URL::route('user/profile') }}"> Profile </a></li>
+            <div class="text-center"><h5><b>Accounts & Settings</b></h5></div>
+            <li><a href="{{ URL::route('user/profile') }}">User Profile </a></li>
+            <li><a href="{{ URL::to('user/others-info') }}">Other Information</a></li>
             <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
             <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
         </ul>

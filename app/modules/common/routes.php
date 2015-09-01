@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-include("routes_sh.php");
+//include("routes_sh.php");
 //Route::get('admin/common', function() {
 //    return '<h1>Hello</h1>
 //'; });
@@ -272,3 +272,86 @@ Route::any('common/exm-center/update/{id}',
     ['as'=>'common.exm-center.update',
         'uses'=>'ExamCenterController@exmCenterUpdate']);
 
+//............................................Course...............................................................
+
+
+Route::any('common/course',[
+    'as' => 'common.course',
+    'uses' => 'CourseController@index'
+]);
+
+Route::any('common/course/create',[
+    'as' => 'common.course.create',
+    'uses' => 'CourseController@create'
+]);
+
+Route::any('common/course/store', [
+    'as' => 'common.course.store',
+    'uses' => 'CourseController@store'
+]);
+
+Route::get('common/course/show/{id}', [
+    'as' => 'common.course.show',
+    'uses' => 'CourseController@show'
+]);
+
+Route::any('common/course/edit/{id}', [
+    'as' => 'common.course.edit',
+    'uses' => 'CourseController@edit'
+]);
+
+Route::any('common/course/update/{id}', [
+    'as' => 'common.course.update',
+    'uses' => 'CourseController@update'
+]);
+
+Route::any('common/course/destroy/{id}', [
+    'as' => 'common.course.destroy',
+    'uses' => 'CourseController@destroy'
+]);
+
+Route::any('common/course/batchDelete', [
+    'as' => 'common.course.batchDelete',
+    'uses' => 'CourseController@batchDelete'
+]);
+//........................................ADM TEST SUBJECT.......................................................
+
+Route::any('common/adm_test_subject',[
+    'as' => 'common.adm_test_subject',
+    'uses' => 'AdmTestSubjectController@Index'
+]);
+
+Route::any('common/adm_test_subject/create',[
+    'as'=>'common.adm_test_subject.create',
+    'uses'=>'AdmTestSubjectController@Create'
+]);
+
+Route::any('common/adm_test_subject/store', [
+    'as' => 'common.adm_test_subject.store',
+    'uses' => 'AdmTestSubjectController@Store'
+]);
+
+Route::any('common/adm_test_subject/view/{id}',[
+    'as'=>'common.adm_test_subject.show',
+    'uses'=>'AdmTestSubjectController@View'
+]);
+
+Route::any('common/adm_test_subject/edit/{id}',[
+    'as'=>'common.adm_test_subject.edit',
+    'uses'=>'AdmTestSubjectController@Edit'
+]);
+
+Route::any('common/adm_test_subject/update/{id}',[
+    'as'=>'common.adm_test_subject.update',
+    'uses'=>'AdmTestSubjectController@Update'
+]);
+
+Route::any('common/adm_test_subject/delete/{id}',[
+    'as'=>'common.adm_test_subject.delete',
+    'uses'=>'AdmTestSubjectController@Delete'
+]);
+
+Route::any('common/adm_test_subject/batchDelete',[
+    'as'=>'common.adm_test_subject.batchDelete',
+    'uses'=>'AdmTestSubjectController@BatchDelete'
+]);

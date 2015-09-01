@@ -230,8 +230,8 @@
             <p>&nbsp;</p>
             <hr>
             <section class="col-lg-12"style="background-color:#ffffff">
-                <div class="col-lg-4"><b style="color: #000000">Others Information</b>
-
+                <div class="col-lg-4">
+                    <a class="btn btn-sm btn-info" href="{{URL::route('user/others-info')}}">Other Information</a>
                 </div>
             </section>
             <p>&nbsp;</p>

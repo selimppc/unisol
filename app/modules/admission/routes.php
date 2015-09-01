@@ -10,15 +10,33 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::any('user-signup','UserSignupController@Userindex');
+Route::any('user/store','UserSignupController@Userstore');
+Route::post('send/email', 'UserSignupController@send_users_email');
+Route::get('register/verify/{verified_code}','UserSignupController@confirm');
+Route::any('usersign/login', 'UserSignupController@Login');
+Route::any('users/login', 'UserSignupController@UserLogin');
+Route::any('usersign/logout', 'UserSignupController@usersLogout');
+Route::any('usersign/dashboard', 'UserSignupController@Dashboard');
+
+//forgot password
+
+Route::any('/password_reset', 'UserSignupController@userPassword');
+Route::any('/password_reset_mail', 'UserSignupController@userPasswordResetMail');
+Route::any('password_reset_confirm/{reset_password_token}','UserSignupController@userPasswordResetConfirm');
+Route::any('users/password_reset', 'UserSignupController@userPasswordReset'); //password reset view
+Route::any('users/user_password_update', 'UserSignupController@userPasswordUpdate'); // password reset action
+
+//forgot username..........
+Route::any('user/username_reset', 'UserSignupController@usernameReset');
+Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail');
 
 
-include("routes_tjt.php");
-include("routes_ra.php");
-include("routes_sh.php");
+//Cookie
+Route::any('user/set_cookie', 'UserSignupController@setCookie');
+Route::any('user/get_cookie', 'UserSignupController@getCookie');
 
-// ----------------------------------------       VERSION 1    ---------------------------------------------------------
 // ----------------------------------------AMW : Admission Test --------------------------------------------------------
-
 // ----------------------------------------AMW : Examiner --------------------------------------------------------
 
 
@@ -133,11 +151,7 @@ Route::any('admission_test/amw/update_subject_management/{id}', [
     'uses' => 'AdmissionController@updateSubjectManagement'
 ]);
 
-
-// ----------------------------------------------      New    ----------------------------------------------------------
-// ----------------------------------------       VERSION 2    ---------------------------------------------------------
 // ----------------------------------------AMW : Batch Management ------------------------------------------------------
-
 
 Route::any('admission/amw/batch/{degree_id}',[
     'as' => 'admission.amw.batch',
@@ -643,7 +657,350 @@ Route::any('admission/amw/exam-seat/{batch_id}',
     ['as'=>'admission.amw.exam-seat',
         'uses'=>'AdmAmwController@examSeat']);
 
+//......................... Faculty ........................................................
 
+Route::any('admission/faculty/course',[
+    'as' => 'admission.faculty.course',
+    'uses' => 'AdmFacultyController@indexCourse'
+]);
+//ok
+
+Route::any('admission/faculty/course/assign/{id}',[
+    'as' => 'admission.faculty.course.assign',
+    'uses' => 'AdmFacultyController@assignCourse'
+]);
+//ok
+
+Route::any('admission/faculty/course/course-assign/{id}',[
+    'as' => 'admission.faculty.course.course-assign',
+    'uses' => 'AdmFacultyController@commentAssignCourse'
+]);
+//ok
+
+Route::any('admission/faculty/course/course-BatchDelete', [
+    'as' => 'admission.faculty.course.course-BatchDelete',
+    'uses' => 'AdmFacultyController@courseBatchDelete'
+]);
+
+
+Route::any('admission/faculty/admission-test',[
+    'as' => 'admission.faculty.admission-test',
+    'uses' => 'AdmFacultyController@indexAdmExaminer'
+]);
+//ok
+
+Route::any('admission/faculty/admission-test/change-status-to-deny/{id}',[
+    'as' => 'admission.faculty.admission-test.change-status-to-deny',
+    'uses' => 'AdmFacultyController@changeStatustoDenyByFacultyAdmTest'
+]);
+//ok
+
+Route::any('admission/faculty/admission-test/change-status-to-accept/{id}',[
+    'as' => 'admission.faculty.admission-test.change-status-to-accept',
+    'uses' => 'AdmFacultyController@changeStatusToAcceptedByFacultyAdmTest'
+]);
+//ok
+
+Route::any('admission/faculty/admission-test/search-adm-examiner-index',[
+    'as' => 'admission.faculty.admission-test.search-adm-examiner-index',
+    'uses' => 'AdmFacultyController@searchAdmExaminer'
+]);
+//ok
+
+Route::any('admission/faculty/admission-test/view-admtest/{id}/{batch_id}',[
+    'as' => 'admission.faculty.admission-test.view-admtest',
+    'uses' => 'AdmFacultyController@viewAdmTest'
+]);
+//ok
+
+Route::any('admission/faculty/admission-test/view-admtest-comment',[
+    'as' => 'admission.faculty.admission-test.view-admtest-comment',
+    'uses' => 'AdmFacultyController@viewAdmTestComment'
+]);
+//ok
+
+Route::any('admission/faculty/admission-test/adm-test-BatchDelete', [
+    'as' => 'admission.faculty.admission-test.adm-test-BatchDelete',
+    'uses' => 'AdmFacultyController@admTestBatchDelete'
+]);
+//-->
+
+Route::any('admission/faculty/admission-test/qpBatchDelete', [
+    'as' => 'admission.faculty.admission-test.qpBatchDelete',
+    'uses' => 'AdmFacultyController@qpBatchDelete'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/admtest-question-paper/{year_id}/{semester_id}/{batch_id}',[
+    'as' => 'admission.faculty.question-papers.admtest-question-paper',
+    'uses' => 'AdmFacultyController@admTestQuestionPaper'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/view-question-paper/{id}',[
+    'as' => 'admission.faculty.question-papers.view-question-paper',
+    'uses' => 'AdmFacultyController@viewQuestionPaper'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/view-questions-items/{id}',[
+    'as' => 'admission.faculty.question-papers.view-questions-items',
+    'uses' => 'AdmFacultyController@viewQuestionsItems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/specific-question-view/{id}',[
+    'as' => 'admission.faculty.question-papers.specific-question-view',
+    'uses' => 'AdmFacultyController@viewSpecificQuestionItems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/specific-question-edit/{id}',[
+    'as' => 'admission.faculty.question-papers.specific-question-edit',
+    'uses' => 'AdmFacultyController@editSpecificQuestionItems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/specific-question-update/{id}',[
+    'as' => 'admission.faculty.question-papers.specific-question-update',
+    'uses' => 'AdmFacultyController@updateSpecificQuestionItems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/add-question-paper-item/{id}',[
+    'as' => 'admission.faculty.question-papers.add-question-paper-item',
+    'uses' => 'AdmFacultyController@addQuestionItems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/store-question-paper-item',[
+    'as' => 'admission.faculty.question-papers.store-question-paper-item',
+    'uses' => 'AdmFacultyController@storeQuestionItems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/view-assign-to-question-paper/{q_id}',[
+    'as' => 'admission.faculty.question-papers.view-assign-to-question-paper',
+    'uses' => 'AdmFacultyController@viewAssignQuestionPaper'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/adm-test-qp-assign/{id}',[
+    'as' => 'admission.faculty.question-papers.adm-test-qp-assign',
+    'uses' => 'AdmFacultyController@commentAssignQuestionPaper'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/evaluate-questions/{id}',[
+    'as' => 'admission.faculty.question-papers.evaluate-questions',
+    'uses' => 'AdmFacultyController@evaluateQuestions'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/evaluate-questions-items/{adm_question_id}/{no_q}',[
+    'as' => 'admission.faculty.question-papers.evaluate-questions-items',
+    'uses' => 'AdmFacultyController@evaluateQuestionsitems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/store-evaluated-questions',[
+    'as' => 'admission.faculty.question-papers.store-evaluated-questions',
+    'uses' => 'AdmFacultyController@storeEvaluatedQuestionItems'
+]);
+//ok
+
+Route::any('admission/faculty/question-papers/re-evaluate-questions-items/{id}',[
+    'as' => 'admission.faculty.question-papers.re-evaluate-questions-items',
+    'uses' => 'AdmFacultyController@reEvaluateQuestionsitems'
+]);
+//ok
+
+//-------------------------------- Amw: Course Management starts-----------------------------------------------
+
+Route::any('admission/amw/course_conduct/index',
+    [ 'as'=> 'course_conduct.index',
+        'uses' => 'AdmAmwController@courseConductIndex']);
+
+Route::any('back','AdmAmwController@back');
+
+Route::any('admission/amw/course_conduct/create',
+    ['as'=>'course_conduct.create',
+        'uses'=>'AdmAmwController@courseConductCreate']);
+
+Route::any('course_manage/store','AdmAmwController@store');
+Route::any('course_manage/show/{id}','AdmAmwController@show');
+Route::any('course_manage/edit/{id}','AdmAmwController@edit');
+Route::any('course_manage/update/{id}','AdmAmwController@update');
+Route::any('course_manage/search','AdmAmwController@search');
+Route::any('course_manage/search_view','AdmAmwController@cmSearchView');
+
+//------------------------------ Amw : Degree Management starts  --------------------------------------------
+
+Route::any('amw/degree_manage','AdmAmwController@dgmIndex');
+Route::any('degree_manage/create','AdmAmwController@dgmCreate');
+//Route::any('degree_manage/store','AdmAmwController@dgmStore');
+Route::any('degree_manage/store', ['as' => 'degree_manage.store','uses' => 'AdmAmwController@dgmStore']);
+Route::any('degree_manage/show/{id}', ['as' => 'degree_manage.show','uses' => 'AdmAmwController@dgmShow']);
+Route::any('degree_manage/edit/{id}', ['as' => 'degree_manage.edit','uses' => 'AdmAmwController@dgmEdit']);
+Route::any('degree_manage/update/{id}', ['as' => 'degree_manage.update','uses' => 'AdmAmwController@dgmUpdate']);
+
+//------------------------------Amw : Degree - Waiver starts  --------------------------------------------
+
+Route::any('amw/degree_manage/waiver/{id}', [
+    'as' => 'degree_manage.waiver',
+    'uses' => 'AdmAmwController@degreeWaiverIndex'
+]);
+
+Route::any('amw/degree_waiver/create/{degree_id}', [
+    'as' => 'degree_waiver.create',
+    'uses' => 'AdmAmwController@degreeWaiverCreate'
+]);
+
+Route::any('amw/degree_waiver/store', [
+    'as' => 'degree_waiver.store',
+    'uses' => 'AdmAmwController@degreeWaiverStore'
+]);
+
+Route::any('amw/degree_waiver/delete/{id}', [
+    'as' => 'degree_waiver.delete',
+    'uses' => 'AdmAmwController@degreeWaiverDelete'
+]);
+
+Route::any('amw/degree_waiver/delete/{id}','AdmAmwController@degreeWaiverDelete');
+
+Route::any('amw/degree_manage/waiver_const/{id}', [
+    'as' => 'degree_manage.waiver_const',
+    'uses' => 'AdmAmwController@degWaiverConstIndex']);
+
+//Time dependent
+
+Route::any('amw/degree_manage/waiver_const/create/{degree_waiver_id}', [
+    'as' => 'deg_waiver_time_const.create',
+    'uses' => 'AdmAmwController@degWaiverTimeConstCreate'
+]);
+
+Route::any('amw/degree_manage/const/store', [
+    'as' => 'deg_waiver_const.store',
+    'uses' => 'AdmAmwController@degWaiverConstStore'
+]);
+
+Route::any('amw/degree_manage/waiver_const/edit/{id}', [
+    'as' => 'deg_waiver_time_const.edit',
+    'uses' => 'AdmAmwController@degWaiverTimeConstEdit'
+]);
+
+Route::post('amw/degree_manage/waiver_const/update/{id}', [
+    'as' => 'deg_waiver_const.update',
+    'uses' => 'AdmAmwController@degWaiverConstUpdate'
+]);
+
+//GPA dependent
+Route::any('amw/degree_manage/gpa_const/create/{id}', [
+    'as' => 'deg_waiver_gpa_const.create',
+    'uses' => 'AdmAmwController@degWaiverGpaConstCreate'
+]);
+
+Route::any('amw/degree_manage/gpa_const/edit/{id}', [
+    'as' => 'deg_waiver_gpa_const.edit',
+    'uses' => 'AdmAmwController@degWaiverGpaConstEdit'
+]);
+
+Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
+
+//--------------------------------  Amw : Waiver Management starts  --------------------------------------------
+
+Route::any('amw/waiver_manage', ['as' => 'waiver_manage.index','uses' => 'AdmAmwController@waiverIndex']);
+Route::any('amw/waiver_manage/create', ['as' => 'waiver_manage.create','uses' => 'AdmAmwController@waiverCreate']);
+Route::any('amw/waiver_manage/store', ['as' => 'waiver_manage.store','uses' => 'AdmAmwController@waiverStore']);
+Route::any('amw/waiver_manage/show/{id}', ['as' => 'waiver_manage.show','uses' => 'AdmAmwController@waiverShow']);
+Route::any('amw/waiver_manage/edit/{id}', ['as' => 'waiver_manage.edit','uses' => 'AdmAmwController@waiverEdit']);
+Route::any('amw/waiver_manage/update/{id}', ['as' => 'waiver_manage.update','uses' => 'AdmAmwController@waiverUpdate']);
+
+// ----------------------------Public : Admission starts----------------------------------------------------------
+
+//Degree_list
+Route::any('admission/public/degree-offer-list',[
+    'as' => 'admission.public.degree_offer_list',
+    'uses' => 'AdmPublicController@degreeOfferList'
+]);
+//Degree Details
+Route::any('admission/public/degree-offer-details/{degree_id}',
+    ['as' => 'admission.public.degree_offer_details',
+        'uses' => 'AdmPublicController@degreeOfferDetails']);
+
+//Degree_applicant Save
+Route::any('admission/applicant/degree-apply',
+    ['as' => 'admission.applicant.degree_apply',
+        'uses' => 'ApplicantController@degreeApply']);
+
+//Add acm records_modal
+Route::any('admission/public/admission/add-applicant-acm-docs',
+    ['as' => 'admission.public.add-applicant-acm-docs',
+        'uses' => 'AdmPublicController@addApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/store-applicant-acm-docs',
+    ['as' => 'admission.public.store-applicant-acm-docs',
+        'uses' => 'AdmPublicController@storeApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/edit-applicant-acm-docs/{id}',
+    ['as' => 'admission.public.edit-applicant-acm-docs',
+        'uses' => 'AdmPublicController@editApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/update-applicant-acm-docs/{id}',
+    ['as' => 'admission.public.update-applicant-acm-docs',
+        'uses' => 'AdmPublicController@updateApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/delete-applicant-acm-docs/{id}',
+    ['as' => 'admission.public.delete-applicant-acm-docs',
+        'uses' => 'AdmPublicController@deleteApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/applicant-certificate/{id}',
+    ['as' => 'admission.public.applicant_certificate',
+        'uses' => 'AdmPublicController@degreeOfferApplicantCertificate']);
+
+Route::any('admission/public/admission/applicant-transcript/{id}',
+    ['as' => 'admission.public.applicant_transcript',
+        'uses' => 'AdmPublicController@degreeOfferApplicantTranscript']);
+
+//Applicant Meta..................................................
+Route::any('admission/public/admission/add-applicant-meta',
+    ['as' => 'admission.public.add-applicant-meta',
+        'uses' => 'AdmPublicController@addApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/store-applicant-meta',
+    ['as' => 'admission.public.store-applicant-meta',
+        'uses' => 'AdmPublicController@storeApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/edit-applicant-meta/{id}',
+    ['as' => 'admission.public.edit-applicant-meta',
+        'uses' => 'AdmPublicController@editApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/update-meta-info-applicant/{id}',
+    ['as' => 'admission.public.update-meta-info-applicant',
+        'uses' => 'AdmPublicController@updateApplicantMetaInPublic']);
+
+//Applicant profile................................................
+
+Route::any('admission/public/admission/add-applicant-profile',
+    ['as' => 'admission.public.add-applicant-profile',
+        'uses' => 'AdmPublicController@addApplicantProfileByApplicant']);
+
+Route::any('admission/public/admission/store-applicant-profile',
+    ['as' => 'admission.public.store-applicant-profile',
+        'uses' => 'AdmPublicController@storeApplicantProfileByApplicant']);
+
+Route::any('admission/public/admission/edit-applicant-profile/{id}',
+    ['as' => 'admission.public.applicant-profile-edit',
+        'uses' => 'AdmPublicController@editApplicantProfileByApplicant']);
+
+Route::any('admission/public/admission/update-applicant-profile/{id}',
+    ['as' => 'admission.public.update-applicant-profile',
+        'uses' => 'AdmPublicController@updateApplicantProfileByApplicant']);
+
+//Add more Degree
+Route::any('admission/applicant/add-more-degree',
+    ['as' => 'admission.applicant.add-degree',
+        'uses' => 'ApplicantController@addMoreDegree']);
 
 
 
