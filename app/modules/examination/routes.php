@@ -11,16 +11,7 @@
 |
 */
 
-/*
-==================================================================
-Shafi
-==================================================================
-*/
 Route::group(['prefix' => 'examination'], function() {
-    include("routes_sh.php");
-    include("routes_sh2.php");
-    include("routes_exm_tjt.php");
-
 
     Route::any('amw/deshboard', [
         'as' => 'examination.amw.deshboard',
@@ -32,87 +23,268 @@ Route::group(['prefix' => 'examination'], function() {
         'uses' => 'ExmAmwController@search'
     ]);
 
-    //Route::any('',[
-    //    'as' =>'',
-    //    'uses' => ''
-    //]);
 
-//    Route::any('amw/assign_faculty',[
-//        'as' =>'examination.amw.assign_faculty',
-//        'uses' => 'ExmAmwController@assign_faculty'
-//    ]);
+//Examinations
+    Route::any('amw/exam-list',[
+        'as' =>'amw.exam-list',
+        'uses' => 'ExmAmwController@examList'
+    ]);
 
-//    Route::any('amw/examiners/{year_id}/{semester_id}/{course_management_id}/{acm_marks_dist_item_id}/{exm_exam_list_id}',[
-//        'as' =>'examination/amw/examiners',
-//        'uses' => 'ExmAmwController@examiners'
-//    ]);
+    Route::any('examination/amw/create-exam',[
+        'as' =>'examination.amw.create-exam',
+        'uses' => 'ExmAmwController@createExamination'
+    ]);
+
+    Route::any('amw/store-exam',[
+        'as' =>'amw.store-exam',
+        'uses' => 'ExmAmwController@storeExamination'
+    ]);
+
+    Route::any('amw/drop-down-courses',[
+        'as' =>'amw.drop-down-courses',
+        'uses' => 'ExmAmwController@createAjaxCourseList'
+    ]);
+
+    Route::any('amw/view-exam-data/{id}', [
+        'as' => 'amw.view-exam-data',
+        'uses' => 'ExmAmwController@viewExamination'
+    ]);
+
+    Route::any('amw/edit-exam-data/{id}', [
+        'as' => 'amw.edit-exam-data',
+        'uses' => 'ExmAmwController@editExamination'
+    ]);
+    Route::any('amw/update-exam-data/{id}', [
+        'as' => 'amw.update-exam-data',
+        'uses' => 'ExmAmwController@updateExamination'
+    ]);
+
+    Route::any('examination/amw/delete-exam-data/{id}', [
+        'as' => 'examination.amw.delete-exam-data',
+        'uses' => 'ExmAmwController@deleteExamination'
+    ]);
+
+    Route::any('amw/view-exm-courses/{year_id}/{semester_id}',[
+        'as' =>'amw.view-exm-courses',
+        'uses' => 'ExmAmwController@viewExmCourseList'
+    ]);
+
+//Examiners
+    Route::any('amw/examiners/{exm_exam_list_id}/{year_id}/{semester_id}', [
+        'as' => 'amw.examiners',
+        'uses' => 'ExmAmwController@indexExaminers'
+    ]);
+
+    Route::any('amw/examiners/create/{exm_exam_list_id}', [
+        'as' => 'amw.examiners.create',
+        'uses' => 'ExmAmwController@createExaminers'
+    ]);
+
+    Route::any('examination/amw/examiners/store', [
+        'as' => 'amw.examiners.store',
+        'uses' => 'ExmAmwController@storeExaminers'
+    ]);
+
+    Route::any('amw/revoke-examiners/{id}',[
+        'as' => 'amw.revoke-examiners',
+        'uses' => 'ExmAmwController@revokeExaminers'
+    ]);
+
+    Route::any('amw/view-examiners/{id}', [
+        'as' => 'amw.view-examiners',
+        'uses' => 'ExmAmwController@viewExaminers'
+    ]);
+
+    Route::any('amw/comments/examiners', [
+        'as' => 'amw.comments-examiners',
+        'uses' => 'ExmAmwController@commentsToExaminers'
+    ]);
+
+    Route::any('amw/question-papers/{exm_exam_list_id}/{course_conduct_id}', [
+        'as' => 'amw.question-papers',
+        'uses' => 'ExmAmwController@indexQuestionPapers'
+    ]);
+
+    Route::any('examination/amw/question-papers/create/{exm_exam_list_id}/{course_conduct_id}', [
+        'as' => 'amw.question-papers.create',
+        'uses' => 'ExmAmwController@createQuestionPapers'
+    ]);
+
+    Route::any('amw/question-papers/store', [
+        'as' => 'amw.question-papers.store',
+        'uses' => 'ExmAmwController@storeQuestionPapers'
+    ]);
+
+    Route::any('amw/view-question-paper/{id}', [
+        'as' => 'amw.view-question-paper',
+        'uses' => 'ExmAmwController@viewQuestionPaper'
+    ]);
+
+    Route::any('amw/edit-question/{id}/{exm_exam_list_id}/{course_conduct_id}', [
+        'as' => 'amw.edit-question',
+        'uses' => 'ExmAmwController@editQuestionPaper'
+    ]);
+
+    Route::any('amw/update-question/{id}', [
+        'as' => 'amw.update-question',
+        'uses' => 'ExmAmwController@updateQuestionPaper'
+    ]);
+
+    Route::any('amw/assign-setter/{q_id}/{exm_exam_list_id}',[
+        'as' => 'amw.assign-setter',
+        'uses' => 'ExmAmwController@assignSetter'
+    ]);
+
+    Route::any('amw/assign-evaluator/{q_id}/{exm_exam_list_id}',[
+        'as' => 'amw.assign-evaluator',
+        'uses' => 'ExmAmwController@assignEvaluator'
+    ]);
+
+    Route::any('amw/assign-examiner-comments/{id}',[
+        'as' => 'amw.assign-examiner-comments',
+        'uses' => 'ExmAmwController@assignExaminerWithComments'
+    ]);
+
+    Route::any('amw/question-list/{exm_question_id}', [
+        'as' => 'amw.question-list',
+        'uses' => 'ExmAmwController@questionList'
+    ]);
+
+    Route::any('amw/view-question/{id}', [
+        'as' => 'amw.view-question',
+        'uses' => 'ExmAmwController@viewQuestionItem'
+    ]);
+
+    Route::any('amw/qpe/{exm_exam_list_id}/{course_conduct_id}', [
+        'as' => 'amw.qpe',
+        'uses' => 'ExmAmwController@questionPaperEvaluation'
+    ]);
+
+    Route::any('amw/student-list-qpe/{exm_question_id}',[
+        'as' => 'amw.student-list-qpe',
+        'uses' => 'ExmAmwController@studentListOfQpe'
+    ]);
+
+    Route::any('amw/details-qpe/{student_user_id}/{question_id}',[
+        'as' => 'amw.details-qpe',
+        'uses' => 'ExmAmwController@viewDetailsOfQpe'
+    ]);
+
+    //FACULTY :: VERSION 2
+
+    Route::any('faculty/examination-list',[
+        'as' =>'faculty.examination-list',
+        'uses' => 'ExmFacultyController@examinationList'
+    ]);
+
+    Route::any('faculty/examination-list/batchDelete',[
+        'as' =>'faculty.examination-list.batchDelete',
+        'uses' => 'ExmFacultyController@examinationListBatchDelete'
+    ]);
+
+    Route::any('faculty/examination-list/change-status-to-deny/{id}',[
+        'as' =>'faculty.examination-list.change-status-to-deny',
+        'uses' => 'ExmFacultyController@changeStatusToDeny'
+    ]);
+
+    Route::any('faculty/examination-list/change-status-to-accept/{id}',[
+        'as' =>'faculty.examination-list.change-status-to-accept',
+        'uses' => 'ExmFacultyController@changeStatusToAccepted'
+    ]);
+
+    Route::any('faculty/examination-list/view-examiner/{id}/{exm_list_id}',[
+        'as' =>'faculty.examination-list.view-examiner',
+        'uses' => 'ExmFacultyController@viewExaminer'
+    ]);
+
+    Route::any('faculty/examination-list/save-examiner-comment',[
+        'as' =>'faculty.examination-list.save-examiner-comment',
+        'uses' => 'ExmFacultyController@saveExaminerComment'
+    ]);
+
+    Route::any('faculty/exm-question-paper/{exm_list_id}',[
+        'as' =>'faculty.exm-question-paper',
+        'uses' => 'ExmFacultyController@questionPaper'
+    ]);
+
+    Route::any('faculty/exm-question-paper/view-exm-question-paper/{exm_question_id}',[
+        'as' =>'faculty.exm-question-paper.view-exm-question-paper',
+        'uses' => 'ExmFacultyController@viewExmQuestionPaper'
+    ]);
+
+//Route::any('faculty/assign-exm-faculty-setter/{e_q_id}',[
+//    'as' => 'faculty.assign-exm-faculty-setter',
+//    'uses' => 'ExmFacultyController@AssignExmFacultySetter'
+//]);
 //
-//    Route::any('amw/get-all-examiners',[
-//        'as' =>'examination.amw.get_all_examiners',
-//        'uses' => 'ExmAmwController@get_all_examiners'
-//    ]);
+//Route::any('faculty/assign-exm-faculty-evaluator/{e_q_id}',[
+//    'as' => 'faculty.assign-exm-faculty-evaluator',
+//    'uses' => 'ExmFacultyController@AssignExmFacultyEvaluator'
+//]);
+
+    Route::any('faculty/examination-quest-paper-item/add-exm-quest-paper-item/{exm_question_id}',[
+        'as' =>'faculty.examination-quest-paper-item.add-exm-quest-paper-item',
+        'uses' => 'ExmFacultyController@addExaminationModuleQuestionPaperItem'
+    ]);
+
+    Route::any('faculty/exm-quest-paper-item/store-exm-quest-paper-item',[
+        'as' =>'faculty.examination-quest-paper-item.store-exm-quest-paper-item',
+        'uses' => 'ExmFacultyController@storeExmQPItem'
+    ]);
+
+    Route::any('faculty/exm-question-paper/view-exm-questions-items/{exm_question_id}',[
+        'as' =>'faculty.exm-question-paper.view-exm-questions-items',
+        'uses' => 'ExmFacultyController@viewExmQuestionsItems'
+    ]);
+
+    Route::any('faculty/exm-question-papers/specific-exm-question-view/{e_q_i_id}',[
+        'as' => 'faculty.exm-question-papers.specific-exm-question-view',
+        'uses' => 'ExmFacultyController@viewSpecificExmQuestionItems'
+    ]);
+
+    Route::any('faculty/exm-question-papers/specific-exm-question-edit/{e_q_i_id}',[
+        'as' => 'faculty.exm-question-papers.specific-exm-question-edit',
+        'uses' => 'ExmFacultyController@editSpecificExmQuestionItems'
+    ]);
+
+    Route::any('faculty/exm-question-papers/specific-exm-question-update/{e_q_i_id}',[
+        'as' => 'faculty.exm-question-papers.specific-exm-question-update',
+        'uses' => 'ExmFacultyController@updateSpecificExmQuestionItems'
+    ]);
+
+    Route::any('faculty/exm-question-paper/assign-exm-question-comment/{e_q_id}',[
+        'as' =>'faculty.exm-question-paper.assign-exm-question-comment',
+        'uses' => 'ExmFacultyController@assignExmQuestionPaper'
+    ]);
+
+    Route::any('faculty/exm-question-paper/save-comment/{exm_question_id}',[
+        'as' =>'faculty.exm-question-paper.save-comment',
+        'uses' => 'ExmFacultyController@saveComment'
+    ]);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// still working on it ->>
+
+    Route::any('faculty/exm-question-paper/evaluate-exm-questions/{exm_question_id}',[
+        'as' => 'faculty.exm-question-paper.evaluate-exm-questions',
+        'uses' => 'ExmFacultyController@evaluateExmQuestions'
+    ]);
+
 //
-//    Route::any('amw/addExaminers',[
-//        'as' =>'examination/amw/addExaminers',
-//        'uses' => 'ExmAmwController@addExaminers'
-//    ]);
-//
-//    Route::any('amw/storeExaminers',[
-//        'as' =>'examination/amw/storeExaminers',
-//        'uses' => 'ExmAmwController@storeExaminers'
-//    ]);
-//
-//    Route::any('amw/viewExaminers/{id}', [
-//        'as' => 'examination.amw.viewExaminers',
-//        'uses' => 'ExmAmwController@viewExaminers'
-//    ]);
-//
+    Route::any('faculty/exm-question-paper/evaluate-exm-questions-items/{exm_question_id}/{evaluation_id}/{no_q}',[
+        'as' => 'faculty.exm-question-paper.evaluate-exm-questions-items',
+        'uses' => 'ExmFacultyController@evaluateExmQuestionsItems'
+    ]);
+
+    Route::any('faculty/exm-question-paper-to-store-evaluated-exm-questions',[
+        'as' => 'faculty.exm-question-paper-to-store-evaluated-exm-questions',
+        'uses' => 'ExmFacultyController@storeEvaluatedExmQuestionItems'
+    ]);
 
 
-    //Route::any('examination/amw/storeQuestionPaper','ExmAmwController@storeQuestionPaper');
 
-//    Route::any('amw/viewQuestion/{id}', [
-//        'as' => 'examination.amw.viewQuestion',
-//        'uses' => 'ExmAmwController@viewQuestion'
-//    ]);
-//
-//    Route::any('amw/create',[
-//        'as' =>'examination/amw/create',
-//        'uses' => 'ExmAmwController@createQuestionPaper'
-//    ]);
-//
-//
-//
-//    Route::any('amw/assignto',[
-//        'as' =>'examination/amw/assignto',
-//        'uses' => 'ExmAmwController@assignTo'
-//    ]);
-//
-//
-//    Route::any('amw/questionList',[
-//        'as' =>'examination/amw/questionList',
-//        'uses' => 'ExmAmwController@questionList'
-//    ]);
-//
-//    Route::any('amw/viewQuestionItems/{id}', [
-//        'as' => 'examination.amw.viewQuestionItems',
-//        'uses' => 'ExmAmwController@viewQuestionItems'
-//    ]);
-//
-//    Route::any('amw/destroy/{id}', [
-//        'as' => 'examination.amw.destroy',
-//        'uses' => 'ExmAmwController@destroy'
-//    ]);
-//
-//    Route::any('amw/batchDelete',[
-//        'as' =>'examination/amw/batchDelete',
-//        'uses' => 'ExmAmwController@batchDelete'
-//    ]);
-//
-//
-//    Route::any('amw/batchItemsDelete',[
-//        'as' =>'examination/amw/batchItemsDelete',
-//        'uses' => 'ExmAmwController@batchItemsDelete'
-//    ]);
+
+
+
 
 });

@@ -9,9 +9,6 @@
 
 Route::group(['prefix' => 'library'], function() {
 
-    include("routes_lib_tjt.php");
-    include("routes_sh.php");
-
     Route::get('/', function() {
         return 'Thank you so much!';
     });
@@ -209,6 +206,110 @@ Route::group(['prefix' => 'library'], function() {
         'as' => 'transaction-financial-delay-status',
         'uses' => 'LibraryController@update_delay_status'
     ]);
+
+    //Library : Faculty
+
+    Route::any('faculty/book',[
+        'as' =>'faculty.book',
+        'uses' => 'LibFacultyController@index'
+    ]);
+
+    Route::any('faculty/add-book-to-cart/{book_id}',[
+        'as' =>'faculty.add-book-to-cart',
+        'uses' => 'LibFacultyController@addBookToCart'
+    ]);
+
+    Route::any('faculty/book-transaction/',[
+        'as' =>'faculty.book-transaction',
+        'uses' => 'LibFacultyController@storeBookTransaction'
+    ]);
+
+    Route::any('faculty/checkout',[
+        'as' =>'faculty.checkout',
+        'uses' => 'LibFacultyController@checkout'
+    ]);
+
+    Route::any('faculty/my-book',[
+        'as' =>'faculty.my-book',
+        'uses' => 'LibFacultyController@viewMyBook'
+    ]);
+
+    Route::any('faculty/checkout-by-faculty/{all_cart_book_ids}',[
+        'as' =>'faculty.checkout-by-faculty',
+        'uses' => 'LibFacultyController@checkoutByFaculty'
+    ]);
+
+    Route::any('faculty/book/download/{book_id}',[
+        'as' =>'faculty.book.download',
+        'uses' => 'LibFacultyController@downloadBook'
+    ]);
+
+    Route::any('faculty/remove-from-cart/{id}',[
+        'as' =>'faculty.remove-from-cart',
+        'uses' => 'LibFacultyController@removeBookFromCart'
+    ]);
+
+    Route::any('faculty/view/book/{book_id}',[
+        'as' =>'faculty.view.book',
+        'uses' => 'LibFacultyController@viewBook'
+    ]);
+
+    //Library : Student
+
+    Route::any('student/find-book',[
+        'as' =>'student.find-book',
+        'uses' => 'LibStudentController@findBooks'
+    ]);
+
+
+
+    Route::any('student/book/download/{book_id}',[
+        'as' =>'student.book.download',
+        'uses' => 'LibStudentController@getDownload'
+    ]);
+
+
+    Route::any('student/add-to-cart/{book_id}',[
+        'as' =>'student.add-to-cart',
+        'uses' => 'LibStudentController@addBookToStudentCart'
+    ]);
+
+
+    Route::any('student/remove-from-cart/{id}',[
+        'as' =>'student.remove-from-cart',
+        'uses' => 'LibStudentController@removeBookFromToCart'
+    ]);
+
+    Route::any('student/view-cart',[
+        'as' =>'student.view-cart',
+        'uses' => 'LibStudentController@viewCart'
+    ]);
+
+    Route::any('student/payment',[
+        'as' =>'student.payment',
+        'uses' => 'LibStudentController@paymentMethod'
+    ]);
+
+
+    Route::any('student/send-info-to-transaction',[
+        'as' =>'student.send-info-to-transaction',
+        'uses' => 'LibStudentController@saveInfoToTransactionTable'
+    ]);
+
+
+
+    Route::any('student/my-book',[
+        'as' =>'student.my-book',
+        'uses' => 'LibStudentController@myBook'
+    ]);
+
+
+//Route::any('faculty/book-transaction',[
+//    'as' =>'faculty.book-transaction',
+//    'uses' => 'LibStudentController@getBookTransaction'
+//]);
+
+
 
 });
 
