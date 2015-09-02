@@ -78,6 +78,31 @@ Route::any("/reset/{token}", [
     "as"   => "user/reset",
     "uses" => "UserController@reset"
 ]);
+// User Signup....
+Route::any("user-signup", [
+    "as"   => "user-signup",
+    "uses" => "UserSignupController@Userindex"
+]);
+
+Route::any("user/store", [
+    "as"   => "user/store",
+    "uses" => "UserSignupController@Userstore"
+]);
+Route::post('send/email', 'UserSignupController@send_users_email');
+Route::get('register/verify/{verified_code}','UserSignupController@confirm');
+
+//forgot password
+
+Route::any('/password_reset', 'UserSignupController@userPassword');
+Route::any('/password_reset_mail', 'UserSignupController@userPasswordResetMail');
+Route::any('password_reset_confirm/{reset_password_token}','UserSignupController@userPasswordResetConfirm');
+Route::any('users/password_reset', 'UserSignupController@userPasswordReset'); //password reset view
+Route::any('users/user_password_update', 'UserSignupController@userPasswordUpdate'); // password reset action
+
+//forgot username..........
+Route::any('user/username_reset', 'UserSignupController@usernameReset');
+Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail');
+
 
 //change password
 
