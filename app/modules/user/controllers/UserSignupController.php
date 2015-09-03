@@ -145,12 +145,12 @@ class UserSignupController extends \BaseController {
 
     //********************** Forgot password Start(R) *****************************
 
-    public function userPassword()
+    public function forgot_password()
     {
-        return View::make('user::signup.password_reset');
+        return View::make('user::signup.forgot_password');
     }
 
-    public function userPasswordResetMail()
+    public function user_password_reminder_mail()
     {
         $rules = array(
             'email' => 'Required|email|exists:user',
@@ -184,14 +184,14 @@ class UserSignupController extends \BaseController {
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                     $message->to($email_address);
-                    // $message->cc('tanintjt@gmail.com');
+                    $message->cc('tanintjt@gmail.com');
                     $message->subject('Notification');
 
                 });
 
             }
             Session::flash('message', 'Please Check Your Email For Further Process.');
-            return View::make('user::signup.password_reset');
+            return Redirect::back();
 
         }
     }

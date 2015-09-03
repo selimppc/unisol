@@ -92,9 +92,14 @@ Route::post('send/email', 'UserSignupController@send_users_email');
 Route::get('register/verify/{verified_code}','UserSignupController@confirm');
 
 //forgot password
+Route::any('user/forgot-password',
+       ['as'=>'user/forgot-password',
+           'uses'=>'UserSignupController@forgot_password']);
 
-Route::any('/password_reset', 'UserSignupController@userPassword');
-Route::any('/password_reset_mail', 'UserSignupController@userPasswordResetMail');
+Route::any('user/password_reminder_mail',
+    ['as'=>'user/password_reminder_mail',
+        'uses'=>'UserSignupController@user_password_reminder_mail']);
+
 Route::any('password_reset_confirm/{reset_password_token}','UserSignupController@userPasswordResetConfirm');
 Route::any('users/password_reset', 'UserSignupController@userPasswordReset'); //password reset view
 Route::any('users/user_password_update', 'UserSignupController@userPasswordUpdate'); // password reset action

@@ -4,7 +4,7 @@
 @stop
 @section('content')
 <div class="span6 well">
-{{ Form::open(array('url'=>'user/username_reset_mail', 'class'=>'form-signin')) }}
+{{--{{ Form::open(array('url'=>'user/username_reset_mail', 'class'=>'form-signin')) }}--}}
 <h3 class="form-signin-heading">Forgot Username</h3>
         <br>
 
@@ -14,7 +14,7 @@
 
         {{ Form::submit('submit', array('class'=>'btn btn-large btn-primary '))}}
         <br>
-        {{ Form::close() }}
+        {{--{{ Form::close() }}--}}
 
 </div>
 
