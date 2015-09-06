@@ -194,6 +194,7 @@ class CreateUser extends Migration {
             $table->string('personal_statement', 128);
             $table->string('research_statement', 128);
             $table->string('portfolio', 128);
+            $table->string('writing_sample', 128);
             $table->string('resume', 128);
             $table->string('readmission_personal_details', 128);
             $table->string('other', 128);

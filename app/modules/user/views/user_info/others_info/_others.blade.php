@@ -32,7 +32,7 @@
         </div>
             <section class="col-lg-12"style="background-color:#ffffff">
             <p>&nbsp;</p>
-            <div class="col-lg-4"><b style="color: #000000">Supporting Documents</b>
+            <div class="col-lg-3"><b style="color: #000000">Supporting Documents</b>
 
             </div>
             <div class="col-lg-4" style="background-color:aliceblue">
@@ -45,10 +45,10 @@
                                <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'academic_goal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal">
                                    {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->academic_goal_statement, $supporting_docs->academic_goal_statement,['class'=>'col-md-6'])}}
                                   <ins>Edit</ins>
-                               </a><br>
+                               </a>
                                </td>
                            @else
-                               <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'academic_goal_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >+</a></td>
+                               <td class="col-md-6"><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'academic_goal_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                            @endif
                         </tr>
                         <tr>
@@ -58,54 +58,55 @@
                                    <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'essay', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                         {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->essay, $supporting_docs->essay,['class'=>'col-md-6'])}}
                                         <ins>Edit</ins>
-                                   </a><br>
+                                   </a>
                                 </td>
                             @else
-                                <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'essay','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" ><i class="fa fa-plus-square"></i></a></td>
+                                <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'essay','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                             @endif
                         </tr>
                         <tr>
                             <th>Letter of Intent</th>
                             @if($supporting_docs->letter_of_intent != null)
                                 <td>
-                                    <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'letter_of_intent', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                    <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'letter_of_intent', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal">
                                         {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->letter_of_intent, $supporting_docs->letter_of_intent,['class'=>'col-md-6'])}}
                                         <ins>Edit</ins>
-                                    </a><br>
+                                    </a>
                                 </td>
                             @else
-                                <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'letter_of_intent','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'letter_of_intent','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                             @endif
                         </tr>
                         <tr>
                             <th>Personal Statement</th>
                              @if($supporting_docs->personal_statement != null)
                                  <td>
-                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'personal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                     <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'personal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->personal_statement, $supporting_docs->personal_statement,['class'=>'col-md-6'])}}
                                      Edit
-                                     </a><br>
+                                     </a>
                                  </td>
                              @else
-                                 <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'personal_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                 <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'personal_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                              @endif
                         </tr>
                         <tr>
                             <th>Research Statement</th>
                              @if($supporting_docs->research_statement != null)
                                  <td>
-                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'research_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                     <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'research_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->research_statement, $supporting_docs->research_statement,['class'=>'col-md-6'])}}
                                      Edit
-                                     </a><br>
+                                     </a>
                                  </td>
                              @else
-                                 <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'research_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                 <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'research_statement','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                              @endif
                         </tr>
                     </thead>
                 </table>
             </div>
+            <div  class="col-lg-1"></div>
 
             <div class="col-lg-4" style="background-color:aliceblue">
                  <table class="table table-striped  table-bordered">
@@ -114,62 +115,62 @@
                              <th>Portfolio</th>
                              @if($supporting_docs->portfolio != null)
                                  <td>
-                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                     <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->portfolio, $supporting_docs->portfolio,['class'=>'col-md-6'])}}
                                      Edit
-                                     </a><br>
+                                     </a>
                                  </td>
                              @else
-                                 <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'portfolio','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                 <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'portfolio','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                              @endif
                          </tr>
                          <tr>
                               <th>Writing Sample</th>
-                              @if($supporting_docs->portfolio != null)
+                              @if($supporting_docs->writing_sample != null)
                                   <td>
-                                      <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->portfolio, $supporting_docs->portfolio,['class'=>'col-md-6'])}}
+                                      <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'writing_sample', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->writing_sample, $supporting_docs->writing_sample,['class'=>'col-md-6'])}}
                                       Edit
-                                      </a><br>
+                                      </a>
                                   </td>
                               @else
-                                  <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'portfolio','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                  <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'writing_sample','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                               @endif
                          </tr>
                          <tr>
                              <th>Resume</th>
                                  @if($supporting_docs->resume != null)
                                      <td>
-                                         <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'resume', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                         <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'resume', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                              {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->resume, $supporting_docs->resume,['class'=>'col-md-6'])}}
                                              Edit
-                                         </a><br>
+                                         </a>
                                      </td>
                                  @else
-                                     <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'resume','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                     <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'resume','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                                  @endif
                          </tr>
                          <tr>
                              <th>Readmission personal details</th>
                              @if($supporting_docs->readmission_personal_details != null)
                                  <td>
-                                     <a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'readmission_personal_details', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                                     <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'readmission_personal_details', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                          {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->readmission_personal_details, $supporting_docs->readmission_personal_details,['class'=>'col-md-6'])}}
                                          Edit
-                                     </a><br>
+                                     </a>
                                  </td>
                                  @else
-                                    <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'readmission_personal_details','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                    <td><a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'readmission_personal_details','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                                  @endif
                          </tr>
                          <tr>
                              <th>Other</th>
                              @if($supporting_docs->other != null)
                                  <td>{{ $supporting_docs->other }}
-                                     <a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" >Edit</a>
+                                     <a class=" btn-link" href="{{URL::route('user.supporting_docs.create', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" >Edit</a>
                              @else
                                  <td>
-                                     <a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'other','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                                     <a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'other','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                                  </td>
                              @endif
                          </tr>

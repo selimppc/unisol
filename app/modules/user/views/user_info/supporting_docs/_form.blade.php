@@ -9,6 +9,7 @@
         'personal_statement' => 'Personal Statement',
         'research_statement' => 'Research Statement',
         'portfolio' => 'Portfolio',
+        'writing_sample' => 'writing_sample',
         'resume' => 'Resume',
         'readmission_personal_details' => 'Re-admission Personal Details',
         'other'=>'Other',
@@ -24,8 +25,8 @@
         {{Form::open(array('url'=>'user/supporting-docs/store', 'class'=>'form-horizontal','files'=>true))}}
         <div class='form-group'>
             @if($doc_type_arr[$doc_type] == 'Other')
-                     <div>{{ Form::label('other', $doc_type_arr[$doc_type]) }}</div>
-                     <div>{{ Form::textarea ('other',  $supporting_docs->$doc_type, Input::old($doc_type),['class'=>'form-control']) }}</div>
+               <div>{{ Form::label('other', $doc_type_arr[$doc_type]) }}</div>
+               <div>{{ Form::textarea ('other',  $supporting_docs->$doc_type, Input::old($doc_type),['class'=>'form-control']) }}</div>
             @else
                 <div>{{ Form::label('Doc Type', $doc_type_arr[$doc_type]) }}</div>
                 <div>{{ Form::file('doc_file', Input::old($doc_type),['class'=>'form-control ']) }}</div>
@@ -33,7 +34,7 @@
             <div>&nbsp;</div>
             @if($supporting_docs->$doc_type != 'Other')
                 <div>
-                    {{ HTML::image('user/s_doc/'.$supporting_docs->$doc_type)}}
+                    {{ $supporting_docs->$doc_type != null ? HTML::image('/uploads/user_images/docs/'.$supporting_docs->$doc_type) :'' }}
                 </div>
             @endif
         </div>
