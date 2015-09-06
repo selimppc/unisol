@@ -16,6 +16,10 @@ class RncCategory extends Eloquent{
        'title' => 'required'
     ];
 
+    /**
+     * @param $data
+     * @return bool
+     */
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
