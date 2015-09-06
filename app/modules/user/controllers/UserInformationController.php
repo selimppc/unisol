@@ -628,7 +628,7 @@ class UserInformationController extends \BaseController {
             $pathL = public_path("/uploads/user_images/docs/" . $sdoc_file);
             $pathS = public_path("/uploads/user_images/docs/" . $sdoc_file);
             Image::make($file->getRealPath())->save($pathL);
-            Image::make($file->getRealPath())->resize(100, 100)->save($pathS);
+            Image::make($file->getRealPath())->resize(800, 800)->save($pathS);
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
             if ($sdoc->save()) {

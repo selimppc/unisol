@@ -175,8 +175,9 @@
                          <tr>
                              <th>Other</th>
                              @if($supporting_docs->other != null)
-                                 <td>{{ $supporting_docs->other }}
-                                     <a class=" btn-link" href="{{URL::route('user.supporting_docs.create', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" >Edit</a>
+                                 <td>
+                                     <a class=" btn-link" href="{{URL::route('user.supporting_docs.create', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" ><ins>Edit</ins></a><br>
+                                     <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                              @else
                                  <td>
                                      <a class=" btn-link" href="{{URL::route('user.supporting_docs.create',  ['doc_type' => 'other','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
