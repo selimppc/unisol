@@ -436,13 +436,14 @@ class UserInformationController extends \BaseController {
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
+            $misc_info = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();
             $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
             if(!$supporting_docs){
                 $supporting_docs = new UserSupportingDoc();
                 $supporting_docs->user_id = Auth::user()->get()->id;
                 $supporting_docs->save();
             }
-            return View::make('user::user_info.others_info._others',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta','supporting_docs','doc_type'));
+            return View::make('user::user_info.others_info._others',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta','supporting_docs','doc_type','misc_info'));
         }else{
             Session::flash('danger', "Please Login As User!  Or if not registered user then go <a href='user/login'>signup from here</a>");
             return Redirect::route('user/login');

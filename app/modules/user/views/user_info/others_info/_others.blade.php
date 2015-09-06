@@ -205,9 +205,9 @@
                 <div class="col-lg-8" style="background-color:aliceblue">
                    <table class="table table-striped  table-bordered">
                        @if(isset($userMeta))
-                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical Info</a>
+                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit</a>
                        @else
-                         <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/create')}}" data-toggle="modal" data-target="#meta-modal" >+ Add Biographical Info</a>
+                         <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/create')}}" data-toggle="modal" data-target="#meta-modal" >+ Add</a>
                        @endif
                        <p>&nbsp;</p>
                        @if(isset($userMeta))
@@ -275,7 +275,7 @@
                                 </td>
                             </tr>
                        @else
-                             {{"No Biographical Information found !"}}
+                             {{"No Information found !"}}
                        @endif
                    </table>
                 </div>
@@ -286,66 +286,63 @@
             {{----------------------User : Academic Records ------------------------------------------------------------}}
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
-                    <div class="col-lg-4"><b style="color: #000000">Miscellaneous Information</b>
-                    <p>
-                        @if(isset($academicRecords))
-                           <span class="text-muted">
-                               {{--<a href="{{Route('user/meta-data/signature',['id'=>$academicRecords->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature. </ins></a>--}}
-                           </span>
-                        @endif
-                    </p>
+                    <div class="col-lg-3"><b style="color: #000000">Miscellaneous Information</b>
                     </div>
-                    <div class="col-lg-8" style="background-color:aliceblue">
-                        <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/acm-records/create')}}" data-toggle="modal" data-target="#meta-modal" >+ Add Academic Records</a>
-                        <p>
-                          <em><span class="text-danger">*</span><strong style="color:darkmagenta"> Please add at least two academic records.</strong></em>
-                        </p>
-                        <table class="table table-striped  table-bordered">
-                            <thead>
-                                 <tr>
-                                     <th> Education Level</th>
-                                     <th>Board / University</th>
-                                     <th>Passing Year</th>
-                                     <th>Result</th>
-                                     <th>Docs</th>
-                                     <th>Action</th>
-                                 </tr>
-                           </thead>
-                           <tbody>
-                              @if(isset($academicRecords))
-                                  @foreach($academicRecords as $value)
-                                      <tr>
-                                           <td>{{strtoupper($value->level_of_education)}}</td>
-                                           <td>{{ $value->board_university}}</td>
-                                           <td>{{ $value->year_of_passing}}</td>
-                                           <td>
-                                                @if($value->result_type =='division')
-                                                {{ $value->result }}
-                                                @else
-                                                {{$value->gpa}}
-                                                @endif
-                                           </td>
-                                           <td>
-                                              <a style="color:navy" class="btn btn-xs btn-default" href="{{URL::route('user/acm-records/certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#changeImageModal">Certificate</a>
-                                              <a style="color:navy" class="pull-right btn btn-xs btn-default" href="{{URL::route('user/acm-records/transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#changeImageModal">Transcript</a>
-                                           </td>
-                                           <td>
-                                               <a href="{{ URL::route('user/acm-records/edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myeditModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-edit"></span></a>
-                                               <a data-href="{{ URL::route('user/acm-records/delete',['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
-                                           </td>
-                                      </tr>
-                                  @endforeach
-                              @else
-                                  {{"No Academic Records found !"}}
-                              @endif
-                           </tbody>
-                        </table>
+                    <div class="col-lg-9" style="background-color:aliceblue">
+                       @if($misc_info != null)
+                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/misc-info/edit',['id'=>$misc_info->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile <i class="fa fa-arrow-circle-right"></i></a>
+                       @else
+                           <button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
+                             + Add
+                           </button>
+                       @endif
+                       <table class="table table-striped  table-bordered">
+                            <tr>
+                                <th style="font-size: small">Ever Admit this University?</th>
+                                <td>@if($misc_info != null)
+                                        {{ $misc_info->ever_admit_this_university ==1 ? 'Yes' : 'No' }}
+                                    @else
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="font-size: small">Ever Dismiss?</th>
+                                <td>@if($misc_info != null)
+                                        {{ $misc_info->ever_dismiss ==1 ? 'Yes' : 'No' }}
+                                    @else
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="font-size: small">Academic Honors Received?</th>
+                                <td>@if($misc_info != null)
+                                        {{ $misc_info->academic_honors_received ==1 ? 'Yes' : 'No' }}
+                                    @else
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="font-size: small">Ever Admit other University?</th>
+                                <td>@if($misc_info != null)
+                                        {{ $misc_info->ever_admit_other_university ==1 ? 'Yes' : 'No' }}
+                                    @else
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="font-size: small">Admission test Center?</th>
+                                <td>@if($misc_info != null)
+                                        {{ $misc_info->admission_test_center  }}
+                                    @else
+                                    @endif
+                                </td>
+                            </tr>
+                       </table>
                     </div>
             </section>
             <p>&nbsp;</p>
             <hr>
     </div>
-
 <!-- Modal  -->
  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="z-index:1050">
