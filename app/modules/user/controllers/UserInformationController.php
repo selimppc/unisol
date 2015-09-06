@@ -617,24 +617,33 @@ class UserInformationController extends \BaseController {
     {
         $data = Input::all();
         $sdoc = $data['id'] ? UserSupportingDoc::find($data['id']) : new UserSupportingDoc;
-        if ($data['doc_type']=='other') {
+        if ($data['doc_type'] == 'other') {
             $sdoc->other = Input::get('other');
         } else {
+
             $file = Input::file('doc_file');
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $sdoc_file=strtolower($filename);
-            $path = public_path("/uploads/user_images/docs/" . $sdoc_file);
-            Image::make($file->getRealPath())->resize(100, 100)->save($path);
+            $pathL = public_path("/uploads/user_images/docs/" . $sdoc_file);
+            $pathS = public_path("/uploads/user_images/docs/" . $sdoc_file);
+            Image::make($file->getRealPath())->save($pathL);
+            Image::make($file->getRealPath())->resize(100, 100)->save($pathS);
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
-        if ($sdoc->save()){
-            Session::flash('message', "Successfully added Information!");
-            return Redirect::back();
-        }
-        else
-            Session::flash('danger', "Not Added Information!");
-            return Redirect::back();
+            if ($sdoc->save()) {
+                Session::flash('message', "Successfully added Information!");
+                return Redirect::back();
+            } else
+                Session::flash('danger', "Not Added Information!");
+                return Redirect::back();
+
+    }
+
+    public function view_sdocs($doc_type, $sdoc_id){
+
+        $supporting_docs = UserSupportingDoc::where('id', '=', $sdoc_id)->first();
+        return View::make('user::user_info.supporting_docs.view', compact('supporting_docs', 'doc_type'));
     }
 
 

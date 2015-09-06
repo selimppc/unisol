@@ -285,6 +285,11 @@ Route::any("user/supporting-docs/store", [
     "uses" => "UserInformationController@sDocsStore"
 ]);
 
+Route::any('user/supporting_docs/view/{doc_type}/{sdoc_id}', [
+    'as'   => 'user.supporting_docs.view',
+    'uses' => 'UserInformationController@view_sdocs'
+]);
+
 //Settings............
 Route::any("user/settings", [
     "as"   => "user/settings",
