@@ -436,13 +436,14 @@ class UserInformationController extends \BaseController {
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
             $misc_info = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();
+            $extra_cur = UserExtraCurricularActivity::where('user_id','=',$user_id)->get();
             $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
             if(!$supporting_docs){
                 $supporting_docs = new UserSupportingDoc();
                 $supporting_docs->user_id = Auth::user()->get()->id;
                 $supporting_docs->save();
             }
-            return View::make('user::user_info.others_info._others',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta','supporting_docs','doc_type','misc_info'));
+            return View::make('user::user_info.others_info._others',compact('user_role','user_id', 'supporting_docs','misc_info','extra_cur'));
         }else{
             Session::flash('danger', "Please Login As User!  Or if not registered user then go <a href='user/login'>signup from here</a>");
             return Redirect::route('user/login');
@@ -510,14 +511,12 @@ class UserInformationController extends \BaseController {
         }
     }
 
-    public function extraCurricularIndex(){
+    public function create_extra_curricular(){
         $user_id = Auth::user()->get()->id;
-        $data = UserExtraCurricularActivity::where('user_id', '=', $user_id)->get();
-//        print_r($data);exit;
-        return View::make('user::user_info.extra_curricular.index',compact('data','user_id'));
+        return View::make('user::user_info.extra_curricular._create',compact('user_id'));
     }
 
-    public function extraCurricularStore(){
+    public function store_extra_curricular(){
 
         $data = Input::all();
         $file = $data['certificate_medal'];
@@ -532,9 +531,9 @@ class UserInformationController extends \BaseController {
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $file=strtolower($filename);
-                $path = public_path("/user_images/certificates/" . $file);
-                Image::make($imagefile->getRealPath())->resize(800, 800)->save($path);
-                $model->certificate_medal =$file;
+                $path = public_path("/uploads/user_images/docs/" . $file);
+                Image::make($imagefile->getRealPath())->save($path);
+                $model->certificate_medal = $file;
             }
             $model->save();
 
@@ -546,20 +545,54 @@ class UserInformationController extends \BaseController {
         }
     }
 
-    public function viewCertificateMedal($id){
+    public function view_certificate_medal($id){
 
         $model = UserExtraCurricularActivity::find($id);
         return View::make('user::user_info.extra_curricular._view_certificate_medal',compact('model'));
     }
 
-    public function editExtraCurricular($id){
+    public function create_certificate_medal($id){
+
+        $model = UserExtraCurricularActivity::find($id);
+        return View::make('user::user_info.extra_curricular.add_certificate_medal',compact('model'));
+    }
+
+    public function store_certificate_medal($id){
+
+        $data = Input::all();
+        $file = $data['certificate_medal'];
+
+        $model = UserExtraCurricularActivity::find($id);
+        if($file) {
+            // Images destination
+            $img_dir = "uploads/user_images/docs/" . date("h-m-y");
+            // Create folders if they don't exist
+            if (!file_exists($img_dir)) {
+//                print_r('ok');exit;
+                mkdir($img_dir, 0777, true);
+            }
+            $model->certificate_medal = Input::file('certificate_medal');
+            $extension =  date("h-m-y") . '.' . $model->certificate_medal->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path('uploads/user_images/docs/' . $file);
+            Image::make($model->certificate_medal->getRealPath())->save($path);
+            $model->certificate_medal  =  $file;
+        }
+        $model->save();
+
+        Session::flash('message', "Successfully Added.");
+        return Redirect::back();
+    }
+
+    public function edit_extra_curricular($id){
 
         $model = UserExtraCurricularActivity::find($id);
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.extra_curricular..edit', compact('model','user_id'));
     }
 
-    public function updateExtraCurricular($id){
+    public function update_extra_curricular($id){
 
         $data = Input::all();
         $file = $data['certificate_medal'];
@@ -576,11 +609,10 @@ class UserInformationController extends \BaseController {
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $file = strtolower($filename);
-                $path = public_path("/user_images/certificates/" . $file);
-                Image::make($imagefile->getRealPath())->resize(800, 800)->save($path);
+                $path = public_path("/uploads/user_images/docs/" . $file);
+                Image::make($imagefile->getRealPath())->save($path);
                 $model->certificate_medal  = $file;
             }
-
             $model->save();
 
             Session::flash('message', "Successfully Updated Information!");

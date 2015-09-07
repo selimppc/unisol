@@ -8,7 +8,7 @@
         <table>
             <tr>
                 <th></th>
-                <td class="etsb-image-doc">{{ $model->certificate_medal != null ? HTML::image('user_images/certificates/'.$model->certificate_medal) :  HTML::image('/img/no_file.jpg') }}</td>
+                <td class="etsb-image-doc">{{ $model->certificate_medal != null ? HTML::image('/uploads/user_images/docs/'.$model->certificate_medal) :  HTML::image('/img/no_file.jpg') }}</td>
             </tr>
         </table>
     <br>

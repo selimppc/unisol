@@ -40,7 +40,6 @@
                     <td>{{$value->description}}</td>
                     <td>{{$value->achievement}}</td>
                     <td>
-
                         @if(isset($value->certificate_medal))
                            {{--@if($data->certificate_medal == null)--}}
                               <a class=" btn-link" href="{{ URL::route('user/extra-curricular/certificate-medal',['id'=>$value->id])}}" data-toggle="modal" data-target="#ImageModal">

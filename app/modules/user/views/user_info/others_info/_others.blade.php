@@ -193,91 +193,47 @@
 
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
-                <div class="col-lg-4"><b style="color: #000000">Extra Curricular Activities</b>
-                <p>
-                    @if(isset($userMeta))
-                       <span class="text-muted ">You Can Change Your Signature From Here.
-                           <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature. </ins></a>
-                       </span>
-                    @endif
-                </p>
+                <div class="col-lg-3"><b style="color: #000000">Extra Curricular Activities</b>
+
                 </div>
-                <div class="col-lg-8" style="background-color:aliceblue">
-                   <table class="table table-striped  table-bordered">
-                       @if(isset($userMeta))
-                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit</a>
-                       @else
-                         <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/create')}}" data-toggle="modal" data-target="#meta-modal" >+ Add</a>
-                       @endif
-                       <p>&nbsp;</p>
-                       @if(isset($userMeta))
+                <div class="col-lg-9" style="background-color:aliceblue">
+                    <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/extra-curricular-activities')}}" data-toggle="modal" data-target="#addModal" >+ Add</a>
+                    <table class="table table-striped  table-bordered">
+                        <thead>
                             <tr>
-                                <th >Father's Name</th>
-                                <td>{{$userMeta->fathers_name}}</td>
+                                <th> Title</th>
+                                <th> Description </th>
+                                <th> Achievement</th>
+                                <th> Certificate Medal </th>
+                                <th> Action</th>
                             </tr>
-
-                            <tr>
-                                <th >Father's Occupation</th>
-                                <td>{{$userMeta->fathers_occupation}}</td>
-                            </tr>
-
-                            <tr>
-                                <th >Is Freedom Fighter?</th>
-                                <td>{{$userMeta['freedom_fighter']==1 ? 'Yes' : 'No'}}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Father's Phone</th>
-                                <td>{{$userMeta->fathers_phone}}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Mother's Name</th>
-                                <td>{{$userMeta->mothers_name}}</td>
-                            </tr>
-
-                            <tr>
-                                <th >Mother's Occupation</th>
-                                <td>{{$userMeta->mothers_occupation}}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Mother's Phone</th>
-                                <td>{{$userMeta->mothers_phone}}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Marital Status</th>
+                        </thead>
+                        <tbody>
+                        @if(isset($extra_cur))
+                            @foreach($extra_cur as $value)
+                             <tr>
+                                <td>{{$value->title}}</td>
+                                <td>{{$value->description}}</td>
+                                <td>{{$value->achievement}}</td>
                                 <td>
-                                   {{strtoupper($userMeta->marital_status)}}
+                                    @if($value->certificate_medal == Null)
+                                        <a href="{{ URL::route('user/extra-curricular/create/certificate-medal',['id'=>$value->id])}}" data-toggle="modal" data-target="#changeImageModal">
+                                           <ins>Add</ins>
+                                        </a>
+                                    @else
+                                        <a href="{{ URL::route('user/extra-curricular/certificate-medal',['id'=>$value->id])}}" data-toggle="modal" data-target="#changeImageModal">
+                                           <ins>View</ins>
+                                        </a>
+                                    @endif
                                 </td>
-                            </tr>
-
-                            <tr>
-                                <th>Religion</th>
-                                <td>{{$userMeta->religion}}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Present Address</th>
-                                <td>{{$userMeta->present_address}}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Permanent Address</th>
-                                <td>{{$userMeta->permanent_address}}</td>
-                            </tr>
-                            <tr>
-                                <th>Signature</th>
                                 <td>
-                                    {{ $userMeta->signature != null ? HTML::image('/uploads/user_images/docs/'.$userMeta->signature) : HTML::image('/img/default_sig.png', 'Signature') }}<br>
-                                    <a href="{{Route('user/meta-data/signature',['id'=>$userMeta->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Change Signature.</ins></a>
+                                    <a class="btn btn-xs btn-default" href="{{ URL::route('user/extra-curricular/edit',['id'=>$value->id])}}" data-toggle="modal" data-target="#addModal" style="font-size: 12px">Edit</a>
                                 </td>
-                            </tr>
-                       @else
-                             {{"No Information found !"}}
-                       @endif
-                   </table>
+                             </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
                 </div>
             </section>
             <p>&nbsp;</p>
@@ -292,11 +248,10 @@
                            <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/misc-info/edit',['id'=>$misc_info->id]) }}" data-toggle="modal" data-target="#addModal"> Edit </a>
                        @else
                            <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/misc-info')}}" data-toggle="modal" data-target="#addModal" >+ Add</a>
-
                        @endif
                        <table class="table table-striped  table-bordered">
                             <tr>
-                                <th style="font-size: small">Ever Admit this University?</th>
+                                <th>Ever Admit this University?</th>
                                 <td>@if($misc_info != null)
                                         {{ $misc_info->ever_admit_this_university ==1 ? 'Yes' : 'No' }}
                                     @else
@@ -304,7 +259,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="font-size: small">Ever Dismiss?</th>
+                                <th>Ever Dismiss?</th>
                                 <td>@if($misc_info != null)
                                         {{ $misc_info->ever_dismiss ==1 ? 'Yes' : 'No' }}
                                     @else
@@ -312,7 +267,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="font-size: small">Academic Honors Received?</th>
+                                <th>Academic Honors Received?</th>
                                 <td>@if($misc_info != null)
                                         {{ $misc_info->academic_honors_received ==1 ? 'Yes' : 'No' }}
                                     @else
@@ -320,7 +275,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="font-size: small">Ever Admit other University?</th>
+                                <th>Ever Admit other University?</th>
                                 <td>@if($misc_info != null)
                                         {{ $misc_info->ever_admit_other_university ==1 ? 'Yes' : 'No' }}
                                     @else
@@ -328,8 +283,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="font-size: small">Admission test Center?</th>
-                                <td>@if($misc_info != null)
+                                <th>Admission test Center</th>
+                                <td>
+                                    @if($misc_info != null)
                                         {{ $misc_info->admission_test_center  }}
                                     @else
                                     @endif
@@ -414,6 +370,8 @@
          border-width: 1px;
      }
      </style>
+
+
 
 @stop
 

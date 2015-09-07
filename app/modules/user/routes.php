@@ -221,32 +221,6 @@ Route::any("user/others-info", [
     "uses" => "UserInformationController@others_info"
 ]);
 
-//Extra-Curricular Activities
-Route::any("user/extra-curricular", [
-    "as"   => "user/extra-curricular",
-    "uses" => "UserInformationController@extraCurricularIndex"
-]);
-
-Route::any("user/extra-curricular/store", [
-    "as"   => "user/extra-curricular/store",
-    "uses" => "UserInformationController@extraCurricularStore"
-]);
-
-Route::any("user/extra-curricular/edit/{id}", [
-    "as"   => "user/extra-curricular/edit",
-    "uses" => "UserInformationController@editExtraCurricular"
-]);
-
-Route::any("user/extra-curricular/update/{id}", [
-    "as"   => "user/extra-curricular/update",
-    "uses" => "UserInformationController@updateExtraCurricular"
-]);
-
-Route::any("user/extra-curricular/certificate-medal/{id}", [
-    "as"   => "user/extra-curricular/certificate-medal",
-    "uses" => "UserInformationController@viewCertificateMedal"
-]);
-
 //Supporting Docs..
 
 Route::any("user/supporting-docs", [
@@ -288,6 +262,42 @@ Route::any("user/misc-info/edit/{id}", [
 Route::any("user/misc-info/update/{id}", [
     "as"   => "user/misc-info/update",
     "uses" => "UserInformationController@update_misc_info"
+]);
+
+//Extra-curricular.....
+Route::any("user/extra-curricular-activities", [
+    "as"   => "user/extra-curricular-activities",
+    "uses" => "UserInformationController@create_extra_curricular"
+]);
+
+Route::any("user/extra-curricular/store", [
+    "as"   => "user/extra-curricular/store",
+    "uses" => "UserInformationController@store_extra_curricular"
+]);
+
+Route::any("user/extra-curricular/edit/{id}", [
+    "as"   => "user/extra-curricular/edit",
+    "uses" => "UserInformationController@edit_extra_curricular"
+]);
+
+Route::any("user/extra-curricular/update/{id}", [
+    "as"   => "user/extra-curricular/update",
+    "uses" => "UserInformationController@update_extra_curricular"
+]);
+
+Route::any("user/extra-curricular/certificate-medal/{id}", [
+    "as"   => "user/extra-curricular/certificate-medal",
+    "uses" => "UserInformationController@view_certificate_medal"
+]);
+
+Route::any("user/extra-curricular/create/certificate-medal/{id}", [
+    "as"   => "user/extra-curricular/create/certificate-medal",
+    "uses" => "UserInformationController@create_certificate_medal"
+]);
+
+Route::any("user/extra-curricular/store/certificate-medal/{id}", [
+    "as"   => "user/extra-curricular/store/certificate-medal",
+    "uses" => "UserInformationController@store_certificate_medal"
 ]);
 
 //Settings..........
