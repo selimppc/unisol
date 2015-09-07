@@ -250,7 +250,7 @@ class UserInformationController extends \BaseController {
         Session::flash('message', "Successfully Added Signature!");
         return Redirect::back();
     }
-
+// Academic Records.....
     public function create_acm_records(){
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.academic._create',compact('user_id'));
@@ -339,7 +339,6 @@ class UserInformationController extends \BaseController {
     }
 
     public function update_acm_records($id){
-//        print_r('ok');exit;
         $rules = array(
 //            'level_of_education' => 'required',
 //            'certificate' => 'required',
@@ -450,24 +449,24 @@ class UserInformationController extends \BaseController {
         }
     }
 
-    public function miscIndex(){
+    public function create_misc_info(){
         $user_id = Auth::user()->get()->id;
-        $data = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();
-        return View::make('user::user_info.miscellaneous_info.index',compact('data','user_id'));
+        return View::make('user::user_info.miscellaneous_info._create',compact('user_id'));
     }
 
-    public function storeMisc(){
+    public function store_misc(){
+
         if($this->isPostRequest()){
             $input_data = Input::all();
             $model = new UserMiscellaneousInfo();
             $model->user_id = Input::get('user_id');
-//            print_r($input_data);exit;
+
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
                     $model->create($input_data);
                     DB::commit();
-                    Session::flash('message', 'Success !');
+                    Session::flash('message', 'Successfully added !');
                 } catch (Exception $e) {
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
@@ -478,14 +477,14 @@ class UserInformationController extends \BaseController {
         return Redirect::back();
     }
 
-    public function editMiscInfo($id){
+    public function edit_misc_info($id){
 
         $model = UserMiscellaneousInfo::find($id);
         $user_id = Auth::user()->get()->id;
-        return View::make('user::user_info.miscellaneous_info._modal.edit', compact('model','user_id'));
+        return View::make('user::user_info.miscellaneous_info.edit', compact('model','user_id'));
     }
 
-    public function updateMiscInfo($id){
+    public function update_misc_info($id){
         $data = Input::all();
         $model = UserMiscellaneousInfo::find($id);
 

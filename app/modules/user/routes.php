@@ -220,27 +220,6 @@ Route::any("user/others-info", [
     "as"   => "user/others-info",
     "uses" => "UserInformationController@others_info"
 ]);
-//Miscellaneous_Info
-
-Route::any("user/misc-info", [
-    "as"   => "user/misc-info",
-    "uses" => "UserInformationController@miscIndex"
-]);
-
-Route::any("user/misc-info/store", [
-    "as"   => "user/misc-info/store",
-    "uses" => "UserInformationController@storeMisc"
-]);
-
-Route::any("user/misc-info/edit/{id}", [
-    "as"   => "user/misc-info/edit",
-    "uses" => "UserInformationController@editMiscInfo"
-]);
-
-Route::any("user/misc-info/update/{id}", [
-    "as"   => "user/misc-info/update",
-    "uses" => "UserInformationController@updateMiscInfo"
-]);
 
 //Extra-Curricular Activities
 Route::any("user/extra-curricular", [
@@ -290,7 +269,28 @@ Route::any('user/supporting_docs/view/{doc_type}/{sdoc_id}', [
     'uses' => 'UserInformationController@view_sdocs'
 ]);
 
-//Settings............
+//Misc Info.....
+Route::any("user/misc-info", [
+    "as"   => "user/misc-info",
+    "uses" => "UserInformationController@create_misc_info"
+]);
+
+Route::any("user/misc-info/store", [
+    "as"   => "user/misc-info/store",
+    "uses" => "UserInformationController@store_misc"
+]);
+
+Route::any("user/misc-info/edit/{id}", [
+    "as"   => "user/misc-info/edit",
+    "uses" => "UserInformationController@edit_misc_info"
+]);
+
+Route::any("user/misc-info/update/{id}", [
+    "as"   => "user/misc-info/update",
+    "uses" => "UserInformationController@update_misc_info"
+]);
+
+//Settings..........
 Route::any("user/settings", [
     "as"   => "user/settings",
     "uses" => "UserInformationController@user_settings"

@@ -6,6 +6,6 @@
 
 <div class="modal-body">
  {{Form::model($model, array('route'=>['user/misc-info/update',$model->id],'class'=>'form-horizontal','files'=>true))}}
-     @include('user::user_info.miscellaneous_info._modal._form')
+     @include('user::user_info.miscellaneous_info._form')
  {{ Form::close() }}
 </div>

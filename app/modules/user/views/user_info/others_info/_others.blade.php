@@ -282,19 +282,17 @@
             </section>
             <p>&nbsp;</p>
             <hr>
-
-            {{----------------------User : Academic Records ------------------------------------------------------------}}
+            {{----------------------User : Miscellaneous Information ------------------------------------------------------------}}
             <section class="col-lg-12"style="background-color:#ffffff">
                 <p>&nbsp;</p>
                     <div class="col-lg-3"><b style="color: #000000">Miscellaneous Information</b>
                     </div>
                     <div class="col-lg-9" style="background-color:aliceblue">
                        @if($misc_info != null)
-                          <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/misc-info/edit',['id'=>$misc_info->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile <i class="fa fa-arrow-circle-right"></i></a>
+                           <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/misc-info/edit',['id'=>$misc_info->id]) }}" data-toggle="modal" data-target="#addModal"> Edit </a>
                        @else
-                           <button type="button" class="pull-right btn btn-sm btn-default" data-toggle="modal" data-target="#modal">
-                             + Add
-                           </button>
+                           <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/misc-info')}}" data-toggle="modal" data-target="#addModal" >+ Add</a>
+
                        @endif
                        <table class="table table-striped  table-bordered">
                             <tr>
@@ -345,7 +343,7 @@
     </div>
 <!-- Modal  -->
  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="z-index:1050">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
         </div>
@@ -361,15 +359,6 @@
          </div>
      </div>
 
-     {{--Meta data:Modal --}}
-
-     <div class="modal fade" id="meta-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-         <div class="modal-dialog modal-lg" style="z-index:1050">
-             <div class="modal-content">
-
-             </div>
-         </div>
-      </div>
      <!-- Modal : edit -->
      <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-lg" style="z-index:1050">
@@ -399,12 +388,19 @@
         </div>
       </div>
 
-      <!-- Modal : add goal -->
+      <!-- Modal : add supporting docs -->
       <div class="modal fade" id="addgoalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
               </div>
           </div>
+      </div>
+      <!-- Modal : add misc info -->
+      <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+         </div>
       </div>
 
      <style>
