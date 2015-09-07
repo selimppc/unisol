@@ -70,8 +70,7 @@
             <section class="col-lg-12"style="background-color:#ffffff">
                 <div class="col-lg-6">
                     <li><p>Profile &nbsp;<a class="" href="{{ URL::route('user/profile')}}">Edit</a></p></li>
-                    {{--<li><p>Biographical Info&nbsp;<a class="" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal">Edit</a></p></li>--}}
-                    {{--<li><p>Academic Records&nbsp;<a class="" href="{{ URL::route('user/acm-records/edit',['id'=>$academicRecords->id]) }}" data-toggle="modal" data-target="#myeditModal">Edit</a></p></li>--}}
+                    <li><p>Other Information&nbsp;<a class="" href="{{ URL::route('user/others-info')}}">Edit</a></p></li>
                 </div>
             </section>
             <p>&nbsp;</p>
