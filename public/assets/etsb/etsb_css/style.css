@@ -3761,3 +3761,22 @@ fieldset[disabled] .btn-vk.active {
 .search-cursor{
    cursor:pointer;
 }
+
+
+/*
+    Color Manager :: Tanvir Jahan dated by: Sep 08, 2015
+*/
+
+.color-background-red{
+    padding: 1%;
+    background-color: red;
+}
+.color-text-white{
+    color: white;
+}
+.color-text-red{
+    color: red;
+}
+.color-text-black{
+    color: black;
+}

@@ -32,7 +32,7 @@
         </div>
         <section class="col-lg-12"style="background-color:#ffffff">
             <p>&nbsp;</p>
-            <div class="col-lg-3"><b style="color: #000000">Supporting Documents</b>
+            <div class="col-lg-3" ><b class="color-text-black">Supporting Documents</b>
 
             </div>
             <div class="col-lg-4" style="background-color:aliceblue">
