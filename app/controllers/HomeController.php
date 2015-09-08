@@ -51,19 +51,14 @@ class HomeController extends BaseController {
         $shortFormat = strtotime($date);
         $expireDate = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
 
-        // Following lines are commented as each user can go to home page.
-        /*if(isset(Auth::user()->get()->id) && Auth::user()->get()->id) {
+        if(isset(Auth::user()->get()->id) || isset(Auth::applicant()->get()->id)) {
             return Redirect::to("user/user-access-to");
-        }
-        elseif(isset(Auth::applicant()->get()->id) && Auth::applicant()->get()->id){
+        }else if(isset(Auth::applicant()->get()->id)){
             return View::make('applicant.index')->with('pageTitle', 'Welcome Applicant!');
-        }
-        else {
+        }else{
             return View::make('public.index')->with('pageTitle', 'Welcome!');
-        }*/
+        }
 
-        // Each user is welcome at home page.
-        return View::make('public.index')->with('pageTitle', 'Welcome!');
     }
 
 

@@ -13,6 +13,7 @@
 <div class="box-body">
   <div class="col-sm-12">
     <!-- TODO: Dash board content will be here.-->
+      Welcome to our University Automation System and ERP system
   </div>
 <p>&nbsp;</p><p>&nbsp;</p>
 
