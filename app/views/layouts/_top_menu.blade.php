@@ -45,11 +45,19 @@
            <i class='fa fa-gear'></i><i class="caret"></i>
         </a>
         <ul class="dropdown-menu">
-            <div class="text-center"><h5><b>Accounts & Settings</b></h5></div>
-            <li><a href="{{ URL::route('user/profile') }}">User Profile </a></li>
-            <li><a href="{{ URL::to('user/others-info') }}">Other Information</a></li>
+            <div class="text-center"><h5><b>Accounts</b></h5></div>
+            <li><a href="{{ URL::to('user/profile-info') }}"> Personal Information </a></li>
+            <li><a href="{{ URL::route('user/meta-data') }}">Biographical Information</a></li>
+            <li><a href="{{ URL::route('user/acm-records') }}">Academic Records</a></li>
+            <li><a href="{{ URL::route('user/supporting-docs') }}">Supporting Docs</a></li>
+            <li><a href="{{ URL::route('user/extra-curricular-activities') }}">Extra-curricular Activities</a></li>
+            <li><a href="{{ URL::route('user/misc-info') }}">Miscellaneous Information</a></li>
+            <li class="divider"></li>
+            <div class="text-center"><h5><b>Settings</b></h5></div>
             <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
             <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
         </ul>
+
+
     </li>
 </ul>

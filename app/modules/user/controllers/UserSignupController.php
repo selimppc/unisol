@@ -168,9 +168,11 @@ class UserSignupController extends \BaseController {
             //convert date format
             date_default_timezone_set("Asia/Dacca");
             $date = date('Y-m-d H:i:s', time());
+//            print_r($date);exit;
             $shortFormat = strtotime($date);
             $reset_password_expire = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
-            $reset_password_time=date('Y-m-d h:i:s', time());;
+//            print_r($reset_password_expire);exit;
+            $reset_password_time=date('Y-m-d h:i:s', time());
             $data = new UserResetPassword();
             $data->user_id = $user_id;
             $data->reset_password_token = $reset_password_token;
@@ -179,23 +181,18 @@ class UserSignupController extends \BaseController {
             $data->status = "2"; // 2 == reset requested
             if($data->save())
             {
-
                 Mail::send('user::signup.password_reset_mail', array('link' =>$reset_password_token),  function($message) use ($email_address)
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                     $message->to($email_address);
                     $message->cc('tanintjt@gmail.com');
                     $message->subject('Notification');
-
                 });
-
             }
             Session::flash('message', 'Please Check Your Email For Further Process.');
             return Redirect::back();
-
         }
     }
-
     //forgot password : confirm
     public function userPasswordResetConfirm($reset_password_token)
     {

@@ -12,13 +12,13 @@
                 <div class="box box-warning">
                     <div class="box-body">
                         <p style="text-align: center;color: #800080;font-size:large;margin-top: 5px">Forgot Password</p>
-                        {{--{{ Form::open(array('url'=>'user/password_reminder_mail', 'class'=>'form-signin')) }}--}}
+                        {{ Form::open(array('url'=>'user/password_reminder_mail', 'class'=>'form-signin')) }}
                         {{ Form::label('email','Email Address') }}
                         {{ Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) }}
                         <p>&nbsp;</p>
                         {{ Form::submit('Submit', array('class'=>'pull-right btn btn-sm btn-primary'))}}
                         <br>
-                        {{--{{ Form::close() }}--}}
+                        {{ Form::close() }}
                          <p>&nbsp;</p>
                     </div>
                 </div>

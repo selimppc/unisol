@@ -120,6 +120,10 @@ Route::any('user/change_password/{id}',
         'uses'=>'UserInformationController@change_password']);
 
 //Profile.........
+Route::any("user/profile-info", [
+    "as"   => "user/profile-info",
+    "uses" => "UserInformationController@profile"
+]);
 
 Route::any("user/profile-info/store", [
     "as"   => "user/profile-info/store",
@@ -147,10 +151,9 @@ Route::any("user/profile-info/add/profile-image/{id}", [
 ]);
 
 //user mete data........
-
 Route::any("user/meta-data", [
     "as"   => "user/meta-data",
-    "uses" => "UserInformationController@metaDataIndex"
+    "uses" => "UserInformationController@meta_data"
 ]);
 
 Route::any("user/meta-data/create", [
@@ -183,6 +186,11 @@ Route::any("user/meta-data/add/add-signature/{id}", [
     "uses" => "UserInformationController@addSignature"
 ]);
 //Academic Records
+Route::any("user/acm-records", [
+    "as"   => "user/acm-records",
+    "uses" => "UserInformationController@acm_records"
+]);
+
 Route::any("user/acm-records/create", [
     "as"   => "user/acm-records/create",
     "uses" => "UserInformationController@create_acm_records"
@@ -225,7 +233,7 @@ Route::any("user/others-info", [
 
 Route::any("user/supporting-docs", [
     "as"   => "user/supporting-docs",
-    "uses" => "UserInformationController@indexSDocs"
+    "uses" => "UserInformationController@supporting_docs"
 ]);
 
 Route::any('user/supporting_docs/create/{doc_type}/{sdoc_id}', [
@@ -244,8 +252,14 @@ Route::any('user/supporting_docs/view/{doc_type}/{sdoc_id}', [
 ]);
 
 //Misc Info.....
+
 Route::any("user/misc-info", [
     "as"   => "user/misc-info",
+    "uses" => "UserInformationController@misc_info"
+]);
+
+Route::any("user/misc-info/create", [
+    "as"   => "user/misc-info/create",
     "uses" => "UserInformationController@create_misc_info"
 ]);
 
@@ -265,8 +279,14 @@ Route::any("user/misc-info/update/{id}", [
 ]);
 
 //Extra-curricular.....
+
 Route::any("user/extra-curricular-activities", [
     "as"   => "user/extra-curricular-activities",
+    "uses" => "UserInformationController@extra_curricular"
+]);
+
+Route::any("user/extra-curricular/create", [
+    "as"   => "user/extra-curricular/create",
     "uses" => "UserInformationController@create_extra_curricular"
 ]);
 

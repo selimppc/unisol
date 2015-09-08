@@ -11,13 +11,19 @@ class UserInformationController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    /*public function profileIndex(){
+    public function profile(){
 
-        $user_id = Auth::user()->get()->id;
-        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-        $model = UserProfile::with('relCountry')->where('user_id', '=', $user_id)->first();
-        return View::make('user::user_info.profile.index',compact('model','countryList','user_id'));
-    }*/
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            $user_id = Auth::user()->get()->id;
+            $userProfile = UserProfile::where('user_id', '=', $user_id)->first();
+            $countryList = [''=>'Select One'] + Country::lists('title','id');
+        }
+        if($userProfile == Null) {
+            Session::flash('info', "User Profile information is missing !");
+        }
+        return View::make('user::user_info.personal_info.index', compact('userProfile','user_id','countryList','user_role'));
+    }
 
     public function storeProfile()
     {
@@ -147,11 +153,18 @@ class UserInformationController extends \BaseController {
     }
     /*User Meta Data*/
 
-    public function metaDataIndex(){
+    public function meta_data(){
 
-        $user_id = Auth::user()->get()->id;
-        $meta_data = UserMeta::where('user_id', '=', $user_id)->first();
-        return View::make('user::user_info.meta_data.index',compact('meta_data','user_id'));
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            $user_id = Auth::user()->get()->id;
+            $userMeta = UserMeta::where('user_id', '=', $user_id)->first();
+            $countryList = [''=>'Select One'] + Country::lists('title','id');
+        }
+        if($userMeta == Null) {
+            Session::flash('info', "User meta information is missing !");
+        }
+        return View::make('user::user_info.meta_data.index', compact('userMeta','user_id','countryList','user_role'));
     }
 
     public function createMetaData(){
@@ -251,6 +264,19 @@ class UserInformationController extends \BaseController {
         return Redirect::back();
     }
 // Academic Records.....
+
+    public function acm_records(){
+
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            $user_id = Auth::user()->get()->id;
+            $academicRecords = UserAcademicRecord::where('user_id', '=', $user_id)->get();
+        }
+        if($academicRecords == Null) {
+            Session::flash('info', "User Academic Records are missing !");
+        }
+        return View::make('user::user_info.academic.index', compact('academicRecords','user_id','countryList','user_role'));
+    }
     public function create_acm_records(){
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.academic._create',compact('user_id'));
@@ -450,6 +476,22 @@ class UserInformationController extends \BaseController {
         }
     }
 
+
+    //Miscellaneous..
+
+    public function misc_info(){
+
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            $user_id = Auth::user()->get()->id;
+            $misc_info = UserMiscellaneousInfo::where('user_id','=',$user_id)->first();
+        }
+        if($misc_info == Null) {
+            Session::flash('info', "User MiscellaneousInfo missing !");
+        }
+        return View::make('user::user_info.miscellaneous_info.index', compact('misc_info','user_id','user_role'));
+    }
+
     public function create_misc_info(){
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.miscellaneous_info._create',compact('user_id'));
@@ -510,7 +552,20 @@ class UserInformationController extends \BaseController {
                 ->with('errors', 'Input Data Not Valid');
         }
     }
+//Extra-Curricular Activities..
 
+    public function extra_curricular(){
+
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            $user_id = Auth::user()->get()->id;
+            $extra_cur = UserExtraCurricularActivity::where('user_id','=',$user_id)->get();
+        }
+        if($extra_cur == Null) {
+            Session::flash('info', "User User Extra-Curricular Activities are missing !");
+        }
+        return View::make('user::user_info.extra_curricular.index', compact('extra_cur','user_id','user_role'));
+    }
     public function create_extra_curricular(){
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.extra_curricular._create',compact('user_id'));
@@ -624,16 +679,23 @@ class UserInformationController extends \BaseController {
     }
 
 //    Supporting Docs..
-    public function indexSDocs(){
 
-        $user_id = Auth::user()->get()->id;
-        $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
-        if(!$supporting_docs){
-            $supporting_docs = new UserSupportingDoc();
-            $supporting_docs->user_id = Auth::user()->get()->id;
-            $supporting_docs->save();
+    public function supporting_docs(){
+
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            $user_id = Auth::user()->get()->id;
+            $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
+            if(!$supporting_docs){
+                $supporting_docs = new UserSupportingDoc();
+                $supporting_docs->user_id = Auth::user()->get()->id;
+                $supporting_docs->save();
+            }
         }
-        return View::make('user::user_info.supporting_docs.index', compact('supporting_docs', 'doc_type'));
+        if($supporting_docs == Null) {
+            Session::flash('info', "User Supporting Docs are missing !");
+        }
+        return View::make('user::user_info.supporting_docs.index', compact('supporting_docs','user_id','user_role'));
     }
 
     public function supportingDocs($doc_type, $sdoc_id){
