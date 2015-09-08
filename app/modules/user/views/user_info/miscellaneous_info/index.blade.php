@@ -19,13 +19,13 @@
 @stop
 @section('content')
     <!-- left column -->
-    <div style="background-color:#ffffff">
+    <div class="background-color">
             {{----------------------User : Miscellaneous Information ------------------------------------------------------------}}
-            <section class="col-lg-12"style="background-color:#ffffff">
+            <section class="col-lg-12 background-color">
                 <p>&nbsp;</p>
-                    <div class="col-lg-3"><b style="color: #000000">Miscellaneous Information</b>
+                    <div class="col-lg-3"><b class="color-text-black">Miscellaneous Information</b>
                     </div>
-                    <div class="col-lg-9" style="background-color:aliceblue">
+                    <div class="col-lg-9 div-background-color">
                        @if($misc_info != null)
                            <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/misc-info/edit',['id'=>$misc_info->id]) }}" data-toggle="modal" data-target="#addModal"> Edit </a>
                        @else

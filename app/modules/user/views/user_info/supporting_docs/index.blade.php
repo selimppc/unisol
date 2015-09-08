@@ -26,16 +26,12 @@
         }
      ?>
     <!-- left column -->
-    <div style="background-color:#ffffff">
-        <div class="box-header" style="background-color: #0490a6">
-           <h3 class="text-center text-green"><b style="color: #f5f5f5">User Information</b></h3>
-        </div>
-        <section class="col-lg-12"style="background-color:#ffffff">
-            <p>&nbsp;</p>
+    <div class="background-color">
+        <section class="col-lg-12 background-color">
             <div class="col-lg-3" ><b class="color-text-black">Supporting Documents</b>
 
             </div>
-            <div class="col-lg-4" style="background-color:aliceblue">
+            <div class="col-lg-4 div-background-color">
                 <table class="table table-striped  table-bordered">
                     <thead>
                         <tr>
@@ -113,7 +109,7 @@
             </div>
             <div  class="col-lg-1"></div>
 
-            <div class="col-lg-4" style="background-color:aliceblue">
+            <div class="col-lg-4 div-background-color">
                  <table class="table table-striped  table-bordered">
                      <thead>
                          <tr>

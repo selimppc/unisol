@@ -3780,3 +3780,11 @@ fieldset[disabled] .btn-vk.active {
 .color-text-black{
     color: black;
 }
+.div-background-color{
+    padding: 1%;
+    background-color: aliceblue;
+}
+.background-color{
+    padding: 1%;
+    background-color: #ffffff;
+}

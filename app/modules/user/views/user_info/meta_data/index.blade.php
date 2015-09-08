@@ -19,10 +19,9 @@
 @stop
 @section('content')
     <!-- left column -->
-    <div style="background-color:#ffffff">
-        <section class="col-lg-12"style="background-color:#ffffff">
-            <p>&nbsp;</p>
-            <div class="col-lg-4"><b style="color: #000000">Biographical Information</b>
+    <div class="background-color">
+        <section class="col-lg-12 background-color">
+            <div class="col-lg-4"><b class="color-text-black">Biographical Information</b>
             <p>
                 @if(isset($userMeta))
                    <span class="text-muted ">You Can Change Your Signature From Here.
@@ -31,7 +30,7 @@
                 @endif
             </p>
             </div>
-            <div class="col-lg-8" style="background-color:aliceblue">
+            <div class="col-lg-8 div-background-color">
                <table class="table table-striped  table-bordered">
                    @if(isset($userMeta))
                       <a class="pull-right btn btn-sm btn-default" href="{{ URL::route('user/meta-data/edit',['id'=>$userMeta->id]) }}" data-toggle="modal" data-target="#myeditModal" ><i class="fa fa-arrow-circle-right"></i> <b>Edit</b> </a>

@@ -19,12 +19,12 @@
 @stop
 @section('content')
     <!-- left column -->
-    <div style="background-color:#ffffff">
-        <section class="col-lg-12"style="background-color:#ffffff">
+    <div class="background-color">
+        <section class="col-lg-12 background-color">
             <p>&nbsp;</p>
-            <div class="col-lg-3"><b style="color: #000000">Extra Curricular Activities</b><br>
+            <div class="col-lg-3"><b class="color-text-black">Extra Curricular Activities</b><br>
             </div>
-            <div class="col-lg-9" style="background-color:aliceblue">
+            <div class="col-lg-9 div-background-color">
             <a class="pull-right btn btn-xs btn-default" href="{{ URL::route('user/extra-curricular/create')}}" data-toggle="modal" data-target="#addModal" ><b><ins>+ Add</ins></b></a>
 
                 <table class="table table-striped  table-bordered">
