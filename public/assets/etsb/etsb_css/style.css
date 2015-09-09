@@ -3764,19 +3764,9 @@ fieldset[disabled] .btn-vk.active {
 
 
 /*
-    Color Manager :: Tanvir Jahan dated by: Sep 08, 2015
+    Author :: Tanvir Jahan dated by: Sep 08, 2015
 */
 
-.color-background-red{
-    padding: 1%;
-    background-color: red;
-}
-.color-text-white{
-    color: white;
-}
-.color-text-red{
-    color: red;
-}
 .color-text-black{
     color: black;
 }
@@ -3787,4 +3777,7 @@ fieldset[disabled] .btn-vk.active {
 .background-color{
     padding: 1%;
     background-color: #ffffff;
+}
+.image-height-50px{
+    height:50px;
 }

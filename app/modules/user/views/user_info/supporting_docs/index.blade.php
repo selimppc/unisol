@@ -39,9 +39,9 @@
                            @if( $supporting_docs->academic_goal_statement != null)
                                <td>
                                <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'academic_goal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal">
-                                   {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->academic_goal_statement, $supporting_docs->academic_goal_statement,['class'=>'col-md-6'])}}
+                                   {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->academic_goal_statement, $supporting_docs->academic_goal_statement,['class'=>'image-height-50px'])}}
                                   <ins>Edit</ins>
-                               </a><br>
+                               </a>
                                <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'academic_goal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                </td>
                            @else
@@ -53,9 +53,9 @@
                             @if($supporting_docs->essay != null)
                                 <td>
                                    <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'essay', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                        {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->essay, $supporting_docs->essay,['class'=>'col-md-6'])}}
+                                        {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->essay, $supporting_docs->essay,['class'=>'image-height-50px'])}}
                                         <ins>Edit</ins>
-                                   </a><br>
+                                   </a>
                                    <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'essay', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                 </td>
                             @else
@@ -67,9 +67,9 @@
                             @if($supporting_docs->letter_of_intent != null)
                                 <td>
                                     <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'letter_of_intent', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal">
-                                        {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->letter_of_intent, $supporting_docs->letter_of_intent,['class'=>'col-md-6'])}}
+                                        {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->letter_of_intent, $supporting_docs->letter_of_intent,['class'=>'image-height-50px'])}}
                                         <ins>Edit</ins>
-                                    </a><br>
+                                    </a>
                                     <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'letter_of_intent', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                 </td>
                             @else
@@ -81,9 +81,9 @@
                              @if($supporting_docs->personal_statement != null)
                                  <td>
                                      <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'personal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->personal_statement, $supporting_docs->personal_statement,['class'=>'col-md-6'])}}
+                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->personal_statement, $supporting_docs->personal_statement,['class'=>'image-height-50px'])}}
                                      <ins>Edit</ins>
-                                     </a><br>
+                                     </a>
                                      <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'personal_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                  </td>
                              @else
@@ -95,9 +95,9 @@
                              @if($supporting_docs->research_statement != null)
                                  <td>
                                      <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'research_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->research_statement, $supporting_docs->research_statement,['class'=>'col-md-6'])}}
+                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->research_statement, $supporting_docs->research_statement,['class'=>'image-height-50px'])}}
                                      <ins>Edit</ins>
-                                     </a><br>
+                                     </a>
                                      <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'research_statement', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                  </td>
                              @else
@@ -107,7 +107,7 @@
                     </thead>
                 </table>
             </div>
-            <div  class="col-lg-1"></div>
+
 
             <div class="col-lg-4 div-background-color">
                  <table class="table table-striped  table-bordered">
@@ -117,9 +117,9 @@
                              @if($supporting_docs->portfolio != null)
                                  <td>
                                      <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->portfolio, $supporting_docs->portfolio,['class'=>'col-md-6'])}}
+                                     {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->portfolio, $supporting_docs->portfolio,['class'=>'image-height-50px'])}}
                                      <ins>Edit</ins>
-                                     </a><br>
+                                     </a>
                                      <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                  </td>
                              @else
@@ -131,9 +131,9 @@
                               @if($supporting_docs->writing_sample != null)
                                   <td>
                                       <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'writing_sample', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->writing_sample, $supporting_docs->writing_sample,['class'=>'col-md-6'])}}
+                                      {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->writing_sample, $supporting_docs->writing_sample,['class'=>'image-height-50px'])}}
                                       <ins>Edit</ins>
-                                      </a><br>
+                                      </a>
                                       <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'writing_sample', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                   </td>
                               @else
@@ -145,9 +145,9 @@
                                  @if($supporting_docs->resume != null)
                                      <td>
                                          <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'resume', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                             {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->resume, $supporting_docs->resume,['class'=>'col-md-6'])}}
+                                             {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->resume, $supporting_docs->resume,['class'=>'image-height-50px'])}}
                                              <ins>Edit</ins>
-                                         </a><br>
+                                         </a>
                                          <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'resume', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                      </td>
                                  @else
@@ -159,9 +159,9 @@
                              @if($supporting_docs->readmission_personal_details != null)
                                  <td>
                                      <a class=" btn-link" href="{{ URL::route('user.supporting_docs.create', array('doc_type' => 'readmission_personal_details', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
-                                         {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->readmission_personal_details, $supporting_docs->readmission_personal_details,['class'=>'col-md-6'])}}
+                                         {{ HTML::image('/uploads/user_images/docs/'.$supporting_docs->readmission_personal_details, $supporting_docs->readmission_personal_details,['class'=>'image-height-50px'])}}
                                          <ins>Edit</ins>
-                                     </a><br>
+                                     </a>
                                      <a href="{{ URL::route('user.supporting_docs.view', array('doc_type' => 'readmission_personal_details', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal"><ins>View</ins></a>
                                  </td>
                                  @else
@@ -230,4 +230,3 @@
      </style>
 
 @stop
-
