@@ -25,52 +25,47 @@
         </div>
             <section class="col-lg-12"style="background-color:#ffffff">
                 <div class="col-lg-2 etsb-image-doc">
-                {{--<p>&nbsp;</p>--}}
                       @if(isset($userProfile))
                          {{ $userProfile->image != null ? HTML::image('/uploads/user_images/profile/'.$userProfile->image , 'User Image') :  HTML::image('/img/default.jpg', 'User Image') }}
-                         <div class="text-center"><a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Edit</ins></a></div>
+                         <div class="text-center"><a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add/Edit</ins></a></div>
                       @else
                          {{HTML::image('/img/default.jpg', 'User Image')}}
-                        {{--<a href="{{Route('user/profile-info/profile-image',['id'=>$userProfile->id])}}"data-toggle="modal" data-target="#changeImageModal"> <ins>Add Profile Picture</ins></a>--}}
                       @endif
                       <p>&nbsp;</p>
                 </div>
                 <p>&nbsp;</p>
 
                 <div class="col-lg-3">
-                     {{--<p>&nbsp;</p>--}}
-                        <strong>
-                            {{isset($userProfile->first_name)?$userProfile->first_name:''}}
-                            {{isset($userProfile->middle_name)?$userProfile->middle_name:''}}
-                            {{isset($userProfile->last_name)?$userProfile->last_name:''}}
-                        </strong>
-                        <br>
+                     <strong>
+                        {{isset($userProfile->first_name)?$userProfile->first_name:''}}
+                        {{isset($userProfile->middle_name)?$userProfile->middle_name:''}}
+                        {{isset($userProfile->last_name)?$userProfile->last_name:''}}
+                     </strong>
+                     <br>
                         Role As :&nbsp;{{isset($userAccounts->role_id)? Role::RoleName($userAccounts->id):''}}
                      @if(isset($userAccounts->join_date))
                         <p>Member Since : {{isset($userAccounts->join_date)?($userAccounts->join_date):''}}</p>
                      @endif
                 </div>
                 <div class="col-lg-3">
-                    {{--<p>&nbsp;</p>--}}
-                         @if(isset($userAccounts))
-                             <li><p>User Name : <b>{{$userAccounts->username}}</b></p></li>
-                             <li><p>Password : <a href="{{Route('user/reset_password',['id'=>$userAccounts->id])}}"data-toggle="modal" data-target="#myeditModal">Change Password</a></p></li>
-                             <li><p>Email Address : {{$userAccounts->email}}</p></li>
-                         @else
-                             {{"No data found !"}}
-                         @endif
+                     @if(isset($userAccounts))
+                         <li><p>User Name : <b>{{$userAccounts->username}}</b></p></li>
+                         <li><p>Password : <a href="{{Route('user/reset_password',['id'=>$userAccounts->id])}}"data-toggle="modal" data-target="#myeditModal">Change Password</a></p></li>
+                         <li><p>Email Address : {{$userAccounts->email}}</p></li>
+                     @else
+                         {{"No data found !"}}
+                     @endif
                     <p>&nbsp;</p>
                 </div>
                 <div id="need-help">
                     <a href="">Need help?</a>
                 </div>
             </section>
-            {{--<p>&nbsp;</p>--}}
             <hr>
             <section class="col-lg-12"style="background-color:#ffffff">
                 <div class="col-lg-6">
-                    <li><p>Profile &nbsp;<a class="" href="{{ URL::route('user/profile')}}">Edit</a></p></li>
-                    <li><p>Other Information&nbsp;<a class="" href="{{ URL::route('user/others-info')}}">Edit</a></p></li>
+                    <li><p>Profile &nbsp;<a class="" href="{{ URL::route('user/profile-info')}}">Edit</a></p></li>
+                    {{--<li><p>Other Information&nbsp;<a class="" href="{{ URL::route('user/others-info')}}">Edit</a></p></li>--}}
                 </div>
             </section>
             <p>&nbsp;</p>

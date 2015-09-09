@@ -40,13 +40,11 @@
               {{ Form::label('freedom_fighter', 'Is Freedom Fighter ? : (Select One)')}}<span class="text-danger">*</span>
               <div class="form-inline">
                   <div class="radio">
-                     {{ Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio')) }}
-                     {{ Form::label('freedom_fighter', 'Yes') }}
+                      <label>{{ Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio'))}}Yes</label>
                   </div>
 
                   <div class="radio">
-                     {{ Form::radio('freedom_fighter', '0', (Input::old('freedom_fighter') == '0'), array('id'=>'0', 'class'=>'radio')) }}
-                     {{ Form::label('freedom_fighter', 'No') }}
+                      <label>{{ Form::radio('freedom_fighter', '0', (Input::old('freedom_fighter') == '0'), array('id'=>'0', 'class'=>'radio'))}}No</label>
                   </div>
               </div>
          </div>
