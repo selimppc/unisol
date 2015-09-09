@@ -58,7 +58,6 @@ class UserSignupController extends \BaseController {
             Session::flash('danger', 'Please Try Again.');
             return Redirect::back();
         }
-
     }
 
     public function send_users_email()
@@ -139,15 +138,13 @@ class UserSignupController extends \BaseController {
         $model->save();
         Auth::logout();
         return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
-
     }
-
 
     //********************** Forgot password Start(R) *****************************
 
     public function forgot_password()
     {
-        return View::make('user::signup.forgot_password');
+        return View::make('user::forgot_password.email_form');
     }
 
     public function user_password_reminder_mail()
@@ -160,28 +157,31 @@ class UserSignupController extends \BaseController {
             Session::flash('message', 'This Email address does not exit');
             return Redirect::back();
         }else{
-            $email_address = Input::get('email');
-            $users = DB::table('user')->where('email', $email_address)->first();
+            $email = Input::get('email');
+            $users = DB::table('user')->where('email', '=',$email)->first();
             $user_id = $users->id;
+            $email_address = $users->email;
+
             //random number with 30 character
             $reset_password_token = str_random(30);
+
             //convert date format
-            date_default_timezone_set("Asia/Dacca");
-            $date = date('Y-m-d H:i:s', time());
+//            date_default_timezone_set("Asia/Dacca");
+            $date = date('Y-m-d h:i:s', time());
 //            print_r($date);exit;
             $shortFormat = strtotime($date);
-            $reset_password_expire = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
+            $reset_password_expire = date("Y-m-d h:i:s", ($shortFormat+(60*30)));
 //            print_r($reset_password_expire);exit;
-            $reset_password_time=date('Y-m-d h:i:s', time());
+            $reset_password_time = date('Y-m-d h:i:s', time());
             $data = new UserResetPassword();
             $data->user_id = $user_id;
             $data->reset_password_token = $reset_password_token;
             $data->reset_password_expire = $reset_password_expire;
             $data->reset_password_time = $reset_password_time;
-            $data->status = "2"; // 2 == reset requested
+            $data->status = '2'; // 2 == reset requested
             if($data->save())
             {
-                Mail::send('user::signup.password_reset_mail', array('link' =>$reset_password_token),  function($message) use ($email_address)
+                Mail::send('user::forgot_password.email_notification', array('link' =>$reset_password_token),  function($message) use ($email_address)
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                     $message->to($email_address);
@@ -203,10 +203,12 @@ class UserSignupController extends \BaseController {
                 ->where('reset_password_token', $reset_password_token)
                 ->first();
             $reset_expire = $user_reset_info->reset_password_expire;
-            $reset_time=$user_reset_info->reset_password_time;
+//            print_r($reset_expire);
+            $reset_time = $user_reset_info->reset_password_time;
+//            print_r($reset_time);
             $reset_status = $user_reset_info->status;
             // $now = date('Y-m-d h:i:s', time());
-
+//print_r($reset_status);exit;
             if ($reset_expire > $reset_time && $reset_status == 2) {
                 $model = UserResetPassword::find($user_reset_info->id);
                 $model->status = 0;
@@ -216,13 +218,14 @@ class UserSignupController extends \BaseController {
                 }else{
                     echo "Invalid!";
                 }
-
             } else {
                 echo "Session Expired!";
             }
+        }else{
+            Session::flash('danger', 'Incorrect URL.Please try again');
+            return View::make('user::forgot_password.email_form');
         }
     }
-
     // forgot password: get new password action
     public function userPasswordUpdate()
     {

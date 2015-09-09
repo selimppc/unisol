@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <span class="text-muted"><em><span style="color:green;"></span><b>Must contain one lowercase letter,one uppercase letter, one number,one special character and be at least 8 characters long</b> </em></span>
-         </div>
+        </div>
         <br>
          {{ Form::label('confirm_password', 'Confirm Password') }}
          {{ Form::password('confirm_password', array('class'=>'form-control')) }}

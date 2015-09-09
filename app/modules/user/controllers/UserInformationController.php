@@ -740,11 +740,10 @@ class UserInformationController extends \BaseController {
         return View::make('user::user_info.supporting_docs.view', compact('supporting_docs', 'doc_type'));
     }
 
-
     public function password_change_view($id){
-//       print_r($id);exit;
+
         $model = User::find($id);
-        return View::make('admission::signup.password_reset',compact('model'));
+        return View::make('user::reset_password.reset_form',compact('model'));
     }
     // user password_change method
     public function change_password()

@@ -13,6 +13,7 @@
                     <div class="box-body">
                         <p style="text-align: center;color: #800080;font-size:large;margin-top: 5px">Forgot Password</p>
                         {{ Form::open(array('url'=>'user/password_reminder_mail', 'class'=>'form-signin')) }}
+                        {{ Form::hidden('status',2)}}
                         {{ Form::label('email','Email Address') }}
                         {{ Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) }}
                         <p>&nbsp;</p>

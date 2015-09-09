@@ -108,7 +108,6 @@ Route::any('users/user_password_update', 'UserSignupController@userPasswordUpdat
 Route::any('user/username_reset', 'UserSignupController@usernameReset');
 Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail');
 
-
 //change password
 
 Route::any('user/reset_password/{id}',
