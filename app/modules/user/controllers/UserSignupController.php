@@ -149,95 +149,73 @@ class UserSignupController extends \BaseController {
 
     public function user_password_reminder_mail()
     {
-        $rules = array(
-            'email' => 'Required|email|exists:user',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if($validator->Fails()){
-            Session::flash('message', 'This Email address does not exit');
-            return Redirect::back();
-        }else{
-            $email = Input::get('email');
-            $users = DB::table('user')->where('email', '=',$email)->first();
-            $user_id = $users->id;
-            $email_address = $users->email;
+        $email = Input::get('email');
+        $user_data = User::where('email','=',$email)->first();
 
-            //random number with 30 character
-            $reset_password_token = str_random(30);
-
-            //convert date format
-//            date_default_timezone_set("Asia/Dacca");
-            $date = date('Y-m-d h:i:s', time());
-//            print_r($date);exit;
-            $shortFormat = strtotime($date);
-            $reset_password_expire = date("Y-m-d h:i:s", ($shortFormat+(60*30)));
-//            print_r($reset_password_expire);exit;
-            $reset_password_time = date('Y-m-d h:i:s', time());
+        if(isset($user_data->email)){
             $data = new UserResetPassword();
-            $data->user_id = $user_id;
-            $data->reset_password_token = $reset_password_token;
-            $data->reset_password_expire = $reset_password_expire;
-            $data->reset_password_time = $reset_password_time;
+            $data->user_id = $user_data->id;
+            $data->reset_password_token = str_random(30);
+            $data->reset_password_expire = date("Y-m-d h:i:s", (strtotime(date('Y-m-d h:i:s', time()))+(60*30)));
+            $data->reset_password_time = date('Y-m-d h:i:s', time());
             $data->status = '2'; // 2 == reset requested
             if($data->save())
             {
-                Mail::send('user::forgot_password.email_notification', array('link' =>$reset_password_token),  function($message) use ($email_address)
+                Mail::send('user::forgot_password.email_notification', array('link' =>$data->reset_password_token),  function($message) use ($user_data)
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
-                    $message->to($email_address);
+                    $message->to($user_data->email);
                     $message->cc('tanintjt@gmail.com');
                     $message->subject('Notification');
                 });
             }
-            Session::flash('message', 'Please Check Your Email For Further Process.');
+            Session::flash('message', 'We’ve sent you an email to reset your password.Please check your spam folder if the email doesn’t appear within a few minutes.');
+            return Redirect::back();
+        }else{
+            Session::flash('danger', 'The Specified Email address Is not Listed On Your Account. Please Try Again.');
             return Redirect::back();
         }
     }
     //forgot password : confirm
-    public function userPasswordResetConfirm($reset_password_token)
+    public function user_password_reset_confirm($reset_password_token)
     {
-        $userReset = UserResetPassword::where('reset_password_token', $reset_password_token)
-            ->exists();
-        if($userReset) {
-            $user_reset_info = UserResetPassword::select('id','user_id', 'reset_password_expire', 'status','reset_password_time')
-                ->where('reset_password_token', $reset_password_token)
-                ->first();
-            $reset_expire = $user_reset_info->reset_password_expire;
-//            print_r($reset_expire);
-            $reset_time = $user_reset_info->reset_password_time;
-//            print_r($reset_time);
-            $reset_status = $user_reset_info->status;
-            // $now = date('Y-m-d h:i:s', time());
-//print_r($reset_status);exit;
-            if ($reset_expire > $reset_time && $reset_status == 2) {
-                $model = UserResetPassword::find($user_reset_info->id);
+        $reset_info = UserResetPassword::where('reset_password_token','=',$reset_password_token)->first();
+
+        if(isset($reset_info->reset_password_token)) {
+            if ($reset_info->reset_password_expire > $reset_info->reset_password_time && $reset_info->status == 2) {
+                $model = UserResetPassword::find($reset_info->id);
                 $model->status = 0;
+                $user_id = $reset_info->user_id;
+
                 if($model->save()){
-                    return View::make('user::signup.password_reset_form')
-                        ->with('user_id', $user_reset_info->user_id );
+                    return View::make('user::forgot_password.new_password_form',compact('user_id'));
                 }else{
-                    echo "Invalid!";
+                    Session::flash('danger', 'Invalid Request!Please Try Again');
+                    return View::make('user::forgot_password.email_form');
                 }
             } else {
-                echo "Session Expired!";
+                if($reset_info->reset_password_expire < $reset_info->reset_password_time){
+                    return View::make('user::forgot_password.flash_message',compact('reset_info'));
+                }
+                if($reset_info->status == 0){
+                    return View::make('user::forgot_password.flash_message',compact('reset_info'));
+                }
             }
         }else{
-            Session::flash('danger', 'Incorrect URL.Please try again');
+            Session::flash('danger', 'Invalid Password Reset Link.Please Try Again.');
             return View::make('user::forgot_password.email_form');
         }
     }
-    // forgot password: get new password action
-    public function userPasswordUpdate()
+    // forgot password: get new password action:update
+    public function save_new_password()
     {
-        $users = Input::get('id');
-        if ($users) {
-
-            $model = User::findOrFail($users);
+        $user_id = Input::get('user_id');
+        if ($user_id) {
+            $model = User::findOrFail($user_id);
             $model->password = Input::get('password');
             $model->save();
         }
-
-        Session::flash('message','Your have got your password successfully. You may signin now.');
+        Session::flash('message','You have reset your password successfully. You may signin now.');
         return Redirect::route('user/login');
 
     }

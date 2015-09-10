@@ -3781,3 +3781,9 @@ fieldset[disabled] .btn-vk.active {
 .image-height-50px{
     height:50px;
 }
+.text{
+    text-align: center;
+    color: #800080;
+    font-size:large;
+    margin-top: 5px
+ }
