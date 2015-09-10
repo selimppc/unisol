@@ -11,18 +11,18 @@ class CreateUser extends Migration {
 
         Schema::create('user', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
-            $table->string('password', 64);
+            $table->string('username')->unique();
+            $table->string('password', 64)->nullable();
             $table->string('email')->unique();
-            $table->string('student_id', 10);
+            $table->string('student_id', 10)->nullable();
             $table->unsignedInteger('role_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
-            $table->date('join_date');
-            $table->dateTime('last_visit');
-            $table->string('ip_address', 16);
-            $table->tinyInteger('status', false)->length(1);
-            $table->string('verified_code', 64);
-            $table->string('csrf_token', 64);
+            $table->date('join_date')->nullable();
+            $table->dateTime('last_visit')->nullable();
+            $table->string('ip_address', 16)->nullable();
+            $table->tinyInteger('status', false)->length(1)->nullable();
+            $table->string('verified_code', 64)->nullable();
+            $table->string('csrf_token', 64)->nullable();
             $table->integer('applicant_id', false)->length(11)->nullable();
             $table->unsignedInteger('waiver_id')->nullable();
             $table->enum('billing_type', array(
@@ -45,16 +45,16 @@ class CreateUser extends Migration {
         Schema::create('user_profile', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('first_name',64);
-            $table->string('middle_name',64);
-            $table->string('last_name',64);
-            $table->date('date_of_birth');
-            $table->string('gender',64);
-            $table->string('image',128);
-            $table->string('city',32);
-            $table->string('state',32);
+            $table->string('first_name',64)->nullable();
+            $table->string('middle_name',64)->nullable();
+            $table->string('last_name',64)->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('gender',64)->nullable();
+            $table->string('image',128)->nullable();
+            $table->string('city',32)->nullable();
+            $table->string('state',32)->nullable();
             $table->unsignedInteger('country')->nullable();
-            $table->integer('zip_code', false, 5);
+            $table->integer('zip_code', false, 5)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -71,23 +71,23 @@ class CreateUser extends Migration {
         Schema::create('user_meta', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('fathers_name',64);
-            $table->string('mothers_name',64);
-            $table->string('fathers_occupation',64);
-            $table->string('fathers_phone',16);
-            $table->tinyInteger('freedom_fighter',false, 1);
-            $table->string('mothers_occupation',64);
-            $table->string('mothers_phone',16);
-            $table->string('national_id',16);
-            $table->string('driving_licence',16);
-            $table->string('passport',16);
-            $table->string('place_of_birth',64);
-            $table->string('marital_status',64);
-            $table->string('nationality',64);
-            $table->string('religion',64);
-            $table->string('signature',128);
-            $table->text('present_address');
-            $table->text('permanent_address');
+            $table->string('fathers_name',64)->nullable();
+            $table->string('mothers_name',64)->nullable();
+            $table->string('fathers_occupation',64)->nullable();
+            $table->string('fathers_phone',16)->nullable();
+            $table->tinyInteger('freedom_fighter',false, 1)->nullable();
+            $table->string('mothers_occupation',64)->nullable();
+            $table->string('mothers_phone',16)->nullable();
+            $table->string('national_id',16)->nullable();
+            $table->string('driving_licence',16)->nullable();
+            $table->string('passport',16)->nullable();
+            $table->string('place_of_birth',64)->nullable();
+            $table->string('marital_status',64)->nullable();
+            $table->string('nationality',64)->nullable();
+            $table->string('religion',64)->nullable();
+            $table->string('signature',128)->nullable();
+            $table->text('present_address')->nullable();
+            $table->text('permanent_address')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -106,33 +106,33 @@ class CreateUser extends Migration {
             $table->unsignedInteger('user_id')->nullable();
             $table->enum('level_of_education',array(
                 '','psc', 'jsc', 'ssc', 'hsc', 'grad', 'under_grad', 'bachelor', 'diploma', 'post_grad', 'o_level', 'a_level'
-            ));
-            $table->string('degree_name',64);
-            $table->string('institute_name',128);
+            ))->nullable();
+            $table->string('degree_name',64)->nullable();
+            $table->string('institute_name',128)->nullable();
             $table->enum('board_type',array(
                 'board', 'university', 'other'
-            ));
-            $table->string('board_university',128);
-            $table->string('academic_group',32);
-            $table->string('major_subject',64);
+            ))->nullable();
+            $table->string('board_university',128)->nullable();
+            $table->string('academic_group',32)->nullable();
+            $table->string('major_subject',64)->nullable();
             $table->enum('result_type',array(
                 'division', 'gpa'
-            ));
-            $table->string('result',64);
-            $table->decimal('gpa', 3,2);
-            $table->decimal('gpa_scale', 3, 2);
-            $table->string('registration_number', 64);
-            $table->string('roll_number', 64);
+            ))->nullable();
+            $table->string('result',64)->nullable();
+            $table->decimal('gpa', 3,2)->nullable();
+            $table->decimal('gpa_scale', 3, 2)->nullable();
+            $table->string('registration_number', 64)->nullable();
+            $table->string('roll_number', 64)->nullable();
             $table->enum('education_medium', array(
                 'english', 'bangla'
-            ));
+            ))->nullable();
             $table->enum('study_at', array(
                 'national', 'abroad'
-            ));
-            $table->integer('year_of_passing', false, 4);
-            $table->string('duration',64);
-            $table->string('certificate',64);
-            $table->string('transcript',128);
+            ))->nullable();
+            $table->integer('year_of_passing', false, 4)->nullable();
+            $table->string('duration',64)->nullable();
+            $table->string('certificate',64)->nullable();
+            $table->string('transcript',128)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -149,11 +149,11 @@ class CreateUser extends Migration {
         Schema::create('user_miscellaneous_info', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->tinyInteger('ever_admit_this_university', false, 1);
-            $table->tinyInteger('ever_dismiss', false, 1);
-            $table->tinyInteger('academic_honors_received', false, 1);
-            $table->tinyInteger('ever_admit_other_university', false, 1);
-            $table->string('admission_test_center',128);
+            $table->tinyInteger('ever_admit_this_university', false, 1)->nullable();
+            $table->tinyInteger('ever_dismiss', false, 1)->nullable();
+            $table->tinyInteger('academic_honors_received', false, 1)->nullable();
+            $table->tinyInteger('ever_admit_other_university', false, 1)->nullable();
+            $table->string('admission_test_center',128)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -169,10 +169,10 @@ class CreateUser extends Migration {
         Schema::create('user_extra_curricular_activity', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('title', 128);
-            $table->text('description');
-            $table->string('achievement', 128);
-            $table->string('certificate_medal', 128);
+            $table->string('title', 128)->nullable();
+            $table->text('description')->nullable();
+            $table->string('achievement', 128)->nullable();
+            $table->string('certificate_medal', 128)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -188,16 +188,16 @@ class CreateUser extends Migration {
         Schema::create('user_supporting_doc', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('academic_goal_statement', 128);
-            $table->text('essay');
-            $table->string('letter_of_intent', 128);
-            $table->string('personal_statement', 128);
-            $table->string('research_statement', 128);
-            $table->string('portfolio', 128);
-            $table->string('writing_sample', 128);
-            $table->string('resume', 128);
-            $table->string('readmission_personal_details', 128);
-            $table->string('other', 128);
+            $table->string('academic_goal_statement', 128)->nullable();
+            $table->text('essay')->nullable();
+            $table->string('letter_of_intent', 128)->nullable();
+            $table->string('personal_statement', 128)->nullable();
+            $table->string('research_statement', 128)->nullable();
+            $table->string('portfolio', 128)->nullable();
+            $table->string('writing_sample', 128)->nullable();
+            $table->string('resume', 128)->nullable();
+            $table->string('readmission_personal_details', 128)->nullable();
+            $table->string('other', 128)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
