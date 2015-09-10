@@ -1,69 +1,42 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class UserResetPassword extends Eloquent implements UserInterface, RemindableInterface {
+class UserResetPassword extends Eloquent {
 
     protected $table = 'user_reset_password';
 
-    public function getReminderEmail()
+    public $fillable = [
+        'user_id', 'reset_password_token', 'reset_password_expire', 'reset_password_time', 'status',
+    ];
+
+    private $errors;
+    private $rules = [
+        //'title' => 'required',
+        //'code' => 'required',
+        //'description' => 'alpha_dash',
+    ];
+
+    public function validate($data)
     {
-        return $this->email;
+        $validate = Validator::make($data, $this->rules);
+        if ($validate->fails())
+        {
+            $this->errors = $validate->errors();
+            return false;
+        }
+        return true;
     }
 
-    /**
-     * Get the unique identifier for the user.
-     *
-     * @return mixed
-     */
-    public function getAuthIdentifier()
+    public function errors()
     {
-        return $this->getKey();
+        return $this->errors;
     }
 
-    /**
-     * Get the password for the user.
-     *
-     * @return string
-     */
-    public function getAuthPassword()
-    {
-        return $this->password;
+    //TODO : Model Relationship
+    public function relUser(){
+        return $this->belongsTo('User', 'id', 'user_id');
     }
 
-    /**
-     * Get the token value for the "remember me" session.
-     *
-     * @return string
-     */
-    public function getRememberToken()
-    {
-        // TODO: Implement getRememberToken() method.
-    }
-
-    /**
-     * Set the token value for the "remember me" session.
-     *
-     * @param  string $value
-     * @return void
-     */
-    public function setRememberToken($value)
-    {
-        // TODO: Implement setRememberToken() method.
-    }
-
-    /**
-     * Get the column name for the "remember me" token.
-     *
-     * @return string
-     */
-    public function getRememberTokenName()
-    {
-        // TODO: Implement getRememberTokenName() method.
-    }
 
 
     public static function boot(){
@@ -75,6 +48,13 @@ class UserResetPassword extends Eloquent implements UserInterface, RemindableInt
         static::updating(function($query){
             //$query->updated_by = Auth::user()->get()->id;
         });
+    }
+
+
+    // TODO:: scope area
+    public function scopeDuration()
+    {
+        return $this->end->diffForHumans($this->start);
     }
 
 
