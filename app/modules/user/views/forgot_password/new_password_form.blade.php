@@ -22,12 +22,13 @@
                         {{ Form::label('confirm_password', 'Confirm Password') }}
                         {{ Form::password('confirm_password', array('class'=>'form-control','required','id'=>'confirm_password','name'=>'confirm_password','onkeyup'=>"validation()")) }}
                         <span id='message'></span>
-                        </div>
+
                         <p>&nbsp;</p>
                         {{ Form::submit('Submit', array('class'=>'pull-right btn btn-sm btn-primary','id'=>'sub-btn'))}}
-                        <br>
-                        {{ Form::close() }}
-                        <p>&nbsp;</p>
+                   </div>
+                    <br>
+                    {{ Form::close() }}
+                    <p>&nbsp;</p>
                    </div>
                </div>
            </div>
