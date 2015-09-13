@@ -164,8 +164,9 @@ class UserSignupController extends \BaseController {
                 Mail::send('user::forgot_password.email_notification', array('link' =>$data->reset_password_token),  function($message) use ($user_data)
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
-                    $message->to($user_data->email);
-                    $message->cc('tanvirjahan.tanin@gmail.com');
+                    $message->to($user_data->email,'user');
+                    $message->cc('tanintjt@gmail.com', 'Tanin');
+                    $message->replyTo('test@edutechsolutionsbd.com','ETSB');
                     $message->subject('Notification');
                 });
             }
@@ -184,15 +185,15 @@ class UserSignupController extends \BaseController {
         if(isset($reset_info->reset_password_token)) {
             if ($reset_info->reset_password_expire > $reset_info->reset_password_time && $reset_info->status == 2) {
                 $model = UserResetPassword::find($reset_info->id);
-                $model->status = 0;
+//                $model->status = 0;
                 $user_id = $reset_info->user_id;
 
-                if($model->save()){
-                    return View::make('user::forgot_password.new_password_form',compact('user_id'));
-                }else{
-                    Session::flash('danger', 'Invalid Request!Please Try Again');
-                    return View::make('user::forgot_password.email_form');
-                }
+//                if($model->save()){
+                   return View::make('user::forgot_password.new_password_form',compact('user_id'));
+//                }else{
+//                    Session::flash('danger', 'Invalid Request!Please Try Again');
+//                    return View::make('user::forgot_password.email_form');
+//                }
             } else {
                 if($reset_info->reset_password_expire < $reset_info->reset_password_time){
                     Session::flash('danger', 'Time Expired.Please Try Again.');
@@ -211,16 +212,21 @@ class UserSignupController extends \BaseController {
     public function save_new_password()
     {
         $data = Input::all();
-//        print_r($data['user_id']);exit;
-//        print_r($data);exit;
+
         $user_id = $data['user_id'];
         $model = User::findOrFail($user_id);
+        $rules = array(
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        );
+        $validator = Validator::make(Input::all(), $rules);
 
-        if($model->validate($data)) {
-
+        if($validator->passes()) {
             DB::beginTransaction();
             try {
-                $model->update($data);
+                if($model->update($data)){
+                    DB::table('user_reset_password')->where('user_id', '=', $user_id)->update(array('status' => 0));
+                }
                 DB::commit();
                 Session::flash('message','You have reset your password successfully. You may signin now.');
                 return Redirect::route('user/login');
@@ -228,13 +234,12 @@ class UserSignupController extends \BaseController {
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Invalid Request !");
+                Session::flash('danger', "Invalid Request! Please Try Again.");
             }
 //            return Redirect::back();
         }else{
-            Session::flash('danger', 'validation error');
-            return Redirect::back();
-            }
+            return Redirect::back()->with('danger', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
     }
 
 //*********************Forgot UserName Start(R)***********************************
