@@ -195,10 +195,11 @@ class UserSignupController extends \BaseController {
                 }
             } else {
                 if($reset_info->reset_password_expire < $reset_info->reset_password_time){
-                    return View::make('user::forgot_password.flash_message',compact('reset_info'));
+                    Session::flash('danger', 'Time Expired.Please Try Again.');
+                    return View::make('user::forgot_password.email_form');
                 }
                 if($reset_info->status == 0){
-                    return View::make('user::forgot_password.flash_message',compact('reset_info'));
+                    return View::make('user::forgot_password.flash_message');
                 }
             }
         }else{
