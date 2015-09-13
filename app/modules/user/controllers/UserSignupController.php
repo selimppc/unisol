@@ -165,7 +165,7 @@ class UserSignupController extends \BaseController {
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                     $message->to($user_data->email);
-                    $message->cc('tanintjt@gmail.com');
+                    $message->cc('tanvirjahan.tanin@gmail.com');
                     $message->subject('Notification');
                 });
             }
@@ -210,15 +210,31 @@ class UserSignupController extends \BaseController {
     // forgot password: get new password action:update
     public function save_new_password()
     {
-        $user_id = Input::get('user_id');
-        if ($user_id) {
-            $model = User::findOrFail($user_id);
-            $model->password = Input::get('password');
-            $model->save();
-        }
-        Session::flash('message','You have reset your password successfully. You may signin now.');
-        return Redirect::route('user/login');
+        $data = Input::all();
+//        print_r($data['user_id']);exit;
+//        print_r($data);exit;
+        $user_id = $data['user_id'];
+        $model = User::findOrFail($user_id);
 
+        if($model->validate($data)) {
+
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message','You have reset your password successfully. You may signin now.');
+                return Redirect::route('user/login');
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid Request !");
+            }
+//            return Redirect::back();
+        }else{
+            Session::flash('danger', 'validation error');
+            return Redirect::back();
+            }
     }
 
 //*********************Forgot UserName Start(R)***********************************
