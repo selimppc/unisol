@@ -13,11 +13,12 @@
                     <div class="box-body">
                         <p></p>
                             <div class="text">
-                                Password Reset Confirmation Sent!
+                                UserName Reminder !
                             </div>
                             <p>&nbsp;</p>
-                            <p class="text-center"><b>We emailed you a link and instructions for updating your password.</b></p>
-                            <p class="text-center"><b>After 30 minutes, the link to update your password will expire.</b></p>
+                            <p class="text-center"><strong>We've Send UserName to Your Email Address.Please Check Your Email.</strong></p>
+                            <p class="text-center"><strong>Please check your spam folder if the email doesn’t appear within a few minutes.</strong></p>
+                            <p class="text-center"><b><em>Thank You.</em></b></p>
                             <p><a class="pull-right btn btn-sm btn-default" href="{{URL::route('user/login')}}"><b>Continue to Login</b></a></p>
                             <p>&nbsp;</p>
                     </div>

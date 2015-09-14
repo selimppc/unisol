@@ -94,25 +94,30 @@ Route::get('register/verify/{verified_code}','UserSignupController@confirm');
 //forgot password
 Route::any('user/forgot-password',
        ['as'=>'user/forgot-password',
-           'uses'=>'UserSignupController@forgot_password']);
+           'uses'=>'UserResetInfoController@forgot_password']);
 
 Route::any('user/password_reminder_mail',
     ['as'=>'user/password_reminder_mail',
-        'uses'=>'UserSignupController@user_password_reminder_mail']);
+        'uses'=>'UserResetInfoController@user_password_reminder_mail']);
 
 Route::any('user/password_reset_confirm/{reset_password_token}',
     ['as'=>'user/password_reset_confirm',
-         'uses'=>'UserSignupController@user_password_reset_confirm']);
+         'uses'=>'UserResetInfoController@user_password_reset_confirm']);
 
 Route::any('user/save-new-password',
     ['as'=>'user/save-new-password',
-          'uses'=>'UserSignupController@save_new_password']); // password reset action
+          'uses'=>'UserResetInfoController@save_new_password']); // password reset action
 
 //forgot username..........
-Route::any('user/username_reset', 'UserSignupController@usernameReset');
-Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail');
+Route::any('user/forgot-username',
+    ['as'=>'user/forgot-username',
+        'uses'=>'UserResetInfoController@forgot_username']);
 
-//change password
+Route::any('user/username_reminder_mail',
+    ['as'=>'user/username_reminder_mail',
+        'uses'=>'UserResetInfoController@username_reminder_mail']);
+
+//change password.................
 
 Route::any('user/reset_password/{id}',
     ['as'=>'user/reset_password',

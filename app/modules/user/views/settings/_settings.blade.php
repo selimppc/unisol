@@ -49,8 +49,9 @@
                 </div>
                 <div class="col-lg-3">
                      @if(isset($userAccounts))
-                         <li><p>User Name : <b>{{$userAccounts->username}}</b></p></li>
-                         <li><p>Password : <a href="{{Route('user/reset_password',['id'=>$userAccounts->id])}}"data-toggle="modal" data-target="#modal">Change Password</a></p></li>
+                         {{--<li><p>User Name : <b>{{$userAccounts->username}}</b>&nbsp;&nbsp;&nbsp;<a href="{{Route('user/reset_password',['id'=>$userAccounts->id])}}"data-toggle="modal" data-target="#modal"><ins>Change</ins></a></p></li>--}}
+                          <li><p>User Name : <b>{{$userAccounts->username}}</b></p></li>
+                         <li><p>Password : <a href="{{Route('user/reset_password',['id'=>$userAccounts->id])}}"data-toggle="modal" data-target="#modal"><ins>Change Password</ins></a></p></li>
                          <li><p>Email Address : {{$userAccounts->email}}</p></li>
                      @else
                          {{"No data found !"}}

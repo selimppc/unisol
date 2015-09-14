@@ -57,6 +57,7 @@
                 <div class="text-center"><h5><b>SETTINGS</b></h5></div>
                 <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
                 <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
+                <li class="divider"></li>
             </ul>
         </li>
     @endif
