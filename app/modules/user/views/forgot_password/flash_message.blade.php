@@ -13,12 +13,15 @@
                     <div class="box-body">
                         <p></p>
                             <div class="text">
-                                Session Expired! You can Not Access To This link.
+                                Password Reset Confirmation Sent!
                             </div>
                             <p>&nbsp;</p>
-                            <p class="text-center"><b>To Get A New Password Reset Link,You May Go : <a href='{{ URL::route('user/forgot-password')}}'><ins>Forgot Password</ins></a></b></p>
+                            <p class="text-center"><b>We emailed you a link and instructions for updating your password.</b></p>
+                            <p class="text-center"><b>After one hour, the link to update your password will expire.</b></p>
+                            <p><a class="pull-right btn btn-sm btn-default" href="{{URL::route('user/login')}}">Continue to Login</a></p>
                             <p>&nbsp;</p>
                     </div>
+                    <p>&nbsp;</p>
                 </div>
             </div>
         </div>
