@@ -237,11 +237,11 @@ class UserSignupController extends \BaseController {
     }
 //********************** Forgot password :end *****************************
 
-//*********************Forgot UserName Start***********************************
+//********************* Forgot UserName ***********************************
 
-    public function usernameReset()
+    public function forgot_username()
     {
-        return View::make('user::signup.username_reset');
+        return View::make('user::forgot_username.username_reset');
     }
 
     public  function usernameResetMail(){

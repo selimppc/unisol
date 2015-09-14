@@ -762,7 +762,7 @@ class UserInformationController extends \BaseController {
             if ($validator->Fails()) {
                 Session::flash('info', 'Your new password does not match with confirm password. Please try again!');
 
-                return Redirect::back()->withErrors($validator)->withInput();
+                return Redirect::back();
             } else{
                 $model->password = Input::get('new_password');
                 if($model->save()){
@@ -774,7 +774,7 @@ class UserInformationController extends \BaseController {
                 }
             }
         }else{
-            Session::flash('message','Your old password was incorrect. Please try again!');
+            Session::flash('warning','Your old password was incorrect. Please try again!');
             return Redirect::back();
         }
     }
