@@ -55,7 +55,7 @@ Route::any("sortable", [
 ]);
 
 ///Json Data
-Route::any("/cfo/json_data", [
+Route::any("json-data", [
     "as"   => "json-data",
     "uses" => "HomeController@json_data"
 ]);

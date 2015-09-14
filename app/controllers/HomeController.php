@@ -471,10 +471,17 @@ class HomeController extends BaseController {
 
 
     public function json_data(){
-        $data = [
-            'Tanin', 'Shafi', 'Ratna'
-        ];
-        return Response::json($data);
+        if( Input::server("REQUEST_METHOD") == "POST" )
+        {
+            $data = Input::all();
+            return Response::json($data);
+        }else{
+            $data = [
+                'Get', 'Method', 'Only'
+            ];
+            return Response::json($data);
+        }
+
     }
 
 }
