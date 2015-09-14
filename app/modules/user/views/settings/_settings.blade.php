@@ -50,7 +50,7 @@
                 <div class="col-lg-3">
                      @if(isset($userAccounts))
                          <li><p>User Name : <b>{{$userAccounts->username}}</b></p></li>
-                         <li><p>Password : <a href="{{Route('user/reset_password',['id'=>$userAccounts->id])}}"data-toggle="modal" data-target="#myeditModal">Change Password</a></p></li>
+                         <li><p>Password : <a href="{{Route('user/reset_password',['id'=>$userAccounts->id])}}"data-toggle="modal" data-target="#modal">Change Password</a></p></li>
                          <li><p>Email Address : {{$userAccounts->email}}</p></li>
                      @else
                          {{"No data found !"}}
@@ -73,7 +73,7 @@
     </div>
 <!-- Modal  -->
  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="z-index:1050">
+    <div class="modal-dialog" style="z-index:1050">
         <div class="modal-content">
 
         </div>
@@ -88,16 +88,6 @@
              </div>
          </div>
      </div>
-
-     {{--Meta data:Modal --}}
-
-     <div class="modal fade" id="meta-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-         <div class="modal-dialog modal-lg" style="z-index:1050">
-             <div class="modal-content">
-
-             </div>
-         </div>
-      </div>
      <!-- Modal : edit -->
      <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-lg">

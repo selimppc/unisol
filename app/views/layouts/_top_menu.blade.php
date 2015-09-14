@@ -34,30 +34,30 @@
             @else
                 <li class="user-footer">
                     <div class="pull-right">
-                        <a href="{{URL::route('user/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="{{URL::route('user/logout') }}" class="btn btn-default btn-flat">Sign In</a>
                     </div>
                 </li>
             @endif
         </ul>
     </li>
-    <li class="dropdown user user-menu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-           <i class='fa fa-gear'></i><i class="caret"></i>
-        </a>
-        <ul class="dropdown-menu">
-            <div class="text-center"><h5><b>ACCOUNTS</b ></h5></div>
-            <li><a href="{{ URL::to('user/profile-info') }}"> Personal Information </a></li>
-            <li><a href="{{ URL::route('user/meta-data') }}">Biographical Information</a></li>
-            <li><a href="{{ URL::route('user/acm-records') }}">Academic Records</a></li>
-            <li><a href="{{ URL::route('user/supporting-docs') }}">Supporting Docs</a></li>
-            <li><a href="{{ URL::route('user/extra-curricular-activities') }}">Extra-curricular Activities</a></li>
-            <li><a href="{{ URL::route('user/misc-info') }}">Miscellaneous Information</a></li>
-            <li class="divider"></li>
-            <div class="text-center"><h5><b>SETTINGS</b></h5></div>
-            <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
-            <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
-        </ul>
-
-
-    </li>
+    @if(isset(Auth::user()->get()->id) OR isset(Auth::applicant()->get()->id))
+        <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               <i class='fa fa-gear'></i><i class="caret"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <div class="text-center"><h5><b>ACCOUNTS</b ></h5></div>
+                <li><a href="{{ URL::to('user/profile-info') }}"> Personal Information </a></li>
+                <li><a href="{{ URL::route('user/meta-data') }}">Biographical Information</a></li>
+                <li><a href="{{ URL::route('user/acm-records') }}">Academic Records</a></li>
+                <li><a href="{{ URL::route('user/supporting-docs') }}">Supporting Docs</a></li>
+                <li><a href="{{ URL::route('user/extra-curricular-activities') }}">Extra-curricular Activities</a></li>
+                <li><a href="{{ URL::route('user/misc-info') }}">Miscellaneous Information</a></li>
+                <li class="divider"></li>
+                <div class="text-center"><h5><b>SETTINGS</b></h5></div>
+                <li><a href="{{ URL::to('user/settings') }}"> Settings </a></li>
+                <li><a href="{{ URL::route('user/logout') }}">Sign out</a></li>
+            </ul>
+        </li>
+    @endif
 </ul>
