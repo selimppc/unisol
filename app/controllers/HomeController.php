@@ -473,7 +473,6 @@ class HomeController extends BaseController {
     public function json_data(){
         if( Input::server("REQUEST_METHOD") == "POST" )
         {
-            exit("OK");
             $data = Input::all();
             return Response::json($data);
         }else{
