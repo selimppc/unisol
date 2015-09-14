@@ -743,7 +743,7 @@ class UserInformationController extends \BaseController {
     public function password_change_view($id){
 
         $model = User::find($id);
-        return View::make('user::reset_password.reset_form',compact('model'));
+        return View::make('user::change_password._form',compact('model'));
     }
     // user password_change method
     public function change_password()
