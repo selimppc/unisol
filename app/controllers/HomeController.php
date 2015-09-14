@@ -477,7 +477,7 @@ class HomeController extends BaseController {
             return Response::json($data);
         }else{
             $data = [
-                'Tanin', 'Shafi', 'Ratna'
+                'Get', 'Method', 'Only'
             ];
             return Response::json($data);
         }
