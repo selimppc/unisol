@@ -49,7 +49,9 @@
             "app/modules/cfo/controllers",
             "app/modules/cfo/models",
             "app/modules/payroll/controllers",
-            "app/modules/payroll/models"
+            "app/modules/payroll/models",
+            "app/modules/api/controllers",
+            "app/modules/api/models"
 		],
 
         "files":[

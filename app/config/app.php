@@ -141,6 +141,7 @@ return array(
         'App\Modules\Payment\ServiceProvider',
         'App\Modules\Rnc\ServiceProvider',
         'App\Modules\Payroll\ServiceProvider',
+        'App\Modules\Api\ServiceProvider',
 
 	),
 
