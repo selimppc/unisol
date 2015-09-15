@@ -11,4 +11,7 @@
 |
 */
 
-
+Route::any("api/", [
+    "as"   => "api",
+    "uses" => "ApiController@index"
+]);
