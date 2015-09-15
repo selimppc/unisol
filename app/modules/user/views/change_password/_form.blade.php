@@ -20,7 +20,6 @@
              {{ Form::submit('change Password', array('class'=>'pull-right btn btn-sm btn-primary '))}}
          {{ Form::close() }}
     </div>
-{{----}}
     <p>&nbsp;</p>
 </div>
 
