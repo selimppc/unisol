@@ -17,21 +17,25 @@ class UserResetInfoController extends \BaseController {
     public function user_password_reminder_mail()
     {
         $email = Input::get('email');
-        $user_data = User::where('email','=',$email)->first();
+        $user = DB::table('user')->where('email', '=', $email)->first();
+        $applicant = DB::table('applicant')->where('email', '=', $email)->first();
 
-        if(isset($user_data->email)){
-            $data = new UserResetPassword();
-            $data->user_id = $user_data->id;
-            $data->reset_password_token = str_random(30);
-            $data->reset_password_expire = date("Y-m-d h:i:s", (strtotime(date('Y-m-d h:i:s', time()))+(60*30)));
-            $data->reset_password_time = date('Y-m-d h:i:s', time());
-            $data->status = '2'; // 2 == reset requested
-            if($data->save())
-            {
-                Mail::send('user::forgot_password.email_notification', array('link' =>$data->reset_password_token),  function($message) use ($user_data)
+        if($user || $applicant){
+            $input_data = [
+                isset($user->id) ? 'user_id': 'applicant_id' => isset($user->id) ? $user->id : $applicant->id,
+                'reset_password_token'=> str_random(30),
+                'reset_password_expire'=> date("Y-m-d h:i:s", (strtotime(date('Y-m-d h:i:s', time()))+(60*30))),
+                'reset_password_time'=> date('Y-m-d h:i:s', time()),
+                'status'=> '2',
+            ];
+            $model = isset($user->id) ? new UserResetPassword() : new ApplicantResetPassword();
+
+            if($model->create($input_data)) {
+                Mail::send('user::forgot_password.email_notification', array('link' =>$input_data['reset_password_token']),
+                    function($message) use ($applicant,$user)
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Sattar University');
-                    $message->to($user_data->email,$user_data->username);
+                    $message->to(isset($user) ? $user->email: $applicant->email);
                     $message->cc('tanintjt@gmail.com', 'Tanin');
                     $message->replyTo('test@edutechsolutionsbd.com','Sattar University');
                     $message->subject('Forgot Password Reset Mail');
@@ -46,20 +50,27 @@ class UserResetInfoController extends \BaseController {
     //forgot password : confirm
     public function user_password_reset_confirm($reset_password_token)
     {
-        $reset_info = UserResetPassword::where('reset_password_token','=',$reset_password_token)->first();
+        $user = UserResetPassword::where('reset_password_token','=',$reset_password_token)->first();
+        $applicant = ApplicantResetPassword::where('reset_password_token','=',$reset_password_token)->first();
         $current_time = date('Y-m-d h:i:s', time());
 
-        if(isset($reset_info->reset_password_token)) {
-
-            if ($reset_info->reset_password_expire > $current_time && $reset_info->status == 2) {
-                $user_id = $reset_info->user_id;
+        if(isset($user)||isset($applicant)) {
+            $input_data = [
+                isset($user->id) ? 'user_id': 'applicant_id' => isset($user->id) ? $user->id : $applicant->id,
+                'reset_password_token'=> str_random(30),
+                'reset_password_expire'=> date("Y-m-d h:i:s", (strtotime(date('Y-m-d h:i:s', time()))+(60*30))),
+                'reset_password_time'=> date('Y-m-d h:i:s', time()),
+                'status'=> '2',
+            ];
+            if ($input_data['reset_password_expire'] > $current_time && $input_data['status'] == 2) {
+                $user_id = $input_data['user_id'];
                 return View::make('user::forgot_password.new_password_form',compact('user_id'));
             }
-            if($reset_info->reset_password_expire < $current_time){
+            if($input_data['reset_password_expire'] < $current_time){
                 Session::flash('danger', 'Time Expired.Please Try Again.');
                 return View::make('user::forgot_password.email_form');
             }
-            if($reset_info->status == 0) {
+            if($input_data['status'] == 0) {
                 Session::flash('danger', 'Session Expired! You can Not Access To This link.Please Try Again.');
                 return View::make('user::forgot_password.email_form');
             }
