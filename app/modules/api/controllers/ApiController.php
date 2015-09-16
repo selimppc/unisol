@@ -29,7 +29,9 @@ class ApiController extends \BaseController {
         $provider = $oauth->authenticate('Google');
         $profile = $provider->getUserProfile();
 
-        return print_r($profile);
+        return Response::json(array(
+            'user profile data' => $profile
+        ));
 
     }
 
