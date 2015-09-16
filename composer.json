@@ -9,7 +9,8 @@
         "phpunit/phpunit": "3.7.*",
         "doctrine/dbal": "v2.4.2",
         "intervention/image": "dev-master",
-        "ollieread/multiauth": "dev-master"
+        "ollieread/multiauth": "dev-master",
+        "hybridauth/hybridauth": "dev-master"
 	},
 
 	"autoload": {

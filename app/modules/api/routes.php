@@ -15,3 +15,15 @@ Route::any("api/", [
     "as"   => "api",
     "uses" => "ApiController@index"
 ]);
+
+
+Route::any("api/gauth/{auth?}", [
+    "as"   => "api.google.auth",
+    "uses" => "ApiController@google_login"
+]);
+
+
+Route::any("api/google/logout", [
+    "as"   => "api.google.logout",
+    "uses" => "ApiController@google_logout"
+]);
