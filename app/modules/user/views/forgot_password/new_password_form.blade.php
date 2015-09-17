@@ -15,7 +15,7 @@
                         <p class="text">Change Your Password</p>
                         {{ Form::open(array('url'=>'user/save-new-password', 'class'=>'form-signin')) }}
 
-                        {{ Form::hidden('user_id', $user_id, array('class'=>'form-control')) }}
+                        {{ Form::hidden('id', $id, array('class'=>'form-control')) }}
                         {{ Form::label('password','Password') }}
                         {{ Form::password('password',  array('class'=>'form-control','required','id'=>'password','name'=>'password')) }}
 
