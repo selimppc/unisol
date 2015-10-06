@@ -285,7 +285,7 @@ class UserInformationController extends \BaseController {
     public function store_acm_records(){
         if(Auth::user()->check()) {
             $rules = array(
-                'level_of_education' => 'required',
+                'level_of_education' => 'required|unique:user_academic_record',
 //                'certificate' => 'required',
 //                'transcript' => 'required',
                 'board_type' => 'required',
@@ -350,8 +350,7 @@ class UserInformationController extends \BaseController {
                 Session::flash('message', "Successfully Added Information!");
                 return Redirect::back();
             } else {
-                Session::flash('danger', "Invalid Request!");
-                return Redirect::back();
+                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
             }
         }else{
             return Redirect::route('user/login')->with('message', 'Please Login !');
