@@ -19,8 +19,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     private $rules = [
         //'title' => 'required|alpha|min:3',
         //'body' => 'required|alpha|min:3'
-        //'first_name' => 'required|alpha|min:3',
-        //'last_name'  => 'required',
+        'first_name' => 'required',
+        'last_name'  => 'required',
         //'email' => 'required|email|unique:employees', // required and must be unique in the employees table
         //'files' => 'required|mimes:jpeg,jpg,png'
         //'photo' => 'image|max:3000',

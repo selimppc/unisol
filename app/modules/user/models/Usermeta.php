@@ -16,7 +16,7 @@ class UserMeta extends Eloquent {
 
     private $errors;
     private $rules = [
-//        'zip_code' => 'required|numeric',
+        'national_id' => 'required|max:3',
 //        'gender' => 'required',
 //        'image' => 'required'
     ];

@@ -51,19 +51,14 @@ class UserSignupController extends \BaseController {
                     return Redirect::to('user-signup');
                 }else{
                     $errors = $model->errors();
-//                    print_r($errors);exit;
-
-                    Session::flash('danger', $errors);
+                    Session::flash('errors', $errors);
                     return Redirect::back();
                 }
             }
         }else {
             $errors = $model->errors();
-//            print_r($errors);exit;
-
-            Session::flash('danger', $errors);
+            Session::flash('errors', $errors);
             return Redirect::back();
-//            return Redirect::back()->withErrors($errors)->withInput();
         }
     }
 

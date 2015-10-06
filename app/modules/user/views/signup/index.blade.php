@@ -21,7 +21,7 @@
                 <div class="control-group">
                     <div class="col-lg-6">
                        {{ Form::label('first_name', 'First Name:') }}<span style="color:red;">*</span>
-                       {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name')) }}
+                       {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name','required')) }}
                     </div>
                     <div class="col-lg-6">
                          {{ Form::label('middle_name', 'Middle Name:') }}
@@ -33,33 +33,33 @@
                 <div class="control-group">
                     <div class="col-lg-6">
                          {{ Form::label('last_name', 'Last Name:') }}<span style="color:red;">*</span>
-                         {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name')) }}
+                         {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name','required')) }}
                     </div>
                     <div class="col-lg-6" >
                         {{ Form::label('username', 'User Name:') }}<span class="text-danger">*</span>
-                        {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name')) }}
+                        {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name','required')) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
                 <div class="control-group">
                     <div class="col-lg-6">
                          {{ Form::label('email', 'Email Address') }}<span class="text-danger">*</span>
-                         {{ Form::text('email', Input::old('email'), array('class'=>'form-control','placeholder'=>'Enter a valid email address')) }}
+                         {{ Form::email('email', Input::old('email'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
                     </div>
                     <div class="col-lg-6">
                        {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>
-                       {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker']) }}
+                       {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required']) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
                 <div class="control-group">
                      <div class="col-lg-6" >
                         {{ Form::label('password', 'Password:') }} <span style="color:red;">*</span>
-                        {{ Form::password('password', array('placeholder'=>'','class'=>'form-control')) }}
+                        {{ Form::password('password', array('placeholder'=>'','class'=>'form-control','required')) }}
                      </div>
                      <div class="col-lg-6" >
                         {{ Form::label('confirm_password', 'Confirm Your Password:') }}<span class="text-danger">*</span>
-                        {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control')) }}
+                        {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control','required')) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
@@ -99,22 +99,22 @@
                 <div class='control-group'>
                     <div class="col-lg-6">
                         {{ Form::label('zip_code', 'Zip Code') }}<span class="text-danger">*</span>
-                        {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'','required')) }}
+                        {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'','required','required')) }}
                     </div>
                     <div class="col-lg-6">
                        {{ Form::label('department_id', 'Department') }}<span class="text-danger">*</span>
-                       {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control']) }}
+                       {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control','required']) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
                 <div class="control-group">
                     <div class="col-lg-6">
                         {{ Form::label('role_id', 'Target Role') }}<span class="text-danger">*</span>
-                        {{ Form::select('role_id',$role_name,Input::old('role_id'), array('class' => 'form-control'))}}
+                        {{ Form::select('role_id',$role_name,Input::old('role_id'), array('class' => 'form-control','required'))}}
                     </div>
                     <div class="col-lg-6">
                         {{ Form::label('join_date', 'Join Date') }}<span class="text-danger">*</span>
-                        {{ Form::text('join_date',  Input::old('join_date'),['class'=>'form-control date_picker']) }}
+                        {{ Form::text('join_date',  Input::old('join_date'),['class'=>'form-control date_picker','required']) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>

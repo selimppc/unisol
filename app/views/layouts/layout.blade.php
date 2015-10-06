@@ -100,7 +100,7 @@
                 <!-- Main content -->
                 <section class="content">
                     {{--Error handling--}}
-                    @if ( isset($errors) and isset($errors->count) and $errors->count() > 0 )
+                    @if ( $errors->any() )
                         <div class="alert alert-danger alert-dismissable">
                             <ul>
                                 @foreach($errors->all() as $message )
