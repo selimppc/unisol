@@ -178,7 +178,7 @@
               </div>
               <div class="col-lg-4">
                   {{ Form::label('duration', 'Duration (In Year)') }}<span class="text-danger">*</span>
-                  {{ Form::text('duration', Input::old('duration'),['class'=>'form-control ']) }}
+                  {{ Form::text('duration', Input::old('duration'),['class'=>'form-control ','required']) }}
               </div>
               <div class="col-lg-4">
                    {{ Form::label('study_at', 'Study At ') }}
