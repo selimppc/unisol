@@ -36,7 +36,7 @@ class UserResetInfoController extends \BaseController {
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Sattar University');
                     $message->to(isset($user) ? $user->email: $applicant->email);
-                    $message->cc('tanintjt@gmail.com', 'Tanin');
+                    $message->cc('tanvirjahan.tanin@gmail.com', 'Tanin');
                     $message->replyTo('test@edutechsolutionsbd.com','Sattar University');
                     $message->subject('Forgot Password Reset Mail');
                 });
@@ -55,27 +55,26 @@ class UserResetInfoController extends \BaseController {
         $current_time = date('Y-m-d h:i:s', time());
 
         if(isset($user)||isset($applicant)) {
-            $input_data = [
+            $data = [
                 isset($user->id) ? 'user_id': 'applicant_id' => isset($user->id) ? $user->id : $applicant->id,
-                'reset_password_token'=> str_random(30),
-                'reset_password_expire'=> date("Y-m-d h:i:s", (strtotime(date('Y-m-d h:i:s', time()))+(60*30))),
-                'reset_password_time'=> date('Y-m-d h:i:s', time()),
-                'status'=> '2',
+                'reset_password_expire' => isset($user) ? $user->reset_password_expire : $applicant->reset_password_expire,
+                'reset_password_time'=> isset($user) ? $user->reset_password_time : $applicant->reset_password_time,
+                'status'=> isset($user) ? $user->status : $applicant->status,
             ];
-            if ($input_data['reset_password_expire'] > $current_time && $input_data['status'] == 2) {
-                $user_id = $input_data['user_id'];
-                return View::make('user::forgot_password.new_password_form',compact('user_id'));
+            if ($data['reset_password_expire'] > $current_time && $data['status'] == 2) {
+                $id =  isset($user->id) ?$data['user_id']:$data['applicant_id'];
+                return View::make('user::forgot_password.new_password_form',compact('id'));
             }
-            if($input_data['reset_password_expire'] < $current_time){
+            if($data['reset_password_expire'] < $current_time){
                 Session::flash('danger', 'Time Expired.Please Try Again.');
                 return View::make('user::forgot_password.email_form');
             }
-            if($input_data['status'] == 0) {
+            if($data['status'] == 0) {
                 Session::flash('danger', 'Session Expired! You can Not Access To This link.Please Try Again.');
                 return View::make('user::forgot_password.email_form');
             }
         }else{
-            Session::flash('danger', 'Invalid Password Reset Link.Please Try Again.');
+            Session::flash('warning', 'Invalid Password Reset Link.Please Try Again.');
             return View::make('user::forgot_password.email_form');
         }
     }
@@ -83,9 +82,11 @@ class UserResetInfoController extends \BaseController {
     public function save_new_password()
     {
         $data = Input::all();
-
-        $user_id = $data['user_id'];
-        $model = User::findOrFail($user_id);
+        print_r($data);exit;
+        $id = $data['id'];
+        $user = DB::table('user')->where('email', '=', $email)->first();
+        $applicant = DB::table('applicant')->where('email', '=', $email)->first();
+        $model = User::findOrFail($id);
         $rules = array(
             'password' => 'required',
             'confirm_password' => 'required|same:password',
@@ -97,7 +98,7 @@ class UserResetInfoController extends \BaseController {
             try {
                 //update status and password
                 if($model->update($data)){
-                    DB::table('user_reset_password')->where('user_id', '=', $user_id)->update(array('status' => 0));
+                    DB::table('user_reset_password')->where('user_id', '=', $id)->update(array('status' => 0));
                 }
                 DB::commit();
                 Session::flash('message','You have reset your password successfully. You may signin now.');

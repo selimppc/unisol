@@ -21,7 +21,7 @@
                 <div class="control-group">
                     <div class="col-lg-6">
                        {{ Form::label('first_name', 'First Name:') }}<span style="color:red;">*</span>
-                       {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name','required')) }}
+                       {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter First  name')) }}
                     </div>
                     <div class="col-lg-6">
                          {{ Form::label('middle_name', 'Middle Name:') }}
@@ -33,33 +33,33 @@
                 <div class="control-group">
                     <div class="col-lg-6">
                          {{ Form::label('last_name', 'Last Name:') }}<span style="color:red;">*</span>
-                         {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name','required')) }}
+                         {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter Last  name')) }}
                     </div>
                     <div class="col-lg-6" >
                         {{ Form::label('username', 'User Name:') }}<span class="text-danger">*</span>
-                        {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name','required')) }}
+                        {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name')) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
                 <div class="control-group">
                     <div class="col-lg-6">
-                         {{ Form::label('email_address', 'Email Address') }}<span class="text-danger">*</span>
-                         {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
+                         {{ Form::label('email', 'Email Address') }}<span class="text-danger">*</span>
+                         {{ Form::text('email', Input::old('email'), array('class'=>'form-control','placeholder'=>'Enter a valid email address')) }}
                     </div>
                     <div class="col-lg-6">
                        {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>
-                       {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required','required']) }}
+                       {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker']) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
                 <div class="control-group">
                      <div class="col-lg-6" >
                         {{ Form::label('password', 'Password:') }} <span style="color:red;">*</span>
-                        {{ Form::password('password', array('placeholder'=>'','class'=>'form-control','required')) }}
+                        {{ Form::password('password', array('placeholder'=>'','class'=>'form-control')) }}
                      </div>
                      <div class="col-lg-6" >
                         {{ Form::label('confirm_password', 'Confirm Your Password:') }}<span class="text-danger">*</span>
-                        {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control','required')) }}
+                        {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control')) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
@@ -81,7 +81,7 @@
 
                    <div class="col-lg-6">
                        {{ Form::label('country', 'Country') }}<span class="text-danger">*</span>
-                       {{ Form::select('country',$countryList,Input::old('country'),['class'=>'form-control','required']) }}
+                       {{ Form::select('country',$countryList,Input::old('country'),['class'=>'form-control']) }}
                    </div>
                 </div>
                 <p>&nbsp;</p>
@@ -103,18 +103,18 @@
                     </div>
                     <div class="col-lg-6">
                        {{ Form::label('department_id', 'Department') }}<span class="text-danger">*</span>
-                       {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control','required']) }}
+                       {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control']) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>
                 <div class="control-group">
                     <div class="col-lg-6">
                         {{ Form::label('role_id', 'Target Role') }}<span class="text-danger">*</span>
-                        {{ Form::select('role_id',$role_name,Input::old('role_id'), array('class' => 'form-control','required'))}}
+                        {{ Form::select('role_id',$role_name,Input::old('role_id'), array('class' => 'form-control'))}}
                     </div>
                     <div class="col-lg-6">
                         {{ Form::label('join_date', 'Join Date') }}<span class="text-danger">*</span>
-                        {{ Form::text('join_date',  Input::old('join_date'),['class'=>'form-control date_picker','required']) }}
+                        {{ Form::text('join_date',  Input::old('join_date'),['class'=>'form-control date_picker']) }}
                     </div>
                 </div>
                 <p>&nbsp;</p>

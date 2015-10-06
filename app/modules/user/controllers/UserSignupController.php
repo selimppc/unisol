@@ -24,7 +24,7 @@ class UserSignupController extends \BaseController {
         //model
         $model = new User();
         if($model->validate($input_data)) {
-            $model->email = $input_data['email_address'];
+            $model->email = $input_data['email'];
             $model->username = $input_data['username'];
             $model->password = $input_data['password'];//dd($data->password);
             $model->csrf_token = $input_data['_token'];
@@ -50,13 +50,20 @@ class UserSignupController extends \BaseController {
                     Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
                     return Redirect::to('user-signup');
                 }else{
-                    Session::flash('danger', 'Invalid Request. Please Try Again.');
+                    $errors = $model->errors();
+//                    print_r($errors);exit;
+
+                    Session::flash('danger', $errors);
                     return Redirect::back();
                 }
             }
         }else {
-            Session::flash('danger', 'Please Try Again.');
+            $errors = $model->errors();
+//            print_r($errors);exit;
+
+            Session::flash('danger', $errors);
             return Redirect::back();
+//            return Redirect::back()->withErrors($errors)->withInput();
         }
     }
 

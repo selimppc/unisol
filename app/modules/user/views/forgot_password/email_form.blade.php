@@ -15,7 +15,7 @@
                         {{ Form::open(array('url'=>'user/password_reminder_mail', 'class'=>'form-signin')) }}
                         {{ Form::hidden('status',2)}}
                         {{ Form::label('email','Email Address') }}
-                        {{ Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) }}
+                        {{ Form::email('email', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) }}
                         <p>&nbsp;</p>
                         {{ Form::submit('Submit', array('class'=>'pull-right btn btn-sm btn-primary'))}}
                         <br>

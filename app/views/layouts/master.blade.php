@@ -166,14 +166,12 @@
 
             <div class="col-md-9">
                 {{--Error handling--}}
-                @if ( isset($errors) and isset($errors->count) and $errors->count() > 0 )
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $message )
-                                <li>{{ $message }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                @if($errors->any())
+                    <ul class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 @endif
 
                 {{--set some message after action--}}
