@@ -713,7 +713,11 @@ class UserInformationController extends \BaseController {
         if ($data['doc_type'] == 'other') {
             $sdoc->other = Input::get('other');
         } else {
-
+            $img_dir = "uploads/user_images/docs/" . date("h-m-y");
+            // Create folders if they don't exist
+            if (!file_exists($img_dir)) {
+                mkdir($img_dir, 0777, true);
+            }
             $file = Input::file('doc_file');
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
