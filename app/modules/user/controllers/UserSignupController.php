@@ -50,8 +50,12 @@ class UserSignupController extends \BaseController {
                     Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
                     return Redirect::to('user-signup');
                 }else{
-                    Session::flash('danger', 'Invalid Request. Please Try Again.');
+//                    Session::flash('danger', 'Invalid Request. Please Try Again.');
+//                    return Redirect::back();
+                    $errors = $model->errors();
+                    Session::flash('danger', $errors);
                     return Redirect::back();
+
                 }
             }
         }else {

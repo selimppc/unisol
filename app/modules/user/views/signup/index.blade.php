@@ -44,7 +44,7 @@
                 <div class="control-group">
                     <div class="col-lg-6">
                          {{ Form::label('email_address', 'Email Address') }}<span class="text-danger">*</span>
-                         {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
+                         {{ Form::email('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
                     </div>
                     <div class="col-lg-6">
                        {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>

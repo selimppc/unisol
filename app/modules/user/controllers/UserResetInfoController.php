@@ -36,7 +36,7 @@ class UserResetInfoController extends \BaseController {
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Sattar University');
                     $message->to(isset($user) ? $user->email: $applicant->email);
-                    $message->cc('tanintjt@gmail.com', 'Tanin');
+                    $message->cc('tanvirjahan.tanin@gmail.com', 'Tanin');
                     $message->replyTo('test@edutechsolutionsbd.com','Sattar University');
                     $message->subject('Forgot Password Reset Mail');
                 });
@@ -84,6 +84,8 @@ class UserResetInfoController extends \BaseController {
         $data = Input::all();
         print_r($data);exit;
         $id = $data['id'];
+        $user = DB::table('user')->where('email', '=', $email)->first();
+        $applicant = DB::table('applicant')->where('email', '=', $email)->first();
         $model = User::findOrFail($id);
         $rules = array(
             'password' => 'required',

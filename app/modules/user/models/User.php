@@ -29,7 +29,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         //'password'         => 'required',
         //'password_confirm' => 'required|same:password'
         //'username'                  => 'required',
-        //'email'                 => 'required|email',
+        'email'                 => 'required|unique:user',
         'password'              => 'required',
         'confirm_password' => 'required|same:password',
     ];
@@ -49,7 +49,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
     public function errors()
     {
-        return $this->errors;
+        return $this->errors;exit;
     }
 
     public function getReminderEmail()
