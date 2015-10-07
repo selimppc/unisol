@@ -100,14 +100,14 @@
         <!-- Main content -->
         <section class="content">
             {{--Error handling--}}
-            @if ( Session::has('errors'))
-                <div class="alert alert-danger alert-dismissable">
-                    <ul>
-                        @foreach($errors->all() as $message )
-                            <li>{{ $message }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            @if(isset($errors ))
+                <ul>
+                    @foreach($errors->all() as $message )
+                        <div class="alert alert-danger alert-dismissable">
+                          <li>{{ $message }}</li>
+                        </div>
+                    @endforeach
+                </ul>
             @endif
 
             {{--set some message after action--}}
@@ -130,13 +130,11 @@
                 <div class="alert alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <b>Alert! </b> {{Session::get("danger")}}</div>
-
             @endif
             @if(Session::has('warning'))
                 <div class="alert alert-warning alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <b>Warning! </b> {{Session::get("warning")}}</div>
-
             @endif
 
             @yield('content')

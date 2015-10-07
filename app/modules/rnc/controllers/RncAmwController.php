@@ -30,16 +30,7 @@ class RncAmwController extends \BaseController
         $model = new RncCategory();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data))
-        {
-            $Check = DB::table('rnc_category')
-                ->select(DB::raw('1'))
-                ->where('title', '=', $model->title)
-                ->get();
-            if($Check){
-                Session::flash('info','Already Exists.');
-                return Redirect::back();
-            }else{
+        if($model->validate($data)){
                 DB::beginTransaction();
                 try {
                     $model->create($data);
@@ -53,7 +44,6 @@ class RncAmwController extends \BaseController
                 }
 //                return Redirect::to($providers);
                 return Redirect::back();
-            }
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -85,7 +75,7 @@ class RncAmwController extends \BaseController
         $model = RncCategory::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data))
+        if ($model->validate($data, $id))
         {
             DB::beginTransaction();
             try {
@@ -162,11 +152,8 @@ class RncAmwController extends \BaseController
             return Redirect::back();
         }else{
             $errors = $config->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back()->with('errors', $errors);
         }
-
     }
 
     public function showConfig($id)

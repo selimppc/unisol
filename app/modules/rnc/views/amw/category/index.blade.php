@@ -19,9 +19,6 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 Settings  <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a></li>
-                            </ul>
                         </li>
 
                         <li class="pull-right" class="dropdown">

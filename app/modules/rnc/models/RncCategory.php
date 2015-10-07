@@ -12,17 +12,25 @@ class RncCategory extends Eloquent{
         'title','description'
     ];
     private $errors;
-    private $rules = [
-       'title' => 'required'
-    ];
+//    private $rules = [
+//       'title' => 'required|unique:rnc_category'
+//    ];
 
     /**
      * @param $data
      * @return bool
      */
-    public function validate($data)
+
+    public static function rules ($id=0, $merge=[]) {
+        return array_merge(
+            [
+                'title' => 'required|unique:rnc_category,title'.($id ? ",$id" : ''),
+            ],
+            $merge);
+    }
+    public function validate($data, $id=0)
     {
-        $validate = Validator::make($data, $this->rules);
+        $validate = Validator::make($data, $this->rules($id));
         if ($validate->fails())
         {
             $this->errors = $validate->errors();
