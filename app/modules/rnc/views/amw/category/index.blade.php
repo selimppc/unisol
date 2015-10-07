@@ -19,9 +19,6 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 Settings  <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a></li>
-                            </ul>
                         </li>
 
                         <li class="pull-right" class="dropdown">
@@ -121,7 +118,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" style="text-align: center;color: blue;font-size: x-large">Add Category</h4>
+                    <h4 class="modal-title" style="text-align: center;font-size: x-large">Add Category</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'rnc/amw/category/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
