@@ -14,9 +14,12 @@ class UserProfile extends Eloquent {
     ];
     private $errors;
     private $rules = [
-         'zip_code' => 'required|integer',
-        //'gender' => 'required',
-//        'image' => 'required'
+        'first_name' => 'required',
+        'last_name'  => 'required',
+        'date_of_birth'         => 'required',
+        'country' => 'required',
+        'gender' => 'required',
+        'zip_code' => 'required',
     ];
 
     public function validate($data)

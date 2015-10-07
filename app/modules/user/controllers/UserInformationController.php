@@ -31,7 +31,8 @@ class UserInformationController extends \BaseController {
         $file = $data['image'];
         $model = new UserProfile();
 
-        if ($model->validate($data)) {
+        if ($model->validate($data))
+        {
             $model->user_id = Auth::user()->get()->id;
             $model->first_name = Input::get('first_name');
             $model->middle_name = Input::get('middle_name');
@@ -43,7 +44,8 @@ class UserInformationController extends \BaseController {
             $model->country = Input::get('country');
             $model->zip_code = Input::get('zip_code');
 
-            if($file) {
+            if($file)
+            {
                 // Images destination
                 $img_dir = "uploads/user_images/profile/" . date("h-m-y");
                 // Create folders if they don't exist
@@ -62,7 +64,9 @@ class UserInformationController extends \BaseController {
 
             Session::flash('message', "Successfully Added Information!");
             return Redirect::back();
-        }else{
+        }
+        else
+        {
             Session::flash('danger', 'Invalid Request');
             return Redirect::back();
         }
@@ -82,6 +86,8 @@ class UserInformationController extends \BaseController {
         $file = $data['image'];
 //        print_r($data);exit;
         $model = UserProfile::find($id);
+
+
         if ($model->validate($data)) {
             $model->user_id = Auth::user()->get()->id;
             $model->first_name = Input::get('first_name');
@@ -114,8 +120,10 @@ class UserInformationController extends \BaseController {
 
             Session::flash('message', "Successfully Added Information!");
             return Redirect::back();
-        }else{
-            Session::flash('danger', 'Invalid Request');
+        }else
+        {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }
@@ -283,21 +291,24 @@ class UserInformationController extends \BaseController {
     }
 
     public function store_acm_records(){
-        if(Auth::user()->check()) {
-            $rules = array(
-                'level_of_education' => 'required|unique:user_academic_record',
-//                'certificate' => 'required',
-//                'transcript' => 'required',
-                'board_type' => 'required',
-                'result_type' => 'required',
-            );
-            $validator = Validator::make(Input::all(), $rules);
+        if(Auth::user()->check())
+        {
+//            $rules = array(
+//                'level_of_education' => 'required|unique:user_academic_record',
+////                'certificate' => 'required',
+////                'transcript' => 'required',
+//                'board_type' => 'required',
+//                'result_type' => 'required',
+//            );
+            $data = Input::all();
+            $model = new UserAcademicRecord();
 
-            if ($validator->passes()) {
-                $data = Input::all();
+            if ($model->validate($data))
+            {
+
                 $file = $data['certificate'];
                 $file2 =$data['transcript'];
-                $model = new UserAcademicRecord();
+
                 $model->user_id = Auth::user()->get()->id;
                 $model->level_of_education = Input::get('level_of_education');
                 $model->degree_name = Input::get('degree_name');
@@ -327,7 +338,8 @@ class UserInformationController extends \BaseController {
                 $model->duration = Input::get('duration');
                 $model->study_at = Input::get('study_at');
 
-                if($file) {
+                if($file)
+                {
                     $file_certificate = Input::file('certificate');
                     $extension = $file_certificate->getClientOriginalExtension();
                     $filename = str_random(12) . '.' . $extension;
@@ -336,7 +348,8 @@ class UserInformationController extends \BaseController {
                     Image::make($file_certificate->getRealPath())->resize(180, 120)->save($path);
                     $model->certificate =$file;
                 }
-                if($file2) {
+                if($file2)
+                {
                     $file_transcript = Input::file('transcript');
                     $extension = $file_transcript->getClientOriginalExtension();
                     $filename = str_random(12) . '.' . $extension;
@@ -349,37 +362,40 @@ class UserInformationController extends \BaseController {
 
                 Session::flash('message', "Successfully Added Information!");
                 return Redirect::back();
-            } else {
-                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
             }
-        }else{
+            else
+            {
+                $errors = $model->errors();
+               Session::flash('errors', $errors);
+                return Redirect::back();
+            }
+        }
+        else
+        {
             return Redirect::route('user/login')->with('message', 'Please Login !');
         }
     }
 
-    public function edit_acm_records($id){
+    public function edit_acm_records($id)
+    {
         $model= UserAcademicRecord::find($id);
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.academic.edit', compact('model','user_id'));
     }
 
-    public function update_acm_records($id){
-        $rules = array(
-//            'level_of_education' => 'required',
-//            'certificate' => 'required',
-//            'transcript' => 'required',
-            'board_type' => 'required',
-            'result_type' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
+    public function update_acm_records($id)
+    {
+        $data = Input::all();
 
-            $data = Input::all();
+        $model = UserAcademicRecord::find($id);
+
+        if ($model->validate($data, $id))
+        {
             $file = $data['certificate'];
             $file2 =$data['transcript'];
-            $model = UserAcademicRecord::find($id);
 
-            if($data){
+            if($data)
+            {
                 $model->user_id = Auth::user()->get()->id;
 //                print_r('ok');exit;
                 $model->level_of_education = Input::get('level_of_education');
@@ -408,7 +424,8 @@ class UserInformationController extends \BaseController {
                 $model->duration = Input::get('duration');
                 $model->study_at = Input::get('study_at');
 
-                if($file) {
+                if($file)
+                {
                     $file_certificate = Input::file('certificate');
                     $extension = $file_certificate->getClientOriginalExtension();
                     $filename = str_random(12) . '.' . $extension;
@@ -417,7 +434,8 @@ class UserInformationController extends \BaseController {
                     Image::make($file_certificate->getRealPath())->save($path);
                     $model->certificate =$file;
                 }
-                if($file2) {
+                if($file2)
+                {
                     $file_transcript = Input::file('transcript');
                     $extension = $file_transcript->getClientOriginalExtension();
                     $filename = str_random(12) . '.' . $extension;
@@ -430,8 +448,11 @@ class UserInformationController extends \BaseController {
             $model->save();
             Session::flash('message', "Successfully updated Information!");
             return Redirect::back();
-        } else {
-            Session::flash('danger', "Invalid Request! Please Try again");
+        }
+        else
+        {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }
@@ -749,7 +770,7 @@ class UserInformationController extends \BaseController {
         return View::make('user::change_password._form',compact('model'));
     }
     // user password_change method
-    public function change_password()
+    /*public function change_password123()
     {
         $model= User::findOrFail(Auth::user()->get()->id);
         $old_password = Input::get('old_password');
@@ -777,6 +798,45 @@ class UserInformationController extends \BaseController {
                 }
             }
         }else{
+            Session::flash('warning','Your old password was incorrect. Please try again!');
+            return Redirect::back();
+        }
+    }*/
+
+
+    public function change_password()
+    {
+        $model= User::findOrFail(Auth::user()->get()->id);
+        $old_password = Input::get('old_password');
+        $user_password = Auth::user()->get()->password;
+
+        if(Hash::check($old_password, $user_password))
+        {
+            $data = Input::all();
+
+
+            if ($model->validate_pass($data))
+            {
+                $model->password = Input::get('new_password');
+                if($model->save())
+                {
+                    Session::flash('message','You have changed your password successfully.');
+                    return Redirect::back();
+                }
+                else
+                {
+                    echo "data do not saved!!!";
+                }
+            }
+            else
+            {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
+            }
+        }
+        else
+        {
             Session::flash('warning','Your old password was incorrect. Please try again!');
             return Redirect::back();
         }

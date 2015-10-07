@@ -1,3 +1,13 @@
+@if ( $errors->any() )
+    <div class="alert alert-danger alert-dismissable">
+        <ul>
+            @foreach($errors->all() as $message )
+                <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
      <div style="padding: 0px 20px 20px 20px;">
          {{Form::hidden('user_id',$user_id)}}
@@ -162,7 +172,7 @@
 
          <div class="form-group">
              <div class="col-lg-6">
-                 {{ Form::label('roll_number', 'Roll No') }}
+                 {{ Form::label('roll_number', 'Roll No') }}<span class="text-danger">*</span>
                  {{ Form::text('roll_number', Input::old('roll_number'),['class'=>'form-control ','required']) }}
              </div>
              <div class="col-lg-6">

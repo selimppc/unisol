@@ -6,6 +6,7 @@
     @include('layouts._sidebar_public')
 @stop
 @section('content')
+
     <!-- left column -->
     <div class="col-md-12">
         <!-- general form elements -->
@@ -81,7 +82,7 @@
 
                    <div class="col-lg-6">
                        {{ Form::label('country', 'Country') }}<span class="text-danger">*</span>
-                       {{ Form::select('country',$countryList,Input::old('country'),['class'=>'form-control']) }}
+                       {{ Form::select('country',$countryList,Input::old('country'),['class'=>'form-control','required']) }}
                    </div>
                 </div>
                 <p>&nbsp;</p>

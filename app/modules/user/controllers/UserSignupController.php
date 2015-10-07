@@ -23,7 +23,9 @@ class UserSignupController extends \BaseController {
         $input_data = Input::all();
         //model
         $model = new User();
-        if($model->validate($input_data)) {
+
+        if($model->validate($input_data))
+        {
             $model->email = $input_data['email'];
             $model->username = $input_data['username'];
             $model->password = $input_data['password'];//dd($data->password);
