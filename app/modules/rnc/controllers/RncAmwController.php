@@ -125,7 +125,7 @@ class RncAmwController extends \BaseController
     {
         try{
             RncCategory::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Category Batch Deleted successfully!');
+            return Redirect::back()->with('message', 'Deleted successfully!');
         }
         catch (exception $ex)
         {
