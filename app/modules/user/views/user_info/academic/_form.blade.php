@@ -183,7 +183,7 @@
          <p>&nbsp;</p>
          <div class="form-group">
               <div class="col-lg-4">
-                  {{ Form::label('year_of_passing', 'Passing Year') }}
+                  {{ Form::label('year_of_passing', 'Passing Year') }}<span class="text-danger">*</span>
                   {{ Form::text('year_of_passing', Input::old('year_of_passing'),['class'=>'form-control ','required']) }}
               </div>
               <div class="col-lg-4">

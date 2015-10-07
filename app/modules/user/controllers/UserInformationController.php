@@ -188,7 +188,9 @@ class UserInformationController extends \BaseController {
             $model = new UserMeta();
             $model->user_id = Input::get('user_id');
 //            print_r($input_data);exit;
-            if($model->validate($input_data)) {
+
+            if ($model->validate($input_data))
+            {
                 DB::beginTransaction();
                 try {
                     $model->create($input_data);
@@ -199,6 +201,12 @@ class UserInformationController extends \BaseController {
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
+            }
+            else
+            {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
             }
         }
         return Redirect::back();
@@ -230,11 +238,12 @@ class UserInformationController extends \BaseController {
                 Session::flash('danger', "Invalid Request !");
             }
             return Redirect::back();
-        }else{
+        }
+        else
+        {
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
+            return Redirect::back();
         }
     }
 
@@ -524,7 +533,8 @@ class UserInformationController extends \BaseController {
             $model = new UserMiscellaneousInfo();
             $model->user_id = Input::get('user_id');
 
-            if($model->validate($input_data)) {
+            if($model->validate($input_data))
+            {
                 DB::beginTransaction();
                 try {
                     $model->create($input_data);
@@ -535,6 +545,12 @@ class UserInformationController extends \BaseController {
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
+            }
+            else
+            {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
             }
         }
         return Redirect::back();
@@ -565,11 +581,12 @@ class UserInformationController extends \BaseController {
                 Session::flash('danger', "Invalid Request !");
             }
             return Redirect::back();
-        }else{
+        }
+        else
+        {
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
+            return Redirect::back();
         }
     }
 //Extra-Curricular Activities..
@@ -596,7 +613,8 @@ class UserInformationController extends \BaseController {
         $data = Input::all();
         $file = $data['certificate_medal'];
         $model = new UserExtraCurricularActivity();
-        if ($model->validate($data)) {
+        if ($model->validate($data))
+        {
             $model->user_id = Auth::user()->get()->id;
             $model->title = Input::get('title');
             $model->description = Input::get('description');
@@ -614,8 +632,11 @@ class UserInformationController extends \BaseController {
 
             Session::flash('message', "Successfully Added Information!");
             return Redirect::back();
-        }else{
-            Session::flash('danger', 'Invalid Request');
+        }
+        else
+        {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }
@@ -673,7 +694,8 @@ class UserInformationController extends \BaseController {
         $file = $data['certificate_medal'];
 //        print_r($data);exit;
         $model = UserExtraCurricularActivity::find($id);
-        if ($model->validate($data)) {
+        if ($model->validate($data))
+        {
             $model->user_id = Auth::user()->get()->id;
             $model->title = Input::get('title');
             $model->description = Input::get('description');
@@ -692,8 +714,11 @@ class UserInformationController extends \BaseController {
 
             Session::flash('message', "Successfully Updated Information!");
             return Redirect::back();
-        }else{
-            Session::flash('danger', 'Invalid Request');
+        }
+        else
+        {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }

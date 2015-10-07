@@ -16,9 +16,14 @@ class UserMeta extends Eloquent {
 
     private $errors;
     private $rules = [
+        'fathers_name' => 'required',
+        'mothers_name' => 'required',
+        'freedom_fighter' => 'required',
         'national_id' => 'required|max:3',
-//        'gender' => 'required',
-//        'image' => 'required'
+        'nationality' => 'required',
+        'religion' => 'required',
+        'present_address' => 'required',
+        'permanent_address' => 'required'
     ];
 
     public function validate($data)

@@ -1,3 +1,15 @@
+@if ( $errors->any() )
+    <div class="alert alert-danger alert-dismissable">
+        <ul>
+            @foreach($errors->all() as $message )
+                <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+
 
 <span class="text-muted "><em style="color:midnightblue"><span style="color:red;">(*)</span> Marked are required fields </em></span>
 <div style="padding: 0px 20px 20px 20px;">

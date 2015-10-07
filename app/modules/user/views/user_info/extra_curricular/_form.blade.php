@@ -1,8 +1,20 @@
+@if ( $errors->any() )
+    <div class="alert alert-danger alert-dismissable">
+        <ul>
+            @foreach($errors->all() as $message )
+                <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+
 <div style="padding: 0px 20px 20px 20px;">
   {{Form::hidden('user_id',$user_id)}}
   <div class="form-group">
-      {{ Form::label('title', 'Title') }}
-      {{ Form::text('title',Input::old('title'), array('class' => 'form-control','placeholder'=>'','required')) }}
+      {{ Form::label('title', 'Title') }}<span class="text-danger">*</span>
+      {{ Form::text('title',Input::old('title'), array('class' => 'form-control','placeholder'=>'')) }}
   </div>
   <div class="form-group">
       {{ Form::label('description', 'Description') }}
