@@ -12,16 +12,18 @@ class RncPublisher extends Eloquent{
         'title','code','description'
     ];
     private $errors;
-    private $rules = [
-       'title' => 'required',
-       'code' => 'required'
-//       'description' => 'required'
 
-    ];
-
-    public function validate($data)
+    public static function rules ($id=0, $merge=[]) {
+        return array_merge(
+            [
+                'title' => 'required|unique:rnc_publisher,title'.($id ? ",$id" : ''),
+                'code'=> 'required',
+            ],
+            $merge);
+    }
+    public function validate($data, $id=0)
     {
-        $validate = Validator::make($data, $this->rules);
+        $validate = Validator::make($data, $this->rules($id));
         if ($validate->fails())
         {
             $this->errors = $validate->errors();
