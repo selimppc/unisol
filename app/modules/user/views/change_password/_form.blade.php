@@ -1,3 +1,16 @@
+@if ( $errors->any() )
+    <div class="alert alert-danger alert-dismissable">
+        <ul>
+            @foreach($errors->all() as $message )
+                <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+
+
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel" style="text-align: center">Change Password </h4>

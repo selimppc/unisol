@@ -16,22 +16,37 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     ];
     public $errors;
 
+    private $rules_pass = [
+    'new_password' => 'required',
+    'confirm_password' => 'required|same:new_password',
+    ];
+
     private $rules = [
         //'title' => 'required|alpha|min:3',
         //'body' => 'required|alpha|min:3'
         'first_name' => 'required',
         'last_name'  => 'required',
+        'username'                  => 'required',
+        'email' => 'required|email|unique:user',
+        'date_of_birth'         => 'required',
+        'password'              => 'required',
+        'confirm_password' => 'required|same:password',
+        'gender' => 'required',
+        'country' => 'required',
+        'zip_code' => 'required',
+        'department_id' => 'required',
+        'role_id' => 'required',
+        'join_date' => 'required',
+
         //'email' => 'required|email|unique:employees', // required and must be unique in the employees table
         //'files' => 'required|mimes:jpeg,jpg,png'
         //'photo' => 'image|max:3000',
         //'photo' => 'mimes:jpg,jpeg,bmp,png'
         // .. more rules here ..
-        //'password'         => 'required',
+
         //'password_confirm' => 'required|same:password'
-        //'username'                  => 'required',
-        'email' => 'required|email|unique:user',
-        'password'              => 'required',
-        'confirm_password' => 'required|same:password',
+
+
     ];
     public function validate($data)
     {
@@ -47,6 +62,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         // validation pass
         return true;
     }
+
+
+    public function validate_pass($data)
+    {
+        // make a new validator object
+        $validate = Validator::make($data, $this->rules_pass);
+        // check for failure
+        if ($validate->fails())
+        {
+            // set errors and return false
+            $this->errors = $validate->errors();
+            return false;
+        }
+        // validation pass
+        return true;
+    }
+
+
+
     public function errors()
     {
         return $this->errors;
