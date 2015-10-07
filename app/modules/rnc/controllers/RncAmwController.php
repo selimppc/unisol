@@ -12,6 +12,8 @@ class RncAmwController extends \BaseController
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
+    protected $redirect_to = "rnc/amw/category/index";
+
     // Category
     public function indexCategory()
     {
@@ -19,6 +21,9 @@ class RncAmwController extends \BaseController
         return View::make('rnc::amw.category.index', compact('model'));
     }
 
+    /**
+     * @return mixed
+     */
     public function storeCategory()
     {
         $data = Input::all();
@@ -27,25 +32,33 @@ class RncAmwController extends \BaseController
         $name = $model->title;
         if($model->validate($data))
         {
-            DB::beginTransaction();
-            try {
-                $model->create($data);
-                DB::commit();
-                Session::flash('message', "$name Category  Added");
+            $Check = DB::table('rnc_category')
+                ->select(DB::raw('1'))
+                ->where('title', '=', $model->title)
+                ->get();
+            if($Check){
+                Session::flash('info','Already Exists.');
+                return Redirect::back();
+            }else{
+                DB::beginTransaction();
+                try {
+                    $model->create($data);
+                    DB::commit();
+                    Session::flash('message', "$name Category  Added");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "$name Category not added.Invalid Request!");
+                }
+//                return Redirect::to($providers);
+                return Redirect::back();
             }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$name Category not added.Invalid Request!");
-            }
-            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back();
         }
-
     }
 
     public function showCategory($id)
@@ -88,8 +101,7 @@ class RncAmwController extends \BaseController
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
+            return Redirect::back();
         }
     }
 
@@ -105,7 +117,7 @@ class RncAmwController extends \BaseController
             }
         }
         catch (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back()->with('warning', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
 
