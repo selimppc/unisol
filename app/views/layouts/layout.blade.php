@@ -100,11 +100,13 @@
         <!-- Main content -->
         <section class="content">
             {{--Error handling--}}
-            @if(isset($errors ))
+            <?php //var_dump($errors);exit; ?>
+            {{--@todo: as without knowing the value of $errors is invalid it need to place to enrich this condition --}}
+            @if(isset($errors) && $errors != 'invalid')
                 <ul>
                     @foreach($errors->all() as $message )
                         <div class="alert alert-danger alert-dismissable">
-                          <li>{{ $message }}</li>
+                            <li>{{ $message }}</li>
                         </div>
                     @endforeach
                 </ul>

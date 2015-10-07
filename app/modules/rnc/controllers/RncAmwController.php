@@ -258,11 +258,8 @@ class RncAmwController extends \BaseController
             return Redirect::back();
         }else{
             $errors = $publisher->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back()->with('errors', $errors);
         }
-
     }
 
     public function showPublisher($id)
@@ -289,7 +286,7 @@ class RncAmwController extends \BaseController
         $publisher = RncPublisher::find($id);
         $publisher->title = Input::get('title');
         $name = $publisher->title;
-        if($publisher->validate($data))
+        if($publisher->validate($data, $id))
         {
             DB::beginTransaction();
             try {
