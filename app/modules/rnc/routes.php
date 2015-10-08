@@ -59,6 +59,7 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RncAmwController@batchDeleteCategory'
     ]);
 
+
     //Config. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     Route::any('amw/config/index',[
         'as' => 'amw.config.index',

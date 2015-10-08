@@ -232,7 +232,7 @@ class RncAmwController extends \BaseController
     //Publisher
     public function indexPublisher()
     {
-        $publisher = RncPublisher::orderBy('id', 'DESC')->paginate(10);
+        $publisher = RncPublisher::orderBy('id', 'DESC')->paginate(4);
         return View::make('rnc::amw.publisher.index', compact('publisher'));
     }
 

@@ -67,7 +67,7 @@
                                     </tbody>
                                 </table>
                             {{ Form::close() }}
-                            {{--{{ $data->links() }}--}}
+                                {{ $config->links() }}
                             </div>
                         </div>
                     </div>

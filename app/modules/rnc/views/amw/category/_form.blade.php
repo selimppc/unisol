@@ -1,5 +1,5 @@
 <div class='form-group'>
-    <div>{{ Form::label('title', 'Category Name') }}</div>
+    <div>{{ Form::label('title', 'Category Name') }}<span class="text-danger">*</span></div>
     <div>{{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}
     </div>
 </div>
