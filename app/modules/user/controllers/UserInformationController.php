@@ -535,6 +535,10 @@ class UserInformationController extends \BaseController {
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
+            }else{
+                $errors = $model->errors();
+                Session::flash('warning', $errors);
+                return Redirect::back();
             }
         }
         return Redirect::back();
@@ -615,7 +619,8 @@ class UserInformationController extends \BaseController {
             Session::flash('message', "Successfully Added Information!");
             return Redirect::back();
         }else{
-            Session::flash('danger', 'Invalid Request');
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }

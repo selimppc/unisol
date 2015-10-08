@@ -20,7 +20,7 @@ class UserMiscellaneousInfo extends Eloquent {
 
     private $errors;
     private $rules = [
-//        'zip_code' => 'required|numeric',
+        'admission_test_center' => 'required',
 //        'gender' => 'required',
 //        'image' => 'required'
     ];

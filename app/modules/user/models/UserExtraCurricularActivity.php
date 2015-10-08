@@ -17,7 +17,7 @@ class UserExtraCurricularActivity extends Eloquent {
 
     private $errors;
     private $rules = [
-//        'zip_code' => 'required|numeric',
+        'title' => 'required',
 //        'gender' => 'required',
 //        'image' => 'required'
     ];
