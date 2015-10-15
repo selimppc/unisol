@@ -33,11 +33,11 @@
              </div>
              <div class="col-lg-6">
                   <div id="acm_group" style="display:none">{{ Form::label('academic_group', 'Academic Group') }}
-                     {{ Form::text('academic_group',Input::old('academic_group'), ['class'=>'form-control']) }}
+                     {{ Form::text('academic_group',Input::old('academic_group'), ['class'=>'form-control','required']) }}
                   </div>
 
                   <div id="subject" style="display:none">{{ Form::label('major_subject', 'Major Subject') }}
-                     {{ Form::text('major_subject',Input::old('major_subject'),['class'=>'form-control ']) }}
+                     {{ Form::text('major_subject',Input::old('major_subject'),['class'=>'form-control ','required']) }}
                   </div>
              </div>
          </div>
@@ -177,7 +177,7 @@
              </div>
              <div class="col-lg-6">
                  {{ Form::label('registration_number', 'Registration Number') }}
-                 {{ Form::text('registration_number', Input::old('registration_number'),['class'=>'form-control ']) }}
+                 {{ Form::text('registration_number', Input::old('registration_number'),['class'=>'form-control','required']) }}
              </div>
          </div>
          <p>&nbsp;</p>
@@ -194,7 +194,7 @@
                    {{ Form::label('study_at', 'Study At ') }}
                    {{ Form::select('study_at', array('' => 'Select one',
                    'national' => 'National', 'abroad' => 'Abroad'), null,
-                   ['class'=>'form-control ']) }}
+                   ['class'=>'form-control','required']) }}
               </div>
          </div>
          <p>&nbsp;</p>

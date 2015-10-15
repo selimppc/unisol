@@ -1,18 +1,13 @@
 <?php
-
 class UserInformationController extends \BaseController {
-
     function __construct() {
         $this->beforeFilter('auth', array('except' => array('')));
     }
-
     protected function isPostRequest()
     {
         return Input::server("REQUEST_METHOD") == "POST";
     }
-
     public function profile(){
-
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
@@ -24,13 +19,11 @@ class UserInformationController extends \BaseController {
         }
         return View::make('user::user_info.personal_info.index', compact('userProfile','user_id','countryList','user_role'));
     }
-
     public function storeProfile()
     {
         $data = Input::all();
         $file = $data['image'];
         $model = new UserProfile();
-
         if ($model->validate($data))
         {
             $model->user_id = Auth::user()->get()->id;
@@ -43,7 +36,6 @@ class UserInformationController extends \BaseController {
             $model->state = Input::get('state');
             $model->country = Input::get('country');
             $model->zip_code = Input::get('zip_code');
-
             if($file)
             {
                 // Images destination
@@ -61,7 +53,6 @@ class UserInformationController extends \BaseController {
                 $model->image =$file;
             }
             $model->save();
-
             Session::flash('message', "Successfully Added Information!");
             return Redirect::back();
         }
@@ -73,21 +64,16 @@ class UserInformationController extends \BaseController {
         return Redirect::back();
     }
     public function editUserProfile($id){
-
         $model = UserProfile::find($id);
         $user_id = Auth::user()->get()->id;
         $countryList = [''=>'Select One'] + Country::lists('title','id');
         return View::make('user::user_info.personal_info.edit', compact('model','countryList','user_id'));
     }
-
     public function updateProfile($id){
-
         $data = Input::all();
         $file = $data['image'];
 //        print_r($data);exit;
         $model = UserProfile::find($id);
-
-
         if ($model->validate($data)) {
             $model->user_id = Auth::user()->get()->id;
             $model->first_name = Input::get('first_name');
@@ -95,7 +81,6 @@ class UserInformationController extends \BaseController {
             $model->last_name = Input::get('last_name');
             $model->date_of_birth = Input::get('date_of_birth');
             $model->gender = Input::get('gender');
-
             if($file){
                 // Images destination
                 $img_dir = "uploads/user_images/profile/" . date("h-m-y");
@@ -115,9 +100,7 @@ class UserInformationController extends \BaseController {
             $model->state = Input::get('state');
             $model->country = Input::get('country');
             $model->zip_code = Input::get('zip_code');
-
             $model->save();
-
             Session::flash('message', "Successfully Added Information!");
             return Redirect::back();
         }else
@@ -127,13 +110,11 @@ class UserInformationController extends \BaseController {
             return Redirect::back();
         }
     }
-
     public function profileImage($id)
     {
         $model = UserProfile::find($id);
         return View::make('user::user_info.personal_info.add_image',compact('model'));
     }
-
     public function addProfileImage($id)
     {
         $data = Input::all();
@@ -155,14 +136,11 @@ class UserInformationController extends \BaseController {
             $model->image = $file;
         }
         $model->save();
-
         Session::flash('message', "Successfully Added Profile Picture!");
         return Redirect::back();
     }
     /*User Meta Data*/
-
     public function meta_data(){
-
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
@@ -174,7 +152,6 @@ class UserInformationController extends \BaseController {
         }
         return View::make('user::user_info.meta_data.index', compact('userMeta','user_id','countryList','user_role'));
     }
-
     public function createMetaData(){
         $user_id = Auth::user()->get()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
@@ -182,15 +159,12 @@ class UserInformationController extends \BaseController {
         return View::make('user::user_info.meta_data._create',compact('model','countryList','user_id'));
     }
     public function storeMetaData(){
-
         if($this->isPostRequest()){
             $input_data = Input::all();
             $model = new UserMeta();
             $model->user_id = Input::get('user_id');
 //            print_r($input_data);exit;
-
-            if ($model->validate($input_data))
-            {
+            if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
                     $model->create($input_data);
@@ -202,28 +176,17 @@ class UserInformationController extends \BaseController {
                     Session::flash('danger', 'Failed !');
                 }
             }
-            else
-            {
-                $errors = $model->errors();
-                Session::flash('errors', $errors);
-                return Redirect::back();
-            }
         }
         return Redirect::back();
     }
-
     public function editMetaData($id){
-
         $model = UserMeta::find($id);
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.meta_data.edit', compact('model','user_id'));
     }
-
     public function updateMetaData($id){
-
         $data = Input::all();
         $model = UserMeta::find($id);
-
         if($model->validate($data))
         {
             DB::beginTransaction();
@@ -238,26 +201,22 @@ class UserInformationController extends \BaseController {
                 Session::flash('danger', "Invalid Request !");
             }
             return Redirect::back();
-        }
-        else
-        {
+        }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
     }
-
     public function viewSignature($id)
     {
         $model = UserMeta::find($id);
         return View::make('user::user_info.meta_data.add_signature',compact('model'));
     }
-
     public function addSignature($id)
     {
         $data = Input::all();
         $file = $data['signature'];
-
         $model = UserMeta::find($id);
         if($file) {
             // Images destination
@@ -276,14 +235,11 @@ class UserInformationController extends \BaseController {
             $model->signature  =  $file;
         }
         $model->save();
-
         Session::flash('message', "Successfully Added Signature!");
         return Redirect::back();
     }
 // Academic Records.....
-
     public function acm_records(){
-
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
@@ -298,7 +254,6 @@ class UserInformationController extends \BaseController {
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.academic._create',compact('user_id'));
     }
-
     public function store_acm_records(){
         if(Auth::user()->check())
         {
@@ -311,33 +266,26 @@ class UserInformationController extends \BaseController {
 //            );
             $data = Input::all();
             $model = new UserAcademicRecord();
-
             if ($model->validate($data))
             {
-
                 $file = $data['certificate'];
                 $file2 =$data['transcript'];
-
                 $model->user_id = Auth::user()->get()->id;
                 $model->level_of_education = Input::get('level_of_education');
                 $model->degree_name = Input::get('degree_name');
                 $model->institute_name = Input::get('institute_name');
                 $model->academic_group = Input::get('academic_group');
-
                 //save board or university according to board_type
                 $model->board_type = Input::get('board_type');
-
                 if ($model->board_type == 'board')
                     $model->board_university = Input::get('board_university_board');
                 if ($model->board_type == 'university')
                     $model->board_university = Input::get('board_university_university');
                 if ($model->board_type == 'other')
                     $model->board_university = Input::get('board_university_other');
-
                 //$model->board_university = $board_university;
                 $model->major_subject = Input::get('major_subject');
                 $model->result_type = Input::get('result_type');
-
                 $model->result = Input::get('result');
                 $model->gpa = Input::get('gpa');
                 $model->gpa_scale = Input::get('gpa_scale');
@@ -346,7 +294,6 @@ class UserInformationController extends \BaseController {
                 $model->year_of_passing = Input::get('year_of_passing');
                 $model->duration = Input::get('duration');
                 $model->study_at = Input::get('study_at');
-
                 if($file)
                 {
                     $file_certificate = Input::file('certificate');
@@ -368,14 +315,13 @@ class UserInformationController extends \BaseController {
                     $model->transcript =$file;
                 }
                 $model->save();
-
                 Session::flash('message', "Successfully Added Information!");
                 return Redirect::back();
             }
             else
             {
                 $errors = $model->errors();
-               Session::flash('errors', $errors);
+                Session::flash('errors', $errors);
                 return Redirect::back();
             }
         }
@@ -384,25 +330,20 @@ class UserInformationController extends \BaseController {
             return Redirect::route('user/login')->with('message', 'Please Login !');
         }
     }
-
     public function edit_acm_records($id)
     {
         $model= UserAcademicRecord::find($id);
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.academic.edit', compact('model','user_id'));
     }
-
     public function update_acm_records($id)
     {
         $data = Input::all();
-
         $model = UserAcademicRecord::find($id);
-
         if ($model->validate($data, $id))
         {
             $file = $data['certificate'];
             $file2 =$data['transcript'];
-
             if($data)
             {
                 $model->user_id = Auth::user()->get()->id;
@@ -419,11 +360,9 @@ class UserInformationController extends \BaseController {
                     $model->board_university = Input::get('board_university_university');
                 if ($model->board_type == 'other')
                     $model->board_university = Input::get('board_university_other');
-
                 //$model->board_university = $board_university;
                 $model->major_subject = Input::get('major_subject');
                 $model->result_type = Input::get('result_type');
-
                 $model->result = Input::get('result');
                 $model->gpa = Input::get('gpa');
                 $model->gpa_scale = Input::get('gpa_scale');
@@ -432,7 +371,6 @@ class UserInformationController extends \BaseController {
                 $model->year_of_passing = Input::get('year_of_passing');
                 $model->duration = Input::get('duration');
                 $model->study_at = Input::get('study_at');
-
                 if($file)
                 {
                     $file_certificate = Input::file('certificate');
@@ -469,24 +407,17 @@ class UserInformationController extends \BaseController {
         $user_id = $id;
         $model = UserAcademicRecord::where('id', '=',$user_id )->first();
         return View::make('user::user_info.academic.certificate',compact('model'));
-
     }
-
     public function view_transcript($id){
-
         $user_id = $id;
         $model = UserAcademicRecord::where('id', '=',$user_id )->first();
         return View::make('user::user_info.academic.transcript',compact('model'));
     }
-
     public function delete_acm_records($id){
-
         UserAcademicRecord::find($id)->delete();
         return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
-
     public function others_info(){
-
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
@@ -504,12 +435,8 @@ class UserInformationController extends \BaseController {
             return Redirect::route('user/login');
         }
     }
-
-
     //Miscellaneous..
-
     public function misc_info(){
-
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
@@ -520,21 +447,16 @@ class UserInformationController extends \BaseController {
         }
         return View::make('user::user_info.miscellaneous_info.index', compact('misc_info','user_id','user_role'));
     }
-
     public function create_misc_info(){
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.miscellaneous_info._create',compact('user_id'));
     }
-
     public function store_misc(){
-
         if($this->isPostRequest()){
             $input_data = Input::all();
             $model = new UserMiscellaneousInfo();
             $model->user_id = Input::get('user_id');
-
-            if($model->validate($input_data))
-            {
+            if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
                     $model->create($input_data);
@@ -545,28 +467,22 @@ class UserInformationController extends \BaseController {
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
-            }
-            else
-            {
+            }else{
                 $errors = $model->errors();
-                Session::flash('errors', $errors);
+                Session::flash('warning', $errors);
                 return Redirect::back();
             }
         }
         return Redirect::back();
     }
-
     public function edit_misc_info($id){
-
         $model = UserMiscellaneousInfo::find($id);
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.miscellaneous_info.edit', compact('model','user_id'));
     }
-
     public function update_misc_info($id){
         $data = Input::all();
         $model = UserMiscellaneousInfo::find($id);
-
         if($model->validate($data))
         {
             DB::beginTransaction();
@@ -581,18 +497,15 @@ class UserInformationController extends \BaseController {
                 Session::flash('danger', "Invalid Request !");
             }
             return Redirect::back();
-        }
-        else
-        {
+        }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
     }
 //Extra-Curricular Activities..
-
     public function extra_curricular(){
-
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
@@ -607,14 +520,11 @@ class UserInformationController extends \BaseController {
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.extra_curricular._create',compact('user_id'));
     }
-
     public function store_extra_curricular(){
-
         $data = Input::all();
         $file = $data['certificate_medal'];
         $model = new UserExtraCurricularActivity();
-        if ($model->validate($data))
-        {
+        if ($model->validate($data)) {
             $model->user_id = Auth::user()->get()->id;
             $model->title = Input::get('title');
             $model->description = Input::get('description');
@@ -629,35 +539,25 @@ class UserInformationController extends \BaseController {
                 $model->certificate_medal = $file;
             }
             $model->save();
-
             Session::flash('message', "Successfully Added Information!");
             return Redirect::back();
-        }
-        else
-        {
+        }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back();
         }
     }
-
     public function view_certificate_medal($id){
-
         $model = UserExtraCurricularActivity::find($id);
         return View::make('user::user_info.extra_curricular._view_certificate_medal',compact('model'));
     }
-
     public function create_certificate_medal($id){
-
         $model = UserExtraCurricularActivity::find($id);
         return View::make('user::user_info.extra_curricular.add_certificate_medal',compact('model'));
     }
-
     public function store_certificate_medal($id){
-
         $data = Input::all();
         $file = $data['certificate_medal'];
-
         $model = UserExtraCurricularActivity::find($id);
         if($file) {
             // Images destination
@@ -676,31 +576,24 @@ class UserInformationController extends \BaseController {
             $model->certificate_medal  =  $file;
         }
         $model->save();
-
         Session::flash('message', "Successfully Added.");
         return Redirect::back();
     }
-
     public function edit_extra_curricular($id){
-
         $model = UserExtraCurricularActivity::find($id);
         $user_id = Auth::user()->get()->id;
         return View::make('user::user_info.extra_curricular..edit', compact('model','user_id'));
     }
-
     public function update_extra_curricular($id){
-
         $data = Input::all();
         $file = $data['certificate_medal'];
 //        print_r($data);exit;
         $model = UserExtraCurricularActivity::find($id);
-        if ($model->validate($data))
-        {
+        if ($model->validate($data)) {
             $model->user_id = Auth::user()->get()->id;
             $model->title = Input::get('title');
             $model->description = Input::get('description');
             $model->achievement = Input::get('achievement');
-
             if($file){
                 $imagefile = Input::file('certificate_medal');
                 $extension = $imagefile->getClientOriginalExtension();
@@ -711,22 +604,15 @@ class UserInformationController extends \BaseController {
                 $model->certificate_medal  = $file;
             }
             $model->save();
-
             Session::flash('message', "Successfully Updated Information!");
             return Redirect::back();
-        }
-        else
-        {
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
+        }else{
+            Session::flash('danger', 'Invalid Request');
             return Redirect::back();
         }
     }
-
 //    Supporting Docs..
-
     public function supporting_docs(){
-
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             $user_id = Auth::user()->get()->id;
@@ -742,16 +628,12 @@ class UserInformationController extends \BaseController {
         }
         return View::make('user::user_info.supporting_docs.index', compact('supporting_docs','user_id','user_role'));
     }
-
     public function supportingDocs($doc_type, $sdoc_id){
-
         $supporting_docs = UserSupportingDoc::where('id', '=', $sdoc_id)->first();
         if(!$supporting_docs)
             $supporting_docs = null;
-
         return View::make('user::user_info.supporting_docs._form', compact('supporting_docs', 'doc_type'));
     }
-
     public function sDocsStore()
     {
         $data = Input::all();
@@ -774,23 +656,18 @@ class UserInformationController extends \BaseController {
             Image::make($file->getRealPath())->resize(800, 800)->save($pathS);
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
-            if ($sdoc->save()) {
-                Session::flash('message', "Successfully added Information!");
-                return Redirect::back();
-            } else
-                Session::flash('danger', "Not Added Information!");
-                return Redirect::back();
-
+        if ($sdoc->save()) {
+            Session::flash('message', "Successfully added Information!");
+            return Redirect::back();
+        } else
+            Session::flash('danger', "Not Added Information!");
+        return Redirect::back();
     }
-
     public function view_sdocs($doc_type, $sdoc_id){
-
         $supporting_docs = UserSupportingDoc::where('id', '=', $sdoc_id)->first();
         return View::make('user::user_info.supporting_docs.view', compact('supporting_docs', 'doc_type'));
     }
-
     public function password_change_view($id){
-
         $model = User::find($id);
         return View::make('user::change_password._form',compact('model'));
     }
@@ -800,7 +677,6 @@ class UserInformationController extends \BaseController {
         $model= User::findOrFail(Auth::user()->get()->id);
         $old_password = Input::get('old_password');
         $user_password = Auth::user()->get()->password;
-
         if(Hash::check($old_password, $user_password)){
             //validation
             $rules = array(
@@ -810,7 +686,6 @@ class UserInformationController extends \BaseController {
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->Fails()) {
                 Session::flash('info', 'Your new password does not match with confirm password. Please try again!');
-
                 return Redirect::back();
             } else{
                 $model->password = Input::get('new_password');
@@ -827,19 +702,14 @@ class UserInformationController extends \BaseController {
             return Redirect::back();
         }
     }*/
-
-
     public function change_password()
     {
         $model= User::findOrFail(Auth::user()->get()->id);
         $old_password = Input::get('old_password');
         $user_password = Auth::user()->get()->password;
-
         if(Hash::check($old_password, $user_password))
         {
             $data = Input::all();
-
-
             if ($model->validate_pass($data))
             {
                 $model->password = Input::get('new_password');
@@ -866,7 +736,6 @@ class UserInformationController extends \BaseController {
             return Redirect::back();
         }
     }
-
     public function user_settings(){
         $user_role = User::hasRole(Auth::user()->get()->role_id);
         $user_id = Auth::user()->get()->id;
@@ -876,6 +745,4 @@ class UserInformationController extends \BaseController {
         $academicRecords = UserAcademicRecord::where('user_id', '=', $user_id)->get();
         return View::make('user::settings._settings',compact('user_role','user_id','userProfile','userAccounts','academicRecords','userMeta'));
     }
-
-
 }

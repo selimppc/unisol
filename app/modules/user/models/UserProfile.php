@@ -19,7 +19,7 @@ class UserProfile extends Eloquent {
         'date_of_birth'         => 'required',
         'country' => 'required',
         'gender' => 'required',
-        'zip_code' => 'required',
+        'zip_code' => 'required|integer',
     ];
 
     public function validate($data)
