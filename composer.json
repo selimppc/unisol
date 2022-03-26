@@ -6,7 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-        "phpunit/phpunit": "3.7.*",
+        "phpunit/phpunit": "4.8.*",
         "doctrine/dbal": "v2.4.2",
         "intervention/image": "dev-master",
         "ollieread/multiauth": "dev-master"
